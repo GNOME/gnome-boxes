@@ -104,35 +104,22 @@ private class Boxes.ActionsPopover: Gtk.Popover {
         App.app.open_in_new_window (window.current_item as Machine);
     }
 
-    private string get_screenshot_filename () throws GLib.Error {
-        // Translators: name of the folder under ~/Pictures for screenshots. This is the same folder where GNOME Shell saves screenshots.
-        string dir_name = _("Screenshots");
-        string path = Path.build_filename (GLib.Environment.get_user_special_dir (GLib.UserDirectory.PICTURES),
-                                           dir_name);
-        var dir = GLib.File.new_for_path (path);
-
-        // Lets ensure that the "Screenshots" directory really exists.
-        try {
-            dir.make_directory_with_parents (null);
-        } catch (GLib.Error error) {
-            if (!(error is GLib.IOError.EXISTS))
-                throw error;
-        }
-
+    private string get_screenshot_filename () {
         var now = new GLib.DateTime.now_local ();
         var timestamp = now.format ("%Y-%m-%d %H-%M-%S");
 
         // Translators: %s => the timestamp of when the screenshot was taken.
         var filename =_("Screenshot from %s").printf (timestamp);
 
-        return Path.build_filename (dir.get_path (), filename + ".png");
+        return Path.build_filename (GLib.Environment.get_user_special_dir (GLib.UserDirectory.PICTURES),
+                                    filename);
     }
 
     private void take_screenshot_activated () {
         var machine = window.current_item as Machine;
         try {
             Gdk.Pixbuf pixbuf = machine.display.get_pixbuf (0);
-            pixbuf.save (get_screenshot_filename (), "png");
+            pixbuf.save (get_screenshot_filename () + ".png", "png");
         } catch (GLib.Error error) {
             warning (error.message);
         }
