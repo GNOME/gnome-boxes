@@ -182,9 +182,13 @@ namespace Boxes {
             "resource:///org/gnome/Boxes/recommended-downloads.xml");
     }
 
-    private const string GNOME_UPSTREAM_RECOMMENDED_DOWNLOADS = "https://gnome.pages.gitlab.gnome.org/gnome-boxes-logos/recommended-downloads.xml";
     public async GLib.List<Osinfo.Media>? fetch_recommended_downloads_from_net () {
-        var remote_file = GLib.File.new_for_uri (GNOME_UPSTREAM_RECOMMENDED_DOWNLOADS);
+        var settings = App.app.main_window.settings;
+        var url = settings.get_string ("recommended-downloads-url");
+        if (url == null || url == "")
+            return null;
+
+        var remote_file = GLib.File.new_for_uri (url);
         string cached_path = get_logo_cache ("recommended-downloads.xml");
         GLib.File cached_file = GLib.File.new_for_path (cached_path);
 
