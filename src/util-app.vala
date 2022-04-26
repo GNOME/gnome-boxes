@@ -670,14 +670,39 @@ namespace Boxes {
         return Gdk.pixbuf_get_from_surface (surface, 0, 0, size, size);
     }
 
+    private DBusProxy? create_gnome_settings_dbus_proxy () {
+        DBusProxy? proxy = null;
+        try {
+            proxy = new DBusProxy.for_bus_sync (BusType.SESSION,
+                                                DBusProxyFlags.NONE,
+                                                null,
+                                                "org.gnome.Settings",
+                                                "/org/gnome/Settings",
+                                                "org.gtk.Actions");
+        } catch (GLib.Error error) {
+            debug ("Failed to launch org.gnome.Settings. Fallback to org.gnome.ControlCenter");
+        }
+
+        try {
+            proxy = new DBusProxy.for_bus_sync (BusType.SESSION,
+                                                DBusProxyFlags.NONE,
+                                                null,
+                                                "org.gnome.ControlCenter",
+                                                "/org/gnome/ControlCenter",
+                                                "org.gtk.Actions");
+        } catch (GLib.Error error) {
+            debug ("Failed to launch org.gnome.ControlCenter");
+        }
+
+        return proxy;
+    }
+
     public void open_permission_settings () {
         try {
-            var proxy = new DBusProxy.for_bus_sync (BusType.SESSION,
-                                                    DBusProxyFlags.NONE,
-                                                    null,
-                                                    "org.gnome.ControlCenter",
-                                                    "/org/gnome/ControlCenter",
-                                                    "org.gtk.Actions");
+            var proxy = create_gnome_settings_dbus_proxy ();
+            if (proxy == null)
+                throw new GLib.IOError.FAILED ("Couldn't create DBusProxy for GNOME Settings");
+
             var builder = new VariantBuilder (new VariantType ("av"));
             builder.add ("v", new Variant.string (Config.APPLICATION_ID));
             var param = new Variant.tuple ({
