@@ -109,7 +109,7 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
         settings = new GLib.Settings ("org.gnome.boxes");
 
         Gtk.Window.set_default_icon_name (Config.APPLICATION_ID);
-        Hdy.StyleManager.get_default ().color_scheme = PREFER_DARK;
+        Hdy.StyleManager.get_default ().color_scheme = PREFER_LIGHT;
 
         var provider = Boxes.load_css ("gtk-style.css");
         Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (),
