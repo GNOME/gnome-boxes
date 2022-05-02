@@ -1,4 +1,5 @@
 osinfo_db = [
+  ['archlinux-rolling.xml', 'gnome-boxes/osinfo/os/archlinux.org'],
   ['centos-7.0.xml', 'gnome-boxes/osinfo/os/centos.org'],
   ['centos-stream-9.xml', 'gnome-boxes/osinfo/os/centos.org'],
   ['debian-4.xml', 'gnome-boxes/osinfo/os/debian.org'],
