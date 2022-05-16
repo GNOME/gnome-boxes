@@ -54,9 +54,10 @@ private class Boxes.VMConfigurator {
 
         var best_caps = get_best_guest_caps (caps, install_media);
         domain.memory = install_media.resources.ram / KIBIBYTES;
-        set_cpu_config (domain, caps);
 
         var virt_type = guest_kvm_enabled (best_caps) ? DomainVirtType.KVM : DomainVirtType.QEMU;
+        set_cpu_config (domain, caps, virt_type);
+
         domain.set_virt_type (virt_type);
 
         set_os_config (domain, install_media, best_caps, domain_caps);
@@ -223,7 +224,7 @@ private class Boxes.VMConfigurator {
         update_custom_xml (domain, install_media, 0, true);
     }
 
-    private static void set_cpu_config (Domain domain, Capabilities caps) {
+    private static void set_cpu_config (Domain domain, Capabilities caps, DomainVirtType virt_type = DomainVirtType.KVM) {
         var cpu_caps = caps.get_host ().get_cpu ();
         var topology = cpu_caps.get_topology ();
 
@@ -233,7 +234,7 @@ private class Boxes.VMConfigurator {
         domain.vcpu = topology.get_sockets () * topology.get_cores () * topology.get_threads ();
 
         var cpu = new DomainCpu ();
-        cpu.set_mode (DomainCpuMode.HOST_PASSTHROUGH);
+        cpu.set_mode (virt_type == DomainVirtType.QEMU ? DomainCpuMode.HOST_MODEL : DomainCpuMode.HOST_PASSTHROUGH);
         cpu.set_topology (topology);
 
         domain.set_cpu (cpu);
