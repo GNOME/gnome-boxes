@@ -135,6 +135,10 @@ private class Boxes.OSDatabase : GLib.Object {
             if (!os.id.has_prefix (os_id_prefix))
                 continue;
 
+            if (os.get_release_status () != ReleaseStatus.RELEASED &&
+                os.get_release_status () != ReleaseStatus.ROLLING)
+                continue;
+
             if (os.version in skipped_os_versions)
                 continue;
 
