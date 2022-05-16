@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2022-02-17 11:33+0000\n"
-"PO-Revision-Date: 2022-02-21 19:19+0330\n"
+"POT-Creation-Date: 2022-05-08 10:29+0000\n"
+"PO-Revision-Date: 2022-05-16 11:48+0430\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <>\n"
 "Language: fa\n"
@@ -24,7 +24,7 @@ msgstr ""
 
 #: data/org.gnome.Boxes.appdata.xml.in:7 data/org.gnome.Boxes.desktop.in:3
 #: data/ui/app-window.ui:6 data/ui/collection-toolbar.ui:7 src/app.vala:117
-#: src/app-window.vala:105 src/app-window.vala:217 src/app-window.vala:219
+#: src/app-window.vala:105 src/app-window.vala:218 src/app-window.vala:220
 #: src/main.vala:72 src/topbar.vala:70
 msgid "Boxes"
 msgstr "جعبه‌ها"
@@ -97,7 +97,7 @@ msgstr ""
 msgid "Setup Shared Folders between your system and virtual machines."
 msgstr "برپایی شاخه‌های هم‌رسانده بین دستگاه‌های مجازی و سامانه‌تان."
 
-#: data/org.gnome.Boxes.appdata.xml.in:66
+#: data/org.gnome.Boxes.appdata.xml.in:71
 msgid "The GNOME Project"
 msgstr "پروژهٔ گنوم"
 
@@ -678,8 +678,13 @@ msgstr "راه‌اندازی مجدد"
 msgid "Preferences"
 msgstr "ترجیحات"
 
+#. Translators: name of the folder under ~/Pictures for screenshots. This is the same folder where GNOME Shell saves screenshots.
+#: src/actions-popover.vala:109
+msgid "Screenshots"
+msgstr "نماگرفت‌ها"
+
 #. Translators: %s => the timestamp of when the screenshot was taken.
-#: src/actions-popover.vala:112
+#: src/actions-popover.vala:126
 #, c-format
 msgid "Screenshot from %s"
 msgstr "نماگرفت از %s"
@@ -758,15 +763,15 @@ msgstr[0] "%Iu جعبه حذف شدند"
 msgid "Boxes is doing something"
 msgstr "جعبه‌ها در حال انجام کاریست"
 
-#: src/app-window.vala:272
+#: src/app-window.vala:273
 msgid "Select files to transfer"
 msgstr "گزینش پرونده‌ها برای انتقال"
 
-#: src/app-window.vala:273
+#: src/app-window.vala:274
 msgid "_Cancel"
 msgstr "_لغو"
 
-#: src/app-window.vala:275
+#: src/app-window.vala:276
 msgid "_Open"
 msgstr "_بازکردن"
 
@@ -1043,15 +1048,15 @@ msgstr "برای دیدن افزاره‌های یو‌اس‌بی موجود ب
 msgid "Recommended %s."
 msgstr "%s پیشنهاد می‌شود."
 
-#: src/preferences/resources-page.vala:157
+#: src/preferences/resources-page.vala:159
 msgid "Boxes is not authorized to run in background"
 msgstr "جعبه‌ها مجاز به اجرا در پس‌زمینه نیست"
 
-#: src/preferences/resources-page.vala:163
+#: src/preferences/resources-page.vala:165
 msgid "Do you want to open Settings to manage application permissions?"
 msgstr "می‌خواهید برای مدیریت اجازه‌های برنامه، تنظیمات را بگشایید؟"
 
-#: src/preferences/resources-page.vala:201
+#: src/preferences/resources-page.vala:203
 msgid ""
 "Editing your box configuration can cause issues to the operating system of your "
 "box. Would you like to create a snapshot to recover from your changes?"
@@ -1059,12 +1064,12 @@ msgstr ""
 "ویرایش پیکربندی جعبه‌تان می‌تواند موجب اشکال در سیستم‌عامل جعبه‌تان شود. می‌خواهید "
 "برای بازگردانی از تغییراتتان، تصویری لحظه‌ای ایجاد کنید؟"
 
-#: src/preferences/resources-page.vala:267
+#: src/preferences/resources-page.vala:269
 #, c-format
 msgid "Failed to save domain configuration: %s"
 msgstr "شکست در ذخیرهٔ پیکربندی دامنه: %s"
 
-#: src/preferences/resources-page.vala:276
+#: src/preferences/resources-page.vala:278
 msgid "Changes to the settings below take effect after you restart your box."
 msgstr "تغییرات در تنظیمات زیر پس از شروع دوبارهٔ جعبه‌تان اثر خواهند گذاشت."
 
@@ -1163,21 +1168,21 @@ msgstr "خطایی هنگام آماده‌سازی نصب رُخ داد. نصب
 msgid "Downloading device drivers…"
 msgstr "در حال بارگیری راه‌اندازهای افزاره…"
 
-#: src/unattended-setup-box.vala:53
+#: src/unattended-setup-box.vala:51
 msgid "no password"
 msgstr "بدون گذرواژه"
 
-#: src/unattended-setup-box.vala:110
+#: src/unattended-setup-box.vala:108
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "نصب سریع %s نیاز به یک اتّصال اینترنتی دارد."
 
-#: src/unattended-setup-box.vala:208
+#: src/unattended-setup-box.vala:206
 #, c-format
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "اعتبارنامهٔ جعبه‌های گنوم برای «%s»"
 
-#: src/util-app.vala:359
+#: src/util-app.vala:368
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1187,11 +1192,11 @@ msgstr ""
 "کنید:\n"
 "%s"
 
-#: src/util-app.vala:363
+#: src/util-app.vala:372
 msgid "SELinux not installed?"
 msgstr "SELinux نصب نشده است؟"
 
-#: src/util-app.vala:445
+#: src/util-app.vala:454
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1199,7 +1204,7 @@ msgstr ""
 "نمی‌توان اطّلاعات منبع ذخیرهٔ gnome-boxes را از libvirt گرفت. مطمئن شوید virsh -c "
 "qemu:///session pool-dumpxml gnome-boxes کار می‌کند."
 
-#: src/util-app.vala:450
+#: src/util-app.vala:459
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does not "
@@ -1208,14 +1213,14 @@ msgstr ""
 "شاخهٔ %s برای libvirt به عنوان منبع ذخیرهٔ جعبه‌های گنوم شناخته شده است، ولی وجود "
 "ندارد"
 
-#: src/util-app.vala:454
+#: src/util-app.vala:463
 #, c-format
 msgid "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
 msgstr ""
 "شاخهٔ %s برای libvirt به عنوان منبع ذخیرهٔ جعبه‌های گنوم شناخته شده است، ولی یک "
 "شاخه نیست"
 
-#: src/util-app.vala:458
+#: src/util-app.vala:467
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-readable/"
@@ -1234,7 +1239,7 @@ msgstr "خیر"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:793
+#: src/vm-configurator.vala:803
 msgid "Incapable host system"
 msgstr "سامانهٔ میزبان ناتوان"
 
