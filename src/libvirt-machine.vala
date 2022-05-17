@@ -24,6 +24,21 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         }
     }
 
+    public new string name {
+        set {
+            try {
+                domain_config.set_title (value);
+                domain.set_config (domain_config);
+            } catch (GLib.Error error) {
+                warning ("Failed to rename box: %s", error.message);
+            }
+        }
+
+        get {
+            return domain_config.get_title ();
+        }
+    }
+
     // If this machine is currently being imported
     public bool importing { get { return vm_creator != null && vm_creator is VMImporter; } }
 
