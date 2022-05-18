@@ -9,20 +9,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2022-02-11 12:42+0000\n"
-"PO-Revision-Date: 2022-02-12 20:03+0100\n"
-"Last-Translator: Marek Černocký <marek@manet.cz>\n"
+"POT-Creation-Date: 2022-05-08 10:29+0000\n"
+"PO-Revision-Date: 2022-05-16 16:54+0200\n"
+"Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:7 data/org.gnome.Boxes.desktop.in:3
 #: data/ui/app-window.ui:6 data/ui/collection-toolbar.ui:7 src/app.vala:117
-#: src/app-window.vala:105 src/app-window.vala:217 src/app-window.vala:219
+#: src/app-window.vala:105 src/app-window.vala:218 src/app-window.vala:220
 #: src/main.vala:72 src/topbar.vala:70
 msgid "Boxes"
 msgstr "Boxy"
@@ -103,7 +103,7 @@ msgstr ""
 msgid "Setup Shared Folders between your system and virtual machines."
 msgstr "Nastavení sdílené složky mezi vaším systémem a virtuálními stroji."
 
-#: data/org.gnome.Boxes.appdata.xml.in:66
+#: data/org.gnome.Boxes.appdata.xml.in:71
 msgid "The GNOME Project"
 msgstr "Projekt GNOME"
 
@@ -203,7 +203,7 @@ msgid ""
 "It is not advised to try booting an unknown OS, but you may try your luck "
 "forcing a specific kind of OS from the list below:"
 msgstr ""
-"Nedoporučuje se zavádět neznýmý systém, ale můžete zkusit své štěstí přímým "
+"Nedoporučuje se zavádět neznámý systém, ale můžete zkusit své štěstí přímým "
 "určením druhu OS ze seznamu níže:"
 
 #: data/ui/assistant/pages/identify-os-page.ui:41
@@ -298,7 +298,7 @@ msgstr "Paměť"
 #: data/ui/assistant/pages/review-page.ui:101
 #: data/ui/preferences/resources-page.ui:97
 msgid "Storage limit"
-msgstr "Omezení paměti"
+msgstr "Omezení úložiště"
 
 #: data/ui/assistant/pages/review-page.ui:107
 #: data/ui/unattended-setup-box.ui:68 src/unattended-installer.vala:270
@@ -694,8 +694,15 @@ msgstr "Restartovat"
 msgid "Preferences"
 msgstr "Předvolby"
 
+#. Translators: name of the folder under ~/Pictures for screenshots. This is the same folder where GNOME Shell saves screenshots.
+#: src/actions-popover.vala:109
+#, fuzzy
+#| msgid "Take Screenshot"
+msgid "Screenshots"
+msgstr "Pořídit snímek obrazovky"
+
 #. Translators: %s => the timestamp of when the screenshot was taken.
-#: src/actions-popover.vala:112
+#: src/actions-popover.vala:126
 #, c-format
 msgid "Screenshot from %s"
 msgstr "Snímek obrazovky pořízený %s"
@@ -779,15 +786,15 @@ msgstr[2] "%u boxů bylo odstraněno"
 msgid "Boxes is doing something"
 msgstr "Boxy něco provádí"
 
-#: src/app-window.vala:272
+#: src/app-window.vala:273
 msgid "Select files to transfer"
 msgstr "Výběr souboru k přenesení"
 
-#: src/app-window.vala:273
+#: src/app-window.vala:274
 msgid "_Cancel"
 msgstr "_Zrušit"
 
-#: src/app-window.vala:275
+#: src/app-window.vala:276
 msgid "_Open"
 msgstr "_Otevřít"
 
@@ -1068,15 +1075,15 @@ msgstr ""
 msgid "Recommended %s."
 msgstr "Doporučeno %s."
 
-#: src/preferences/resources-page.vala:157
+#: src/preferences/resources-page.vala:159
 msgid "Boxes is not authorized to run in background"
 msgstr "Boxy nejsou oprávněné běžet na pozadí"
 
-#: src/preferences/resources-page.vala:163
+#: src/preferences/resources-page.vala:165
 msgid "Do you want to open Settings to manage application permissions?"
 msgstr "Přejete si otevřít Nastavení, abyste mohli změnit oprávnění aplikace?"
 
-#: src/preferences/resources-page.vala:201
+#: src/preferences/resources-page.vala:203
 msgid ""
 "Editing your box configuration can cause issues to the operating system of "
 "your box. Would you like to create a snapshot to recover from your changes?"
@@ -1084,12 +1091,12 @@ msgstr ""
 "Úprava konfigurace vašeho boxu může způsobit problémy s operačním systémem "
 "vašeho boxu. Chcete vytvořit zálohu, abyste mohli obnovit změny?"
 
-#: src/preferences/resources-page.vala:267
+#: src/preferences/resources-page.vala:269
 #, c-format
 msgid "Failed to save domain configuration: %s"
 msgstr "Nepodařilo se uložit nastavení domény: %s"
 
-#: src/preferences/resources-page.vala:276
+#: src/preferences/resources-page.vala:278
 msgid "Changes to the settings below take effect after you restart your box."
 msgstr "Níže uvedené změny nastavení se projeví po restartování vašeho boxu."
 
@@ -1189,21 +1196,21 @@ msgstr ""
 msgid "Downloading device drivers…"
 msgstr "Stahují se ovladače zařízení…"
 
-#: src/unattended-setup-box.vala:53
+#: src/unattended-setup-box.vala:51
 msgid "no password"
 msgstr "žádné heslo"
 
-#: src/unattended-setup-box.vala:110
+#: src/unattended-setup-box.vala:108
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "Rychlá instalace %s vyžaduje připojení k Internetu."
 
-#: src/unattended-setup-box.vala:208
+#: src/unattended-setup-box.vala:206
 #, c-format
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "Aktivační údaje Boxů GNOME pro „%s“"
 
-#: src/util-app.vala:359
+#: src/util-app.vala:368
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1213,11 +1220,11 @@ msgstr ""
 "pomocí:\n"
 "%s"
 
-#: src/util-app.vala:363
+#: src/util-app.vala:372
 msgid "SELinux not installed?"
 msgstr "SELinux není nainstalován?"
 
-#: src/util-app.vala:445
+#: src/util-app.vala:454
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1226,7 +1233,7 @@ msgstr ""
 "boxes“. Ujistěte se, že funguje „virsh -c qemu:///session pool-dumpxml gnome-"
 "boxes“."
 
-#: src/util-app.vala:450
+#: src/util-app.vala:459
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
@@ -1235,7 +1242,7 @@ msgstr ""
 "%s je v libvirt známé jako sdružené úložiště aplikace GNOME Boxy, ale tato "
 "složka neexistuje"
 
-#: src/util-app.vala:454
+#: src/util-app.vala:463
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
@@ -1243,7 +1250,7 @@ msgstr ""
 "%s je v libvirt známé jako sdružené úložiště aplikace GNOME Boxy, ale "
 "nejedná se o složku"
 
-#: src/util-app.vala:458
+#: src/util-app.vala:467
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
@@ -1262,7 +1269,7 @@ msgstr "ne"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:793
+#: src/vm-configurator.vala:803
 msgid "Incapable host system"
 msgstr "Nedostačující hostitelský systém"
 
