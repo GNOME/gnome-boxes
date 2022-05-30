@@ -8,22 +8,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME-Boxes\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2022-02-17 11:33+0000\n"
-"PO-Revision-Date: 2022-02-21 16:30+0200\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"POT-Creation-Date: 2022-05-20 09:02+0000\n"
+"PO-Revision-Date: 2022-05-30 20:46+0300\n"
+"Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
 "Language-Team: Hebrew <>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? 2 : "
-"3);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? "
+"2 : 3)\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Gtranslator 40.0\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:7 data/org.gnome.Boxes.desktop.in:3
 #: data/ui/app-window.ui:6 data/ui/collection-toolbar.ui:7 src/app.vala:117
-#: src/app-window.vala:105 src/app-window.vala:217 src/app-window.vala:219
+#: src/app-window.vala:105 src/app-window.vala:218 src/app-window.vala:220
 #: src/main.vala:72 src/topbar.vala:70
 msgid "Boxes"
 msgstr "קופסאות"
@@ -34,8 +34,8 @@ msgstr "וירטואליזציה בקלות"
 
 #: data/org.gnome.Boxes.appdata.xml.in:10
 msgid ""
-"Select an operating system and let Boxes download and install it for you in a "
-"virtual machine."
+"Select an operating system and let Boxes download and install it for you in "
+"a virtual machine."
 msgstr ""
 "נא לבחור מערכת הפעלה כדי לאפשר לקופסאות להוריד ולהתקין אותה עבורך במכונה "
 "וירטואלית."
@@ -100,7 +100,7 @@ msgstr ""
 msgid "Setup Shared Folders between your system and virtual machines."
 msgstr "הגדרת תיקיות משותפות בין המערכת והמכונות הווירטואליות שלך."
 
-#: data/org.gnome.Boxes.appdata.xml.in:66
+#: data/org.gnome.Boxes.appdata.xml.in:71
 msgid "The GNOME Project"
 msgstr "מיזם GNOME"
 
@@ -199,8 +199,8 @@ msgid ""
 "It is not advised to try booting an unknown OS, but you may try your luck "
 "forcing a specific kind of OS from the list below:"
 msgstr ""
-"לא מומלץ לנסות להפעיל מערכת הפעלה בלתי מוכרת אך אפשר לנסות את מזלך באילוץ סוג "
-"מסוים של מערכת הפעלה מהרשימה שלהלן:"
+"לא מומלץ לנסות להפעיל מערכת הפעלה בלתי מוכרת אך אפשר לנסות את מזלך באילוץ "
+"סוג מסוים של מערכת הפעלה מהרשימה שלהלן:"
 
 #: data/ui/assistant/pages/identify-os-page.ui:41
 msgid "Template"
@@ -224,8 +224,8 @@ msgid ""
 "A new virtual machine will be created and an operating system installed into "
 "it. Select an operating system source to begin."
 msgstr ""
-"תיווצר מכונה וירטואלית חדשה ועליה תוקם מערכת הפעלה. נא לבחור מקור מערכת הפעלה "
-"כדי להתחיל."
+"תיווצר מכונה וירטואלית חדשה ועליה תוקם מערכת הפעלה. נא לבחור מקור מערכת "
+"הפעלה כדי להתחיל."
 
 #: data/ui/assistant/pages/index-page.ui:54
 msgid "Detected Sources"
@@ -293,13 +293,13 @@ msgstr "זיכרון"
 msgid "Storage limit"
 msgstr "מגבלת אחסון"
 
-#: data/ui/assistant/pages/review-page.ui:107 data/ui/unattended-setup-box.ui:68
-#: src/unattended-installer.vala:270
+#: data/ui/assistant/pages/review-page.ui:107
+#: data/ui/unattended-setup-box.ui:68 src/unattended-installer.vala:270
 msgid "Username"
 msgstr "שם משתמש"
 
-#: data/ui/assistant/pages/review-page.ui:123 data/ui/unattended-setup-box.ui:84
-#: src/unattended-installer.vala:271
+#: data/ui/assistant/pages/review-page.ui:123
+#: data/ui/unattended-setup-box.ui:84 src/unattended-installer.vala:271
 msgid "Password"
 msgstr "ססמה"
 
@@ -687,8 +687,14 @@ msgstr "הפעלה מחדש"
 msgid "Preferences"
 msgstr "העדפות"
 
+#. Translators: name of the folder under ~/Pictures for screenshots. This is the same folder where GNOME Shell saves screenshots.
+#: src/actions-popover.vala:109
+#| msgid "Take Screenshot"
+msgid "Screenshots"
+msgstr "צילומי מסך"
+
 #. Translators: %s => the timestamp of when the screenshot was taken.
-#: src/actions-popover.vala:112
+#: src/actions-popover.vala:126
 #, c-format
 msgid "Screenshot from %s"
 msgstr "צילום מסך מ־%s"
@@ -697,7 +703,9 @@ msgstr "צילום מסך מ־%s"
 msgid "translator-credits"
 msgstr ""
 "ירון שהרבני <sh.yaron@gmail.com>\n"
-"יוסף אור בוצ׳קו <yoseforb@gnome.org>"
+"יוסף אור בוצ׳קו <yoseforb@gmail.com>\n"
+"\n"
+"<a href=\\\"https://l10n.gnome.org/teams/he/\\\">מיזם תרגום GNOME לעברית</a>"
 
 #: src/app.vala:114
 msgid "A simple GNOME 3 application to access virtual systems"
@@ -772,15 +780,15 @@ msgstr[3] "‫%u קופסאות נמחקו"
 msgid "Boxes is doing something"
 msgstr "תכנית הקופסאות עושה משהו"
 
-#: src/app-window.vala:272
+#: src/app-window.vala:273
 msgid "Select files to transfer"
 msgstr "בחירת קבצים להעברה"
 
-#: src/app-window.vala:273
+#: src/app-window.vala:274
 msgid "_Cancel"
 msgstr "_ביטול"
 
-#: src/app-window.vala:275
+#: src/app-window.vala:276
 msgid "_Open"
 msgstr "_פתיחה"
 
@@ -1058,15 +1066,15 @@ msgstr "יש להפעיל את המכונה שלך כדי לראות שהתקנ�
 msgid "Recommended %s."
 msgstr "‫%s מומלץ."
 
-#: src/preferences/resources-page.vala:157
+#: src/preferences/resources-page.vala:159
 msgid "Boxes is not authorized to run in background"
 msgstr "לקופסאות אין הרשאה לפעול ברקע"
 
-#: src/preferences/resources-page.vala:163
+#: src/preferences/resources-page.vala:165
 msgid "Do you want to open Settings to manage application permissions?"
 msgstr "לפתוח את ההגדרות כדי לנהל את הרשאות היישום?"
 
-#: src/preferences/resources-page.vala:201
+#: src/preferences/resources-page.vala:203
 msgid ""
 "Editing your box configuration can cause issues to the operating system of "
 "your box. Would you like to create a snapshot to recover from your changes?"
@@ -1074,12 +1082,12 @@ msgstr ""
 "עריכת הגדרות המכונה שלך יכולות לגרום לתקלות במערכת ההפעלה של המכונה שלך. "
 "ליצור תמונת מצב כדי לאפשר שיחזור של השינויים שלך?"
 
-#: src/preferences/resources-page.vala:267
+#: src/preferences/resources-page.vala:269
 #, c-format
 msgid "Failed to save domain configuration: %s"
 msgstr "שמירת הגדרות שם התחום נכשלו: %s"
 
-#: src/preferences/resources-page.vala:276
+#: src/preferences/resources-page.vala:278
 msgid "Changes to the settings below take effect after you restart your box."
 msgstr "שינויי ההגדרות שלהלן יחולו לאחר הפעלת המכונה שלך מחדש."
 
@@ -1178,21 +1186,21 @@ msgstr "אירעה שגיאה במהלך ההכנות להתקנה. התקנה �
 msgid "Downloading device drivers…"
 msgstr "מנהלי ההתקנים מתקבלים…"
 
-#: src/unattended-setup-box.vala:53
+#: src/unattended-setup-box.vala:51
 msgid "no password"
 msgstr "אין ססמה"
 
-#: src/unattended-setup-box.vala:110
+#: src/unattended-setup-box.vala:108
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "הורדה ישירה של %s דורשת חיבור לאינטרנט."
 
-#: src/unattended-setup-box.vala:208
+#: src/unattended-setup-box.vala:206
 #, c-format
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "פרטי גישה של קופסאות של GNOME עבור „%s”"
 
-#: src/util-app.vala:359
+#: src/util-app.vala:368
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1201,11 +1209,11 @@ msgstr ""
 "הקשר ה־SELinux שלך נראה שגוי, ניתן לנסות לתקן אותו על ידי הרצת הפקודה:\n"
 "%s"
 
-#: src/util-app.vala:363
+#: src/util-app.vala:372
 msgid "SELinux not installed?"
 msgstr "האם SELinux לא מותקן?"
 
-#: src/util-app.vala:445
+#: src/util-app.vala:454
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1213,7 +1221,7 @@ msgstr ""
 "לא ניתן לקבל את פרטי מאגר האחסון „gnome-boxes” מ־libvirt. נא לוודא שהפקודה "
 "„virsh -c qemu:///session pool-dumpxml gnome-boxes” פועלת."
 
-#: src/util-app.vala:450
+#: src/util-app.vala:459
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
@@ -1221,20 +1229,20 @@ msgid ""
 msgstr ""
 "‫%s מוכר ל־libvirt בתור מאגר האחסון לקופסאות של GNOME אך תיקייה זו אינה קיימת"
 
-#: src/util-app.vala:454
+#: src/util-app.vala:463
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
 msgstr "‫%s מוכר ל־libvirt בתור מאגר האחסון לקופסאות של GNOME אך אינו תיקייה"
 
-#: src/util-app.vala:458
+#: src/util-app.vala:467
 #, c-format
 msgid ""
-"%s is known to libvirt as GNOME Boxes’s storage pool but is not user-readable/"
-"writable"
+"%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
+"readable/writable"
 msgstr ""
-"‫%s מוכר ל־libvirt בתור מאגר אחסון לקופסאות של GNOME אך אינו ניתן לקריאה/כתיבה "
-"על ידי המשתמש"
+"‫%s מוכר ל־libvirt בתור מאגר אחסון לקופסאות של GNOME אך אינו ניתן "
+"לקריאה/כתיבה על ידי המשתמש"
 
 #: src/util.vala:334
 msgid "yes"
@@ -1246,7 +1254,7 @@ msgstr "לא"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:793
+#: src/vm-configurator.vala:803
 msgid "Incapable host system"
 msgstr "מערכת האירוח אינה מסוגלת לכך"
 
@@ -1361,17 +1369,18 @@ msgstr "הייבוא של קופסה מהקובץ „%s” נכשל: %s"
 #~ msgstr ""
 #~ "יישום GNOME 3 פשוט לניהול מערכות וירטואליות. בשונה מתכניות ניהול מכונות "
 #~ "וירטואליות אחרות, קופסאות מותאם למשתמשי קצה אופייניים בשולחן העבודה. לכן, "
-#~ "קופסאות לא יספק הרבה אפשרויות מתקדמות להתאמת מכונות וירטואליות. במקום זאת, "
-#~ "קופסאות יתמקד בהגשת תוצרים עובדים הישר מהקופסה עם מעט מאוד קלט מהמשתמש."
+#~ "קופסאות לא יספק הרבה אפשרויות מתקדמות להתאמת מכונות וירטואליות. במקום "
+#~ "זאת, קופסאות יתמקד בהגשת תוצרים עובדים הישר מהקופסה עם מעט מאוד קלט "
+#~ "מהמשתמש."
 
 #~ msgid ""
-#~ "You want to install Boxes if you just want a very safe and easy way to try "
-#~ "out new operating systems or new (potentially unstable) versions of your "
-#~ "favorite operating system(s)."
+#~ "You want to install Boxes if you just want a very safe and easy way to "
+#~ "try out new operating systems or new (potentially unstable) versions of "
+#~ "your favorite operating system(s)."
 #~ msgstr ""
-#~ "כדאי להתקין את קופסאות אם מעניינת אותך דרך בטוחה ופשוטה לנסות מערכות הפעלה "
-#~ "חדשות או גרסאות (אולי גם לא יציבות) של מערכת או מערכות ההפעלה המועדפות "
-#~ "עליך."
+#~ "כדאי להתקין את קופסאות אם מעניינת אותך דרך בטוחה ופשוטה לנסות מערכות "
+#~ "הפעלה חדשות או גרסאות (אולי גם לא יציבות) של מערכת או מערכות ההפעלה "
+#~ "המועדפות עליך."
 
 #~ msgid "Override theme"
 #~ msgstr "דריסת ערכת העיצוב"
@@ -1524,9 +1533,9 @@ msgstr "הייבוא של קופסה מהקובץ „%s” נכשל: %s"
 #~ msgstr "טרם נוצרה תמונת מצב. ניתן ליצור אחת באמצעות הכפתור מטה."
 
 #~ msgid ""
-#~ "SPICE guest tools are not running. These tools improve user experience and "
-#~ "enable host and box interactions, such as copy and paste. Please visit %s "
-#~ "to download and install these tools from within the box."
+#~ "SPICE guest tools are not running. These tools improve user experience "
+#~ "and enable host and box interactions, such as copy and paste. Please "
+#~ "visit %s to download and install these tools from within the box."
 #~ msgstr ""
 #~ "כלי האורחים של SPICE אינם פעילים. כלים אלו משפרים את חוויית המשתמש "
 #~ "ומאפשרים תפעול הדדי בין המערכת המארחת לבין הקופסה, כגון העתקה והדבקה. נא "
@@ -1606,8 +1615,8 @@ msgstr "הייבוא של קופסה מהקובץ „%s” נכשל: %s"
 #~ "Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://"
 #~ "host/path"
 #~ msgstr ""
-#~ "לדוגמה: http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
-#~ "path"
+#~ "לדוגמה: http://download.com/image.iso, spice://somehost:5051, ovirt://"
+#~ "host/path"
 
 #~ msgid "Create a Box"
 #~ msgstr "יצירת קופסה"
@@ -1640,11 +1649,11 @@ msgstr "הייבוא של קופסה מהקובץ „%s” נכשל: %s"
 #~ msgstr "%s (לכל היותר)"
 
 #~ msgid ""
-#~ "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
-#~ "\">(%s used)</span>"
+#~ "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span "
+#~ "color=\"grey\">(%s used)</span>"
 #~ msgstr ""
-#~ "<span color=\"grey\">גודל כונן מרבי</span>\t\t %s <span color=\"grey\">(%s "
-#~ "בשימוש)</span>"
+#~ "<span color=\"grey\">גודל כונן מרבי</span>\t\t %s <span "
+#~ "color=\"grey\">(%s בשימוש)</span>"
 
 #~ msgid "_Import '%s' from system broker"
 #~ msgstr "_ייבוא '%s' ממתווך המערכת"
@@ -1782,8 +1791,8 @@ msgstr "הייבוא של קופסה מהקובץ „%s” נכשל: %s"
 #~ msgstr ""
 #~ "יצירת קופסה תאפשר לך להשתמש במערכת הפעלה אחרת ישירות מהכניסה הנוכחית שלך\n"
 #~ "\n"
-#~ "באפשרותך להתחבר למכונה קיימת  <b>דרך הרשת</b> או ליצור <b>מכונה וירטואלית</"
-#~ "b> שפועלת מקומית על המכונה שלך."
+#~ "באפשרותך להתחבר למכונה קיימת  <b>דרך הרשת</b> או ליצור <b>מכונה "
+#~ "וירטואלית</b> שפועלת מקומית על המכונה שלך."
 
 #~ msgid "Create a box (step %d/4)"
 #~ msgstr "יצירת קופסה (צעד %d/4)"
@@ -1858,8 +1867,8 @@ msgstr "הייבוא של קופסה מהקובץ „%s” נכשל: %s"
 #~ "need to enable them in your system's BIOS setup."
 #~ msgstr ""
 #~ "הרחבות הווירטואליזציה אינן זמינות למערכת שלך. הקופסה שלך צפויה להיות אטית "
-#~ "להחריד. אם המערכת שלך עדכנית מספיק (נוצרה לאחר 2008), הרחבות אלה כפי הנראה "
-#~ "זמינות במערכת שלך ועליך להפעיל אותן בהגדרות ה־BIOS של המערכת שלך."
+#~ "להחריד. אם המערכת שלך עדכנית מספיק (נוצרה לאחר 2008), הרחבות אלה כפי "
+#~ "הנראה זמינות במערכת שלך ועליך להפעיל אותן בהגדרות ה־BIOS של המערכת שלך."
 
 #~ msgid "Error connecting %s: %s"
 #~ msgstr "שגיאה בהתחברות אל %s:‏ %s"
