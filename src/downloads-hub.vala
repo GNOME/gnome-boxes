@@ -170,12 +170,15 @@ private class Boxes.DownloadsHubRow : Gtk.ListBoxRow {
         });
         progress_bar.fraction = progress.progress = 0;
 
-        var soup_download_uri = new Soup.URI (entry.url);
-        var download_path = soup_download_uri.get_path ();
+        try {
+            var download_uri = Uri.parse (entry.url, UriFlags.NONE);
+            var download_path = download_uri.get_path ();
+            var filename = GLib.Path.get_basename (download_path);
 
-        var filename = GLib.Path.get_basename (download_path);
-
-        download.begin (entry.url, filename);
+            download.begin (entry.url, filename);
+        } catch (UriError error) {
+            App.app.main_window.display_toast (new Boxes.Toast (_("Failed to download: %s").printf (error.message)));
+        }
     }
 
     private async void download (string url, string filename) {

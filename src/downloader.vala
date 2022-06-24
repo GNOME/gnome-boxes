@@ -62,7 +62,7 @@ private class Boxes.Downloader : GLib.Object {
 
         session = new Soup.Session ();
         if (Environment.get_variable ("SOUP_DEBUG") != null)
-            session.add_feature (new Soup.Logger (Soup.LoggerLogLevel.HEADERS, -1));
+            session.add_feature (new Soup.Logger (Soup.LoggerLogLevel.HEADERS));
 
         // As some websites redirect based on UA, lets force wget user-agent so the
         // website assumes it's a CLI tool downloading the file.
@@ -127,19 +127,11 @@ private class Boxes.Downloader : GLib.Object {
 
     private async void download_from_http (Download download, Cancellable? cancellable = null) throws GLib.Error {
         var msg = new Soup.Message ("GET", download.uri);
-        msg.response_body.set_accumulate (false);
-        var address = msg.get_address ();
-        var connectable = new NetworkAddress (address.name, (uint16) address.port);
+        var connectable = msg.get_remote_address ();
         var network_monitor = NetworkMonitor.get_default ();
         if (!(yield network_monitor.can_reach_async (connectable)))
-            throw new Boxes.Error.INVALID ("Failed to reach host '%s' on port '%d'", address.name, address.port);
+            throw new Boxes.Error.INVALID ("Failed to connect to '%s'", connectable.to_string());
         GLib.Error? err = null;
-        ulong cancelled_id = 0;
-        if (cancellable != null)
-            cancelled_id = cancellable.connect (() => {
-                err = new GLib.IOError.CANCELLED ("Cancelled by cancellable.");
-                session.cancel_message (msg, Soup.Status.CANCELLED);
-            });
 
         int64 total_num_bytes = 0;
         msg.got_headers.connect (() => {
@@ -151,41 +143,36 @@ private class Boxes.Downloader : GLib.Object {
                                                                            FileCreateFlags.REPLACE_DESTINATION);
 
         int64 current_num_bytes = 0;
-        // FIXME: Reduce lambda nesting by splitting out downloading to Download class
-        msg.got_chunk.connect ((msg, chunk) => {
-            if (session.would_redirect (msg))
-                return;
+        try {
+            var input_stream = yield session.send_async (msg, Priority.DEFAULT, cancellable);
+            while (true) {
+                uint8[] buffer = new uint8[2048];
+                var num_read = yield input_stream.read_async (buffer, Priority.DEFAULT, cancellable);
+                if (num_read == 0)
+                    break;
+                // read_async() should throw on error.
+                assert (num_read > 0);
+                current_num_bytes += num_read;
 
-            current_num_bytes += chunk.length;
-            try {
-                // Write synchronously as we have no control over order of async
-                // calls and we'll end up writing bytes out in wrong order. Besides
-                // we are writing small chunks so it wouldn't really block the UI.
-                cached_file_stream.write (chunk.data);
+                // The resize is needed because the Vala bindings for writing
+                // take the number of bytes to write via the array's length.
+                buffer.resize((int)num_read);
+                size_t bytes_written;
+                yield cached_file_stream.write_all_async (buffer, Priority.DEFAULT, cancellable, out bytes_written);
+
                 if (total_num_bytes > 0)
-                    // Don't report progress if there is no way to determine it
                     download.progress.progress = (double) current_num_bytes / total_num_bytes;
-            } catch (GLib.Error e) {
-                err = e;
-                session.cancel_message (msg, Soup.Status.CANCELLED);
             }
-        });
 
-        session.queue_message (msg, (session, msg) => {
-            download_from_http.callback ();
-        });
-
-        yield;
-
-        if (cancelled_id != 0)
-            cancellable.disconnect (cancelled_id);
-
-        yield cached_file_stream.close_async (Priority.DEFAULT, cancellable);
+            yield cached_file_stream.close_async (Priority.DEFAULT, cancellable);
+        } catch (GLib.Error e) {
+            err = e;
+        }
 
         if (msg.status_code != Soup.Status.OK) {
             download.cached_file.delete ();
             if (err == null)
-                err = new GLib.Error (Soup.http_error_quark (), (int)msg.status_code, msg.reason_phrase);
+                err = new GLib.Error (IOError.FAILED, (int)msg.status_code, msg.reason_phrase);
 
             throw err;
         }

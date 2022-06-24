@@ -63,8 +63,14 @@ private class Boxes.RHELDownloadDialog : Gtk.Dialog {
             !request_uri.has_prefix ("https://access.cdn.redhat.com"))
             return false;
 
-        var soup_request_uri = new Soup.URI (request_uri);
-        var query = soup_request_uri.get_query ();
+        Uri? uri = null;
+        try {
+            uri = Uri.parse (request_uri, UriFlags.NONE);
+        } catch (UriError error) {
+            return false;
+        }
+
+        var query = uri.get_query ();
         if (query == null)
             return false;
 
