@@ -91,10 +91,13 @@ private class Boxes.VMConfigurator {
         set_target_media_config (domain, target_path, install_media);
         install_media.setup_domain_config (domain);
 
-        add_usb_support (domain, install_media);
+        if (SPICE_AVAILABLE) {
+            domain.add_device (create_graphics_device());
+            add_usb_support (domain, install_media);
 
-        if (!App.is_running_in_flatpak ())
-            add_smartcard_support (domain);
+            if (!App.is_running_in_flatpak ())
+                add_smartcard_support (domain);
+        }
 
         set_video_config (domain, install_media);
         set_sound_config (domain, install_media);
