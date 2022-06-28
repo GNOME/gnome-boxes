@@ -127,10 +127,6 @@ private class Boxes.Downloader : GLib.Object {
 
     private async void download_from_http (Download download, Cancellable? cancellable = null) throws GLib.Error {
         var msg = new Soup.Message ("GET", download.uri);
-        var connectable = msg.get_remote_address ();
-        var network_monitor = NetworkMonitor.get_default ();
-        if (!(yield network_monitor.can_reach_async (connectable)))
-            throw new Boxes.Error.INVALID ("Failed to connect to '%s'", connectable.to_string());
         GLib.Error? err = null;
 
         int64 total_num_bytes = 0;
