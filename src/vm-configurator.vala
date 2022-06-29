@@ -39,13 +39,6 @@ private class Boxes.VMConfigurator {
     private const string LIBOSINFO_XML = "<libosinfo>%s</libosinfo>";
     private const string LIBOSINFO_OS_ID_XML = "<os id=\"%s\"/>";
 
-    private const bool SPICE_AVAILABLE =
-#if HAS_SPICE
-        true;
-#else
-        false;
-#endif
-
     public static Domain create_domain_config (InstallerMedia install_media, string target_path, Capabilities caps, DomainCapabilities domain_caps)
                                         throws VMConfiguratorError {
         var domain = new Domain ();
@@ -91,12 +84,11 @@ private class Boxes.VMConfigurator {
         set_target_media_config (domain, target_path, install_media);
         install_media.setup_domain_config (domain);
 
-        if(SPICE_AVAILABLE) {
-            domain.add_device (create_graphics_device());
-            add_usb_support (domain, install_media);
-            if (!App.is_running_in_flatpak ())
-                add_smartcard_support (domain);
-        }
+        domain.add_device (create_graphics_device());
+        add_usb_support (domain, install_media);
+
+        if (!App.is_running_in_flatpak ())
+            add_smartcard_support (domain);
 
         set_video_config (domain, install_media);
         set_sound_config (domain, install_media);
@@ -324,11 +316,9 @@ private class Boxes.VMConfigurator {
                 devices.prepend (device);
         }
 
-        if (SPICE_AVAILABLE) {
-            devices.prepend (create_spice_webdav_channel ());
-            devices.prepend (create_spice_agent_channel ());
-            devices.prepend (create_graphics_device ());
-        }
+        devices.prepend (create_spice_webdav_channel ());
+        devices.prepend (create_spice_agent_channel ());
+        devices.prepend (create_graphics_device ());
 
         if (iface != null) {
             var bridge = is_libvirt_bridge_net_available ();

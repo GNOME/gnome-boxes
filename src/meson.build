@@ -73,7 +73,9 @@ vala_sources = [
   'search.vala',
   'searchbar.vala',
   'shared-folders.vala',
+  'spice-display.vala',
   'transfer-info-row.vala',
+  'transfer-popover.vala',
   'troubleshoot-view.vala',
   'topbar.vala',
   'ui.vala',
@@ -110,30 +112,15 @@ dependencies = [
   dependency ('libvirt-gconfig-1.0', version: '>= 4.0.0'),
   dependency ('libvirt-gobject-1.0', version: '>= 4.0.0'),
   dependency ('libxml-2.0', version: '>= 2.7.8'),
+  dependency ('spice-client-gtk-3.0', version: '>= 0.32'),
   dependency ('tracker-sparql-3.0'),
   dependency ('webkit2gtk-4.0', version: '>= 2.26.0'),
   cc.find_library('m', required : false),
   valac.find_library ('gio-2.0-workaround', dirs: vapi_dir),
   valac.find_library ('linux'),
   valac.find_library ('posix'),
+  valac.find_library ('spice-client-gtk-3.0'),
 ]
-
-spice = dependency ('spice-client-gtk-3.0', version: '>= 0.32')
-if spice.found ()
-  vala_args += '--define=HAS_SPICE'
-  # FIXME Remove and bump version after libhandy 1.6 is released.
-  vala_args += '--disable-since-check'
-
-  dependencies += [
-    spice,
-    valac.find_library ('spice-client-gtk-3.0')
-  ]
-
-  vala_sources += [
-    'spice-display.vala',
-    'transfer-popover.vala'
-  ]
-endif
 
 if get_option('flatpak')
   vala_args += '--define=FLATPAK'
