@@ -315,9 +315,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                 return new SpiceDisplay.priv (this, config);
 #endif
 
-        case "vnc":
-            return new VncDisplay (config, host, port);
-
         default:
             throw new Boxes.Error.INVALID ("unsupported display of type " + type);
         }

@@ -196,7 +196,6 @@ private class Boxes.App: Gtk.Application {
 #if HAS_SPICE
         opt_context.add_group (Spice.get_option_group ());
 #endif
-        opt_context.add_group (Vnc.Display.get_option_group ());
         opt_context.add_group (Gtk.get_option_group (true));
         opt_context.set_help_enabled (false);
 

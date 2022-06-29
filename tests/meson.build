@@ -6,8 +6,7 @@ tests_names = [
   'multi-windows.feature',
   'snapshots.feature',
   'spice.feature',
-  'system-broker.feature',
-  'vnc.feature'
+  'system-broker.feature'
 ]
 
 tests_execdir = join_paths (get_option('prefix'), get_option ('libexecdir'), meson.project_name (), 'installed-tests')

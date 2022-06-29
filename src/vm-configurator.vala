@@ -328,8 +328,6 @@ private class Boxes.VMConfigurator {
             devices.prepend (create_spice_webdav_channel ());
             devices.prepend (create_spice_agent_channel ());
             devices.prepend (create_graphics_device ());
-        } else {
-            devices.prepend (new DomainGraphicsVnc ());
         }
 
         if (iface != null) {
