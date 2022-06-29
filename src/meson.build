@@ -135,35 +135,14 @@ if spice.found ()
   ]
 endif
 
-if get_option('rdp')
-  vala_sources += ['rdp-display.vala']
-
-  vala_args += '--define=HAVE_RDP'
-endif
-
 if get_option('flatpak')
   vala_args += '--define=FLATPAK'
 
   dependencies += dependency ('govf-0.1')
-
-  if get_option('rdp')
-    dependencies += dependency ('gtk-frdp-0.1')
-  endif
 else
   dependencies += [
     dependency ('gudev-1.0', version: '>= 165'),
   ]
-
-  if get_option('rdp')
-    gtk_frdp = subproject(
-      'gtk-frdp',
-      default_options: [
-        'package_subdir=' + meson.project_name()
-      ]
-    )
-
-    dependencies += gtk_frdp.get_variable('gtk_frdp_vapi')
-  endif
 
   libovf = subproject(
     'libovf-glib',
