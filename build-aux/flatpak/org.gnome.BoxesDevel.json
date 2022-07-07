@@ -174,8 +174,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://www.spice-space.org/download/gtk/spice-gtk-0.39.tar.xz",
-                    "sha256": "23acbee197eaaec9bce6e6bfd885bd8f79708332639243ff04833020865713cd"
+                    "url": "https://gitlab.freedesktop.org/spice/spice-gtk/uploads/05c649d612f31b60e4aa44a7c44e611c/spice-gtk-0.41.tar.xz",
+                    "sha256": "d8f8b5cbea9184702eeb8cc276a67d72acdb6e36e7c73349fb8445e5bca0969f"
                 }
             ],
             "modules": [
@@ -193,14 +193,11 @@
                 {
                     "name": "phodav",
                     "buildsystem": "meson",
-                    "config-opts": [
-                        "-Dsystemd=disabled"
-                    ],
                     "sources": [
                         {
                             "type": "archive",
-                            "url": "https://ftp.gnome.org/pub/GNOME/sources/phodav/2.5/phodav-2.5.tar.xz",
-                            "sha256": "71f0a9cd70afd4dd1412a0298331dbb8ac71c0377f52117afc15eb88dc6fb910"
+                            "url": "https://download.gnome.org/sources/phodav/3.0/phodav-3.0.tar.xz",
+                            "sha256": "392ec2d06d50300dcff1ef269a2a985304e29bce3520002fca29f2edc1d138d1"
                         }
                     ]
                 },
@@ -230,16 +227,17 @@
                 },
                 {
                     "name": "spice",
-                    "buildsystem": "meson",
+                    "buildsystem": "autotools",
                     "config-opts": [
-                        "-Dlz4=false",
-                        "-Dmanual=false"
+                        "--disable-lz4",
+                        "--disable-manual",
+                        "--disable-test"
                     ],
                     "sources": [
                         {
                             "type": "archive",
-                            "url": "https://spice-space.org/download/releases/spice-0.14.3.tar.bz2",
-                            "sha256": "551d4be4a07667cf0543f3c895beb6da8a93ef5a9829f2ae47817be5e616a114"
+                            "url": "https://gitlab.freedesktop.org/spice/spice/uploads/670d32029f4ebd3e59044bde9ef989df/spice-0.15.0.tar.bz2",
+                            "sha256": "b320cf8f4bd2852750acb703c15b72856027e5a8554f8217dfbb3cc09deba0f5"
                         }
                     ]
                 }
