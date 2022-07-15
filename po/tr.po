@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2022-02-17 11:33+0000\n"
-"PO-Revision-Date: 2022-02-23 13:24+0300\n"
+"POT-Creation-Date: 2022-07-12 10:55+0000\n"
+"PO-Revision-Date: 2022-07-16 01:33+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Turkish <gnometurk@gnome.org>\n"
 "Language: tr\n"
@@ -31,7 +31,7 @@ msgstr ""
 
 #: data/org.gnome.Boxes.appdata.xml.in:7 data/org.gnome.Boxes.desktop.in:3
 #: data/ui/app-window.ui:6 data/ui/collection-toolbar.ui:7 src/app.vala:117
-#: src/app-window.vala:105 src/app-window.vala:217 src/app-window.vala:219
+#: src/app-window.vala:105 src/app-window.vala:218 src/app-window.vala:220
 #: src/main.vala:72 src/topbar.vala:70
 msgid "Boxes"
 msgstr "Kutular"
@@ -109,7 +109,7 @@ msgstr ""
 msgid "Setup Shared Folders between your system and virtual machines."
 msgstr "Sisteminiz ve sanal makineler arasında Paylaşılan Klasörler kurun."
 
-#: data/org.gnome.Boxes.appdata.xml.in:66
+#: data/org.gnome.Boxes.appdata.xml.in:74
 msgid "The GNOME Project"
 msgstr "GNOME Projesi"
 
@@ -124,7 +124,7 @@ msgstr "Sanal makineleri görüntüle ve kullan"
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Boxes.desktop.in:7
 msgid "virtual machine;vm;"
-msgstr "sanal makine;vm;sm;"
+msgstr "sanal makine;vm;sm;kutular;boxes;"
 
 #: data/org.gnome.boxes.gschema.xml:11
 msgid "Screenshot interval"
@@ -305,16 +305,16 @@ msgid "Storage limit"
 msgstr "Biriktirme sınırı"
 
 #: data/ui/assistant/pages/review-page.ui:107
-#: data/ui/unattended-setup-box.ui:68 src/unattended-installer.vala:270
+#: data/ui/unattended-setup-box.ui:69 src/unattended-installer.vala:270
 msgid "Username"
 msgstr "Kullanıcı Adı"
 
 #: data/ui/assistant/pages/review-page.ui:123
-#: data/ui/unattended-setup-box.ui:84 src/unattended-installer.vala:271
+#: data/ui/unattended-setup-box.ui:85 src/unattended-installer.vala:271
 msgid "Password"
 msgstr "Parola"
 
-#: data/ui/assistant/pages/review-page.ui:140
+#: data/ui/assistant/pages/review-page.ui:141
 msgid "Enable EFI"
 msgstr "EFI’yi etkinleştir"
 
@@ -509,31 +509,31 @@ msgstr "IP Adresi"
 msgid "CPUs"
 msgstr "MİBler"
 
-#: data/ui/preferences/resources-page.ui:105
+#: data/ui/preferences/resources-page.ui:106
 msgid "3D acceleration"
 msgstr "3B hızlandırma"
 
-#: data/ui/preferences/resources-page.ui:127
+#: data/ui/preferences/resources-page.ui:129
 msgid "Allow running in background"
 msgstr "Arka planda çalışmaya izin ver"
 
-#: data/ui/preferences/resources-page.ui:145
+#: data/ui/preferences/resources-page.ui:147
 msgid "Configuration"
 msgstr "Yapılandırma"
 
-#: data/ui/preferences/resources-page.ui:150
+#: data/ui/preferences/resources-page.ui:152
 msgid "Troubleshooting Logs"
 msgstr "Sorun Giderme Günlükleri"
 
-#: data/ui/preferences/resources-page.ui:151
+#: data/ui/preferences/resources-page.ui:153
 msgid "Diagnose problems with your box using the log file."
 msgstr "Günlük dosyasını kullanarak kutunuzdaki sorunları tanılayın."
 
-#: data/ui/preferences/resources-page.ui:173
+#: data/ui/preferences/resources-page.ui:175
 msgid "Edit Configuration"
 msgstr "Yapılandırma Düzenle"
 
-#: data/ui/preferences/resources-page.ui:174
+#: data/ui/preferences/resources-page.ui:176
 msgid "Edit the Libvirt domain configuration for this box."
 msgstr "Bu kutu için Libvirt alan adı yapılandırmasını düzenle."
 
@@ -583,7 +583,7 @@ msgstr "Anlık Görüntüler"
 msgid "Creating new snapshot…"
 msgstr "Yeni anlık görüntü oluşturuluyor…"
 
-#: data/ui/toast.ui:34 src/app.vala:604
+#: data/ui/toast.ui:34 src/app.vala:601
 #: src/preferences/snapshot-list-row.vala:157
 msgid "Undo"
 msgstr "Geri Al"
@@ -604,11 +604,11 @@ msgstr ""
 "Kutuyu uygun ayarlarla kendiliğinden yapılandırmak için hızlı kurulumu seçin."
 
 #. Translators: 'Express Install' means that the new box installation will be fully automated, the user won't be asked anything while it's performed.
-#: data/ui/unattended-setup-box.ui:52
+#: data/ui/unattended-setup-box.ui:53
 msgid "Express Install"
 msgstr "Hızlı Kurulum"
 
-#: data/ui/unattended-setup-box.ui:106
+#: data/ui/unattended-setup-box.ui:107
 msgid "Product Key"
 msgstr "Ürün Anahtarı"
 
@@ -697,9 +697,14 @@ msgstr "Yeniden Başlat"
 msgid "Preferences"
 msgstr "Tercihler"
 
+#. Translators: name of the folder under ~/Pictures for screenshots. This is the same folder where GNOME Shell saves screenshots.
+#: src/actions-popover.vala:109
+msgid "Screenshots"
+msgstr "Ekran Görüntüleri"
+
 # Zaman damgası değeri %s sonda olmalı
 #. Translators: %s => the timestamp of when the screenshot was taken.
-#: src/actions-popover.vala:112
+#: src/actions-popover.vala:126
 #, c-format
 msgid "Screenshot from %s"
 msgstr "Ekran görüntüsü %s"
@@ -748,48 +753,48 @@ msgstr "Ekran, aracı veya kurulum ortamına ait URL"
 msgid "— A simple application to access virtual machines"
 msgstr "— Sanal makinelere erişmek için basit uygulama"
 
-#: src/app.vala:220
+#: src/app.vala:217
 msgid "Too many command line arguments specified.\n"
 msgstr "Çok fazla komut satırı argümanı belirtildi.\n"
 
-#: src/app.vala:460
+#: src/app.vala:457
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "“%s” kutusu kuruldu ve kullanıma hazır"
 
-#: src/app.vala:462
+#: src/app.vala:459
 msgid "Launch"
 msgstr "Başlat"
 
-#: src/app.vala:492
+#: src/app.vala:489
 #, c-format
 msgid "“%s“ is running in the background"
 msgstr "“%s“, arka planda çalışıyor"
 
-#: src/app.vala:573
+#: src/app.vala:570
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "“%s” kutusu silindi"
 
-#: src/app.vala:574
+#: src/app.vala:571
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u kutu silindi"
 
-#: src/app.vala:645
+#: src/app.vala:642
 msgid "Boxes is doing something"
 msgstr "Kutular bir şey yapıyor"
 
-#: src/app-window.vala:272
+#: src/app-window.vala:273
 msgid "Select files to transfer"
 msgstr "Aktarılacak dosyaları seç"
 
-#: src/app-window.vala:273
+#: src/app-window.vala:274
 msgid "_Cancel"
 msgstr "_İptal"
 
-#: src/app-window.vala:275
+#: src/app-window.vala:276
 msgid "_Open"
 msgstr "A_ç"
 
@@ -833,16 +838,16 @@ msgstr "Kurulum ortamı çözümlenemedi. Bozuk ya da eksik ortam olabilir mi?"
 msgid "Create"
 msgstr "Oluştur"
 
-#: src/display-page.vala:133
+#: src/display-page.vala:127
 msgid "Press (left) Ctrl+Alt to ungrab"
 msgstr "Bırakmak için (sol) Ctrl+Alt tuşlarına basın"
 
-#: src/display-page.vala:135
+#: src/display-page.vala:129
 msgid "Press & release (left) Ctrl+Alt to ungrab keyboard."
 msgstr "Klavyeyi bırakmak için (sol) Ctrl+Alt tuşlarına basıp çekin."
 
 #. Translators: Showing size of widget as WIDTH×HEIGHT here.
-#: src/display-page.vala:324
+#: src/display-page.vala:318
 #, c-format
 msgid "%d×%d"
 msgstr "%d×%d"
@@ -865,7 +870,7 @@ msgid "Install"
 msgstr "Kur"
 
 #. We did this, so ignore!
-#: src/downloads-hub.vala:186
+#: src/downloads-hub.vala:180 src/downloads-hub.vala:189
 #, c-format
 msgid "Failed to download: %s"
 msgstr "İndirilemedi: %s"
@@ -910,40 +915,40 @@ msgid "Send key combinations"
 msgstr "Tuş birleştirmelerini gönder"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:466
+#: src/libvirt-machine.vala:470
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "%s diskten geri yükleniyor"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:469
+#: src/libvirt-machine.vala:473
 #, c-format
 msgid "Starting %s"
 msgstr "%s başlatılıyor"
 
-#: src/libvirt-machine.vala:542
+#: src/libvirt-machine.vala:546
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "“%s”in yeniden başlatılması çok zaman alıyor. Zorla kapatılsın mı?"
 
-#: src/libvirt-machine.vala:545
+#: src/libvirt-machine.vala:549
 msgid "Shutdown"
 msgstr "Gücü Kapat"
 
-#: src/libvirt-machine.vala:560
+#: src/libvirt-machine.vala:564
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "“%s” klonlanıyor…"
 
-#: src/libvirt-machine.vala:686
+#: src/libvirt-machine.vala:690
 msgid "Installing…"
 msgstr "Kuruluyor…"
 
-#: src/libvirt-machine.vala:688
+#: src/libvirt-machine.vala:692
 msgid "Setting up clone…"
 msgstr "Klon kuruluyor…"
 
-#: src/libvirt-machine.vala:690
+#: src/libvirt-machine.vala:694
 msgid "Importing…"
 msgstr "İçe aktarılıyor…"
 
@@ -1066,15 +1071,15 @@ msgstr "Yönlendirmeye uygun USB aygıtları görmek için kutunuzu açın."
 msgid "Recommended %s."
 msgstr "%s önerilir."
 
-#: src/preferences/resources-page.vala:157
+#: src/preferences/resources-page.vala:159
 msgid "Boxes is not authorized to run in background"
 msgstr "Kutular, arka planda çalışmaya yetkilendirilmedi"
 
-#: src/preferences/resources-page.vala:163
+#: src/preferences/resources-page.vala:165
 msgid "Do you want to open Settings to manage application permissions?"
 msgstr "Uygulama izinlerini yönetmek için Ayarlar’ı açmak ister misiniz?"
 
-#: src/preferences/resources-page.vala:201
+#: src/preferences/resources-page.vala:203
 msgid ""
 "Editing your box configuration can cause issues to the operating system of "
 "your box. Would you like to create a snapshot to recover from your changes?"
@@ -1083,12 +1088,12 @@ msgstr ""
 "neden olabilir. Değişiklikleri geri alabilmek için anlık görüntü oluşturmak "
 "ister misiniz?"
 
-#: src/preferences/resources-page.vala:267
+#: src/preferences/resources-page.vala:269
 #, c-format
 msgid "Failed to save domain configuration: %s"
 msgstr "Alan adı yapılandırması kaydedilemedi: %s"
 
-#: src/preferences/resources-page.vala:276
+#: src/preferences/resources-page.vala:278
 msgid "Changes to the settings below take effect after you restart your box."
 msgstr ""
 "Aşağıdaki ayar değişiklikleri kutunuzu yeniden başlatınca geçerli olacak."
@@ -1188,21 +1193,21 @@ msgstr "Kuruluma hazırlanırken hata oluştu. Hızlı Kurulum kapatıldı."
 msgid "Downloading device drivers…"
 msgstr "Aygıt sürücüleri indiriliyor…"
 
-#: src/unattended-setup-box.vala:53
+#: src/unattended-setup-box.vala:51
 msgid "no password"
 msgstr "parola yok"
 
-#: src/unattended-setup-box.vala:110
+#: src/unattended-setup-box.vala:108
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "%s’in hızlı kurulumu internet bağlantısı gerektiriyor."
 
-#: src/unattended-setup-box.vala:208
+#: src/unattended-setup-box.vala:206
 #, c-format
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "“%s” için GNOME Kutular kimlik bilgileri"
 
-#: src/util-app.vala:359
+#: src/util-app.vala:368
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1212,11 +1217,11 @@ msgstr ""
 "deneyebilirsiniz:\n"
 "%s"
 
-#: src/util-app.vala:363
+#: src/util-app.vala:372
 msgid "SELinux not installed?"
 msgstr "SELinux kurulmadı mı?"
 
-#: src/util-app.vala:445
+#: src/util-app.vala:454
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1224,7 +1229,7 @@ msgstr ""
 "“gnome-boxes”ın biriktirme havuzu bilgisi libvirt’ten alınamıyor. “virsh -c "
 "qemu:///session pool-dumpxml gnome-boxes” komutunun çalıştığından emin olun."
 
-#: src/util-app.vala:450
+#: src/util-app.vala:459
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
@@ -1233,7 +1238,7 @@ msgstr ""
 "%s libvirt’e GNOME Kutular’ın biriktirme havuzu olarak bildirilmiş ama dizin "
 "yok"
 
-#: src/util-app.vala:454
+#: src/util-app.vala:463
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
@@ -1241,7 +1246,7 @@ msgstr ""
 "%s libvirt’e GNOME Kutular’ın biriktirme havuzu olarak bildirilmiş ama dizin "
 "değil"
 
-#: src/util-app.vala:458
+#: src/util-app.vala:467
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
@@ -1260,7 +1265,7 @@ msgstr "hayır"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:793
+#: src/vm-configurator.vala:794
 msgid "Incapable host system"
 msgstr "Yetersiz sunucu sistemi"
 
