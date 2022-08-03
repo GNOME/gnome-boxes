@@ -253,6 +253,18 @@ namespace Boxes {
             var media = os.get_media_list ().get_nth (0) as Osinfo.Media;
             if (media.url != null || os_id.has_prefix ("http://redhat.com"))
                 list.append (media);
+
+            for (Xml.Node* child_iter = iter->children; child_iter != null; child_iter = child_iter->next) {
+                if (child_iter->type != Xml.ElementType.ELEMENT_NODE)
+                    continue;
+
+                string content = child_iter->get_content ();
+                string node_name = child_iter->name;
+                if (node_name == "url")
+                    media.url = content;
+                else
+                    media.set_data (node_name, content);
+            }
         }
 
         return list;

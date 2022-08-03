@@ -6,8 +6,9 @@ private class Boxes.AssistantDownloadableEntry : Boxes.AssistantMediaEntry {
         this.os = media.os;
 
         url = media.url;
-        title = serialize_os_title (media);
-        subtitle = media.os.vendor;
+
+        title = media.get_data ("title") ?? serialize_os_title (media);
+        subtitle = media.get_data ("subtitle") ??  media.os.vendor;
         set_tooltip_text (media.url ?? title);
 
         Downloader.fetch_os_logo.begin (media_image, os, 64);
