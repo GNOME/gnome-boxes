@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-  These are OSes listed in the recommended section of the "Download an OS" page.
+  These are operating systems listed in the recommended section of the
+  "Download an OS" page.
 
-  This list is powered by libosinfo, therefore the URLs are unique identifiers
-  for each OS in osinfo-db.
+  This list is powered by libosinfo, therefore the IDs are unique identifiers
+  for each OS in osinfo-db. Use "osinfo-query os" in the CLI to list all available
+  operating systems and their respective IDs.
 
   Downstreams are encouraged to tweak the list as they wish. Sorting is also
   available.
+
+  "title", "subtitle" and "url" can be overwritten by distributors.
+
+  Distributors can host their own recommended-downloads.xml file, and point to it
+  with the org.gnome.boxes recommended-downloads-url gsetting.
+
+  See https://gitlab.gnome.org/GNOME/gnome-boxes/-/wikis/recommended-downloads.xml
  -->
 <list>
   <os id="http://redhat.com/rhel/"/>
@@ -18,5 +27,9 @@
   <os id="http://opensuse.org/opensuse/tumbleweed/"/>
   <os id="http://debian.org/debian/"/>
   <os id="http://endlessos.com/eos/"/>
-  <os id="http://gnome.org/gnome/nightly"/>
+  <os id="http://gnome.org/gnome/nightly">
+    <title>GNOME OS Nightly</title>
+    <subtitle>The GNOME Project</subtitle>
+    <url>https://os.gnome.org/download/latest/gnome_os_installer.iso</url>
+  </os>
 </list>
