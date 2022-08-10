@@ -2,8 +2,6 @@
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/list-view.ui")]
 private class Boxes.ListView: Gtk.ScrolledWindow {
-    public CollectionFilter filter { get; protected set; }
-
     [GtkChild]
     private unowned Gtk.ListBox list_box;
 
@@ -11,10 +9,6 @@ private class Boxes.ListView: Gtk.ScrolledWindow {
     private Boxes.ActionsPopover context_popover;
 
     construct {
-        filter = new CollectionFilter ();
-        filter.notify["text"].connect (() => {
-            list_box.invalidate_filter ();
-        });
         setup_list_box ();
     }
 
@@ -25,7 +19,7 @@ private class Boxes.ListView: Gtk.ScrolledWindow {
     }
 
     private void setup_list_box () {
-        list_box.bind_model (App.app.collection.items, (item) => {
+        list_box.bind_model (App.app.collection.filtered_items, (item) => {
             var box_row = new Gtk.ListBoxRow ();
             var view_row = new ListViewRow (item as CollectionItem);
             box_row.add (view_row);
@@ -39,7 +33,6 @@ private class Boxes.ListView: Gtk.ScrolledWindow {
 
             return box_row;
         });
-        list_box.set_filter_func (model_filter);
     }
 
     private CollectionItem? get_item_for_row (Gtk.ListBoxRow box_row) {
@@ -48,18 +41,6 @@ private class Boxes.ListView: Gtk.ScrolledWindow {
             return null;
 
         return view.item;
-    }
-
-    private bool model_filter (Gtk.ListBoxRow box_row) {
-        var view = box_row.get_child () as ListViewRow;
-        if (view  == null)
-            return false;
-
-        var item = view.item;
-        if (item  == null)
-            return false;
-
-        return filter.filter (item as CollectionItem);
     }
 
     [GtkCallback]
