@@ -29,7 +29,7 @@ private class Boxes.Searchbar: Gtk.SearchBar {
 
     [GtkCallback]
     private void on_search_changed () {
-        window.filter (text);
+        App.app.collection.filter (entry.text);
     }
 
     [GtkCallback]

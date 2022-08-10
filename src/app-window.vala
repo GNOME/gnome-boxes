@@ -333,11 +333,6 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
             warning ("unknown item, fix your code");
     }
 
-    public void filter (string text) {
-        icon_view.filter.text = text;
-        list_view.filter.text = text;
-    }
-
     [GtkCallback]
     public bool on_key_pressed (Widget widget, Gdk.EventKey event) {
         var default_modifiers = Gtk.accelerator_get_default_mod_mask ();

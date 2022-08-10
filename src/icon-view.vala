@@ -2,8 +2,6 @@
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/icon-view.ui")]
 private class Boxes.IconView: Gtk.ScrolledWindow {
-    public CollectionFilter filter { get; protected set; }
-
     [GtkChild]
     private unowned Gtk.FlowBox flowbox;
 
@@ -11,11 +9,6 @@ private class Boxes.IconView: Gtk.ScrolledWindow {
     private Boxes.ActionsPopover context_popover;
 
     construct {
-        filter = new CollectionFilter ();
-        filter.notify["text"].connect (() => {
-            flowbox.invalidate_filter ();
-        });
-
         setup_flowbox ();
     }
 
@@ -26,7 +19,7 @@ private class Boxes.IconView: Gtk.ScrolledWindow {
     }
 
     private void setup_flowbox () {
-        flowbox.bind_model (App.app.collection.items, (item) => {
+        flowbox.bind_model (App.app.collection.filtered_items, (item) => {
             var child = new Gtk.FlowBoxChild ();
             child.halign = Gtk.Align.START;
             var box = new IconViewChild (item as CollectionItem);
@@ -37,8 +30,6 @@ private class Boxes.IconView: Gtk.ScrolledWindow {
 
             return child;
         });
-
-        flowbox.set_filter_func (model_filter);
     }
 
     private CollectionItem? get_item_for_child (Gtk.FlowBoxChild child) {
@@ -47,17 +38,6 @@ private class Boxes.IconView: Gtk.ScrolledWindow {
             return null;
 
         return view.item;
-    }
-
-    private bool model_filter (Gtk.FlowBoxChild child) {
-        if (child  == null)
-            return false;
-
-        var item = get_item_for_child (child);
-        if (item  == null)
-            return false;
-
-        return filter.filter (item as CollectionItem);
     }
 
     [GtkCallback]

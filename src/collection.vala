@@ -30,7 +30,12 @@ private class Boxes.Collection: GLib.Object {
     public signal void item_added (CollectionItem item);
     public signal void item_removed (CollectionItem item);
 
-    public GLib.ListStore items;
+    private GLib.ListStore items;
+    public GLib.ListStore filtered_items;
+    private CollectionFilter collection_filter = new CollectionFilter ();
+    private CompareDataFunc<CollectionItem> sort_func = ((item1, item2) => {
+        return item1.compare (item2);
+    });
 
     private GLib.List<CollectionItem> hidden_items;
 
@@ -42,6 +47,7 @@ private class Boxes.Collection: GLib.Object {
 
     construct {
         items = new GLib.ListStore (typeof (CollectionItem));
+        filtered_items = new GLib.ListStore (typeof (CollectionItem));
         hidden_items = new GLib.List<CollectionItem> ();
     }
 
@@ -82,16 +88,8 @@ private class Boxes.Collection: GLib.Object {
         }
 
         item.set_state (window.ui_state);
-
-        items.insert_sorted (item, (item1, item2) => {
-            if (item1 == null || item2 == null)
-                return 0;
-
-            var collection_item1 = item1 as CollectionItem;
-            var collection_item2 = item2 as CollectionItem;
-
-            return collection_item1.compare (collection_item2);
-        });
+        items.insert_sorted (item, sort_func);
+        filtered_items.insert_sorted (item, sort_func);
 
         item_added (item);
     }
@@ -101,6 +99,8 @@ private class Boxes.Collection: GLib.Object {
         for (int i = 0 ; i < length ; i++) {
            if (get_item (i) == item) {
                 items.remove (i);
+                filtered_items.remove (i);
+
                 item_removed (item);
 
                 break;
@@ -111,6 +111,17 @@ private class Boxes.Collection: GLib.Object {
     public void foreach_item (CollectionForeachFunc foreach_func) {
         for (int i = 0 ; i < length ; i++)
             foreach_func (get_item (i));
+    }
+
+    public void filter (string search_term) {
+        filtered_items.remove_all ();
+
+        collection_filter.text = search_term;
+        foreach_item ((item) => {
+            if (collection_filter.filter (item)) {
+                filtered_items.insert_sorted (item, sort_func);
+            }
+        });
     }
 }
 
@@ -138,5 +149,3 @@ private class Boxes.CollectionFilter: GLib.Object {
         return true;
     }
 }
-
-private delegate bool Boxes.CollectionFilterFunc (Boxes.CollectionItem item);
