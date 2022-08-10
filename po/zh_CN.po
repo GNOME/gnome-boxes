@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2022-05-20 09:02+0000\n"
-"PO-Revision-Date: 2022-05-22 08:27+0800\n"
+"POT-Creation-Date: 2022-08-04 10:52+0000\n"
+"PO-Revision-Date: 2022-08-10 19:10+0800\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese - China <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -104,7 +104,7 @@ msgstr "只需从您的文件管理器中拖曳文件至盒子窗口即可将文
 msgid "Setup Shared Folders between your system and virtual machines."
 msgstr "设置在您的系统和虚拟机之间共享的目录。"
 
-#: data/org.gnome.Boxes.appdata.xml.in:71
+#: data/org.gnome.Boxes.appdata.xml.in:74
 msgid "The GNOME Project"
 msgstr "GNOME 项目"
 
@@ -169,6 +169,14 @@ msgstr "共享文件夹"
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "包含各个共享文件夹名称及映射路径的数组"
 
+#: data/org.gnome.boxes.gschema.xml:59
+msgid "Recommended Downloads Source URL"
+msgstr "推荐的下载源 URL"
+
+#: data/org.gnome.boxes.gschema.xml:60
+msgid "An URL pointing at a recommended-downloads.xml file"
+msgstr "指向一个 recommended-downloads.xml 文件的 URL"
+
 #: data/ui/app-window.ui:81 data/ui/welcome-tutorial.ui:40
 msgid "Welcome to Boxes"
 msgstr "欢迎使用盒子"
@@ -181,16 +189,16 @@ msgstr "使用 <b>+</b> 按钮来创建您的第一个虚拟机。"
 msgid "Unknown media"
 msgstr "未知介质"
 
-#: data/ui/assistant/pages/downloads-page.ui:68
+#: data/ui/assistant/pages/downloads-page.ui:81
 msgid "No operating systems found"
 msgstr "未找到操作系统"
 
-#: data/ui/assistant/pages/downloads-page.ui:69
+#: data/ui/assistant/pages/downloads-page.ui:82
 msgid "Try a different search"
 msgstr "请尝试搜索其他关键字"
 
-#: data/ui/assistant/pages/downloads-page.ui:82
-#: src/assistant/downloads-page.vala:57
+#: data/ui/assistant/pages/downloads-page.ui:95
+#: src/assistant/downloads-page.vala:59
 msgid "Search for an OS or enter a download link…"
 msgstr "搜索操作系统或者输入下载链接…"
 
@@ -296,16 +304,16 @@ msgid "Storage limit"
 msgstr "存储限制"
 
 #: data/ui/assistant/pages/review-page.ui:107
-#: data/ui/unattended-setup-box.ui:68 src/unattended-installer.vala:270
+#: data/ui/unattended-setup-box.ui:69 src/unattended-installer.vala:270
 msgid "Username"
 msgstr "用户名"
 
 #: data/ui/assistant/pages/review-page.ui:123
-#: data/ui/unattended-setup-box.ui:84 src/unattended-installer.vala:271
+#: data/ui/unattended-setup-box.ui:85 src/unattended-installer.vala:271
 msgid "Password"
 msgstr "密码"
 
-#: data/ui/assistant/pages/review-page.ui:140
+#: data/ui/assistant/pages/review-page.ui:141
 msgid "Enable EFI"
 msgstr "启用 EFI"
 
@@ -500,31 +508,31 @@ msgstr "IP 地址"
 msgid "CPUs"
 msgstr "处理器"
 
-#: data/ui/preferences/resources-page.ui:105
+#: data/ui/preferences/resources-page.ui:106
 msgid "3D acceleration"
 msgstr "3D 加速"
 
-#: data/ui/preferences/resources-page.ui:127
+#: data/ui/preferences/resources-page.ui:129
 msgid "Allow running in background"
 msgstr "允许后台运行"
 
-#: data/ui/preferences/resources-page.ui:145
+#: data/ui/preferences/resources-page.ui:147
 msgid "Configuration"
 msgstr "配置"
 
-#: data/ui/preferences/resources-page.ui:150
+#: data/ui/preferences/resources-page.ui:152
 msgid "Troubleshooting Logs"
 msgstr "故障诊断日志"
 
-#: data/ui/preferences/resources-page.ui:151
+#: data/ui/preferences/resources-page.ui:153
 msgid "Diagnose problems with your box using the log file."
 msgstr "使用日志文件诊断您的盒子的问题。"
 
-#: data/ui/preferences/resources-page.ui:173
+#: data/ui/preferences/resources-page.ui:175
 msgid "Edit Configuration"
 msgstr "编辑配置"
 
-#: data/ui/preferences/resources-page.ui:174
+#: data/ui/preferences/resources-page.ui:176
 msgid "Edit the Libvirt domain configuration for this box."
 msgstr "编辑用于该盒子的 Libvirt 域名配置。"
 
@@ -574,7 +582,7 @@ msgstr "快照"
 msgid "Creating new snapshot…"
 msgstr "正在创建新快照…"
 
-#: data/ui/toast.ui:34 src/app.vala:604
+#: data/ui/toast.ui:34 src/app.vala:601
 #: src/preferences/snapshot-list-row.vala:157
 msgid "Undo"
 msgstr "撤消"
@@ -594,11 +602,11 @@ msgid ""
 msgstr "选择快速安装可自动预设盒子为最佳设置。"
 
 #. Translators: 'Express Install' means that the new box installation will be fully automated, the user won't be asked anything while it's performed.
-#: data/ui/unattended-setup-box.ui:52
+#: data/ui/unattended-setup-box.ui:53
 msgid "Express Install"
 msgstr "快速安装"
 
-#: data/ui/unattended-setup-box.ui:106
+#: data/ui/unattended-setup-box.ui:107
 msgid "Product Key"
 msgstr "序列号"
 
@@ -745,36 +753,36 @@ msgstr "显示，虚拟机管理器或安装介质的网址"
 msgid "— A simple application to access virtual machines"
 msgstr "— 一个简单的用于访问虚拟机的应用程序"
 
-#: src/app.vala:220
+#: src/app.vala:217
 msgid "Too many command line arguments specified.\n"
 msgstr "指定了过多的命令行参数。\n"
 
-#: src/app.vala:460
+#: src/app.vala:457
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "盒子“%s”已安装并准备就绪"
 
-#: src/app.vala:462
+#: src/app.vala:459
 msgid "Launch"
 msgstr "启动"
 
-#: src/app.vala:492
+#: src/app.vala:489
 #, c-format
 msgid "“%s“ is running in the background"
 msgstr "“%s”正在后台运行"
 
-#: src/app.vala:573
+#: src/app.vala:570
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "盒子“%s”已被删除"
 
-#: src/app.vala:574
+#: src/app.vala:571
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "已删除 %u 个盒子"
 
-#: src/app.vala:645
+#: src/app.vala:642
 msgid "Boxes is doing something"
 msgstr "盒子正在进行一些操作"
 
@@ -798,7 +806,7 @@ msgstr "选择一个设备或 ISO 文件"
 msgid "Open"
 msgstr "打开"
 
-#: src/assistant/index-page.vala:186 src/assistant/vm-assistant.vala:72
+#: src/assistant/index-page.vala:188 src/assistant/vm-assistant.vala:72
 msgid "Previous"
 msgstr "上一页"
 
@@ -830,16 +838,16 @@ msgstr "无法分析安装器介质。已损坏或不完整的介质？"
 msgid "Create"
 msgstr "创建"
 
-#: src/display-page.vala:133
+#: src/display-page.vala:127
 msgid "Press (left) Ctrl+Alt to ungrab"
 msgstr "按 Ctrl+Alt（左）按键释放"
 
-#: src/display-page.vala:135
+#: src/display-page.vala:129
 msgid "Press & release (left) Ctrl+Alt to ungrab keyboard."
 msgstr "按下 Ctrl+Alt（左）按键后再松开来释放键盘。"
 
 #. Translators: Showing size of widget as WIDTH×HEIGHT here.
-#: src/display-page.vala:324
+#: src/display-page.vala:318
 #, c-format
 msgid "%d×%d"
 msgstr "%d×%d"
@@ -862,7 +870,7 @@ msgid "Install"
 msgstr "安装"
 
 #. We did this, so ignore!
-#: src/downloads-hub.vala:186
+#: src/downloads-hub.vala:180 src/downloads-hub.vala:189
 #, c-format
 msgid "Failed to download: %s"
 msgstr "下载失败：%s"
@@ -907,40 +915,40 @@ msgid "Send key combinations"
 msgstr "发送组合键"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:466
+#: src/libvirt-machine.vala:470
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "正在从磁盘恢复 %s"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:469
+#: src/libvirt-machine.vala:473
 #, c-format
 msgid "Starting %s"
 msgstr "正在启动 %s"
 
-#: src/libvirt-machine.vala:542
+#: src/libvirt-machine.vala:546
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "“%s”重启耗时过长。要强制关机吗？"
 
-#: src/libvirt-machine.vala:545
+#: src/libvirt-machine.vala:549
 msgid "Shutdown"
 msgstr "关机"
 
-#: src/libvirt-machine.vala:560
+#: src/libvirt-machine.vala:564
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "正在克隆“%s”…"
 
-#: src/libvirt-machine.vala:686
+#: src/libvirt-machine.vala:690
 msgid "Installing…"
 msgstr "正在安装…"
 
-#: src/libvirt-machine.vala:688
+#: src/libvirt-machine.vala:692
 msgid "Setting up clone…"
 msgstr "正在设置克隆…"
 
-#: src/libvirt-machine.vala:690
+#: src/libvirt-machine.vala:694
 msgid "Importing…"
 msgstr "正在导入…"
 
@@ -1196,7 +1204,7 @@ msgstr "快速安装 %s 需要互联网连接。"
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "用于“%s”的 GNOME 盒子凭证"
 
-#: src/util-app.vala:368
+#: src/util-app.vala:410
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1205,11 +1213,11 @@ msgstr ""
 "您的 SELinux 环境不太正确，您可以运行下面命令进行修复：\n"
 "%s"
 
-#: src/util-app.vala:372
+#: src/util-app.vala:414
 msgid "SELinux not installed?"
 msgstr "未安装 SELinux？"
 
-#: src/util-app.vala:454
+#: src/util-app.vala:496
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1217,20 +1225,20 @@ msgstr ""
 "无法从 libvirt 获得“gnome-boxes”的存储池信息。请确保“virsh -c qemu:///"
 "session pool-dumpxml gnome-boxes”工作正常。"
 
-#: src/util-app.vala:459
+#: src/util-app.vala:501
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
 "not exist"
 msgstr "libvirt 知道 %s 是 GNOME 盒子的存储池，但该目录不存在"
 
-#: src/util-app.vala:463
+#: src/util-app.vala:505
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
 msgstr "libvirt 知道 %s 是 GNOME 盒子的存储池，但该项不是目录"
 
-#: src/util-app.vala:467
+#: src/util-app.vala:509
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
@@ -1247,7 +1255,7 @@ msgstr "否"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:803
+#: src/vm-configurator.vala:794
 msgid "Incapable host system"
 msgstr "主机系统性能不足"
 
