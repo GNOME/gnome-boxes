@@ -196,7 +196,7 @@ namespace Boxes {
         try {
             yield Downloader.get_default ().download_from_http (download);
         } catch (GLib.Error error) {
-            warning ("Failed to download recommended-downloads file: %s", error.message);
+            message ("Failed to download recommended-downloads file: %s", error.message);
 
             if (!cached_file.query_exists ())
                 return null;
