@@ -250,7 +250,11 @@ namespace Boxes {
                 continue;
             }
 
-            var media = os.get_media_list ().get_nth (0) as Osinfo.Media;
+            var media_list = os.get_media_list ();
+            if (media_list == null || media_list.get_length () == 0)
+                continue;
+
+            var media = media_list.get_nth (0) as Osinfo.Media;
             if (media.url != null || os_id.has_prefix ("http://redhat.com"))
                 list.append (media);
 
