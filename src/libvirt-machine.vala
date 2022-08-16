@@ -573,7 +573,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             var media = new LibvirtClonedMedia (storage_volume.get_path (), config);
 
             var vm_cloner = media.get_vm_creator ();
-            var clone_machine = yield vm_cloner.create_vm (null);
+            var clone_machine = yield vm_cloner.create_vm (null, true);
             vm_cloner.launch_vm (clone_machine, this.config.access_last_time, true);
 
             ulong under_construct_id = 0;

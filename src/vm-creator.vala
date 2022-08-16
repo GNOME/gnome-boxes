@@ -36,7 +36,7 @@ private class Boxes.VMCreator : Object {
         continue_installation.begin (machine);
     }
 
-    public async LibvirtMachine create_vm (Cancellable? cancellable) throws GLib.Error {
+    public async LibvirtMachine create_vm (Cancellable? cancellable, bool clone = false) throws GLib.Error {
         if (connection == null) {
             // Wait for needed libvirt connection
             ulong handler = 0;
@@ -53,7 +53,7 @@ private class Boxes.VMCreator : Object {
         yield install_media.prepare_for_installation (name, cancellable);
 
         string? volume_path = null;
-        if (install_media.skip_import) {
+        if (install_media.skip_import && !clone) {
             volume_path = install_media.device_file;
 
             debug ("Skiping import. Using '%s' as target volume", volume_path);
