@@ -2,7 +2,7 @@ project ('gnome-boxes',
          ['vala', 'c'],
          version: '43.beta',
          license: 'LGPLv2+',
-         meson_version: '>= 0.50.0',
+         meson_version: '>= 0.59.0',
 )
 
 gnome = import ('gnome')
@@ -69,7 +69,11 @@ config_h = declare_dependency (
 #configure_file (output: 'config.h', configuration: conf)
 config_h_dir = include_directories ('.')
 
-meson.add_install_script (join_paths ('build-aux', 'post_install.py'), data_dir)
+gnome.post_install(
+  glib_compile_schemas: true,
+  gtk_update_icon_cache: true,
+  update_desktop_database: true,
+)
 
 subdir ('data')
 subdir ('help')
