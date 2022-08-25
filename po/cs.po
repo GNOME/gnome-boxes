@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2022-05-08 10:29+0000\n"
-"PO-Revision-Date: 2022-05-16 16:54+0200\n"
-"Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
+"POT-Creation-Date: 2022-08-18 17:18+0000\n"
+"PO-Revision-Date: 2022-08-25 13:23+0200\n"
+"Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -103,7 +103,7 @@ msgstr ""
 msgid "Setup Shared Folders between your system and virtual machines."
 msgstr "Nastavení sdílené složky mezi vaším systémem a virtuálními stroji."
 
-#: data/org.gnome.Boxes.appdata.xml.in:71
+#: data/org.gnome.Boxes.appdata.xml.in:75
 msgid "The GNOME Project"
 msgstr "Projekt GNOME"
 
@@ -168,6 +168,14 @@ msgstr "Sdílené složky"
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Proměnné pole s názvy sdílených složek a mapováním cest"
 
+#: data/org.gnome.boxes.gschema.xml:59
+msgid "Recommended Downloads Source URL"
+msgstr "URL doporučených zdrojů pro stahování"
+
+#: data/org.gnome.boxes.gschema.xml:60
+msgid "An URL pointing at a recommended-downloads.xml file"
+msgstr "URL odkazující na soubor recommended-downloads.xml"
+
 #: data/ui/app-window.ui:81 data/ui/welcome-tutorial.ui:40
 msgid "Welcome to Boxes"
 msgstr "Vítejte v aplikaci Boxy"
@@ -181,16 +189,16 @@ msgstr ""
 msgid "Unknown media"
 msgstr "Neznámé médium"
 
-#: data/ui/assistant/pages/downloads-page.ui:68
+#: data/ui/assistant/pages/downloads-page.ui:81
 msgid "No operating systems found"
 msgstr "Nebyl nalezen žádný operační systém"
 
-#: data/ui/assistant/pages/downloads-page.ui:69
+#: data/ui/assistant/pages/downloads-page.ui:82
 msgid "Try a different search"
 msgstr "Zkuste hledat něco jiného"
 
-#: data/ui/assistant/pages/downloads-page.ui:82
-#: src/assistant/downloads-page.vala:57
+#: data/ui/assistant/pages/downloads-page.ui:95
+#: src/assistant/downloads-page.vala:59
 msgid "Search for an OS or enter a download link…"
 msgstr "vyhledat OS nebo zadat odkaz pro stažení…"
 
@@ -301,16 +309,16 @@ msgid "Storage limit"
 msgstr "Omezení úložiště"
 
 #: data/ui/assistant/pages/review-page.ui:107
-#: data/ui/unattended-setup-box.ui:68 src/unattended-installer.vala:270
+#: data/ui/unattended-setup-box.ui:69 src/unattended-installer.vala:270
 msgid "Username"
 msgstr "Uživatelské jméno"
 
 #: data/ui/assistant/pages/review-page.ui:123
-#: data/ui/unattended-setup-box.ui:84 src/unattended-installer.vala:271
+#: data/ui/unattended-setup-box.ui:85 src/unattended-installer.vala:271
 msgid "Password"
 msgstr "Heslo"
 
-#: data/ui/assistant/pages/review-page.ui:140
+#: data/ui/assistant/pages/review-page.ui:141
 msgid "Enable EFI"
 msgstr "Povolit EFI"
 
@@ -505,31 +513,31 @@ msgstr "Adresa IP"
 msgid "CPUs"
 msgstr "Procesory"
 
-#: data/ui/preferences/resources-page.ui:105
+#: data/ui/preferences/resources-page.ui:106
 msgid "3D acceleration"
 msgstr "Akcelerace 3D"
 
-#: data/ui/preferences/resources-page.ui:127
+#: data/ui/preferences/resources-page.ui:129
 msgid "Allow running in background"
 msgstr "Povolit běh na pozadí"
 
-#: data/ui/preferences/resources-page.ui:145
+#: data/ui/preferences/resources-page.ui:147
 msgid "Configuration"
 msgstr "Nastavení"
 
-#: data/ui/preferences/resources-page.ui:150
+#: data/ui/preferences/resources-page.ui:152
 msgid "Troubleshooting Logs"
 msgstr "Záznamy k řešení problémů"
 
-#: data/ui/preferences/resources-page.ui:151
+#: data/ui/preferences/resources-page.ui:153
 msgid "Diagnose problems with your box using the log file."
 msgstr "Diagnostikovat problémy s boxem pomocí tohoto logu."
 
-#: data/ui/preferences/resources-page.ui:173
+#: data/ui/preferences/resources-page.ui:175
 msgid "Edit Configuration"
 msgstr "Upravit nastavení"
 
-#: data/ui/preferences/resources-page.ui:174
+#: data/ui/preferences/resources-page.ui:176
 msgid "Edit the Libvirt domain configuration for this box."
 msgstr "Upravit nastavení domény Libvirt pro tento box."
 
@@ -579,7 +587,7 @@ msgstr "Uložené stavy"
 msgid "Creating new snapshot…"
 msgstr "Zachytává se stav…"
 
-#: data/ui/toast.ui:34 src/app.vala:604
+#: data/ui/toast.ui:34 src/app.vala:601
 #: src/preferences/snapshot-list-row.vala:157
 msgid "Undo"
 msgstr "Zpět"
@@ -601,11 +609,11 @@ msgstr ""
 "volby."
 
 #. Translators: 'Express Install' means that the new box installation will be fully automated, the user won't be asked anything while it's performed.
-#: data/ui/unattended-setup-box.ui:52
+#: data/ui/unattended-setup-box.ui:53
 msgid "Express Install"
 msgstr "Rychlá instalace"
 
-#: data/ui/unattended-setup-box.ui:106
+#: data/ui/unattended-setup-box.ui:107
 msgid "Product Key"
 msgstr "Produktový klíč"
 
@@ -696,10 +704,8 @@ msgstr "Předvolby"
 
 #. Translators: name of the folder under ~/Pictures for screenshots. This is the same folder where GNOME Shell saves screenshots.
 #: src/actions-popover.vala:109
-#, fuzzy
-#| msgid "Take Screenshot"
 msgid "Screenshots"
-msgstr "Pořídit snímek obrazovky"
+msgstr "Snímky obrazovky"
 
 #. Translators: %s => the timestamp of when the screenshot was taken.
 #: src/actions-popover.vala:126
@@ -751,30 +757,30 @@ msgstr "Adresa URL k zobrazení, zprostředkovatel nebo instalačnímu médium"
 msgid "— A simple application to access virtual machines"
 msgstr "– Jednoduchá aplikace pro přístup k virtuálním strojům"
 
-#: src/app.vala:220
+#: src/app.vala:217
 msgid "Too many command line arguments specified.\n"
 msgstr "Bylo zadáno příliš mnoho přepínačů příkazového řádku.\n"
 
-#: src/app.vala:460
+#: src/app.vala:457
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Box „%s“ je nainstalován a připraven k použití"
 
-#: src/app.vala:462
+#: src/app.vala:459
 msgid "Launch"
 msgstr "Spustit"
 
-#: src/app.vala:492
+#: src/app.vala:489
 #, c-format
 msgid "“%s“ is running in the background"
 msgstr "„%s“ běží na pozadí"
 
-#: src/app.vala:573
+#: src/app.vala:570
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Box „%s“ byl odstraněn"
 
-#: src/app.vala:574
+#: src/app.vala:571
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -782,7 +788,7 @@ msgstr[0] "%u box byl odstraněn"
 msgstr[1] "%u boxy byly odstraněny"
 msgstr[2] "%u boxů bylo odstraněno"
 
-#: src/app.vala:645
+#: src/app.vala:642
 msgid "Boxes is doing something"
 msgstr "Boxy něco provádí"
 
@@ -806,7 +812,7 @@ msgstr "Vybrat zařízení nebo soubor ISO"
 msgid "Open"
 msgstr "Otevřít"
 
-#: src/assistant/index-page.vala:186 src/assistant/vm-assistant.vala:72
+#: src/assistant/index-page.vala:188 src/assistant/vm-assistant.vala:72
 msgid "Previous"
 msgstr "Předchozí"
 
@@ -838,17 +844,17 @@ msgstr "Selhala analýza instalačního média. Není poškozené nebo neúplné
 msgid "Create"
 msgstr "Vytvořit"
 
-#: src/display-page.vala:133
+#: src/display-page.vala:127
 msgid "Press (left) Ctrl+Alt to ungrab"
 msgstr "Pro ukončení zachytávání zmáčkněte levý Ctrl+Alt"
 
-#: src/display-page.vala:135
+#: src/display-page.vala:129
 msgid "Press & release (left) Ctrl+Alt to ungrab keyboard."
 msgstr ""
 "Pro ukončení zachytávání klávesnice zmáčkněte a uvolněte levý Ctrl+Alt."
 
 #. Translators: Showing size of widget as WIDTH×HEIGHT here.
-#: src/display-page.vala:324
+#: src/display-page.vala:318
 #, c-format
 msgid "%d×%d"
 msgstr "%d × %d"
@@ -871,7 +877,7 @@ msgid "Install"
 msgstr "Nainstalovat"
 
 #. We did this, so ignore!
-#: src/downloads-hub.vala:186
+#: src/downloads-hub.vala:180 src/downloads-hub.vala:189
 #, c-format
 msgid "Failed to download: %s"
 msgstr "Stažení selhalo: %s"
@@ -916,41 +922,41 @@ msgid "Send key combinations"
 msgstr "Odeslat kombinaci kláves"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:466
+#: src/libvirt-machine.vala:470
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Obnovuje se %s z disku"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:469
+#: src/libvirt-machine.vala:473
 #, c-format
 msgid "Starting %s"
 msgstr "Spouští se %s"
 
-#: src/libvirt-machine.vala:542
+#: src/libvirt-machine.vala:546
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr ""
 "Restart stroje „%s“ probíhá již příliš dlouho. Chcete jej násilně vypnout?"
 
-#: src/libvirt-machine.vala:545
+#: src/libvirt-machine.vala:549
 msgid "Shutdown"
 msgstr "Vypnout"
 
-#: src/libvirt-machine.vala:560
+#: src/libvirt-machine.vala:564
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Klonuje se „%s“…"
 
-#: src/libvirt-machine.vala:686
+#: src/libvirt-machine.vala:690
 msgid "Installing…"
 msgstr "Instaluje se…"
 
-#: src/libvirt-machine.vala:688
+#: src/libvirt-machine.vala:692
 msgid "Setting up clone…"
 msgstr "Nastavuje se klon…"
 
-#: src/libvirt-machine.vala:690
+#: src/libvirt-machine.vala:694
 msgid "Importing…"
 msgstr "Importuje se…"
 
@@ -1210,7 +1216,7 @@ msgstr "Rychlá instalace %s vyžaduje připojení k Internetu."
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "Aktivační údaje Boxů GNOME pro „%s“"
 
-#: src/util-app.vala:368
+#: src/util-app.vala:414
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1220,11 +1226,11 @@ msgstr ""
 "pomocí:\n"
 "%s"
 
-#: src/util-app.vala:372
+#: src/util-app.vala:418
 msgid "SELinux not installed?"
 msgstr "SELinux není nainstalován?"
 
-#: src/util-app.vala:454
+#: src/util-app.vala:500
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1233,7 +1239,7 @@ msgstr ""
 "boxes“. Ujistěte se, že funguje „virsh -c qemu:///session pool-dumpxml gnome-"
 "boxes“."
 
-#: src/util-app.vala:459
+#: src/util-app.vala:505
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
@@ -1242,7 +1248,7 @@ msgstr ""
 "%s je v libvirt známé jako sdružené úložiště aplikace GNOME Boxy, ale tato "
 "složka neexistuje"
 
-#: src/util-app.vala:463
+#: src/util-app.vala:509
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
@@ -1250,7 +1256,7 @@ msgstr ""
 "%s je v libvirt známé jako sdružené úložiště aplikace GNOME Boxy, ale "
 "nejedná se o složku"
 
-#: src/util-app.vala:467
+#: src/util-app.vala:513
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
@@ -1269,7 +1275,7 @@ msgstr "ne"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:803
+#: src/vm-configurator.vala:794
 msgid "Incapable host system"
 msgstr "Nedostačující hostitelský systém"
 
