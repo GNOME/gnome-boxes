@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2022-07-12 10:55+0000\n"
-"PO-Revision-Date: 2022-07-16 01:33+0300\n"
+"POT-Creation-Date: 2022-08-30 13:55+0000\n"
+"PO-Revision-Date: 2022-09-01 21:32+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Turkish <gnometurk@gnome.org>\n"
 "Language: tr\n"
@@ -109,7 +109,7 @@ msgstr ""
 msgid "Setup Shared Folders between your system and virtual machines."
 msgstr "Sisteminiz ve sanal makineler arasında Paylaşılan Klasörler kurun."
 
-#: data/org.gnome.Boxes.appdata.xml.in:74
+#: data/org.gnome.Boxes.appdata.xml.in:75
 msgid "The GNOME Project"
 msgstr "GNOME Projesi"
 
@@ -176,6 +176,14 @@ msgstr ""
 "Paylaşılan klasörlerin adlarının ve veri yollarının eşleşmelerinin değişke "
 "dizisi"
 
+#: data/org.gnome.boxes.gschema.xml:59
+msgid "Recommended Downloads Source URL"
+msgstr "Önerilen İndirmeler Kaynak URL’si"
+
+#: data/org.gnome.boxes.gschema.xml:60
+msgid "An URL pointing at a recommended-downloads.xml file"
+msgstr "recommended-downloads.xml dosyasını gösteren URL"
+
 #: data/ui/app-window.ui:81 data/ui/welcome-tutorial.ui:40
 msgid "Welcome to Boxes"
 msgstr "Kutular’a Hoş Geldiniz"
@@ -188,16 +196,16 @@ msgstr "İlk sanal makinenizi oluşturmak için <b>+</b> düğmesini kullanın."
 msgid "Unknown media"
 msgstr "Bilinmeyen ortam"
 
-#: data/ui/assistant/pages/downloads-page.ui:68
+#: data/ui/assistant/pages/downloads-page.ui:81
 msgid "No operating systems found"
 msgstr "İşletim sistemi bulunamadı"
 
-#: data/ui/assistant/pages/downloads-page.ui:69
+#: data/ui/assistant/pages/downloads-page.ui:82
 msgid "Try a different search"
 msgstr "Başka bir arama deneyin"
 
-#: data/ui/assistant/pages/downloads-page.ui:82
-#: src/assistant/downloads-page.vala:57
+#: data/ui/assistant/pages/downloads-page.ui:95
+#: src/assistant/downloads-page.vala:59
 msgid "Search for an OS or enter a download link…"
 msgstr "İşletim sistemi ara veya indirme bağlantısı gir…"
 
@@ -806,7 +814,7 @@ msgstr "Aygıt ya da ISO dosyası seç"
 msgid "Open"
 msgstr "Aç"
 
-#: src/assistant/index-page.vala:186 src/assistant/vm-assistant.vala:72
+#: src/assistant/index-page.vala:188 src/assistant/vm-assistant.vala:72
 msgid "Previous"
 msgstr "Önceki"
 
@@ -1207,7 +1215,7 @@ msgstr "%s’in hızlı kurulumu internet bağlantısı gerektiriyor."
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "“%s” için GNOME Kutular kimlik bilgileri"
 
-#: src/util-app.vala:368
+#: src/util-app.vala:414
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1217,11 +1225,11 @@ msgstr ""
 "deneyebilirsiniz:\n"
 "%s"
 
-#: src/util-app.vala:372
+#: src/util-app.vala:418
 msgid "SELinux not installed?"
 msgstr "SELinux kurulmadı mı?"
 
-#: src/util-app.vala:454
+#: src/util-app.vala:500
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1229,7 +1237,7 @@ msgstr ""
 "“gnome-boxes”ın biriktirme havuzu bilgisi libvirt’ten alınamıyor. “virsh -c "
 "qemu:///session pool-dumpxml gnome-boxes” komutunun çalıştığından emin olun."
 
-#: src/util-app.vala:459
+#: src/util-app.vala:505
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
@@ -1238,7 +1246,7 @@ msgstr ""
 "%s libvirt’e GNOME Kutular’ın biriktirme havuzu olarak bildirilmiş ama dizin "
 "yok"
 
-#: src/util-app.vala:463
+#: src/util-app.vala:509
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
@@ -1246,7 +1254,7 @@ msgstr ""
 "%s libvirt’e GNOME Kutular’ın biriktirme havuzu olarak bildirilmiş ama dizin "
 "değil"
 
-#: src/util-app.vala:467
+#: src/util-app.vala:513
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
