@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2022-02-11 12:42+0000\n"
-"PO-Revision-Date: 2022-03-01 17:50+0900\n"
+"POT-Creation-Date: 2022-08-04 10:52+0000\n"
+"PO-Revision-Date: 2022-08-28 20:09+0900\n"
 "Last-Translator: Seong-ho Cho <shcho@gnome.org>\n"
 "Language-Team: 한국어 <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
@@ -33,7 +33,7 @@ msgstr ""
 
 #: data/org.gnome.Boxes.appdata.xml.in:7 data/org.gnome.Boxes.desktop.in:3
 #: data/ui/app-window.ui:6 data/ui/collection-toolbar.ui:7 src/app.vala:117
-#: src/app-window.vala:105 src/app-window.vala:217 src/app-window.vala:219
+#: src/app-window.vala:105 src/app-window.vala:218 src/app-window.vala:220
 #: src/main.vala:72 src/topbar.vala:70
 msgid "Boxes"
 msgstr "박스"
@@ -107,7 +107,7 @@ msgstr ""
 msgid "Setup Shared Folders between your system and virtual machines."
 msgstr "시스템과 가상 머신이 공유할 폴더를 설정합니다."
 
-#: data/org.gnome.Boxes.appdata.xml.in:66
+#: data/org.gnome.Boxes.appdata.xml.in:74
 msgid "The GNOME Project"
 msgstr "그놈 프로젝트"
 
@@ -172,6 +172,14 @@ msgstr "공유 폴더"
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "공유 폴더 이름과 경로 매핑 배열입니다"
 
+#: data/org.gnome.boxes.gschema.xml:59
+msgid "Recommended Downloads Source URL"
+msgstr "추천 다운로드 목록 원본 URL"
+
+#: data/org.gnome.boxes.gschema.xml:60
+msgid "An URL pointing at a recommended-downloads.xml file"
+msgstr "recommended-downloads.xml 파일을 가리키는 URL 주소입니다"
+
 #: data/ui/app-window.ui:81 data/ui/welcome-tutorial.ui:40
 msgid "Welcome to Boxes"
 msgstr "박스 사용을 환영합니다"
@@ -184,16 +192,16 @@ msgstr "첫 가상 머신을 만들려면 <b>+</b> 단추를 활용하십시오.
 msgid "Unknown media"
 msgstr "알 수 없는 미디어"
 
-#: data/ui/assistant/pages/downloads-page.ui:68
+#: data/ui/assistant/pages/downloads-page.ui:81
 msgid "No operating systems found"
 msgstr "운영 체제 없음"
 
-#: data/ui/assistant/pages/downloads-page.ui:69
+#: data/ui/assistant/pages/downloads-page.ui:82
 msgid "Try a different search"
 msgstr "다른 단어로 검색해보십시오"
 
-#: data/ui/assistant/pages/downloads-page.ui:82
-#: src/assistant/downloads-page.vala:57
+#: data/ui/assistant/pages/downloads-page.ui:95
+#: src/assistant/downloads-page.vala:59
 msgid "Search for an OS or enter a download link…"
 msgstr "운영체제를 검색하거나 다운로드 링크를 입력하십시오…"
 
@@ -301,16 +309,16 @@ msgid "Storage limit"
 msgstr "저장용량 제한"
 
 #: data/ui/assistant/pages/review-page.ui:107
-#: data/ui/unattended-setup-box.ui:68 src/unattended-installer.vala:270
+#: data/ui/unattended-setup-box.ui:69 src/unattended-installer.vala:270
 msgid "Username"
 msgstr "사용자 이름"
 
 #: data/ui/assistant/pages/review-page.ui:123
-#: data/ui/unattended-setup-box.ui:84 src/unattended-installer.vala:271
+#: data/ui/unattended-setup-box.ui:85 src/unattended-installer.vala:271
 msgid "Password"
 msgstr "암호"
 
-#: data/ui/assistant/pages/review-page.ui:140
+#: data/ui/assistant/pages/review-page.ui:141
 msgid "Enable EFI"
 msgstr "EFI 사용"
 
@@ -505,31 +513,31 @@ msgstr "IP 주소"
 msgid "CPUs"
 msgstr "CPU"
 
-#: data/ui/preferences/resources-page.ui:105
+#: data/ui/preferences/resources-page.ui:106
 msgid "3D acceleration"
 msgstr "3D 가속"
 
-#: data/ui/preferences/resources-page.ui:127
+#: data/ui/preferences/resources-page.ui:129
 msgid "Allow running in background"
 msgstr "백그라운드 실행 허용"
 
-#: data/ui/preferences/resources-page.ui:145
+#: data/ui/preferences/resources-page.ui:147
 msgid "Configuration"
 msgstr "설정"
 
-#: data/ui/preferences/resources-page.ui:150
+#: data/ui/preferences/resources-page.ui:152
 msgid "Troubleshooting Logs"
 msgstr "문제 해결 로그"
 
-#: data/ui/preferences/resources-page.ui:151
+#: data/ui/preferences/resources-page.ui:153
 msgid "Diagnose problems with your box using the log file."
 msgstr "로그 파일을 활용하여 박스 문제를 진단합니다."
 
-#: data/ui/preferences/resources-page.ui:173
+#: data/ui/preferences/resources-page.ui:175
 msgid "Edit Configuration"
 msgstr "설정 편집"
 
-#: data/ui/preferences/resources-page.ui:174
+#: data/ui/preferences/resources-page.ui:176
 msgid "Edit the Libvirt domain configuration for this box."
 msgstr "이 박스의 libvirt 도메인 설정을 편집합니다."
 
@@ -579,7 +587,7 @@ msgstr "스냅샷"
 msgid "Creating new snapshot…"
 msgstr "새 스냅샷 만드는 중…"
 
-#: data/ui/toast.ui:34 src/app.vala:604
+#: data/ui/toast.ui:34 src/app.vala:601
 #: src/preferences/snapshot-list-row.vala:157
 msgid "Undo"
 msgstr "실행 취소(_U)"
@@ -600,11 +608,11 @@ msgstr ""
 "박스를 최적의 설정으로 자동으로 미리 설정하려면 빠른 설치를 선택합니다."
 
 #. Translators: 'Express Install' means that the new box installation will be fully automated, the user won't be asked anything while it's performed.
-#: data/ui/unattended-setup-box.ui:52
+#: data/ui/unattended-setup-box.ui:53
 msgid "Express Install"
 msgstr "빠른 설치"
 
-#: data/ui/unattended-setup-box.ui:106
+#: data/ui/unattended-setup-box.ui:107
 msgid "Product Key"
 msgstr "제품 키"
 
@@ -692,8 +700,13 @@ msgstr "다시 시작"
 msgid "Preferences"
 msgstr "기본 설정"
 
+#. Translators: name of the folder under ~/Pictures for screenshots. This is the same folder where GNOME Shell saves screenshots.
+#: src/actions-popover.vala:109
+msgid "Screenshots"
+msgstr "스크린샷"
+
 #. Translators: %s => the timestamp of when the screenshot was taken.
-#: src/actions-popover.vala:112
+#: src/actions-popover.vala:126
 #, c-format
 msgid "Screenshot from %s"
 msgstr "%s의 스크린샷"
@@ -739,48 +752,48 @@ msgstr "표시, 중개, 설치할 매체의 URL"
 msgid "— A simple application to access virtual machines"
 msgstr "— 가상 머신에 접근하는 간단한 프로그램"
 
-#: src/app.vala:220
+#: src/app.vala:217
 msgid "Too many command line arguments specified.\n"
 msgstr "너무 많은 명령줄 인자를 지정했습니다.\n"
 
-#: src/app.vala:460
+#: src/app.vala:457
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "“%s” 박스를 설치했으며 사용할 수 있습니다"
 
-#: src/app.vala:462
+#: src/app.vala:459
 msgid "Launch"
 msgstr "실행"
 
-#: src/app.vala:492
+#: src/app.vala:489
 #, c-format
 msgid "“%s“ is running in the background"
 msgstr "“%s“ 프로그램을 백그라운드에서 실행하고 있습니다"
 
-#: src/app.vala:573
+#: src/app.vala:570
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "“%s” 박스를 삭제했습니다"
 
-#: src/app.vala:574
+#: src/app.vala:571
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "박스 %u개를 삭제했습니다"
 
-#: src/app.vala:645
+#: src/app.vala:642
 msgid "Boxes is doing something"
 msgstr "박스에서 어떤 동작을 진행하는 중입니다"
 
-#: src/app-window.vala:272
+#: src/app-window.vala:273
 msgid "Select files to transfer"
 msgstr "보낼 파일을 선택하십시오"
 
-#: src/app-window.vala:273
+#: src/app-window.vala:274
 msgid "_Cancel"
 msgstr "취소(_C)"
 
-#: src/app-window.vala:275
+#: src/app-window.vala:276
 msgid "_Open"
 msgstr "열기(_O)"
 
@@ -792,7 +805,7 @@ msgstr "장치 또는 ISO 파일을 선택하십시오"
 msgid "Open"
 msgstr "열기"
 
-#: src/assistant/index-page.vala:186 src/assistant/vm-assistant.vala:72
+#: src/assistant/index-page.vala:188 src/assistant/vm-assistant.vala:72
 msgid "Previous"
 msgstr "이전"
 
@@ -824,16 +837,16 @@ msgstr "설치 미디어 분석에 실패했습니다. 깨졌거나 호환성 �
 msgid "Create"
 msgstr "만들기"
 
-#: src/display-page.vala:133
+#: src/display-page.vala:127
 msgid "Press (left) Ctrl+Alt to ungrab"
 msgstr "제어권을 놓으려면 왼편의 Ctrl+Alt키를 누르십시오"
 
-#: src/display-page.vala:135
+#: src/display-page.vala:129
 msgid "Press & release (left) Ctrl+Alt to ungrab keyboard."
 msgstr "제어권을 놓으려면 왼편의 Ctrl+Alt키를 누르십시오."
 
 #. Translators: Showing size of widget as WIDTH×HEIGHT here.
-#: src/display-page.vala:324
+#: src/display-page.vala:318
 #, c-format
 msgid "%d×%d"
 msgstr "%d×%d"
@@ -856,7 +869,7 @@ msgid "Install"
 msgstr "설치"
 
 #. We did this, so ignore!
-#: src/downloads-hub.vala:186
+#: src/downloads-hub.vala:180 src/downloads-hub.vala:189
 #, c-format
 msgid "Failed to download: %s"
 msgstr "다운로드 실패: %s"
@@ -901,40 +914,40 @@ msgid "Send key combinations"
 msgstr "키 조합 보내기"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:466
+#: src/libvirt-machine.vala:470
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "디스크에서 %s 복원중"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:469
+#: src/libvirt-machine.vala:473
 #, c-format
 msgid "Starting %s"
 msgstr "%s 시작중"
 
-#: src/libvirt-machine.vala:542
+#: src/libvirt-machine.vala:546
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "“%s” 다시 시작이 상당히 오래걸립니다. 강제로 끄시겠습니까?"
 
-#: src/libvirt-machine.vala:545
+#: src/libvirt-machine.vala:549
 msgid "Shutdown"
 msgstr "강제로 끄기"
 
-#: src/libvirt-machine.vala:560
+#: src/libvirt-machine.vala:564
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "“%s” 복제 중…"
 
-#: src/libvirt-machine.vala:686
+#: src/libvirt-machine.vala:690
 msgid "Installing…"
 msgstr "설치 중…"
 
-#: src/libvirt-machine.vala:688
+#: src/libvirt-machine.vala:692
 msgid "Setting up clone…"
 msgstr "복제 설치 중…"
 
-#: src/libvirt-machine.vala:690
+#: src/libvirt-machine.vala:694
 msgid "Importing…"
 msgstr "가져오는 중…"
 
@@ -1057,15 +1070,15 @@ msgstr "입력을 전달할 수 있는 USB 장치를 보려면 박스를 켜십�
 msgid "Recommended %s."
 msgstr "%s을(를) 권장합니다."
 
-#: src/preferences/resources-page.vala:157
+#: src/preferences/resources-page.vala:159
 msgid "Boxes is not authorized to run in background"
 msgstr "박스의 백그라운드 실행을 허용하지 않았습니다"
 
-#: src/preferences/resources-page.vala:163
+#: src/preferences/resources-page.vala:165
 msgid "Do you want to open Settings to manage application permissions?"
 msgstr "프로그램 권한을 관리할 설정을 여시겠습니까?"
 
-#: src/preferences/resources-page.vala:201
+#: src/preferences/resources-page.vala:203
 msgid ""
 "Editing your box configuration can cause issues to the operating system of "
 "your box. Would you like to create a snapshot to recover from your changes?"
@@ -1073,12 +1086,12 @@ msgstr ""
 "박스 설정을 편집하면 박스 운영체제에 문제를 야기할 수 있습니다. 바뀐 내용을 "
 "복원할 스냅샷을 만드시겠습니까?"
 
-#: src/preferences/resources-page.vala:267
+#: src/preferences/resources-page.vala:269
 #, c-format
 msgid "Failed to save domain configuration: %s"
 msgstr "도메인 설정 저장 실패: %s"
 
-#: src/preferences/resources-page.vala:276
+#: src/preferences/resources-page.vala:278
 msgid "Changes to the settings below take effect after you restart your box."
 msgstr "바뀐 설정은 박스를 다시 시작한 다음에 적용됩니다."
 
@@ -1176,21 +1189,21 @@ msgstr "설치 준비중 오류가 발생했습니다. 빠른 설치를 비활�
 msgid "Downloading device drivers…"
 msgstr "장치 드라이버 다운로드 중…"
 
-#: src/unattended-setup-box.vala:53
+#: src/unattended-setup-box.vala:51
 msgid "no password"
 msgstr "암호 없음"
 
-#: src/unattended-setup-box.vala:110
+#: src/unattended-setup-box.vala:108
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "%s 고속 설치는 인터넷 연결이 필요합니다."
 
-#: src/unattended-setup-box.vala:208
+#: src/unattended-setup-box.vala:206
 #, c-format
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "“%s” 그놈 박스 자격 정보"
 
-#: src/util-app.vala:359
+#: src/util-app.vala:410
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1200,11 +1213,11 @@ msgstr ""
 "다:\n"
 "%s"
 
-#: src/util-app.vala:363
+#: src/util-app.vala:414
 msgid "SELinux not installed?"
 msgstr "SELinux를 설치하지 않았습니까?"
 
-#: src/util-app.vala:445
+#: src/util-app.vala:496
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1212,7 +1225,7 @@ msgstr ""
 "libvirt에서 “gnome-boxes” 저장소 풀 정보를 가져올 수 없습니다. “virsh -c "
 "qemu:///session pool-dumpxml gnome-boxes” 명령이 동작하는지 확인하십시오."
 
-#: src/util-app.vala:450
+#: src/util-app.vala:501
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
@@ -1221,14 +1234,14 @@ msgstr ""
 "%s은(는) libvirt에서 그놈 박스 저장소 풀로 알고 있지만, 해당 디렉터리가 없습"
 "니다"
 
-#: src/util-app.vala:454
+#: src/util-app.vala:505
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
 msgstr ""
 "%s은(는) libvirt에서 그놈 박스 저장소 풀로 알고 있지만 디렉터리가 아닙니다"
 
-#: src/util-app.vala:458
+#: src/util-app.vala:509
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
@@ -1247,7 +1260,7 @@ msgstr "아니요"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:793
+#: src/vm-configurator.vala:794
 msgid "Incapable host system"
 msgstr "사용할 수 없는 호스트 시스템"
 
