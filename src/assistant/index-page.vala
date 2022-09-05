@@ -100,7 +100,11 @@ private class Boxes.AssistantIndexPage : AssistantPage {
         downloads_model.remove_all ();
         medias_stack.set_visible_child (downloadable_sources_section);
 
-        foreach (var media in yield get_recommended_downloads ()) {
+        var os_list = yield fetch_recommended_downloads_from_net ();
+        if (os_list == null)
+            os_list = yield get_recommended_downloads ();
+
+        foreach (var media in os_list) {
             if (media != null) {
                 downloads_model.append (media);
             }
