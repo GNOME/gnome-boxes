@@ -78,6 +78,8 @@ private class Boxes.IconView: Gtk.ScrolledWindow {
             return false;
 
         var child = flowbox.get_child_at_pos ((int) event.x, (int) event.y);
+        if (child == null)
+            return false;
 
         return launch_context_popover_for_child (child);
     }
