@@ -9,7 +9,7 @@
 # Vinzenz Vietzke <vinz@vinzv.de>, 2018.
 # Mario Blättermann <mario.blaettermann@gmail.com>, 2011-2012, 2016-2019.
 # Christian Kirbach <Christian.Kirbach@gmail.com>, 2012, 2013, 2019-2022.
-# Tim Sabsch <tim@sabsch.com>, 2019-2020.
+# Tim Sabsch <tim@sabsch.com>, 2019-2020, 2022.
 # Stephan Woidowski <swoidowski@t-online.de>, 2021.
 # Philipp Kiemle <philipp.kiemle@gmail.com>, 2020-2022.
 # Jürgen Benvenuti <gastornis@posteo.org>, 2022.
@@ -19,9 +19,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2022-08-04 10:52+0000\n"
-"PO-Revision-Date: 2022-08-21 20:25+0200\n"
-"Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
+"POT-Creation-Date: 2022-09-17 13:12+0000\n"
+"PO-Revision-Date: 2022-09-18 14:58+0200\n"
+"Last-Translator: Tim Sabsch <tim@sabsch.com>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -121,7 +121,7 @@ msgstr ""
 "Gemeinsame Ordner zwischen Ihrem System und der virtuellen Maschine "
 "einrichten."
 
-#: data/org.gnome.Boxes.appdata.xml.in:74
+#: data/org.gnome.Boxes.appdata.xml.in:61
 msgid "The GNOME Project"
 msgstr "Das GNOME-Projekt"
 
@@ -186,6 +186,14 @@ msgstr "Freigegebene Ordner"
 #: data/org.gnome.boxes.gschema.xml:54
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Variablenfeld aus den Namen freigegebener Ordner und deren Pfaden"
+
+#: data/org.gnome.boxes.gschema.xml:59
+msgid "Recommended Downloads Source URL"
+msgstr "Adresse der empfohlenen Downloadquellen"
+
+#: data/org.gnome.boxes.gschema.xml:60
+msgid "An URL pointing at a recommended-downloads.xml file"
+msgstr "Eine Adresse, die auf die Datei recommended-downloads.xml verweist"
 
 #: data/ui/app-window.ui:81 data/ui/welcome-tutorial.ui:40
 msgid "Welcome to Boxes"
@@ -344,8 +352,8 @@ msgstr "Express-Installation"
 
 #: data/ui/assistant/vm-assistant.ui:54
 #: data/ui/preferences/shared-folder-popover.ui:97
-#: data/ui/shared-folder-popover.ui:97 src/assistant/index-page.vala:120
-#: src/assistant/index-page.vala:168 src/assistant/vm-assistant.vala:72
+#: data/ui/shared-folder-popover.ui:97 src/assistant/index-page.vala:124
+#: src/assistant/index-page.vala:172 src/assistant/vm-assistant.vala:72
 #: src/preferences/cdrom-row.vala:65
 msgid "Cancel"
 msgstr "Abbrechen"
@@ -832,15 +840,15 @@ msgstr "_Abbrechen"
 msgid "_Open"
 msgstr "_Öffnen"
 
-#: src/assistant/index-page.vala:165 src/preferences/cdrom-row.vala:62
+#: src/assistant/index-page.vala:169 src/preferences/cdrom-row.vala:62
 msgid "Select a device or ISO file"
 msgstr "Ein Gerät oder eine ISO-Datei wählen"
 
-#: src/assistant/index-page.vala:168 src/preferences/cdrom-row.vala:65
+#: src/assistant/index-page.vala:172 src/preferences/cdrom-row.vala:65
 msgid "Open"
 msgstr "Öffnen"
 
-#: src/assistant/index-page.vala:188 src/assistant/vm-assistant.vala:72
+#: src/assistant/index-page.vala:192 src/assistant/vm-assistant.vala:72
 msgid "Previous"
 msgstr "Vorherige"
 
@@ -1261,7 +1269,7 @@ msgstr "Express-Installation von %s erfordert eine Internet-Verbindung."
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "GNOME Boxen Zugangsdaten für »%s«"
 
-#: src/util-app.vala:410
+#: src/util-app.vala:414
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1270,11 +1278,11 @@ msgstr ""
 "Ihr SELinux-Kontext scheint nicht korrekt zu sein, versuchen Sie es zu "
 "reparieren, indem Sie dies ausführen: %s"
 
-#: src/util-app.vala:414
+#: src/util-app.vala:418
 msgid "SELinux not installed?"
 msgstr "Ist SELinux installiert?"
 
-#: src/util-app.vala:496
+#: src/util-app.vala:500
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1283,7 +1291,7 @@ msgstr ""
 "geholt werden. Stellen Sie sicher, dass »virsh -c qemu:///session pool-"
 "dumpxml gnome-boxes« läuft."
 
-#: src/util-app.vala:501
+#: src/util-app.vala:505
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
@@ -1292,7 +1300,7 @@ msgstr ""
 "%s ist für »libvirt« als Speicherpool von GNOME Boxen bekannt, aber der "
 "Ordner ist nicht vorhanden"
 
-#: src/util-app.vala:505
+#: src/util-app.vala:509
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
@@ -1300,7 +1308,7 @@ msgstr ""
 "%s ist für »libvirt« als Speicherpool von GNOME Boxen bekannt, aber es ist "
 "kein Ordner"
 
-#: src/util-app.vala:509
+#: src/util-app.vala:513
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
@@ -1876,11 +1884,11 @@ msgstr "Box-Import aus Datei »%s« ist fehlgeschlagen: %s"
 #~ msgstr "%s <span color=\"grey\">(%s verwendet)</span>"
 
 #~ msgid ""
-#~ "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span "
-#~ "color=\"grey\">(%s used)</span>"
+#~ "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
+#~ "\">(%s used)</span>"
 #~ msgstr ""
-#~ "<span color=\"grey\">Maximale Laufwerksgröße</span>\t\t %s <span "
-#~ "color=\"grey\">(%s belegt)</span>"
+#~ "<span color=\"grey\">Maximale Laufwerksgröße</span>\t\t %s <span color="
+#~ "\"grey\">(%s belegt)</span>"
 
 #~ msgid "Experiencing graphics problems?"
 #~ msgstr "Sind Grafikprobleme aufgetreten?"
