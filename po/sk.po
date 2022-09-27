@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2022-04-01 06:45+0000\n"
-"PO-Revision-Date: 2022-04-01 13:49+0200\n"
+"POT-Creation-Date: 2022-09-17 13:12+0000\n"
+"PO-Revision-Date: 2022-09-27 14:35+0200\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -31,8 +31,6 @@ msgid "Virtualization made simple"
 msgstr "Zjednodušuje virtualizáciu"
 
 #: data/org.gnome.Boxes.appdata.xml.in:10
-#| msgid ""
-#| "Operating system will be downloaded and installed in a virtual machine."
 msgid ""
 "Select an operating system and let Boxes download and install it for you in "
 "a virtual machine."
@@ -72,9 +70,6 @@ msgstr ""
 "počítače z vášho systému."
 
 #: data/org.gnome.Boxes.appdata.xml.in:22
-#| msgid ""
-#| "Boxes failed to snapshot your virtual machine before applying your "
-#| "changes."
 msgid "Take snapshots of virtual machines to restore to previous states."
 msgstr ""
 "Vytvorenie snímkov virtuálnych počítačov na obnovenie predchádzajúcich "
@@ -97,7 +92,6 @@ msgstr ""
 "okna."
 
 #: data/org.gnome.Boxes.appdata.xml.in:26
-#| msgid "Simple remote and virtual machines"
 msgid "Share clipboard between your system and virtual machines."
 msgstr "Zdieľanie schránky medzi vaším systémom a virtuálnymi počítačmi."
 
@@ -110,13 +104,12 @@ msgstr ""
 "Boxy z vášho správcu súborov."
 
 #: data/org.gnome.Boxes.appdata.xml.in:28
-#| msgid "Select a file to install a virtual machine."
 msgid "Setup Shared Folders between your system and virtual machines."
 msgstr ""
 "Nastavenie sprístupnených priečinkov medzi vaším systémom a virtuálnymi "
 "počítačmi."
 
-#: data/org.gnome.Boxes.appdata.xml.in:71
+#: data/org.gnome.Boxes.appdata.xml.in:61
 msgid "The GNOME Project"
 msgstr "Projekt GNOME"
 
@@ -181,6 +174,14 @@ msgstr "Zdieľané priečinky"
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Pole variantov názvov zdieľaných priečinkov a mapovaní ciest"
 
+#: data/org.gnome.boxes.gschema.xml:59
+msgid "Recommended Downloads Source URL"
+msgstr "Zdrojový URL odporúčaných preberaní"
+
+#: data/org.gnome.boxes.gschema.xml:60
+msgid "An URL pointing at a recommended-downloads.xml file"
+msgstr "URL ukazujúci na súbor recommended-downloads.xml"
+
 #: data/ui/app-window.ui:81 data/ui/welcome-tutorial.ui:40
 msgid "Welcome to Boxes"
 msgstr "Vitajte v aplikácii Boxy"
@@ -193,16 +194,16 @@ msgstr "Na vytvorenie vášho prvého boxu použite tlačidlo <b>+</b>."
 msgid "Unknown media"
 msgstr "Neznámy nosič"
 
-#: data/ui/assistant/pages/downloads-page.ui:68
+#: data/ui/assistant/pages/downloads-page.ui:81
 msgid "No operating systems found"
 msgstr "Nenašiel sa žiadne operačné systémy"
 
-#: data/ui/assistant/pages/downloads-page.ui:69
+#: data/ui/assistant/pages/downloads-page.ui:82
 msgid "Try a different search"
 msgstr "Skúste vyhľadať iný"
 
-#: data/ui/assistant/pages/downloads-page.ui:82
-#: src/assistant/downloads-page.vala:57
+#: data/ui/assistant/pages/downloads-page.ui:95
+#: src/assistant/downloads-page.vala:59
 msgid "Search for an OS or enter a download link…"
 msgstr "Vyhľadajte OS, alebo zadajte odkaz na prevzatie…"
 
@@ -264,13 +265,10 @@ msgid "You will be notified when the download has completed."
 msgstr "Po dokončení preberania budete upozornený."
 
 #: data/ui/assistant/pages/index-page.ui:117
-#| msgctxt "shortcut window"
-#| msgid "Create a new virtual machine"
 msgid "Create virtual machine from file"
 msgstr "Vytvorenie virtuálneho počítača zo súboru"
 
 #: data/ui/assistant/pages/index-page.ui:134
-#| msgid "No operating systems found"
 msgid "Download an operating system"
 msgstr "Prevzatie operačného systému"
 
@@ -319,16 +317,16 @@ msgid "Storage limit"
 msgstr "Obmedzenie úložiska"
 
 #: data/ui/assistant/pages/review-page.ui:107
-#: data/ui/unattended-setup-box.ui:68 src/unattended-installer.vala:270
+#: data/ui/unattended-setup-box.ui:69 src/unattended-installer.vala:270
 msgid "Username"
 msgstr "Používateľské meno"
 
 #: data/ui/assistant/pages/review-page.ui:123
-#: data/ui/unattended-setup-box.ui:84 src/unattended-installer.vala:271
+#: data/ui/unattended-setup-box.ui:85 src/unattended-installer.vala:271
 msgid "Password"
 msgstr "Heslo"
 
-#: data/ui/assistant/pages/review-page.ui:140
+#: data/ui/assistant/pages/review-page.ui:141
 msgid "Enable EFI"
 msgstr "Povoliť EFI"
 
@@ -338,8 +336,8 @@ msgstr "Rýchla inštalácia"
 
 #: data/ui/assistant/vm-assistant.ui:54
 #: data/ui/preferences/shared-folder-popover.ui:97
-#: data/ui/shared-folder-popover.ui:97 src/assistant/index-page.vala:120
-#: src/assistant/index-page.vala:168 src/assistant/vm-assistant.vala:72
+#: data/ui/shared-folder-popover.ui:97 src/assistant/index-page.vala:124
+#: src/assistant/index-page.vala:172 src/assistant/vm-assistant.vala:72
 #: src/preferences/cdrom-row.vala:65
 msgid "Cancel"
 msgstr "Zrušiť"
@@ -526,34 +524,32 @@ msgstr "Adresa IP"
 msgid "CPUs"
 msgstr "Procesory"
 
-#: data/ui/preferences/resources-page.ui:105
+#: data/ui/preferences/resources-page.ui:106
 msgid "3D acceleration"
 msgstr "3D akcelerácia"
 
-#: data/ui/preferences/resources-page.ui:127
-#| msgid "_Run in background"
+#: data/ui/preferences/resources-page.ui:129
 msgid "Allow running in background"
 msgstr "Umožniť spúšťanie na pozadí"
 
-#: data/ui/preferences/resources-page.ui:145
+#: data/ui/preferences/resources-page.ui:147
 msgid "Configuration"
 msgstr "Konfigurácia"
 
 # dalog
-#: data/ui/preferences/resources-page.ui:150
-#| msgid "Troubleshooting Log"
+#: data/ui/preferences/resources-page.ui:152
 msgid "Troubleshooting Logs"
 msgstr "Záznamy pre riešenie problémov"
 
-#: data/ui/preferences/resources-page.ui:151
+#: data/ui/preferences/resources-page.ui:153
 msgid "Diagnose problems with your box using the log file."
 msgstr "Diagnostikujte problémy s vaším boxom pomocou súboru so záznamom."
 
-#: data/ui/preferences/resources-page.ui:173
+#: data/ui/preferences/resources-page.ui:175
 msgid "Edit Configuration"
 msgstr "Upraviť konfiguráciu"
 
-#: data/ui/preferences/resources-page.ui:174
+#: data/ui/preferences/resources-page.ui:176
 msgid "Edit the Libvirt domain configuration for this box."
 msgstr "Upravte konfiguráciu domény Libvirt pre tento box."
 
@@ -594,7 +590,6 @@ msgstr "Premenuje snímok"
 
 # tooltip
 #: data/ui/preferences/snapshot-list-row.ui:98
-#| msgid "Failed to apply snapshot"
 msgid "Delete snapshot"
 msgstr "Odstráni snímok"
 
@@ -608,7 +603,7 @@ msgstr "Snímky"
 msgid "Creating new snapshot…"
 msgstr "Vytvára sa nová snímka…"
 
-#: data/ui/toast.ui:34 src/app.vala:604
+#: data/ui/toast.ui:34 src/app.vala:601
 #: src/preferences/snapshot-list-row.vala:157
 msgid "Undo"
 msgstr "Vrátiť späť"
@@ -631,12 +626,12 @@ msgstr ""
 "položky „Rýchla inštalácia“."
 
 #. Translators: 'Express Install' means that the new box installation will be fully automated, the user won't be asked anything while it's performed.
-#: data/ui/unattended-setup-box.ui:52
+#: data/ui/unattended-setup-box.ui:53
 msgid "Express Install"
 msgstr "Rýchla inštalácia"
 
 # PM: viď: http://www.microsoft.com/Language/en-US/Search.aspx
-#: data/ui/unattended-setup-box.ui:106
+#: data/ui/unattended-setup-box.ui:107
 msgid "Product Key"
 msgstr "Kód Product Key"
 
@@ -726,8 +721,14 @@ msgstr "Reštartovať"
 msgid "Preferences"
 msgstr "Predvoľby"
 
+#. Translators: name of the folder under ~/Pictures for screenshots. This is the same folder where GNOME Shell saves screenshots.
+#: src/actions-popover.vala:109
+#| msgid "Take Screenshot"
+msgid "Screenshots"
+msgstr "Snímky obrazoviek"
+
 #. Translators: %s => the timestamp of when the screenshot was taken.
-#: src/actions-popover.vala:112
+#: src/actions-popover.vala:126
 #, c-format
 msgid "Screenshot from %s"
 msgstr "Snímka obrazovky z %s"
@@ -781,31 +782,31 @@ msgstr "URL k displeju, správcovi virtualizácie alebo inštalačnému nosiču"
 msgid "— A simple application to access virtual machines"
 msgstr "— Jednoduchá aplikácia na prístup k virtuálnym počítačom"
 
-#: src/app.vala:220
+#: src/app.vala:217
 msgid "Too many command line arguments specified.\n"
 msgstr "Bolo zadaných príliš veľa parametrov v príkazovom riadku.\n"
 
-#: src/app.vala:460
+#: src/app.vala:457
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Box „%s“ je nainštalovaný a pripravený na použitie"
 
-#: src/app.vala:462
+#: src/app.vala:459
 msgid "Launch"
 msgstr "Spustiť"
 
-#: src/app.vala:492
+#: src/app.vala:489
 #, c-format
 msgid "“%s“ is running in the background"
 msgstr "Box „%s“ je spustený na pozadí"
 
 #  PK: uvodzovky, ja to nechcem po tebe furt opravovat
-#: src/app.vala:573
+#: src/app.vala:570
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Box „%s“ bol odstránený"
 
-#: src/app.vala:574
+#: src/app.vala:571
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -813,7 +814,7 @@ msgstr[0] "%u boxov bolo odstránených"
 msgstr[1] "%u box bol odstránený"
 msgstr[2] "%u boxy boli odstránené"
 
-#: src/app.vala:645
+#: src/app.vala:642
 msgid "Boxes is doing something"
 msgstr "Boxy niečo vykonávajú"
 
@@ -830,15 +831,15 @@ msgstr "_Zrušiť"
 msgid "_Open"
 msgstr "_Otvoriť"
 
-#: src/assistant/index-page.vala:165 src/preferences/cdrom-row.vala:62
+#: src/assistant/index-page.vala:169 src/preferences/cdrom-row.vala:62
 msgid "Select a device or ISO file"
 msgstr "Vyberte zariadenie alebo súbor ISO"
 
-#: src/assistant/index-page.vala:168 src/preferences/cdrom-row.vala:65
+#: src/assistant/index-page.vala:172 src/preferences/cdrom-row.vala:65
 msgid "Open"
 msgstr "Otvoriť"
 
-#: src/assistant/index-page.vala:186 src/assistant/vm-assistant.vala:72
+#: src/assistant/index-page.vala:192 src/assistant/vm-assistant.vala:72
 msgid "Previous"
 msgstr "Predchádzajúca"
 
@@ -871,16 +872,16 @@ msgstr "Zlyhala analýza inštalačného média. Nosič je poškodený alebo ne�
 msgid "Create"
 msgstr "Vytvoriť"
 
-#: src/display-page.vala:133
+#: src/display-page.vala:127
 msgid "Press (left) Ctrl+Alt to ungrab"
 msgstr "Stlačte klávesy [ľavý] Ctrl+Alt na uvoľnenie"
 
-#: src/display-page.vala:135
+#: src/display-page.vala:129
 msgid "Press & release (left) Ctrl+Alt to ungrab keyboard."
 msgstr "Stlačte a uvoľnite klávesy [ľavý] Ctrl+Alt na uvoľnenie klávesnice."
 
 #. Translators: Showing size of widget as WIDTH×HEIGHT here.
-#: src/display-page.vala:324
+#: src/display-page.vala:318
 #, c-format
 msgid "%d×%d"
 msgstr "%d×%d"
@@ -904,9 +905,8 @@ msgid "Install"
 msgstr "Inštalovať"
 
 #. We did this, so ignore!
-#: src/downloads-hub.vala:186
+#: src/downloads-hub.vala:180 src/downloads-hub.vala:189
 #, c-format
-#| msgid "Failed to download"
 msgid "Failed to download: %s"
 msgstr "Zlyhalo preberanie: %s"
 
@@ -950,40 +950,40 @@ msgid "Send key combinations"
 msgstr "Odoslať kombináciu klávesov"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:466
+#: src/libvirt-machine.vala:470
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Obnovuje sa %s z disku"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:469
+#: src/libvirt-machine.vala:473
 #, c-format
 msgid "Starting %s"
 msgstr "Spúšťa sa %s"
 
-#: src/libvirt-machine.vala:542
+#: src/libvirt-machine.vala:546
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "Reštart boxu „%s“ trvá príliš dlho. Chcete vynútiť jeho vypnutie?"
 
-#: src/libvirt-machine.vala:545
+#: src/libvirt-machine.vala:549
 msgid "Shutdown"
 msgstr "Vypnúť"
 
-#: src/libvirt-machine.vala:560
+#: src/libvirt-machine.vala:564
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Klonuje sa „%s“…"
 
-#: src/libvirt-machine.vala:686
+#: src/libvirt-machine.vala:690
 msgid "Installing…"
 msgstr "Inštaluje sa…"
 
-#: src/libvirt-machine.vala:688
+#: src/libvirt-machine.vala:692
 msgid "Setting up clone…"
 msgstr "Nastavuje sa klonovanie…"
 
-#: src/libvirt-machine.vala:690
+#: src/libvirt-machine.vala:694
 msgid "Importing…"
 msgstr "Importuje sa…"
 
@@ -1021,9 +1021,6 @@ msgstr "Ukladá sa…"
 #. Translators: The first %s is the name of the box, the second is the reason of the error
 #: src/machine.vala:597
 #, c-format
-#| msgid ""
-#| "“%s” could not be restored from disk\n"
-#| "Try without saved state?"
 msgid "“%s” could not be restored from disk: %s"
 msgstr "Box „%s“ sa nepodarilo obnoviť z disku: %s"
 
@@ -1111,12 +1108,10 @@ msgstr "Zapnutím vášho boxu uvidíte USB zariadenia dostupné na presmerovani
 #. Translators: %s is a recommended value for RAM/storage limit. For example "Recommended 4 GB."
 #: src/preferences/resources-page.vala:81
 #, c-format
-#| msgid "%s (recommended)"
 msgid "Recommended %s."
 msgstr "Odporúčaných: %s."
 
 #: src/preferences/resources-page.vala:159
-#| msgid "Boxes is not authorized to run in the background"
 msgid "Boxes is not authorized to run in background"
 msgstr "Aplikácia Boxy nie je oprávnená na spúšťanie na pozadí"
 
@@ -1134,7 +1129,6 @@ msgstr ""
 
 #: src/preferences/resources-page.vala:269
 #, c-format
-#| msgid "Boxes failed to apply VM configuration changes: %s"
 msgid "Failed to save domain configuration: %s"
 msgstr "Zlyhalo uloženie konfigurácie domény: %s"
 
@@ -1156,7 +1150,6 @@ msgstr ""
 #. Translators: %s is the reason why Boxes failed to rename the snapshot.
 #: src/preferences/snapshot-list-row.vala:77
 #, c-format
-#| msgid "Failed to create snapshot of %s"
 msgid "Failed to rename snapshot: %s"
 msgstr "Zlyhalo premenovanie snímky: %s"
 
@@ -1183,7 +1176,6 @@ msgstr "Zlyhalo vytvorenie snímky boxu %s"
 
 #. we need to account for the "+" button
 #: src/preferences/snapshots-page.vala:160
-#| msgid "Revert to this state"
 msgid "Revert to a previous state of your box."
 msgstr "Návrat k predchádzajúcemu stavu vášho boxu."
 
@@ -1242,22 +1234,22 @@ msgstr ""
 msgid "Downloading device drivers…"
 msgstr "Preberajú sa ovládače zariadenia…"
 
-#: src/unattended-setup-box.vala:53
+#: src/unattended-setup-box.vala:51
 msgid "no password"
 msgstr "bez hesla"
 
-#: src/unattended-setup-box.vala:110
+#: src/unattended-setup-box.vala:108
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr ""
 "Rýchla inštalácia operačného systému %s vyžaduje internetové pripojenie."
 
-#: src/unattended-setup-box.vala:208
+#: src/unattended-setup-box.vala:206
 #, c-format
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "Poverenia aplikácie Boxy prostredia GNOME pre „%s“"
 
-#: src/util-app.vala:368
+#: src/util-app.vala:414
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1267,12 +1259,12 @@ msgstr ""
 "spustením príkazu:\n"
 "%s"
 
-#: src/util-app.vala:372
+#: src/util-app.vala:418
 msgid "SELinux not installed?"
 msgstr "SELinux nie je nainštalovaný?"
 
 # * http://technet.microsoft.com/en-us/library/cc161247.aspx
-#: src/util-app.vala:454
+#: src/util-app.vala:500
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1281,7 +1273,7 @@ msgstr ""
 "Uistite sa, že príkaz „virsh -c qemu:///session pool-dumpxml gnome-boxes“ "
 "funguje."
 
-#: src/util-app.vala:459
+#: src/util-app.vala:505
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
@@ -1290,7 +1282,7 @@ msgstr ""
 "%s je známy pre libvirt ako fond úložísk aplikácie Boxy prostredia GNOME, "
 "ale tento adresár nie je vytvorený"
 
-#: src/util-app.vala:463
+#: src/util-app.vala:509
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
@@ -1298,7 +1290,7 @@ msgstr ""
 "%s je známy pre libvirt ako fond úložísk aplikácie Boxy prostredia GNOME, "
 "ale nie je adresárom"
 
-#: src/util-app.vala:467
+#: src/util-app.vala:513
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
@@ -1317,7 +1309,7 @@ msgstr "nie"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:803
+#: src/vm-configurator.vala:794
 msgid "Incapable host system"
 msgstr "Nevyhovujúci hostiteľský systém"
 
@@ -1892,11 +1884,11 @@ msgstr "Import boxu zo súboru „%s“ zlyhal: %s"
 #~ msgstr "%s <span color=\"grey\">(%s využitých)</span>"
 
 #~ msgid ""
-#~ "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
-#~ "\">(%s used)</span>"
+#~ "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span "
+#~ "color=\"grey\">(%s used)</span>"
 #~ msgstr ""
-#~ "<span color=\"grey\">Maximálna veľkosť disku</span>\t\t %s <span color="
-#~ "\"grey\">(%s využitých)</span>"
+#~ "<span color=\"grey\">Maximálna veľkosť disku</span>\t\t %s <span "
+#~ "color=\"grey\">(%s využitých)</span>"
 
 #~ msgid "Experiencing graphics problems?"
 #~ msgstr "Pozorujete grafické problémy?"
