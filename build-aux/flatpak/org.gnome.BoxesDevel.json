@@ -19,8 +19,10 @@
         "--talk-name=org.freedesktop.secrets",
         "--filesystem=xdg-run/dconf",
         "--filesystem=~/.config/dconf:ro",
+        "--filesystem=/usr/libexec/",
         "--filesystem=home",
         "--talk-name=ca.desrt.dconf",
+        "--talk-name=org.freedesktop.Flatpak",
         "--env=DCONF_USER_CONFIG_DIR=.config/dconf",
         "--add-policy=Tracker3.dbus:org.freedesktop.Tracker3.Miner.Files=tracker:Software"
     ],
@@ -153,6 +155,10 @@
                         {
                             "type": "patch",
                             "path": "libvirt-use-monitor-in-xdg-runtime-dir.patch"
+                        },
+                        {
+                            "type": "patch",
+                            "path": "libvirt-use-flatpak-spawn-for-qemu-bridge-helper-bin.patch"
                         }
                     ]
                 }

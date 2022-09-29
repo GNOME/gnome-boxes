@@ -1,0 +1,34 @@
+From f8018ad06198f6515ac07374cc00010205af1662 Mon Sep 17 00:00:00 2001
+From: Felipe Borges <felipeborges@gnome.org>
+Date: Tue, 20 Sep 2022 13:59:25 +0200
+Subject: [PATCH] Use flatpak-spawn for qemu-bridge-helper
+
+---
+ src/qemu/qemu_interface.c | 11 ++++-------
+ 1 file changed, 4 insertions(+), 7 deletions(-)
+
+diff --git a/src/qemu/qemu_interface.c b/src/qemu/qemu_interface.c
+index 4cc76e07a5..64f1b14656 100644
+--- a/src/qemu/qemu_interface.c
++++ b/src/qemu/qemu_interface.c
+@@ -335,13 +335,10 @@ qemuCreateInBridgePortWithHelper(virQEMUDriverConfig *cfg,
+         return -1;
+     }
+ 
+-    if (!virFileIsExecutable(cfg->bridgeHelperName)) {
+-        virReportSystemError(errno, _("'%s' is not a suitable bridge helper"),
+-                             cfg->bridgeHelperName);
+-        return -1;
+-    }
+-
+-    cmd = virCommandNew(cfg->bridgeHelperName);
++    cmd = virCommandNew("/usr/bin/flatpak-spawn");
++    virCommandAddArgFormat(cmd, "--host");
++    virCommandAddArgFormat(cmd, "--forward-fd=%d", pair[1]);
++    virCommandAddArgFormat(cmd, cfg->bridgeHelperName);
+     if (flags & VIR_NETDEV_TAP_CREATE_VNET_HDR)
+         virCommandAddArgFormat(cmd, "--use-vnet");
+     virCommandAddArgFormat(cmd, "--br=%s", brname);
+-- 
+2.37.3
+

@@ -313,6 +313,12 @@ namespace Boxes {
     private static bool libvirt_bridge_net_available = false;
 
     public bool is_libvirt_bridge_net_available () {
+        /* FIXME: in the containerized scenario, Boxes shouldn't be the one
+         * parsing the ACL file, this should happen on the host side.
+         */
+        if (App.is_running_in_flatpak ())
+            return true;
+
         if (libvirt_bridge_net_checked)
             return libvirt_bridge_net_available;
 
