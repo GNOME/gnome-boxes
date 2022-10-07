@@ -107,7 +107,7 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
 
         media_path = media.device_file;
 
-        setup_express_toggle (media.os_media.live, needs_internet);
+        express_install = !media.os_media.live;
 
         if (product_key_format != null) {
             product_key_row.visible = true;
@@ -170,7 +170,6 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
     }
 
     public void clean_up () {
-        NetworkMonitor.get_default ().network_changed.disconnect (update_express_toggle);
     }
 
     public async void save_credentials () {
@@ -195,31 +194,6 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
                 debug ("Failed to store credentials for '%s' in the keyring: %s", media_path, error.message);
             }
         }, "gnome-boxes-media-path", media_path);
-    }
-
-    private void setup_express_toggle (bool live, bool needs_internet) {
-        try {
-            express_install = keyfile.get_boolean (media_path, EXPRESS_KEY);
-        } catch (GLib.Error error) {
-            debug ("Failed to read key '%s' under '%s': %s\n", EXPRESS_KEY, media_path, error.message);
-            express_install = !live;
-        }
-
-        if (!needs_internet)
-            return;
-
-        var network_monitor = NetworkMonitor.get_default ();
-        update_express_toggle (network_monitor.get_network_available ());
-        network_monitor.network_changed.connect (update_express_toggle);
-    }
-
-    private void update_express_toggle(bool network_available) {
-        if (network_available) {
-            express_toggle.sensitive = true;
-        } else {
-            express_toggle.sensitive = false;
-            express_install = false;
-        }
     }
 
     [GtkCallback]
