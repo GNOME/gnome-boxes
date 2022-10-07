@@ -169,7 +169,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     }
 
     public override async void prepare_for_installation (string vm_name, Cancellable? cancellable) {
-        setup_box.save_credentials ();
+        yield setup_box.save_credentials ();
 
         if (!setup_box.express_install) {
             debug ("Unattended installation disabled.");

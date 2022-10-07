@@ -116,48 +116,42 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
             product_key_entry.max_length = product_key_format.length;
         }
 
-        load_credentials ();
+        load_credentials.begin ();
     }
 
-    public async void load_credentials () {
-        Secret.password_lookup (secret_password_schema, cancellable, (obj, res) => {
-            try {
-                var credentials_str = Secret.password_lookup.end (res);
-                if (credentials_str == null || credentials_str == "")
-                    return;
+    public async void load_credentials () throws GLib.Error {
+        string? credentials_str = yield Secret.password_lookup (secret_password_schema,
+                                                                cancellable,
+                                                                "gnome-boxes-media-path",
+                                                                media_path);
+        if (credentials_str == null) {
+            throw new Boxes.Error.INVALID ("No credentials found in the keyring for '%s'", media_path);
+        }
 
-                try {
-                    var credentials_variant = GLib.Variant.parse (null, credentials_str, null, null);
-                    var credentials = new GLib.VariantDict (credentials_variant);
+        try {
+            var credentials_variant = GLib.Variant.parse (null, credentials_str, null, null);
+            var credentials = new GLib.VariantDict (credentials_variant);
 
-                    string username_str;
-                    string password_str;
-                    string product_key_str;
+            string username_str;
+            string password_str;
+            string product_key_str;
 
-                    if (credentials.lookup ("username", "s", out username_str)) {
-                        username_entry.text = username_str;
-                        debug ("Username '%s' found in the keyring", username_str);
-                    }
-                    if (credentials.lookup ("password", "s", out password_str)) {
-                        password_entry.text = password_str;
-                        debug ("Password '%s' found in the keyring", password_str);
-                    }
-                    if (credentials.lookup ("product-key", "s", out product_key_str)) {
-                        product_key_entry.text = product_key_str;
-                        debug ("Product-key found '%s' found in the keyring", product_key_str);
-                    }
-
-                } catch (GLib.Error error) {
-                    debug ("Failed to parse credentials from the keyring: %s", error.message);
-                }
-            } catch (GLib.IOError.CANCELLED error) {
-                return;
-            } catch (GLib.Error error) {
-                debug ("Failed to lookup credentials for '%s' from the keyring: %s",
-                       media_path,
-                       error.message);
+            if (credentials.lookup ("username", "s", out username_str)) {
+                username_entry.text = username_str;
+                debug ("Username '%s' found in the keyring", username_str);
             }
-        }, "gnome-boxes-media-path", media_path);
+            if (credentials.lookup ("password", "s", out password_str)) {
+                password_entry.text = password_str;
+                debug ("Password '%s' found in the keyring", password_str);
+            }
+            if (credentials.lookup ("product-key", "s", out product_key_str)) {
+                product_key_entry.text = product_key_str;
+                debug ("Product-key found '%s' found in the keyring", product_key_str);
+            }
+
+        } catch (GLib.Error error) {
+            debug ("Failed to parse credentials from the keyring: %s", error.message);
+        }
     }
 
     public override void dispose () {
@@ -182,18 +176,19 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
         var credentials_str = credentials_variant.print (true);
 
         var label = _("GNOME Boxes credentials for “%s”").printf (media_path);
-        Secret.password_store (secret_password_schema,
-                               Secret.COLLECTION_DEFAULT,
-                               label,
-                               credentials_str,
-                               null,
-                               (obj, res) => {
-            try {
-                Secret.password_store.end (res);
-            } catch (GLib.Error error) {
-                debug ("Failed to store credentials for '%s' in the keyring: %s", media_path, error.message);
-            }
-        }, "gnome-boxes-media-path", media_path);
+
+        try {
+            yield Secret.password_store (secret_password_schema,
+                                         Secret.COLLECTION_DEFAULT,
+                                         label,
+                                         credentials_str,
+                                         cancellable,
+                                         "gnome-boxes-media-path",
+                                         media_path,
+                                         null);
+        } catch (GLib.Error error) {
+            debug ("Failed to store credentials for '%s' in the keyring: %s", media_path, error.message);
+        }
     }
 
     [GtkCallback]
