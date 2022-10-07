@@ -2,12 +2,6 @@
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/unattended-setup-box.ui")]
 private class Boxes.UnattendedSetupBox : Gtk.Box {
-    private const string KEY_FILE = "setup-data.conf";
-    private const string EXPRESS_KEY = "express-install";
-    private const string USERNAME_KEY = "username";
-    private const string PASSWORD_KEY = "password";
-    private const string PRODUCTKEY_KEY = "product-key";
-
     public bool ready_for_express {
         get {
             return username != "" &&
@@ -96,7 +90,6 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
     private string? product_key_format;
     private string media_path;
     private Cancellable cancellable = new Cancellable ();
-    private GLib.KeyFile keyfile;
     private Secret.Schema secret_password_schema
             = new Secret.Schema ("org.gnome.Boxes",
                                  Secret.SchemaFlags.NONE,
@@ -113,53 +106,7 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
         needs_password = unnatended_installer.needs_password;
 
         media_path = media.device_file;
-        keyfile = new GLib.KeyFile ();
 
-        try {
-            var filename = get_user_unattended (KEY_FILE);
-            keyfile.load_from_file (filename, KeyFileFlags.KEEP_COMMENTS);
-
-            set_entry_text_from_key (username_entry, USERNAME_KEY, Environment.get_user_name ());
-            set_entry_text_from_key (password_entry, PASSWORD_KEY);
-            set_entry_text_from_key (product_key_entry, PRODUCTKEY_KEY);
-
-            if (password == "") {
-                Secret.password_lookup.begin (secret_password_schema, cancellable, (obj, res) => {
-                    try {
-                        var credentials_str = Secret.password_lookup.end (res);
-                        if (credentials_str == null || credentials_str == "")
-                            return;
-
-                        try {
-                            var credentials_variant = GLib.Variant.parse (null, credentials_str, null, null);
-                            string password_str;
-                            if (!credentials_variant.lookup ("password", "s", out password_str))
-                                throw new Boxes.Error.INVALID ("couldn't unpack a string for the 'password' key");
-
-                            if (password_str != null && password_str != "") {
-                                password_entry.text = password_str;
-                            }
-                        } catch (GLib.Error error) {
-                            warning ("Failed to parse password from the keyring: %s", error.message);
-                        }
-                    } catch (GLib.IOError.CANCELLED error) {
-                        return;
-                    } catch (GLib.Error error) {
-                        warning ("Failed to lookup password for '%s' from the keyring: %s",
-                                 media_path,
-                                 error.message);
-                    }
-                }, "gnome-boxes-media-path", media_path);
-            }
-
-            try {
-                keyfile.remove_key (media_path, PASSWORD_KEY);
-            } catch (GLib.Error error) {
-                debug ("Failed to remove key '%s' under '%s': %s", PASSWORD_KEY, media_path, error.message);
-            }
-        } catch (GLib.Error error) {
-            debug ("%s either doesn't already exist or we failed to load it: %s", KEY_FILE, error.message);
-        }
         setup_express_toggle (media.os_media.live, needs_internet);
 
         if (product_key_format != null) {
@@ -168,6 +115,49 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
             product_key_entry.width_chars = product_key_format.length;
             product_key_entry.max_length = product_key_format.length;
         }
+
+        load_credentials ();
+    }
+
+    public async void load_credentials () {
+        Secret.password_lookup (secret_password_schema, cancellable, (obj, res) => {
+            try {
+                var credentials_str = Secret.password_lookup.end (res);
+                if (credentials_str == null || credentials_str == "")
+                    return;
+
+                try {
+                    var credentials_variant = GLib.Variant.parse (null, credentials_str, null, null);
+                    var credentials = new GLib.VariantDict (credentials_variant);
+
+                    string username_str;
+                    string password_str;
+                    string product_key_str;
+
+                    if (credentials.lookup ("username", "s", out username_str)) {
+                        username_entry.text = username_str;
+                        debug ("Username '%s' found in the keyring", username_str);
+                    }
+                    if (credentials.lookup ("password", "s", out password_str)) {
+                        password_entry.text = password_str;
+                        debug ("Password '%s' found in the keyring", password_str);
+                    }
+                    if (credentials.lookup ("product-key", "s", out product_key_str)) {
+                        product_key_entry.text = product_key_str;
+                        debug ("Product-key found '%s' found in the keyring", product_key_str);
+                    }
+
+                } catch (GLib.Error error) {
+                    debug ("Failed to parse credentials from the keyring: %s", error.message);
+                }
+            } catch (GLib.IOError.CANCELLED error) {
+                return;
+            } catch (GLib.Error error) {
+                debug ("Failed to lookup credentials for '%s' from the keyring: %s",
+                       media_path,
+                       error.message);
+            }
+        }, "gnome-boxes-media-path", media_path);
     }
 
     public override void dispose () {
@@ -183,40 +173,28 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
         NetworkMonitor.get_default ().network_changed.disconnect (update_express_toggle);
     }
 
-    public void save_settings () {
-        keyfile.set_boolean (media_path, EXPRESS_KEY, express_install);
-        keyfile.set_string (media_path, USERNAME_KEY, username);
-        keyfile.set_string (media_path, PRODUCTKEY_KEY, product_key);
+    public async void save_credentials () {
+        var variant_builder = new GLib.VariantBuilder (GLib.VariantType.VARDICT);
+        variant_builder.add ("{sv}", "username", new GLib.Variant ("s", username));
+        variant_builder.add ("{sv}", "password", new GLib.Variant ("s", password));
+        variant_builder.add ("{sv}", "product-key", new GLib.Variant ("s", product_key));
 
-        var filename = get_user_unattended (KEY_FILE);
-        try {
-            keyfile.save_to_file (filename);
-        } catch (GLib.Error error) {
-            debug ("Error saving settings for '%s': %s", media_path, error.message);
-        }
+        var credentials_variant = variant_builder.end ();
+        var credentials_str = credentials_variant.print (true);
 
-        if (password != null && password != "") {
-            var variant_builder = new GLib.VariantBuilder (GLib.VariantType.VARDICT);
-            var password_variant = new GLib.Variant ("s", password);
-            variant_builder.add ("{sv}", "password", password_variant);
-
-            var credentials_variant = variant_builder.end ();
-            var credentials_str = credentials_variant.print (true);
-
-            var label = _("GNOME Boxes credentials for “%s”").printf (media_path);
-            Secret.password_store.begin (secret_password_schema,
-                                         Secret.COLLECTION_DEFAULT,
-                                         label,
-                                         credentials_str,
-                                         null,
-                                         (obj, res) => {
-                try {
-                    Secret.password_store.end (res);
-                } catch (GLib.Error error) {
-                    warning ("Failed to store password for '%s' in the keyring: %s", media_path, error.message);
-                }
-            }, "gnome-boxes-media-path", media_path);
-        }
+        var label = _("GNOME Boxes credentials for “%s”").printf (media_path);
+        Secret.password_store (secret_password_schema,
+                               Secret.COLLECTION_DEFAULT,
+                               label,
+                               credentials_str,
+                               null,
+                               (obj, res) => {
+            try {
+                Secret.password_store.end (res);
+            } catch (GLib.Error error) {
+                debug ("Failed to store credentials for '%s' in the keyring: %s", media_path, error.message);
+            }
+        }, "gnome-boxes-media-path", media_path);
     }
 
     private void setup_express_toggle (bool live, bool needs_internet) {
@@ -242,20 +220,6 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
             express_toggle.sensitive = false;
             express_install = false;
         }
-    }
-
-    private void set_entry_text_from_key (Gtk.Entry entry, string key, string? default_value = null) {
-        string? str = null;
-        try {
-            str = keyfile.get_string (media_path, key);
-        } catch (GLib.Error error) {
-            debug ("Failed to read key '%s' under '%s': %s\n", key, media_path, error.message);
-        }
-
-        if (str != null && str != "")
-            entry.text = str;
-        else if (default_value != null)
-            entry.text = default_value;
     }
 
     [GtkCallback]
