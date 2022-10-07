@@ -17,7 +17,7 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
 
     public bool ready_to_create {
         get {
-            return !express_toggle.active || ready_for_express;
+            return !express_install || ready_for_express;
         }
     }
 
@@ -221,10 +221,10 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
 
     private void setup_express_toggle (bool live, bool needs_internet) {
         try {
-            express_toggle.active = keyfile.get_boolean (media_path, EXPRESS_KEY);
+            express_install = keyfile.get_boolean (media_path, EXPRESS_KEY);
         } catch (GLib.Error error) {
             debug ("Failed to read key '%s' under '%s': %s\n", EXPRESS_KEY, media_path, error.message);
-            express_toggle.active = !live;
+            express_install = !live;
         }
 
         if (!needs_internet)
@@ -240,7 +240,7 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
             express_toggle.sensitive = true;
         } else {
             express_toggle.sensitive = false;
-            express_toggle.active = false;
+            express_install = false;
         }
     }
 
@@ -262,9 +262,9 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
     private void on_mandatory_input_changed () {
         notify_property ("ready-to-create");
 
-        username_row.sensitive = express_toggle.active;
-        password_row.sensitive = express_toggle.active;
-        product_key_row.sensitive = express_toggle.active;
+        username_row.sensitive = express_install;
+        password_row.sensitive = express_install;
+        product_key_row.sensitive = express_install;
     }
 
     [GtkCallback]

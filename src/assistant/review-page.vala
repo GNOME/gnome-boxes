@@ -61,7 +61,7 @@ private class Boxes.AssistantReviewPage : AssistantPage {
         var install_media = machine.vm_creator.install_media;
         if (install_media is Boxes.UnattendedInstaller) {
             var installer = install_media as Boxes.UnattendedInstaller;
-            show_unattended_rows = installer.setup_box.express_toggle.active;
+            show_unattended_rows = installer.setup_box.express_install;
 
             if (show_unattended_rows) {
                 username_label.label = installer.setup_box.username;
