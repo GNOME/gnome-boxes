@@ -3,6 +3,9 @@
     "runtime": "org.gnome.Platform",
     "runtime-version": "master",
     "sdk": "org.gnome.Sdk",
+    "sdk-extensions" : [
+        "org.freedesktop.Sdk.Extension.vala"
+    ],
     "command": "gnome-boxes",
     "tags": ["devel", "development", "nightly"],
     "finish-args": [
@@ -24,6 +27,10 @@
         "--env=DCONF_USER_CONFIG_DIR=.config/dconf",
         "--add-policy=Tracker3.dbus:org.freedesktop.Tracker3.Miner.Files=tracker:Software"
     ],
+    "build-options" : {
+        "append-path" : "/usr/lib/sdk/vala/bin",
+        "prepend-ld-library-path" : "/usr/lib/sdk/vala/lib"
+    },
     "modules": [
         {
             "name" : "intltool",
