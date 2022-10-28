@@ -69,7 +69,7 @@ private class Boxes.KeysInputPopover: Gtk.Popover {
         else if (action.name[action.name.length - 1] == '7')
             keyvals[2] = Gdk.Key.F7;
         else if (action.name[action.name.length - 1] == '9')
-            keyvals[2] = Gdk.Key.F7;
+            keyvals[2] = Gdk.Key.F9;
         else {
             warn_if_reached ();
 
