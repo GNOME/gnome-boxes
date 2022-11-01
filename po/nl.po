@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2022-07-07 14:42+0000\n"
-"PO-Revision-Date: 2022-07-07 17:56+0200\n"
+"POT-Creation-Date: 2022-09-17 13:12+0000\n"
+"PO-Revision-Date: 2022-11-02 00:33+0100\n"
 "Last-Translator: Nathan Follens <nfollens@gnome.org>\n"
 "Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
 "Language: nl\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 3.1\n"
+"X-Generator: Poedit 3.1.1\n"
 "X-DamnedLies-Scope: partial\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:7 data/org.gnome.Boxes.desktop.in:3
@@ -116,7 +116,7 @@ msgstr ""
 msgid "Setup Shared Folders between your system and virtual machines."
 msgstr "Gedeelde mappen instellen tussen uw systeem en virtuele machines."
 
-#: data/org.gnome.Boxes.appdata.xml.in:74
+#: data/org.gnome.Boxes.appdata.xml.in:61
 msgid "The GNOME Project"
 msgstr "Het Gnome-project"
 
@@ -181,6 +181,14 @@ msgstr "Gedeelde mappen"
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Alternatieve reeks met namen en paden van gedeelde mappen"
 
+#: data/org.gnome.boxes.gschema.xml:59
+msgid "Recommended Downloads Source URL"
+msgstr "Aanbevolen downloads-bron-URL"
+
+#: data/org.gnome.boxes.gschema.xml:60
+msgid "An URL pointing at a recommended-downloads.xml file"
+msgstr "Een URL die verwijst naar een aanbevolen-downloads.xml-bestand"
+
 #: data/ui/app-window.ui:81 data/ui/welcome-tutorial.ui:40
 msgid "Welcome to Boxes"
 msgstr "Welkom bij Boxes"
@@ -193,16 +201,16 @@ msgstr "Gebruik de knop <b>+</b> om uw eerste virtuele machine aan te maken."
 msgid "Unknown media"
 msgstr "Onbekend medium"
 
-#: data/ui/assistant/pages/downloads-page.ui:68
+#: data/ui/assistant/pages/downloads-page.ui:81
 msgid "No operating systems found"
 msgstr "Geen besturingssystemen gevonden"
 
-#: data/ui/assistant/pages/downloads-page.ui:69
+#: data/ui/assistant/pages/downloads-page.ui:82
 msgid "Try a different search"
 msgstr "Probeer een andere zoekopdracht"
 
-#: data/ui/assistant/pages/downloads-page.ui:82
-#: src/assistant/downloads-page.vala:57
+#: data/ui/assistant/pages/downloads-page.ui:95
+#: src/assistant/downloads-page.vala:59
 msgid "Search for an OS or enter a download link…"
 msgstr "Naar een OS zoeken of een downloadlink invoeren…"
 
@@ -336,8 +344,8 @@ msgstr "Snelle installatie"
 
 #: data/ui/assistant/vm-assistant.ui:54
 #: data/ui/preferences/shared-folder-popover.ui:97
-#: data/ui/shared-folder-popover.ui:97 src/assistant/index-page.vala:120
-#: src/assistant/index-page.vala:168 src/assistant/vm-assistant.vala:72
+#: data/ui/shared-folder-popover.ui:97 src/assistant/index-page.vala:124
+#: src/assistant/index-page.vala:172 src/assistant/vm-assistant.vala:72
 #: src/preferences/cdrom-row.vala:65
 msgid "Cancel"
 msgstr "Annuleren"
@@ -734,7 +742,6 @@ msgstr ""
 "Nathan Follens <nfollens@gnome.org>\n"
 "Justin van Steijn <jvs@fsfe.org>\n"
 "Philip Goto\n"
-"\n"
 "Meer info over Gnome-NL http://nl.gnome.org"
 
 #: src/app.vala:114
@@ -822,15 +829,15 @@ msgstr "_Annuleren"
 msgid "_Open"
 msgstr "_Openen"
 
-#: src/assistant/index-page.vala:165 src/preferences/cdrom-row.vala:62
+#: src/assistant/index-page.vala:169 src/preferences/cdrom-row.vala:62
 msgid "Select a device or ISO file"
 msgstr "Een apparaat of ISO-bestand selecteren"
 
-#: src/assistant/index-page.vala:168 src/preferences/cdrom-row.vala:65
+#: src/assistant/index-page.vala:172 src/preferences/cdrom-row.vala:65
 msgid "Open"
 msgstr "Openen"
 
-#: src/assistant/index-page.vala:186 src/assistant/vm-assistant.vala:72
+#: src/assistant/index-page.vala:192 src/assistant/vm-assistant.vala:72
 msgid "Previous"
 msgstr "Vorige"
 
@@ -1237,7 +1244,7 @@ msgstr "Snelle installatie van %s vereist een internetverbinding."
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "Gnome Boxes aanmeldgegevens voor ‘%s’"
 
-#: src/util-app.vala:368
+#: src/util-app.vala:414
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1247,11 +1254,11 @@ msgstr ""
 "uitvoeren van:\n"
 "%s"
 
-#: src/util-app.vala:372
+#: src/util-app.vala:418
 msgid "SELinux not installed?"
 msgstr "SELinux is niet geïnstalleerd?"
 
-#: src/util-app.vala:454
+#: src/util-app.vala:500
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1260,7 +1267,7 @@ msgstr ""
 "libvirt is mislukt. Zorg ervoor dat ‘virsh -c qemu:///session pool-dumpxml "
 "gnome-boxes’ functioneert."
 
-#: src/util-app.vala:459
+#: src/util-app.vala:505
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
@@ -1269,7 +1276,7 @@ msgstr ""
 "%s is bekend bij libvirt als de opslagverzameling van Gnome Boxes, maar deze "
 "map bestaat niet"
 
-#: src/util-app.vala:463
+#: src/util-app.vala:509
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
@@ -1277,7 +1284,7 @@ msgstr ""
 "%s is bekend bij libvirt als opslagverzameling van Gnome Boxes, maar is geen "
 "map"
 
-#: src/util-app.vala:467
+#: src/util-app.vala:513
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
