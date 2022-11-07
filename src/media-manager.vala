@@ -72,10 +72,11 @@ private class Boxes.MediaManager : Object {
         File file = File.new_for_path (path);
 
         try {
-            FileInfo info = file.query_info ("standard::content-type", 0);
+            FileInfo info = file.query_info ("standard::content-type,standard::fast-content-type", 0);
 
             foreach (var content_type in supported_content_types) {
-                if (info.get_content_type () == content_type)
+                if (info.get_content_type () == content_type ||
+                    info.get_attribute_string ("standard::fast-content-type") == content_type)
                     return true;
             }
         } catch (GLib.Error error) {
