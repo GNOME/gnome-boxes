@@ -45,6 +45,8 @@ private class Boxes.AssistantReviewPage : AssistantPage {
         }
 
         yield populate (artifact as LibvirtMachine);
+
+        nokvm_infobar.visible = !yield check_libvirt_kvm ();
     }
 
     public async void populate (LibvirtMachine machine) {
