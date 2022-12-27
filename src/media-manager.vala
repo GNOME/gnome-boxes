@@ -24,10 +24,10 @@ private class Boxes.MediaManager : Object {
                                                                  Cancellable? cancellable = null) throws GLib.Error {
         InstallerMedia? media = null;
 
-        if (path_is_installed_media (path) || path.has_prefix ("/dev/")) {
-            media = new InstalledMedia (path, !path_needs_import (path));
-        } else if (path_is_installer_media (path)) {
+        if (path_is_installer_media (path)) {
             media = yield new InstallerMedia.for_path (path);
+        } else if (path_is_installed_media (path) || path.has_prefix ("/dev/")) {
+            media = new InstalledMedia (path, !path_needs_import (path));
         }
 
         if (media == null) {
@@ -39,13 +39,14 @@ private class Boxes.MediaManager : Object {
 
     private const string[] supported_installed_media_content_types = {
         "application/x-qemu-disk",
+        "application/x-raw-disk-image",
         "application/octet-stream",
         "application/x-tar",
-        "application/x-xz",
         "application/xml",
     };
     private bool path_is_installed_media (string path) {
-        return media_matches_content_type (path, supported_installed_media_content_types);
+        return media_matches_content_type (path, supported_installed_media_content_types) ||
+               path_is_compressed (path);
     }
 
     private bool path_needs_import (string path) {
@@ -54,15 +55,13 @@ private class Boxes.MediaManager : Object {
 
     private const string[] supported_installer_media_content_types = {
         "application/x-cd-image",
-        "application/x-raw-disk-image",
     };
     private bool path_is_installer_media (string path) {
         return media_matches_content_type (path, supported_installer_media_content_types);
     }
 
     private const string[] supported_compression_content_types = {
-        "application/x-tar",
-        "application/x-xz"
+        "application/gzip",
     };
     public bool path_is_compressed (string path) {
         return media_matches_content_type (path, supported_compression_content_types);
@@ -75,8 +74,8 @@ private class Boxes.MediaManager : Object {
             FileInfo info = file.query_info ("standard::content-type,standard::fast-content-type", 0);
 
             foreach (var content_type in supported_content_types) {
-                if (info.get_content_type () == content_type ||
-                    info.get_attribute_string ("standard::fast-content-type") == content_type)
+                if (ContentType.is_a (info.get_content_type (), content_type) ||
+                    ContentType.is_a (info.get_attribute_string ("standard::fast-content-type"), content_type))
                     return true;
             }
         } catch (GLib.Error error) {
@@ -278,6 +277,9 @@ private class Boxes.MediaManager : Object {
             media.os = os;
 
         if (media.os == null)
+            return media;
+
+        if (media.os_media == null)
             return media;
 
         if (!media.os_media.supports_installer_script ())
