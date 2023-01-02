@@ -43,6 +43,7 @@ private class Boxes.MediaManager : Object {
         "application/x-tar",
         "application/x-xz",
         "application/xml",
+        "application/ovf",
     };
     private bool path_is_installed_media (string path) {
         return media_matches_content_type (path, supported_installed_media_content_types);
