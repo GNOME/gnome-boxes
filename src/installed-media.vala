@@ -88,7 +88,8 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
     }
 
     private async bool extract_ovf () throws GLib.Error {
-        if (!device_file.has_suffix (".ova"))
+        var media_manager = MediaManager.get_default ();
+        if (!media_manager.media_matches_content_type (device_file, {"application/ovf"}))
             return false;
 
         var ova_file = File.new_for_path (device_file);
