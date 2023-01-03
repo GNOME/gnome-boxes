@@ -69,7 +69,7 @@ private class Boxes.MediaManager : Object {
         return media_matches_content_type (path, supported_compression_content_types);
     }
 
-    private bool media_matches_content_type (string path, string[] supported_content_types) {
+    public bool media_matches_content_type (string path, string[] supported_content_types) {
         File file = File.new_for_path (path);
 
         try {
