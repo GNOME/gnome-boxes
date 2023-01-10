@@ -40,3 +40,14 @@ fedora:latest:
     script:
         - meson _build .
         - ninja -C _build
+
+pages:
+    when: manual
+    image: fedora:37
+    script:
+    - mkdir ./public
+    - dnf install -y yelp-tools
+    - yelp-build html -i --output public/ help/C/*page
+    artifacts:
+        paths:
+        - public
