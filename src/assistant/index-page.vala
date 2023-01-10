@@ -38,17 +38,6 @@ private class Boxes.AssistantIndexPage : AssistantPage {
         source_medias.bind_model (source_model, add_media_entry);
         downloadable_medias.bind_model (downloads_model, add_downloadable_entry);
 
-        view_more_medias_button = new Gtk.Button () {
-            visible = true,
-            image = new Gtk.Image () {
-                visible = true,
-                icon_name = "view-more-symbolic"
-            }
-        };
-        view_more_medias_button.clicked.connect (on_expand_detected_sources_list);
-        view_more_medias_button.get_style_context ().add_class ("flat");
-        source_medias.add (view_more_medias_button);
-
         home_page.bind_property ("min-content-height",
                                  recommended_downloads_page.scrolled_window,
                                  "min-content-height",
@@ -88,12 +77,29 @@ private class Boxes.AssistantIndexPage : AssistantPage {
             return;
         }
 
+        if (number_of_available_medias > MAX_MEDIA_ENTRIES){
+            display_view_more_medias_button ();
+        }
+
         foreach (var media in installer_medias) {
             source_model.append (media);
 
             if (number_of_items != null && ((number_of_items -= 1) == 0))
                 return;
         }
+    }
+
+    private void display_view_more_medias_button () {
+            view_more_medias_button = new Gtk.Button () {
+                visible = true,
+                image = new Gtk.Image () {
+                    visible = true,
+                    icon_name = "view-more-symbolic"
+                }
+            };
+            view_more_medias_button.clicked.connect (on_expand_detected_sources_list);
+            view_more_medias_button.get_style_context ().add_class ("flat");
+            source_medias.add (view_more_medias_button);
     }
 
     private async void populate_recommended_downloads_list () {
