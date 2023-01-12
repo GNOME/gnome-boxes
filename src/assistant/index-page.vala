@@ -188,13 +188,13 @@ private class Boxes.AssistantIndexPage : AssistantPage {
     private async void on_download_an_os_button_clicked () {
         stack.set_visible_child (recommended_downloads_page);
 
-        yield recommended_downloads_page.populate_recommended_list ();
-
         dialog.previous_button.label = null;
 
         dialog.previous_button.image = new Gtk.Image () {
                 visible = true,
                 icon_name = "go-previous-symbolic"
         };
+
+        yield recommended_downloads_page.populate_recommended_list ();
     }
 }
