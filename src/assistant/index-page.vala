@@ -121,6 +121,7 @@ private class Boxes.AssistantIndexPage : AssistantPage {
 
     [GtkCallback]
     private void update_topbar () {
+        dialog.previous_button.image = null;
         dialog.previous_button.label = _("Cancel");
 
         var titlebar = dialog.get_titlebar () as Gtk.HeaderBar;
@@ -189,6 +190,11 @@ private class Boxes.AssistantIndexPage : AssistantPage {
 
         yield recommended_downloads_page.populate_recommended_list ();
 
-        dialog.previous_button.label = _("Previous");
+        dialog.previous_button.label = null;
+
+        dialog.previous_button.image = new Gtk.Image () {
+                visible = true,
+                icon_name = "go-previous-symbolic"
+        };
     }
 }
