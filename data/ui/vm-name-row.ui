@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="BoxesVMNameRow" parent="HdyPreferencesRow">
+    <child>
+      <object class="GtkOverlay" id="overlay">
+        <property name="visible">True</property>
+
+        <child>
+          <object class="GtkEntry" id="entry">
+            <property name="visible">True</property>
+            <property name="hexpand">True</property>
+            <style>
+              <class name="boxes-vm-name-row"/>
+              <class name="flat"/>
+            </style>
+          </object>
+        </child>
+
+        <child type="overlay">
+          <object class="GtkButton">
+            <property name="halign">end</property>
+            <property name="margin-end">10</property>
+            <property name="visible" bind-source="entry" bind-property="has-focus" bind-flags="invert-boolean">True</property>
+            <signal name="clicked" handler="gtk_widget_grab_focus" object="entry"/>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="icon-name">document-edit-symbolic</property>
+              </object>
+            </child>
+            <style>
+              <class name="flat"/>
+            </style>
+          </object>
+        </child>
+
+      </object>
+    </child>
+  </template>
+</interface>
