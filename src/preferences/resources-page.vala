@@ -11,7 +11,7 @@ private class Boxes.ResourcesPage : Hdy.PreferencesPage {
     private string logs;
 
     [GtkChild]
-    private unowned Gtk.Entry box_name_entry;
+    private unowned Boxes.VMNameRow box_name_entry;
 
     [GtkChild]
     private unowned Hdy.PreferencesGroup address_group;
