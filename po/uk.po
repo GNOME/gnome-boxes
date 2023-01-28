@@ -3,13 +3,13 @@
 #
 # Daniel Korostil <ted.korostiled@gmail.com>, 2012-2019.
 # Danylo Korostil <ted.korostiled@gmail.com>, 2020.
-# Yuri Chornoivan <yurchor@ukr.net>, 2020, 2021, 2022.
+# Yuri Chornoivan <yurchor@ukr.net>, 2020, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2022-08-04 10:52+0000\n"
-"PO-Revision-Date: 2022-08-04 17:31+0300\n"
+"POT-Creation-Date: 2023-01-28 12:47+0000\n"
+"PO-Revision-Date: 2023-01-28 21:03+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -113,7 +113,7 @@ msgstr ""
 "Налаштовування спільних тек для вашої операційної системи та віртуальних "
 "машин."
 
-#: data/org.gnome.Boxes.appdata.xml.in:74
+#: data/org.gnome.Boxes.appdata.xml.in:61
 msgid "The GNOME Project"
 msgstr "Проєкт GNOME "
 
@@ -308,12 +308,12 @@ msgid "Operating System"
 msgstr "Операційна система"
 
 #: data/ui/assistant/pages/review-page.ui:94
-#: data/ui/preferences/resources-page.ui:90
+#: data/ui/preferences/resources-page.ui:70
 msgid "Memory"
 msgstr "Пам'ять"
 
 #: data/ui/assistant/pages/review-page.ui:101
-#: data/ui/preferences/resources-page.ui:97
+#: data/ui/preferences/resources-page.ui:77
 msgid "Storage limit"
 msgstr "Обмеження сховища"
 
@@ -337,8 +337,8 @@ msgstr "Швидке встановлення"
 
 #: data/ui/assistant/vm-assistant.ui:54
 #: data/ui/preferences/shared-folder-popover.ui:97
-#: data/ui/shared-folder-popover.ui:97 src/assistant/index-page.vala:120
-#: src/assistant/index-page.vala:168 src/assistant/vm-assistant.vala:72
+#: data/ui/shared-folder-popover.ui:97 src/assistant/index-page.vala:131
+#: src/assistant/index-page.vala:179 src/assistant/vm-assistant.vala:72
 #: src/preferences/cdrom-row.vala:65
 msgid "Cancel"
 msgstr "Скасувати"
@@ -506,47 +506,49 @@ msgid "CDROM/DVD Drive"
 msgstr "Пристрій для читання CDROM/DVD"
 
 #: data/ui/preferences/resources-page.ui:7
-#: data/ui/preferences/resources-page.ui:67
+#: data/ui/preferences/resources-page.ui:47
 msgid "Resources"
 msgstr "Ресурси"
 
-#: data/ui/preferences/resources-page.ui:22
-msgid "_Name"
-msgstr "_Назва"
+#: data/ui/preferences/resources-page.ui:12
+#: data/ui/preferences/shared-folder-popover.ui:44
+#: data/ui/shared-folder-popover.ui:44
+msgid "Name"
+msgstr "Назва"
 
-#: data/ui/preferences/resources-page.ui:48
+#: data/ui/preferences/resources-page.ui:28
 msgid "IP Address"
 msgstr "Адреса IP"
 
-#: data/ui/preferences/resources-page.ui:73
+#: data/ui/preferences/resources-page.ui:53
 msgid "CPUs"
 msgstr "Процесори"
 
-#: data/ui/preferences/resources-page.ui:106
+#: data/ui/preferences/resources-page.ui:86
 msgid "3D acceleration"
 msgstr "Просторове прискорення"
 
-#: data/ui/preferences/resources-page.ui:129
+#: data/ui/preferences/resources-page.ui:109
 msgid "Allow running in background"
 msgstr "Дозволити запуск у фоні"
 
-#: data/ui/preferences/resources-page.ui:147
+#: data/ui/preferences/resources-page.ui:127
 msgid "Configuration"
 msgstr "Налаштування"
 
-#: data/ui/preferences/resources-page.ui:152
+#: data/ui/preferences/resources-page.ui:132
 msgid "Troubleshooting Logs"
 msgstr "Журнал помилок"
 
-#: data/ui/preferences/resources-page.ui:153
+#: data/ui/preferences/resources-page.ui:133
 msgid "Diagnose problems with your box using the log file."
 msgstr "Діагностування проблем із коробкою за допомогою файла журналу."
 
-#: data/ui/preferences/resources-page.ui:175
+#: data/ui/preferences/resources-page.ui:155
 msgid "Edit Configuration"
 msgstr "Редагувати налаштування"
 
-#: data/ui/preferences/resources-page.ui:176
+#: data/ui/preferences/resources-page.ui:156
 msgid "Edit the Libvirt domain configuration for this box."
 msgstr "Редагувати налаштування домену Libvirt для цієї коробки."
 
@@ -554,11 +556,6 @@ msgstr "Редагувати налаштування домену Libvirt дл�
 #: data/ui/shared-folder-popover.ui:29
 msgid "Local Folder"
 msgstr "Локальна тека"
-
-#: data/ui/preferences/shared-folder-popover.ui:44
-#: data/ui/shared-folder-popover.ui:44
-msgid "Name"
-msgstr "Назва"
 
 #: data/ui/preferences/shared-folder-popover.ui:70
 #: data/ui/shared-folder-popover.ui:70
@@ -595,6 +592,11 @@ msgstr "Зрізи"
 #: src/preferences/snapshots-page.vala:133
 msgid "Creating new snapshot…"
 msgstr "Створення нового зрізу…"
+
+#: data/ui/searchbar.ui:10
+#| msgid "Create a Virtual Machine…"
+msgid "Search for a virtual machine…"
+msgstr "Шукати віртуальну машину."
 
 #: data/ui/toast.ui:34 src/app.vala:601
 #: src/preferences/snapshot-list-row.vala:157
@@ -813,17 +815,13 @@ msgstr "_Скасувати"
 msgid "_Open"
 msgstr "_Відкрити"
 
-#: src/assistant/index-page.vala:165 src/preferences/cdrom-row.vala:62
+#: src/assistant/index-page.vala:176 src/preferences/cdrom-row.vala:62
 msgid "Select a device or ISO file"
 msgstr "Вибрати пристрій або файл ISO"
 
-#: src/assistant/index-page.vala:168 src/preferences/cdrom-row.vala:65
+#: src/assistant/index-page.vala:179 src/preferences/cdrom-row.vala:65
 msgid "Open"
 msgstr "Відкрити"
-
-#: src/assistant/index-page.vala:188 src/assistant/vm-assistant.vala:72
-msgid "Previous"
-msgstr "Назад"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
@@ -850,6 +848,10 @@ msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr ""
 "Не вдалося проаналізувати установчий носій. Зіпсований або неповноцінний "
 "носій?"
+
+#: src/assistant/vm-assistant.vala:72
+msgid "Previous"
+msgstr "Назад"
 
 #: src/assistant/vm-assistant.vala:75
 msgid "Create"
@@ -896,38 +898,43 @@ msgstr "Не вдалося отримати: %s"
 msgid "System"
 msgstr "Система"
 
-#: src/keys-input-popover.vala:27
+#: src/keys-input-popover.vala:28
 msgid "Ctrl + Alt + Backspace"
 msgstr "Ctrl + Alt + Backspace"
 
-#: src/keys-input-popover.vala:28
+#: src/keys-input-popover.vala:29
 msgid "Ctrl + Alt + Del"
 msgstr "Ctrl + Alt + Del"
 
 #. New section
-#: src/keys-input-popover.vala:32
+#: src/keys-input-popover.vala:33
 msgid "Ctrl + Alt + F1"
 msgstr "Ctrl + Alt + F1"
 
-#: src/keys-input-popover.vala:33
+#: src/keys-input-popover.vala:34
 msgid "Ctrl + Alt + F2"
 msgstr "Ctrl + Alt + F2"
 
-#: src/keys-input-popover.vala:34
+#: src/keys-input-popover.vala:35
 msgid "Ctrl + Alt + F3"
 msgstr "Ctrl + Alt + F3"
 
-#: src/keys-input-popover.vala:35
+#: src/keys-input-popover.vala:36
+#| msgid "Ctrl + Alt + F1"
+msgid "Ctrl + Alt + F6"
+msgstr "Ctrl + Alt + F6"
+
+#: src/keys-input-popover.vala:37
 msgid "Ctrl + Alt + F7"
 msgstr "Ctrl + Alt + F7"
 
-#: src/keys-input-popover.vala:36
+#: src/keys-input-popover.vala:38
 msgid "Ctrl + Alt + F9"
 msgstr "Ctrl + Alt + F9"
 
 #. Translators: Accessibility name for context menu with a set of keyboard combos (that would normally be
 #. intercepted by host/client, to send to the box.
-#: src/keys-input-popover.vala:45
+#: src/keys-input-popover.vala:47
 msgid "Send key combinations"
 msgstr "Надіслати комбінації клавіш"
 
@@ -1061,7 +1068,7 @@ msgstr "%s домашню сторінку: <%s>.\n"
 msgid "Media is not supported"
 msgstr "Підтримки носія не передбачено"
 
-#: src/media-manager.vala:368
+#: src/media-manager.vala:372
 #, c-format
 msgid "No such file %s"
 msgstr "Немає такого файла %s"
@@ -1220,21 +1227,21 @@ msgstr ""
 msgid "Downloading device drivers…"
 msgstr "Звантаження драйверів для пристроїв…"
 
-#: src/unattended-setup-box.vala:51
+#: src/unattended-setup-box.vala:45
 msgid "no password"
 msgstr "без паролю"
 
-#: src/unattended-setup-box.vala:108
+#: src/unattended-setup-box.vala:101
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "Швидке встановлення %s потребує з'єднання з інтернетом."
 
-#: src/unattended-setup-box.vala:206
+#: src/unattended-setup-box.vala:178
 #, c-format
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "Реєстраційні дані коробки для «%s»"
 
-#: src/util-app.vala:410
+#: src/util-app.vala:414
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1243,11 +1250,11 @@ msgstr ""
 "Вміст SELinux виглядає неправильно, може спробувати виправити це виконавши:\n"
 "%s"
 
-#: src/util-app.vala:414
+#: src/util-app.vala:418
 msgid "SELinux not installed?"
 msgstr "SELinux не встановлено?"
 
-#: src/util-app.vala:496
+#: src/util-app.vala:500
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1255,7 +1262,7 @@ msgstr ""
 "Неможливо одержати інформацію про пам'ять з libvirt. Переконайтесь, що "
 "«virsh -c qemu:///session pool-dumpxml gnome-boxes» працює."
 
-#: src/util-app.vala:501
+#: src/util-app.vala:505
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
@@ -1264,14 +1271,14 @@ msgstr ""
 "%s відомий для libvirt як набір пам'яті коробок GNOME, проте цей каталог не "
 "існує"
 
-#: src/util-app.vala:505
+#: src/util-app.vala:509
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
 msgstr ""
 "%s відомий для libvirt як набір пам'яті коробок GNOME, проте це не є каталог"
 
-#: src/util-app.vala:509
+#: src/util-app.vala:513
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
@@ -1290,7 +1297,7 @@ msgstr "ні"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:794
+#: src/vm-configurator.vala:791
 msgid "Incapable host system"
 msgstr "Нездатна головна система"
 
@@ -1299,6 +1306,9 @@ msgstr "Нездатна головна система"
 #, c-format
 msgid "Box import from file “%s” failed: %s"
 msgstr "Не вдалося імпортувати коробку з файла «%s»: %s"
+
+#~ msgid "_Name"
+#~ msgstr "_Назва"
 
 #~ msgid "_Add Password"
 #~ msgstr "_Додати пароль"
@@ -1711,9 +1721,6 @@ msgstr "Не вдалося імпортувати коробку з файла 
 
 #~ msgid "Connect"
 #~ msgstr "З'єднання"
-
-#~ msgid "Create a Virtual Machine…"
-#~ msgstr "Створити віртуальну машину…"
 
 #~ msgid "Connect to a Remote Computer…"
 #~ msgstr "Під'єднатися до віддаленого комп'ютера…"
