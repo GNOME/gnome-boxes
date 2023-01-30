@@ -14,6 +14,15 @@ private class Boxes.InstallerMedia : GLib.Object {
 
     public bool skip_import { get; protected set; default = false; }
 
+    public bool supports_express_install {
+        get {
+            if (os_media == null)
+                return false;
+
+            return os_media.supports_installer_script ();
+        }
+    }
+
     public virtual Osinfo.DeviceList supported_devices {
         owned get {
             return (os != null)? os.get_all_devices (null) : new Osinfo.DeviceList ();
