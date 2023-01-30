@@ -56,7 +56,8 @@ private class Boxes.AssistantReviewPage : AssistantPage {
             os_label.label = os.get_name ();
         }
 
-        ram_row.setup (machine);
+        ram_row.memory = machine.ram;
+        ram_row.bind_property ("memory", machine, "ram", BindingFlags.BIDIRECTIONAL);
         storage_row.setup (machine);
 
         bool show_unattended_rows = false;

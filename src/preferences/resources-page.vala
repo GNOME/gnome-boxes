@@ -54,7 +54,8 @@ private class Boxes.ResourcesPage : Hdy.PreferencesPage {
                                       "acceleration-3d");
         });
 
-        ram_row.setup (machine);
+        ram_row.memory = machine.ram;
+        bind_widget_property (ram_row, "memory", "ram");
         storage_row.setup (machine);
         setup_cpu_row ();
 
