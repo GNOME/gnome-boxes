@@ -62,6 +62,27 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
     public bool run_in_bg { get; set; } // If true, machine will never be paused automatically by Boxes.
 
+    public uint64 ram {
+        get {
+            return domain_config.memory;
+        }
+
+        set {
+            domain_config.memory = value;
+
+            if (config.get_class ().find_property ("current-memory") != null)
+                config.set ("current-memory", value);
+
+            try {
+                domain.set_config (domain_config);
+                debug ("RAM changed to %llu KiB", ram);
+            } catch (GLib.Error error) {
+                warning ("Failed to save domain config: %s", error.message);
+                // TODO: propagate this message to the UI
+            }
+        }
+    }
+
     private bool _acceleration_3d;
     public bool acceleration_3d {
         get {
