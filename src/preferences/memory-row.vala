@@ -38,9 +38,19 @@ private class Boxes.MemoryRow : Hdy.ActionRow {
         if (user_input_value == 0)
             return 1;
 
-        new_value = user_input_value * Osinfo.GIBIBYTES;
+        int64 iec_unit = parse_iec_unit(text);
+        new_value = user_input_value * iec_unit;
 
         return 1;
+    }
+
+    private int64 parse_iec_unit(string? text) {
+        int64 iec_unit = Osinfo.GIBIBYTES;
+        if (text.contains("MiB"))
+            iec_unit = Osinfo.MEBIBYTES;
+        else if (text.contains("KiB"))
+            iec_unit = Osinfo.KIBIBYTES;
+        return iec_unit;
     }
 
     [GtkCallback]
