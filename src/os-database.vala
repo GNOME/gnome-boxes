@@ -216,7 +216,7 @@ private class Boxes.OSDatabase : GLib.Object {
         return media;
     }
 
-    public Resources get_resources_for_os (Os? os, string? architecture) {
+    public Resources get_resources_for_os (Os? os, string? architecture = null) {
         if (os == null)
             return get_default_resources ();
 
@@ -243,7 +243,9 @@ private class Boxes.OSDatabase : GLib.Object {
         return get_resources_from_os_resources (minimum, recommended);
     }
 
-    public static Resources? get_recommended_resources_for_os (Os os, string architecture) {
+    public static Resources? get_recommended_resources_for_os (Os os, string? architecture = null) {
+        if (architecture == null)
+            architecture = ARCHITECTURE_ALL;
         string[] prefs = { architecture, ARCHITECTURE_ALL };
 
         var list = os.get_recommended_resources ();
