@@ -9,6 +9,22 @@ private class Boxes.MemoryRow : Hdy.ActionRow {
     [GtkChild]
     public unowned Gtk.SpinButton spin_button;
 
+    public uint64 memory {
+        get {
+            return (uint64)spin_button.get_value () / Osinfo.KIBIBYTES;
+        }
+
+        set {
+            spin_button.set_value (value * Osinfo.KIBIBYTES);
+        }
+    }
+
+    construct {
+        spin_button.value_changed.connect (() => {
+            notify_property ("memory");
+        });
+    }
+
     [GtkCallback]
     private int on_spin_button_input (Gtk.SpinButton spin_button, out double new_value) {
         uint64 current_value = (uint64)spin_button.get_value ();
