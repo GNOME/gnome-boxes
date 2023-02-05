@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2022-10-15 02:03+0000\n"
-"PO-Revision-Date: 2022-10-22 18:22+0300\n"
+"POT-Creation-Date: 2023-01-28 12:47+0000\n"
+"PO-Revision-Date: 2023-02-05 13:31+0200\n"
 "Last-Translator: Efstathios Iosifidis <eiosifidis@gnome.org>\n"
 "Language-Team: Greek, Modern (1453-) <gnome-el-list@gnome.org>\n"
 "Language: el\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 "X-Project-Style: gnome\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:7 data/org.gnome.Boxes.desktop.in:3
@@ -315,12 +315,12 @@ msgid "Operating System"
 msgstr "Λειτουργικό σύστημα"
 
 #: data/ui/assistant/pages/review-page.ui:94
-#: data/ui/preferences/resources-page.ui:90
+#: data/ui/preferences/resources-page.ui:70
 msgid "Memory"
 msgstr "Μνήμη"
 
 #: data/ui/assistant/pages/review-page.ui:101
-#: data/ui/preferences/resources-page.ui:97
+#: data/ui/preferences/resources-page.ui:77
 msgid "Storage limit"
 msgstr "Όριο αποθηκευτικού χώρου"
 
@@ -344,8 +344,8 @@ msgstr "Γρήγορη εγκατάσταση"
 
 #: data/ui/assistant/vm-assistant.ui:54
 #: data/ui/preferences/shared-folder-popover.ui:97
-#: data/ui/shared-folder-popover.ui:97 src/assistant/index-page.vala:124
-#: src/assistant/index-page.vala:172 src/assistant/vm-assistant.vala:72
+#: data/ui/shared-folder-popover.ui:97 src/assistant/index-page.vala:131
+#: src/assistant/index-page.vala:179 src/assistant/vm-assistant.vala:72
 #: src/preferences/cdrom-row.vala:65
 msgid "Cancel"
 msgstr "Ακύρωση"
@@ -513,48 +513,50 @@ msgid "CDROM/DVD Drive"
 msgstr "Οδηγός CDROM/DVD"
 
 #: data/ui/preferences/resources-page.ui:7
-#: data/ui/preferences/resources-page.ui:67
+#: data/ui/preferences/resources-page.ui:47
 msgid "Resources"
 msgstr "Πόροι"
 
-#: data/ui/preferences/resources-page.ui:22
-msgid "_Name"
-msgstr "Ό_νομα"
+#: data/ui/preferences/resources-page.ui:12
+#: data/ui/preferences/shared-folder-popover.ui:44
+#: data/ui/shared-folder-popover.ui:44
+msgid "Name"
+msgstr "Όνομα"
 
-#: data/ui/preferences/resources-page.ui:48
+#: data/ui/preferences/resources-page.ui:28
 msgid "IP Address"
 msgstr "Διεύθυνση IP"
 
-#: data/ui/preferences/resources-page.ui:73
+#: data/ui/preferences/resources-page.ui:53
 msgid "CPUs"
 msgstr "CPUs"
 
-#: data/ui/preferences/resources-page.ui:106
+#: data/ui/preferences/resources-page.ui:86
 msgid "3D acceleration"
 msgstr "Τρισδιάστατη επιτάχυνση"
 
-#: data/ui/preferences/resources-page.ui:129
+#: data/ui/preferences/resources-page.ui:109
 msgid "Allow running in background"
 msgstr "Εκτέλεση στο παρασκήνιο"
 
-#: data/ui/preferences/resources-page.ui:147
+#: data/ui/preferences/resources-page.ui:127
 msgid "Configuration"
 msgstr "Ρυθμίσεις"
 
-#: data/ui/preferences/resources-page.ui:152
+#: data/ui/preferences/resources-page.ui:132
 msgid "Troubleshooting Logs"
 msgstr "Αρχεία καταγραφής αντιμετώπισης προβλημάτων"
 
-#: data/ui/preferences/resources-page.ui:153
+#: data/ui/preferences/resources-page.ui:133
 msgid "Diagnose problems with your box using the log file."
 msgstr ""
 "Διαγνώστε προβλήματα στο πλαίσιό σας χρησιμοποιώντας το αρχείο καταγραφής."
 
-#: data/ui/preferences/resources-page.ui:175
+#: data/ui/preferences/resources-page.ui:155
 msgid "Edit Configuration"
 msgstr "Επεξεργασία ρυθμίσεων"
 
-#: data/ui/preferences/resources-page.ui:176
+#: data/ui/preferences/resources-page.ui:156
 msgid "Edit the Libvirt domain configuration for this box."
 msgstr "Επεξεργαστείτε τη διαμόρφωση του τομέα Libvirt για αυτό το πλαίσιο."
 
@@ -562,11 +564,6 @@ msgstr "Επεξεργαστείτε τη διαμόρφωση του τομέα
 #: data/ui/shared-folder-popover.ui:29
 msgid "Local Folder"
 msgstr "Τοπικός φάκελος"
-
-#: data/ui/preferences/shared-folder-popover.ui:44
-#: data/ui/shared-folder-popover.ui:44
-msgid "Name"
-msgstr "Όνομα"
 
 #: data/ui/preferences/shared-folder-popover.ui:70
 #: data/ui/shared-folder-popover.ui:70
@@ -603,6 +600,10 @@ msgstr "Στιγμιότυπα"
 #: src/preferences/snapshots-page.vala:133
 msgid "Creating new snapshot…"
 msgstr "Δημιουργία νέου στιγμιότυπου…"
+
+#: data/ui/searchbar.ui:10
+msgid "Search for a virtual machine…"
+msgstr "Αναζήτηση για εικονική μηχανή…"
 
 #: data/ui/toast.ui:34 src/app.vala:601
 #: src/preferences/snapshot-list-row.vala:157
@@ -829,17 +830,13 @@ msgstr "Ακύ_ρωση"
 msgid "_Open"
 msgstr "Ά_νοιγμα"
 
-#: src/assistant/index-page.vala:169 src/preferences/cdrom-row.vala:62
+#: src/assistant/index-page.vala:176 src/preferences/cdrom-row.vala:62
 msgid "Select a device or ISO file"
 msgstr "Επιλέξτε μια συσκευή ή ένα αρχείο ISO"
 
-#: src/assistant/index-page.vala:172 src/preferences/cdrom-row.vala:65
+#: src/assistant/index-page.vala:179 src/preferences/cdrom-row.vala:65
 msgid "Open"
 msgstr "Άνοιγμα"
-
-#: src/assistant/index-page.vala:192 src/assistant/vm-assistant.vala:72
-msgid "Previous"
-msgstr "Προηγούμενο"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
@@ -864,6 +861,10 @@ msgstr " από %s"
 #: src/assistant/vm-assistant.vala:62
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "Αποτυχία ανάλυσης των μέσων εγκατάστασης. Κατεστραμμένα ή ατελή μέσα;"
+
+#: src/assistant/vm-assistant.vala:72
+msgid "Previous"
+msgstr "Προηγούμενο"
 
 #: src/assistant/vm-assistant.vala:75
 msgid "Create"
@@ -912,38 +913,43 @@ msgstr "Αποτυχία λήψης: %s"
 msgid "System"
 msgstr "Σύστημα"
 
-#: src/keys-input-popover.vala:27
+#: src/keys-input-popover.vala:28
 msgid "Ctrl + Alt + Backspace"
 msgstr "Ctrl + Alt + Backspace"
 
-#: src/keys-input-popover.vala:28
+#: src/keys-input-popover.vala:29
 msgid "Ctrl + Alt + Del"
 msgstr "Ctrl + Alt + Del"
 
 #. New section
-#: src/keys-input-popover.vala:32
+#: src/keys-input-popover.vala:33
 msgid "Ctrl + Alt + F1"
 msgstr "Ctrl + Alt + F1"
 
-#: src/keys-input-popover.vala:33
+#: src/keys-input-popover.vala:34
 msgid "Ctrl + Alt + F2"
 msgstr "Ctrl + Alt + F2"
 
-#: src/keys-input-popover.vala:34
+#: src/keys-input-popover.vala:35
 msgid "Ctrl + Alt + F3"
 msgstr "Ctrl + Alt + F3"
 
-#: src/keys-input-popover.vala:35
+#: src/keys-input-popover.vala:36
+#| msgid "Ctrl + Alt + F1"
+msgid "Ctrl + Alt + F6"
+msgstr "Ctrl + Alt + F6"
+
+#: src/keys-input-popover.vala:37
 msgid "Ctrl + Alt + F7"
 msgstr "Ctrl + Alt + F7"
 
-#: src/keys-input-popover.vala:36
+#: src/keys-input-popover.vala:38
 msgid "Ctrl + Alt + F9"
 msgstr "Ctrl + Alt + F9"
 
 #. Translators: Accessibility name for context menu with a set of keyboard combos (that would normally be
 #. intercepted by host/client, to send to the box.
-#: src/keys-input-popover.vala:45
+#: src/keys-input-popover.vala:47
 msgid "Send key combinations"
 msgstr "Αποστολή συνδυασμών πλήκτρων"
 
@@ -1078,7 +1084,7 @@ msgstr "%s αρχική σελίδα: <%s>.\n"
 msgid "Media is not supported"
 msgstr "Δεν υποστηρίζεται το μέσο"
 
-#: src/media-manager.vala:368
+#: src/media-manager.vala:372
 #, c-format
 msgid "No such file %s"
 msgstr "Δεν υπάρχει αρχείο %s"
@@ -1107,7 +1113,7 @@ msgstr ""
 #: src/preferences/resources-page.vala:81
 #, c-format
 msgid "Recommended %s."
-msgstr "Προτεινόμενο %s"
+msgstr "Προτεινόμενο %s."
 
 #: src/preferences/resources-page.vala:159
 msgid "Boxes is not authorized to run in background"
@@ -1313,7 +1319,7 @@ msgstr "όχι"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:790
+#: src/vm-configurator.vala:791
 msgid "Incapable host system"
 msgstr "Ανίκανος κεντρικός υπολογιστής"
 
@@ -1322,6 +1328,9 @@ msgstr "Ανίκανος κεντρικός υπολογιστής"
 #, c-format
 msgid "Box import from file “%s” failed: %s"
 msgstr "Απέτυχε η εισαγωγή του πλαισίου από το αρχείο «%s»: %s"
+
+#~ msgid "_Name"
+#~ msgstr "Ό_νομα"
 
 #~ msgid "GNOME Boxes"
 #~ msgstr "Πλαίσια GNOME"
@@ -1709,9 +1718,6 @@ msgstr "Απέτυχε η εισαγωγή του πλαισίου από το �
 #~ msgid "Connect"
 #~ msgstr "Σύνδεση"
 
-#~ msgid "Create a Virtual Machine…"
-#~ msgstr "Δημιουργία εικονικής μηχανής…"
-
 #~ msgid "Connect to a Remote Computer…"
 #~ msgstr "Σύνδεση στο απομακρυσμένο υπολογιστή…"
 
@@ -1892,11 +1898,11 @@ msgstr "Απέτυχε η εισαγωγή του πλαισίου από το �
 #~ msgstr "%s <span color=\"grey\">(%s χρησιμοποιείται)</span>"
 
 #~ msgid ""
-#~ "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
-#~ "\">(%s used)</span>"
+#~ "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span "
+#~ "color=\"grey\">(%s used)</span>"
 #~ msgstr ""
-#~ "<span color=\"grey\">Μέγιστο μέγεθος δίσκου</span>\t\t %s <span color="
-#~ "\"grey\">(%s χρησιμοποιείται)</span>"
+#~ "<span color=\"grey\">Μέγιστο μέγεθος δίσκου</span>\t\t %s <span "
+#~ "color=\"grey\">(%s χρησιμοποιείται)</span>"
 
 #~ msgid "Connection to oVirt broker failed"
 #~ msgstr "Απέτυχε η σύνδεση με τον μεσολαβητή oVirt"
