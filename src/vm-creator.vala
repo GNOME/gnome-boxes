@@ -9,14 +9,6 @@ private class Boxes.VMCreator : Object {
     private const int INSTALL_COMPLETE_PERCENT = 99;
 
     public InstallerMedia? install_media { get; protected set; }
-    public bool express_install {
-        get {
-            var unattended_installer = install_media as UnattendedInstaller;
-
-            return ((install_media is UnattendedInstaller) &&
-                    unattended_installer.setup_box.express_install);
-        }
-    }
 
     protected Connection? connection { owned get { return App.app.default_connection; } }
     private ulong state_changed_id;
@@ -76,7 +68,7 @@ private class Boxes.VMCreator : Object {
     }
 
     public virtual void launch_vm (LibvirtMachine machine, int64 access_last_time = -1, bool clone = false) throws GLib.Error {
-        if (!express_install) {
+        if (!install_media.supports_express_install) {
             ulong signal_id = 0;
 
             var window = App.app.main_window;

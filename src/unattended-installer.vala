@@ -45,7 +45,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         owned get {
             var devices = base.supported_devices;
 
-            if (setup_box.express_install) {
+            if (supports_express_install) {
                 var osinfo_list = devices as Osinfo.List;
 
                 return osinfo_list.new_union (additional_devices) as Osinfo.DeviceList;
@@ -171,7 +171,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     public override async void prepare_for_installation (string vm_name, Cancellable? cancellable) {
         yield setup_box.save_credentials ();
 
-        if (!setup_box.express_install) {
+        if (!supports_express_install) {
             debug ("Unattended installation disabled.");
 
             return;
@@ -200,7 +200,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             // An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
             // installation will work. When this happens, just disable unattended installs, and let the caller decide
             // if it wants to retry a non-automatic install or to just abort the box creation..
-            setup_box.express_install = false;
             var msg = _("An error occurred during installation preparation. Express Install disabled.");
             App.app.main_window.display_toast (new Boxes.Toast (msg));
             debug ("Disabling unattended installation: %s", error.message);
@@ -210,7 +209,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     public override void setup_domain_config (Domain domain) {
         base.setup_domain_config (domain);
 
-        if (!setup_box.express_install)
+        if (!supports_express_install)
             return;
 
         return_if_fail (disk_file != null);
@@ -266,7 +265,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     public override GLib.List<Pair<string,string>> get_vm_properties () {
         var properties = base.get_vm_properties ();
 
-        if (setup_box.express_install) {
+        if (supports_express_install) {
             properties.append (new Pair<string,string> (_("Username"), setup_box.username));
             properties.append (new Pair<string,string> (_("Password"), setup_box.hidden_password));
         }
