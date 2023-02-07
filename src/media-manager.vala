@@ -34,7 +34,7 @@ private class Boxes.MediaManager : Object {
             throw new GLib.IOError.NOT_SUPPORTED (_("Media is not supported"));
         }
 
-        return create_installer_media_from_media (media);
+        return media;
     }
 
     private const string[] supported_installed_media_content_types = {
