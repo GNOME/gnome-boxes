@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="BoxesOsChooserRow" parent="HdyExpanderRow">
+    <property name="title" translatable="yes">Select an Operating System</property>
+
+    <child type="prefix">
+      <object class="GtkImage" id="os_icon">
+        <property name="visible">True</property>
+        <property name="icon-name">dialog-error-symbolic</property>
+        <property name="pixel-size">16</property>
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="border-width">10</property>
+        <property name="spacing">10</property>
+        <property name="orientation">vertical</property>
+
+        <child>
+          <object class="GtkSearchEntry" id="search_entry">
+            <property name="visible">True</property>
+            <property name="placeholder-text" translatable="yes">Search for an operating system…</property>
+            <signal name="search-changed" handler="on_search_entry_changed" />
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkListBox" id="listbox">
+            <property name="visible">True</property>
+            <property name="selection-mode">single</property>
+            <signal name="row-selected" handler="on_listbox_row_selected"/>
+            <signal name="row-activated" handler="on_listbox_row_activated"/>
+            <style>
+              <class name="content"/>
+            </style>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>
