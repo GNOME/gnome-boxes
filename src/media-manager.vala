@@ -231,7 +231,7 @@ private class Boxes.MediaManager : Object {
     }
 #endif
 
-    private static InstallerMedia create_unattended_installer (InstallerMedia media) throws GLib.Error {
+    public static InstallerMedia create_unattended_installer (InstallerMedia media) throws GLib.Error {
         InstallerMedia install_media = media;
 
         var filter = new Filter ();
