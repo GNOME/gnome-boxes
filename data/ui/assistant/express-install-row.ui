@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+<template class="BoxesExpressInstallRow" parent="HdyExpanderRow">
+  <property name="show-enable-switch">True</property>
+  <property name="title" translatable="yes">Express Installation</property>
+  <property name="subtitle" translatable="yes">Set credentials for an automatic install of the operating system.</property>
+  <signal name="notify::expanded" handler="on_entry_changed"/>
+
+  <child>
+    <object class="GtkListBox">
+      <property name="visible">True</property>
+
+      <child>
+        <object class="HdyActionRow">
+          <property name="visible">True</property>
+          <property name="title" translatable="yes">Username</property>
+          <child>
+            <object class="GtkEntry" id="username_entry">
+              <property name="visible">True</property>
+              <property name="hexpand">True</property>
+              <property name="valign">center</property>
+              <property name="placeholder-text">Enter username...</property>
+              <signal name="notify::text" handler="on_entry_changed"/>
+            </object>
+          </child>
+        </object>
+      </child>
+
+      <child>
+        <object class="HdyActionRow" id="password_row">
+          <property name="visible">True</property>
+          <property name="title" translatable="yes">Password</property>
+          <child>
+            <object class="GtkEntry" id="password_entry">
+              <property name="visible">True</property>
+              <property name="hexpand">True</property>
+              <property name="valign">center</property>
+              <property name="placeholder-text">Enter password...</property>
+              <signal name="notify::text" handler="on_entry_changed"/>
+            </object>
+          </child>
+        </object>
+      </child>
+
+      <child>
+        <object class="HdyActionRow" id="product_key_row">
+          <property name="visible">False</property>
+          <property name="hexpand">True</property>
+          <property name="title" translatable="yes">Product Key</property>
+          <child>
+            <object class="GtkEntry" id="product_key_entry">
+              <property name="visible">True</property>
+              <property name="valign">center</property>
+              <signal name="notify::text" handler="on_entry_changed"/>
+            </object>
+          </child>
+        </object>
+      </child>
+    </object>
+  </child>
+</template>
+</interface>
