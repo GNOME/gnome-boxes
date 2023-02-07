@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="BoxesFirmwareRow" parent="HdyActionRow">
+    <property name="title" translatable="yes">Firmware</property>
+
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="homogeneous">True</property>
+        <property name="hexpand">True</property>
+        <property name="valign">center</property>
+        <style>
+          <class name="linked"/>
+        </style>
+        <child>
+          <object class="GtkRadioButton" id="bios_button">
+            <property name="visible">True</property>
+            <property name="draw-indicator">False</property>
+            <property name="label">BIOS</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkRadioButton" id="uefi_button">
+            <property name="visible">True</property>
+            <property name="draw-indicator">False</property>
+            <property name="group">bios_button</property>
+            <property name="label">UEFI</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>
