@@ -23,6 +23,10 @@ private class Boxes.CollectionToolbar: Hdy.HeaderBar {
     public void setup_ui (AppWindow window) {
         this.window = window;
 
+        var action_group = new GLib.SimpleActionGroup ();
+        action_group.add_action_entries (action_entries, this);
+        insert_action_group ("new-vm", action_group);
+
         update_search_btn ();
         App.app.collection.item_added.connect (update_search_btn);
         App.app.collection.item_removed.connect (update_search_btn);
@@ -42,6 +46,20 @@ private class Boxes.CollectionToolbar: Hdy.HeaderBar {
         downloads_hub_btn.popover = DownloadsHub.get_default ();
     }
 
+    private const GLib.ActionEntry[] action_entries = {
+        {"open-filechooser", open_filechooser },
+        {"open-downloads-dialog", open_downloads_dialog }
+    };
+
+    private void open_filechooser () {
+        // TODO: Plug here a FileChooser based Assistant
+        new Boxes.VMAssistant (window).present ();
+    }
+
+    private void open_downloads_dialog () {
+        new Boxes.OsDownloader (window).present ();
+    }
+
     public void click_back_button () {
         back_btn.clicked ();
     }
@@ -49,11 +67,6 @@ private class Boxes.CollectionToolbar: Hdy.HeaderBar {
     public void click_search_button () {
         if(search_btn.sensitive)
             search_btn.clicked ();
-    }
-
-    [GtkCallback]
-    private void on_new_btn_clicked () {
-        window.show_vm_assistant ();
     }
 
     [GtkCallback]

@@ -31,7 +31,7 @@ private class Boxes.RHELDownloadDialog : Gtk.Dialog {
         });
     }
 
-    public RHELDownloadDialog (VMAssistant dialog, AssistantDownloadableEntry entry) {
+    public RHELDownloadDialog (AssistantDownloadableEntry entry) {
         set_transient_for (App.app.main_window);
         this.entry = entry;
 
@@ -43,8 +43,6 @@ private class Boxes.RHELDownloadDialog : Gtk.Dialog {
         is_rhel8 = os.id.has_prefix ("http://redhat.com/rhel/8");
 
         web_view.load_uri (authentication_uri);
-
-        bind_property ("visible", dialog, "visible", BindingFlags.INVERT_BOOLEAN);
     }
 
     [GtkCallback]

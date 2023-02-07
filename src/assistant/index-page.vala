@@ -159,7 +159,7 @@ private class Boxes.AssistantIndexPage : AssistantPage {
         var entry = row as AssistantDownloadableEntry;
 
         if (entry.os != null && entry.os.id.has_prefix ("http://redhat.com/rhel/")) {
-            (new RHELDownloadDialog (dialog, entry).run ());
+            (new RHELDownloadDialog (entry).run ());
         } else {
             DownloadsHub.get_default ().add_item (entry);
         }

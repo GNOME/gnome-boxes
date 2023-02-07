@@ -6,6 +6,7 @@ vala_sources += files(
   'identify-os-popover.vala',
   'index-page.vala',
   'media-entry.vala',
+  'os-downloader.vala',
   'preparation-page.vala',
   'review-page.vala',
   'rhel-download-dialog.vala',

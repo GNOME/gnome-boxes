@@ -10,10 +10,10 @@
     </style>
 
     <child>
-      <object class="GtkButton" id="new_btn">
+      <object class="GtkMenuButton" id="new_btn">
         <property name="visible">True</property>
         <property name="valign">center</property>
-        <signal name="clicked" handler="on_new_btn_clicked"/>
+        <property name="menu-model">new_vm_menu</property>
         <style>
           <class name="image-button"/>
         </style>
@@ -191,4 +191,17 @@
       </packing>
     </child>
   </template>
+
+<menu id="new_vm_menu">
+  <section>
+    <item>
+      <attribute name="label" translatable="yes">Create virtual machine from file...</attribute>
+      <attribute name="action">new-vm.open-filechooser</attribute>
+    </item>
+    <item>
+      <attribute name="label" translatable="yes">Download an operating system...</attribute>
+      <attribute name="action">new-vm.open-downloads-dialog</attribute>
+    </item>
+  </section>
+</menu>
 </interface>
