@@ -14,7 +14,6 @@ help_files = [
   'prop-trouble.page',
   'search.page',
   'shared-folders.page',
-  'shortcuts.page',
   'shutdown.page',
   'snapshot-create.page',
   'snapshot-delete.page',
