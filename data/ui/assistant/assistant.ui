@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="BoxesAssistant" parent="HdyWindow">
+    <property name="modal">True</property>
+    <property name="width-request">600</property>
+
+    <child>
+      <object class="GtkStack" id="pages">
+        <property name="visible">True</property>
+        <child>
+          <object class="GtkBox" id="loading_file_page">
+            <property name="visible">True</property>
+            <property name="orientation">vertical</property>
+
+            <child>
+              <object class="GtkButton">
+                <property name="visible">True</property>
+                <property name="halign">end</property>
+                <property name="margin">10</property>
+                <signal name="clicked" handler="gtk_window_close" object="BoxesAssistant"/>
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="icon-name">window-close-symbolic</property>
+                  </object>
+                </child>
+                <style>
+                  <class name="flat"/>
+                </style>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkSpinner">
+                <property name="visible">True</property>
+                <property name="active">True</property>
+                <property name="expand">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkBox" id="editing_page">
+            <property name="visible">True</property>
+            <property name="orientation">vertical</property>
+
+            <child>
+              <object class="HdyHeaderBar">
+                <property name="visible">True</property>
+                <property name="title" translatable="yes">New Virtual Machine</property>
+                <child>
+                  <object class="GtkButton" id="cancel_button">
+                    <property name="visible">True</property>
+                    <property name="label" translatable="yes">Cancel</property>
+                    <signal name="clicked" handler="gtk_window_close" object="BoxesAssistant"/>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="create_button">
+                    <property name="visible">True</property>
+                    <property name="label" translatable="yes">Create</property>
+                    <signal name="clicked" handler="on_create_button_clicked"/>
+                    <style>
+                      <class name="suggested-action"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="pack-type">end</property>
+                  </packing>
+                </child>
+              </object>
+            </child>
+
+            <child>
+              <object class="HdyPreferencesPage">
+                <property name="visible">True</property>
+
+                <child>
+                  <object class="HdyPreferencesGroup">
+                    <property name="visible">True</property>
+                    <property name="title" translatable="yes">Name</property>
+
+                    <child>
+                      <object class="BoxesVMNameRow" id="name_entry">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+
+                <child>
+                  <object class="HdyPreferencesGroup">
+                    <property name="visible">True</property>
+                    <property name="title" translatable="yes">Operating System</property>
+
+                    <child>
+                      <object class="BoxesOsChooserRow" id="os_chooser_row">
+                        <property name="visible">True</property>
+                        <property name="title" translatable="yes">Operating System not found</property>
+                        <signal name="os-selected" handler="on_os_selected_cb"/>
+                      </object>
+                    </child>
+
+                    <child>
+                      <object class="BoxesExpressInstallRow" id="express_install_row">
+                        <property name="enable-expansion">False</property>
+                        <signal name="notify::expanded" handler="setup_express_install_row"/>
+                      </object>
+                    </child>
+
+                    <child>
+                      <object class="BoxesFirmwareRow" id="firmware_row">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+
+                <child>
+                  <object class="HdyPreferencesGroup">
+                    <property name="visible">True</property>
+                    <property name="title" translatable="yes">Resources</property>
+
+                    <child>
+                      <object class="BoxesRamRow" id="ram_row">
+                        <property name="visible">True</property>
+                        <property name="title" translatable="yes">Memory</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="BoxesMemoryRow" id="storage_limit_row">
+                        <property name="visible">True</property>
+                        <property name="title" translatable="yes">Storage limit</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox" id="error_page">
+            <property name="visible">True</property>
+            <property name="orientation">vertical</property>
+
+            <child>
+              <object class="GtkButton">
+                <property name="visible">True</property>
+                <property name="halign">end</property>
+                <property name="margin">10</property>
+                <signal name="clicked" handler="gtk_window_close" object="BoxesAssistant"/>
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="icon-name">window-close-symbolic</property>
+                  </object>
+                </child>
+                <style>
+                  <class name="flat"/>
+                </style>
+              </object>
+            </child>
+
+            <child>
+              <object class="HdyStatusPage" id="error_status_page">
+                <property name="visible">True</property>
+                <property name="icon-name">dialog-error-symbolic</property>
+                <property name="title" translatable="yes">Ops! SOmething went wrong!</property>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkBox" id="creating_page">
+            <property name="visible">True</property>
+            <property name="orientation">vertical</property>
+
+            <child>
+              <object class="GtkButton">
+                <property name="visible">True</property>
+                <property name="halign">end</property>
+                <property name="margin">10</property>
+                <signal name="clicked" handler="gtk_window_close" object="BoxesAssistant"/>
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="icon-name">window-close-symbolic</property>
+                  </object>
+                </child>
+                <style>
+                  <class name="flat"/>
+                </style>
+              </object>
+            </child>
+
+            <child>
+              <object class="HdyStatusPage" id="creating_status_page">
+                <property name="visible">True</property>
+                <property name="icon-name">folder-download-symbolic</property>
+                <property name="title" translatable="yes">Setting up drivers...</property>
+
+                <child>
+                  <object class="GtkProgressBar" id="progress_bar">
+                    <property name="visible">True</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

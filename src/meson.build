@@ -70,7 +70,6 @@ vala_sources = [
   'media-manager.vala',
   'os-database.vala',
   'portals.vala',
-  'search.vala',
   'searchbar.vala',
   'shared-folders.vala',
   'spice-display.vala',

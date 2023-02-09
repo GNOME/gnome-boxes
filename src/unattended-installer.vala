@@ -44,13 +44,9 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     public override Osinfo.DeviceList supported_devices {
         owned get {
             var devices = base.supported_devices;
+            var osinfo_list = devices as Osinfo.List;
 
-            if (supports_express_install) {
-                var osinfo_list = devices as Osinfo.List;
-
-                return osinfo_list.new_union (additional_devices) as Osinfo.DeviceList;
-            } else
-                return devices;
+            return osinfo_list.new_union (additional_devices) as Osinfo.DeviceList;
         }
     }
 
@@ -135,15 +131,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         timezone = get_timezone ();
         lang = get_preferred_language ();
         kbd = get_preferred_keyboard (lang);
-
-        var product_key_format = get_product_key_format ();
-        setup_box = new UnattendedSetupBox (this, product_key_format, needs_internet);
-        setup_box.notify["ready-to-create"].connect (() => {
-            notify_property ("ready-to-create");
-        });
-        setup_box.user_wants_to_create.connect (() => {
-            user_wants_to_create ();
-        });
     }
 
     public override void prepare_to_continue_installation (string vm_name) {
@@ -169,14 +156,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     }
 
     public override async void prepare_for_installation (string vm_name, Cancellable? cancellable) {
-        yield setup_box.save_credentials ();
-
-        if (!supports_express_install) {
-            debug ("Unattended installation disabled.");
-
-            return;
-        }
-
         prepare_to_continue_installation (vm_name);
 
         try {
@@ -208,9 +187,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
     public override void setup_domain_config (Domain domain) {
         base.setup_domain_config (domain);
-
-        if (!supports_express_install)
-            return;
 
         return_if_fail (disk_file != null);
         var disk = get_unattended_disk_config ();
@@ -252,25 +228,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         }
 
         base.setup_post_install_domain_config (domain);
-    }
-
-    public override void populate_setup_box (Gtk.Box setup_box) {
-        foreach (var child in setup_box.get_children ())
-            setup_box.remove (child);
-
-        setup_box.add (this.setup_box);
-        setup_box.show ();
-    }
-
-    public override GLib.List<Pair<string,string>> get_vm_properties () {
-        var properties = base.get_vm_properties ();
-
-        if (supports_express_install) {
-            properties.append (new Pair<string,string> (_("Username"), setup_box.username));
-            properties.append (new Pair<string,string> (_("Password"), setup_box.hidden_password));
-        }
-
-        return properties;
     }
 
     public override void set_direct_boot_params (GVirConfig.DomainOs domain_os) {
@@ -398,7 +355,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         yield extractor.extract (os_media.initrd_path, initrd_file.get_path (), cancellable);
     }
 
-    private string? get_product_key_format () {
+    public string? get_product_key_format () {
         // FIXME: We don't support the case of multiple scripts requiring different kind of product keys.
         foreach (var s in scripts.get_elements ()) {
             var script = s as InstallScript;

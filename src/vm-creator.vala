@@ -68,23 +68,6 @@ private class Boxes.VMCreator : Object {
     }
 
     public virtual void launch_vm (LibvirtMachine machine, int64 access_last_time = -1, bool clone = false) throws GLib.Error {
-        if (!install_media.supports_express_install) {
-            ulong signal_id = 0;
-
-            var window = App.app.main_window;
-
-            signal_id = window.notify["ui-state"].connect (() => {
-                if (window.ui_state != UIState.COLLECTION)
-                    return;
-
-                window.select_item (machine); // This also starts the domain for us
-                window.disconnect (signal_id);
-
-                return;
-            });
-        } else
-            machine.domain.start (0);
-
         state_changed_id = machine.notify["state"].connect (on_machine_state_changed);
         machine.config.access_last_time = (access_last_time > 0)? access_last_time : get_real_time ();
     }

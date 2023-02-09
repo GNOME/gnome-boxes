@@ -52,8 +52,21 @@ private class Boxes.CollectionToolbar: Hdy.HeaderBar {
     };
 
     private void open_filechooser () {
-        // TODO: Plug here a FileChooser based Assistant
-        new Boxes.VMAssistant (window).present ();
+        var file_chooser = new Gtk.FileChooserNative (_("Select a device or OS media file"),
+                                                      window,
+                                                      Gtk.FileChooserAction.OPEN,
+                                                      _("Open"), _("Cancel"));
+        var filter = new Gtk.FileFilter ();
+        filter.add_mime_type ("application/x-raw-disk-image"); // FIXME: add all mime-types
+        file_chooser.set_filter (filter);
+
+        if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
+            try {
+                new Boxes.Assistant (window, file_chooser.get_filename ()).present ();
+            } catch (GLib.Error error) {
+                warning ("Failed to create installer media for path '%s': %s", file_chooser.get_filename (), error.message); // FIXME: propage this to the UI
+            }
+        }
     }
 
     private void open_downloads_dialog () {

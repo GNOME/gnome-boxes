@@ -200,16 +200,6 @@ private class Boxes.InstallerMedia : GLib.Object {
         eject_cdrom_media (domain);
     }
 
-    public virtual void populate_setup_box (Gtk.Box setup_box) {}
-
-    public virtual GLib.List<Pair<string,string>> get_vm_properties () {
-        var properties = new GLib.List<Pair<string,string>> ();
-
-        properties.append (new Pair<string,string> (_("System"), label));
-
-        return properties;
-    }
-
     public bool is_architecture_compatible (string architecture) {
         if (this.architecture == null)
             // Architecture unknown: let's say all architectures are compatible so caller can choose the best available

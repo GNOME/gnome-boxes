@@ -74,15 +74,6 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
         add_cd_config (domain, from_image? DomainDiskType.FILE : DomainDiskType.BLOCK, null, "hdc", false);
     }
 
-    public override GLib.List<Pair<string,string>> get_vm_properties () {
-        var properties = new GLib.List<Pair<string,string>> ();
-
-        properties.append (new Pair<string,string> (_("System"), label));
-
-        return properties;
-    }
-
-
     public override VMCreator get_vm_creator () {
         return new VMImporter (this);
     }
