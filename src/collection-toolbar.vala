@@ -14,6 +14,8 @@ private class Boxes.CollectionToolbar: Hdy.HeaderBar {
     [GtkChild]
     private unowned Button new_btn;
     [GtkChild]
+    private unowned Popover new_vm_popover;
+    [GtkChild]
     private unowned MenuButton downloads_hub_btn;
     [GtkChild]
     public unowned MenuButton hamburger_btn;
@@ -22,10 +24,6 @@ private class Boxes.CollectionToolbar: Hdy.HeaderBar {
 
     public void setup_ui (AppWindow window) {
         this.window = window;
-
-        var action_group = new GLib.SimpleActionGroup ();
-        action_group.add_action_entries (action_entries, this);
-        insert_action_group ("new-vm", action_group);
 
         update_search_btn ();
         App.app.collection.item_added.connect (update_search_btn);
@@ -51,6 +49,7 @@ private class Boxes.CollectionToolbar: Hdy.HeaderBar {
         {"open-downloads-dialog", open_downloads_dialog }
     };
 
+    [GtkCallback]
     private void open_filechooser () {
         var file_chooser = new Gtk.FileChooserNative (_("Select a device or OS media file"),
                                                       window,
@@ -67,10 +66,14 @@ private class Boxes.CollectionToolbar: Hdy.HeaderBar {
                 warning ("Failed to create installer media for path '%s': %s", file_chooser.get_filename (), error.message); // FIXME: propage this to the UI
             }
         }
+
+        new_vm_popover.popdown ();
     }
 
+    [GtkCallback]
     private void open_downloads_dialog () {
         new Boxes.OsDownloader (window).present ();
+        new_vm_popover.popdown ();
     }
 
     public void click_back_button () {

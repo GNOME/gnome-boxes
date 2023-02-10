@@ -13,7 +13,7 @@
       <object class="GtkMenuButton" id="new_btn">
         <property name="visible">True</property>
         <property name="valign">center</property>
-        <property name="menu-model">new_vm_menu</property>
+        <property name="popover">new_vm_popover</property>
         <style>
           <class name="image-button"/>
         </style>
@@ -192,16 +192,48 @@
     </child>
   </template>
 
-<menu id="new_vm_menu">
-  <section>
-    <item>
-      <attribute name="label" translatable="yes">Create virtual machine from file...</attribute>
-      <attribute name="action">new-vm.open-filechooser</attribute>
-    </item>
-    <item>
-      <attribute name="label" translatable="yes">Download an operating system...</attribute>
-      <attribute name="action">new-vm.open-downloads-dialog</attribute>
-    </item>
-  </section>
-</menu>
+  <object class="GtkPopover" id="new_vm_popover">
+    <property name="border-width">12</property>
+    <child>
+
+      <object class="HdyPreferencesGroup">
+        <property name="visible">True</property>
+        <property name="title" translatable="yes">Create new virtual machine</property>
+
+        <child>
+          <object class="HdyActionRow">
+            <property name="visible">True</property>
+            <property name="activatable">True</property>
+            <property name="icon-name">system-file-manager-symbolic</property>
+            <property name="title" translatable="yes">Install from File</property>
+            <property name="subtitle" translatable="yes">Select an .iso or .qcow2 file to install a virtual machine.</property>
+            <signal name="activated" handler="open_filechooser"/>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="icon-name">go-next-symbolic</property>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="HdyActionRow">
+            <property name="visible">True</property>
+            <property name="activatable">True</property>
+            <property name="icon-name">folder-download-symbolic</property>
+            <property name="title" translatable="yes">Download OS</property>
+            <property name="subtitle" translatable="yes">Browse and search for operating systems to install.</property>
+            <signal name="activated" handler="open_downloads_dialog"/>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="icon-name">go-next-symbolic</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
 </interface>
