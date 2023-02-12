@@ -4,14 +4,14 @@
 #
 #
 # Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2013, 2014, 2015, 2016, 2017.
-# Asier Sarasua Garmendia <asiersarasua@ni.eus>, 2013, 2019, 2020, 2021, 2022.
+# Asier Sarasua Garmendia <asiersarasua@ni.eus>, 2013, 2019, 2020, 2021, 2022, 2023.
 # Porrumentzio <porrumentzio@riseup.net>, 2022.
 #
 msgid ""
 msgstr "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2022-08-04 10:52+0000\n"
-"PO-Revision-Date: 2022-08-07 19:30+0200\n"
+"POT-Creation-Date: 2023-01-28 12:47+0000\n"
+"PO-Revision-Date: 2023-02-12 19:30+0200\n"
 "Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <Librezale>\n"
 "Language: eu\n"
@@ -92,7 +92,7 @@ msgstr "Partekatu fitxategiak makina birtualekin haiek zure fitxategi-kudeatzail
 msgid "Setup Shared Folders between your system and virtual machines."
 msgstr "Konfiguratu zure sistemak eta makina birtualek partekatzen dituzten karpetak."
 
-#: data/org.gnome.Boxes.appdata.xml.in:74
+#: data/org.gnome.Boxes.appdata.xml.in:61
 msgid "The GNOME Project"
 msgstr "GNOME proiektua"
 
@@ -279,12 +279,12 @@ msgid "Operating System"
 msgstr "Sistema eragilea"
 
 #: data/ui/assistant/pages/review-page.ui:94
-#: data/ui/preferences/resources-page.ui:90
+#: data/ui/preferences/resources-page.ui:70
 msgid "Memory"
 msgstr "Memoria"
 
 #: data/ui/assistant/pages/review-page.ui:101
-#: data/ui/preferences/resources-page.ui:97
+#: data/ui/preferences/resources-page.ui:77
 msgid "Storage limit"
 msgstr "Biltegiratze-muga"
 
@@ -308,8 +308,8 @@ msgstr "Instalazio azkarra"
 
 #: data/ui/assistant/vm-assistant.ui:54
 #: data/ui/preferences/shared-folder-popover.ui:97
-#: data/ui/shared-folder-popover.ui:97 src/assistant/index-page.vala:120
-#: src/assistant/index-page.vala:168 src/assistant/vm-assistant.vala:72
+#: data/ui/shared-folder-popover.ui:97 src/assistant/index-page.vala:131
+#: src/assistant/index-page.vala:179 src/assistant/vm-assistant.vala:72
 #: src/preferences/cdrom-row.vala:65
 msgid "Cancel"
 msgstr "Utzi"
@@ -477,47 +477,49 @@ msgid "CDROM/DVD Drive"
 msgstr "CDROM/DVD unitatea"
 
 #: data/ui/preferences/resources-page.ui:7
-#: data/ui/preferences/resources-page.ui:67
+#: data/ui/preferences/resources-page.ui:47
 msgid "Resources"
 msgstr "Baliabideak"
 
-#: data/ui/preferences/resources-page.ui:22
-msgid "_Name"
-msgstr "_Izena"
+#: data/ui/preferences/resources-page.ui:12
+#: data/ui/preferences/shared-folder-popover.ui:44
+#: data/ui/shared-folder-popover.ui:44
+msgid "Name"
+msgstr "Izena"
 
-#: data/ui/preferences/resources-page.ui:48
+#: data/ui/preferences/resources-page.ui:28
 msgid "IP Address"
 msgstr "IP helbidea"
 
-#: data/ui/preferences/resources-page.ui:73
+#: data/ui/preferences/resources-page.ui:53
 msgid "CPUs"
 msgstr "PUZak"
 
-#: data/ui/preferences/resources-page.ui:106
+#: data/ui/preferences/resources-page.ui:86
 msgid "3D acceleration"
 msgstr "3D azelerazioa"
 
-#: data/ui/preferences/resources-page.ui:129
+#: data/ui/preferences/resources-page.ui:109
 msgid "Allow running in background"
 msgstr "Onartu atzeko planoan exekutatzea"
 
-#: data/ui/preferences/resources-page.ui:147
+#: data/ui/preferences/resources-page.ui:127
 msgid "Configuration"
 msgstr "Konfigurazioa"
 
-#: data/ui/preferences/resources-page.ui:152
+#: data/ui/preferences/resources-page.ui:132
 msgid "Troubleshooting Logs"
 msgstr "Arazoen ebazpenen erregistroa"
 
-#: data/ui/preferences/resources-page.ui:153
+#: data/ui/preferences/resources-page.ui:133
 msgid "Diagnose problems with your box using the log file."
 msgstr "Diagnostikatu zure makinaren arazoak erregistro-fitxategiaren bidez"
 
-#: data/ui/preferences/resources-page.ui:175
+#: data/ui/preferences/resources-page.ui:155
 msgid "Edit Configuration"
 msgstr "Editatu konfigurazioa"
 
-#: data/ui/preferences/resources-page.ui:176
+#: data/ui/preferences/resources-page.ui:156
 msgid "Edit the Libvirt domain configuration for this box."
 msgstr "Editatu makina honetarako Libvirt domeinu-konfigurazioa."
 
@@ -525,11 +527,6 @@ msgstr "Editatu makina honetarako Libvirt domeinu-konfigurazioa."
 #: data/ui/shared-folder-popover.ui:29
 msgid "Local Folder"
 msgstr "Lokaleko karpeta"
-
-#: data/ui/preferences/shared-folder-popover.ui:44
-#: data/ui/shared-folder-popover.ui:44
-msgid "Name"
-msgstr "Izena"
 
 #: data/ui/preferences/shared-folder-popover.ui:70
 #: data/ui/shared-folder-popover.ui:70
@@ -567,6 +564,10 @@ msgstr "Bat-batekoak"
 #: src/preferences/snapshots-page.vala:133
 msgid "Creating new snapshot…"
 msgstr "Bat-bateko berria sortzen…"
+
+#: data/ui/searchbar.ui:10
+msgid "Search for a virtual machine…"
+msgstr "Bilatu makina birtual bat…"
 
 #: data/ui/toast.ui:34 src/app.vala:601
 #: src/preferences/snapshot-list-row.vala:157
@@ -772,17 +773,13 @@ msgstr "_Utzi"
 msgid "_Open"
 msgstr "_Ireki"
 
-#: src/assistant/index-page.vala:165 src/preferences/cdrom-row.vala:62
+#: src/assistant/index-page.vala:176 src/preferences/cdrom-row.vala:62
 msgid "Select a device or ISO file"
 msgstr "Hautatu gailu edo ISO fitxategi bat"
 
-#: src/assistant/index-page.vala:168 src/preferences/cdrom-row.vala:65
+#: src/assistant/index-page.vala:179 src/preferences/cdrom-row.vala:65
 msgid "Open"
 msgstr "Ireki"
-
-#: src/assistant/index-page.vala:188 src/assistant/vm-assistant.vala:72
-msgid "Previous"
-msgstr "Aurrekoa"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
@@ -807,6 +804,10 @@ msgstr " %s(e)tik"
 #: src/assistant/vm-assistant.vala:62
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "Instalazio-euskarriaren analisiak huts egin du. Euskarri hondatua edo osatugabea?"
+
+#: src/assistant/vm-assistant.vala:72
+msgid "Previous"
+msgstr "Aurrekoa"
 
 #: src/assistant/vm-assistant.vala:75
 msgid "Create"
@@ -853,38 +854,42 @@ msgstr "Huts egin du deskargak: %s"
 msgid "System"
 msgstr "Sistema"
 
-#: src/keys-input-popover.vala:27
+#: src/keys-input-popover.vala:28
 msgid "Ctrl + Alt + Backspace"
 msgstr "Ctrl + Alt + Atzera tekla"
 
-#: src/keys-input-popover.vala:28
+#: src/keys-input-popover.vala:29
 msgid "Ctrl + Alt + Del"
 msgstr "Ctrl + Alt + Ezab"
 
 #. New section
-#: src/keys-input-popover.vala:32
+#: src/keys-input-popover.vala:33
 msgid "Ctrl + Alt + F1"
 msgstr "Ctrl + Alt + F1"
 
-#: src/keys-input-popover.vala:33
+#: src/keys-input-popover.vala:34
 msgid "Ctrl + Alt + F2"
 msgstr "Ctrl + Alt + F2"
 
-#: src/keys-input-popover.vala:34
+#: src/keys-input-popover.vala:35
 msgid "Ctrl + Alt + F3"
 msgstr "Ctrl + Alt + F3"
 
-#: src/keys-input-popover.vala:35
+#: src/keys-input-popover.vala:36
+msgid "Ctrl + Alt + F6"
+msgstr "Ctrl + Alt + F6"
+
+#: src/keys-input-popover.vala:37
 msgid "Ctrl + Alt + F7"
 msgstr "Ctrl + Alt + F7"
 
-#: src/keys-input-popover.vala:36
+#: src/keys-input-popover.vala:38
 msgid "Ctrl + Alt + F9"
 msgstr "Ctrl + Alt + F9"
 
 #. Translators: Accessibility name for context menu with a set of keyboard combos (that would normally be
 #. intercepted by host/client, to send to the box.
-#: src/keys-input-popover.vala:45
+#: src/keys-input-popover.vala:47
 msgid "Send key combinations"
 msgstr "Bidali teklen konbinazioak"
 
@@ -1018,7 +1023,7 @@ msgstr "%s webgunea: <%s>.\n"
 msgid "Media is not supported"
 msgstr "Multimedia hau ez dago onartuta"
 
-#: src/media-manager.vala:368
+#: src/media-manager.vala:372
 #, c-format
 msgid "No such file %s"
 msgstr "Ez dago '%s' bezalako fitxategirik"
@@ -1160,21 +1165,21 @@ msgstr "Errorea gertatu da instalazioa prestatzean. Instalazio azkarra desgaitut
 msgid "Downloading device drivers…"
 msgstr "Gailuaren kontrolatzaileak deskargatzen…"
 
-#: src/unattended-setup-box.vala:51
+#: src/unattended-setup-box.vala:45
 msgid "no password"
 msgstr "pasahitzik ez"
 
-#: src/unattended-setup-box.vala:108
+#: src/unattended-setup-box.vala:101
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "'%s'(r)en zuzeneko instalazioak interneteko konexioa behar du."
 
-#: src/unattended-setup-box.vala:206
+#: src/unattended-setup-box.vala:178
 #, c-format
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "GNOME Makinak aplikazioaren kredentzialak “%s”-rentzako"
 
-#: src/util-app.vala:410
+#: src/util-app.vala:414
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1182,30 +1187,30 @@ msgid ""
 msgstr "SELinux testuingurua ez dirudi zuzena denik, hura konpontzen saia zaitezke hau exekutatuz:\n"
 "%s"
 
-#: src/util-app.vala:414
+#: src/util-app.vala:418
 msgid "SELinux not installed?"
 msgstr "SELinux ez dago instalatuta?"
 
-#: src/util-app.vala:496
+#: src/util-app.vala:500
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
 msgstr "Ezin izan da 'gnome-boxes' biltegiratzearen informazioa libvirt-etik eskuratu. Ziurtatu 'virsh -c qemu:///session pool-dumpxml gnome-boxes' badabilela."
 
-#: src/util-app.vala:501
+#: src/util-app.vala:505
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
 "not exist"
 msgstr "libvirt-ek %s ezagutzen du GNOME Makinen biltegiratze gisa, baina direktorio hori ez da existitzen"
 
-#: src/util-app.vala:505
+#: src/util-app.vala:509
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
 msgstr "libvirt-ek %s ezagutzen du GNOME Makinen biltegiratze gisa, baina ez da direktorio bat"
 
-#: src/util-app.vala:509
+#: src/util-app.vala:513
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
@@ -1222,7 +1227,7 @@ msgstr "ez"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:794
+#: src/vm-configurator.vala:791
 msgid "Incapable host system"
 msgstr "Ostalari-sistema ez da gai"
 
@@ -1231,6 +1236,9 @@ msgstr "Ostalari-sistema ez da gai"
 #, c-format
 msgid "Box import from file “%s” failed: %s"
 msgstr "Huts egin du '%s' fitxategitik makina inportatzeak: %s"
+
+#~ msgid "_Name"
+#~ msgstr "_Izena"
 
 #~ msgid "Select an OS Source"
 #~ msgstr "Hautatu SE iturburu bat"
@@ -1611,9 +1619,6 @@ msgstr "Huts egin du '%s' fitxategitik makina inportatzeak: %s"
 
 #~ msgid "Connect"
 #~ msgstr "Konektatu"
-
-#~ msgid "Create a Virtual Machine…"
-#~ msgstr "Sortu makina birtuala…"
 
 #~ msgid "Connect to a Remote Computer…"
 #~ msgstr "Konektatu urruneko ordenagailu batekin…"
