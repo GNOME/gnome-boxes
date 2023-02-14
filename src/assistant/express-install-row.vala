@@ -2,7 +2,7 @@
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/assistant/express-install-row.ui")]
 private class Boxes.ExpressInstallRow : Hdy.ExpanderRow {
-    public signal void changed ();
+    public signal void credentials_changed ();
     public bool ready_to_install {
         get {
             return !enabled || (username != null && username != "") &&
@@ -61,7 +61,7 @@ private class Boxes.ExpressInstallRow : Hdy.ExpanderRow {
 
     [GtkCallback]
     private void on_entry_changed () {
-        changed ();
+        credentials_changed ();
     }
 
     [GtkCallback]

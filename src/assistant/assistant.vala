@@ -130,7 +130,7 @@ private class Boxes.Assistant : Hdy.Window {
             express_install_row.product_key_format = unattended_installer.get_product_key_format ();
 
             create_button.sensitive = express_install_row.ready_to_install;
-            express_install_row.changed.connect (() => {
+            express_install_row.credentials_changed.connect (() => {
                 create_button.sensitive = express_install_row.ready_to_install;
             });
         } catch (GLib.Error error) {
