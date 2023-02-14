@@ -53,8 +53,6 @@ private class Boxes.ExpressInstallRow : Hdy.ExpanderRow {
     [GtkChild]
     protected unowned Gtk.Entry username_entry;
     [GtkChild]
-    protected unowned Hdy.ActionRow password_row;
-    [GtkChild]
     protected unowned Gtk.Entry password_entry;
     [GtkChild]
     public unowned Hdy.ActionRow product_key_row;
