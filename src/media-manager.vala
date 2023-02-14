@@ -2,7 +2,6 @@
 
 using Config;
 using Osinfo;
-using Tracker;
 
 private class Boxes.MediaManager : Object {
     private static MediaManager media_manager;
@@ -10,8 +9,6 @@ private class Boxes.MediaManager : Object {
     public OSDatabase os_db { get; private set; }
 
     public delegate void InstallerRecognized (Osinfo.Media os_media, Osinfo.Os os);
-
-    private Sparql.Connection tracker_connection;
 
     public static MediaManager get_default () {
         if (media_manager == null)
@@ -138,59 +135,6 @@ private class Boxes.MediaManager : Object {
         return media;
     }
 
-    public async GLib.List<InstallerMedia> list_installer_medias () {
-        var list = new GLib.List<InstallerMedia> ();
-
-        #if !FLATPAK
-            list.concat (yield load_physical_medias ());
-        #endif
-
-        if (tracker_connection != null)
-            list.concat (yield load_medias_from_filesystem ());
-
-        return list;
-    }
-
-    private async GLib.List<InstallerMedia> load_medias_from_filesystem () {
-        var list = new GLib.List<InstallerMedia> ();
-
-        try {
-            var query = yield new TrackerISOQuery (tracker_connection);
-            string path, title, os_id, media_id;
-            string[] lang_list;
-
-            while (yield query.fetch_next_iso_data (out path,
-                                                    out title,
-                                                    out os_id,
-                                                    out media_id,
-                                                    out lang_list)) {
-                try {
-                    var media = yield create_installer_media_from_iso_info (path, title, os_id, media_id, lang_list);
-                    unowned GLib.List<InstallerMedia> dup_node = list.find_custom (media, compare_media_by_label);
-                    if (dup_node != null) {
-                        // In case of duplicate media, prefer:
-                        // * released OS over unreleased one
-                        // * latest release
-                        // * soft over hard media
-                        var dup_media = dup_node.data;
-                        if (compare_media_by_release_date (media, dup_media) <= 0)
-                            list.remove (dup_media);
-                        else
-                            continue;
-                    }
-
-                    list.insert_sorted (media, compare_media_by_vendor);
-                } catch (GLib.Error error) {
-                    debug ("Failed to use ISO '%s': %s", path, error.message);
-                }
-            }
-        } catch (GLib.Error error) {
-            warning ("Failed to fetch list of ISOs from Tracker: %s.", error.message);
-        }
-
-        return list;
-    }
-
 #if !FLATPAK
     public GUdev.Client client;
     private async GLib.List<InstallerMedia> load_physical_medias () {
@@ -292,95 +236,5 @@ private class Boxes.MediaManager : Object {
     private MediaManager () {
         os_db = new OSDatabase ();
         os_db.load.begin ();
-    }
-
-    public async void connect_to_tracker () {
-        try {
-            tracker_connection = Sparql.Connection.bus_new ("org.freedesktop.Tracker3.Miner.Files",
-                                                    null, null);
-        } catch (GLib.Error error) {
-            if (!App.is_running_in_flatpak ()) {
-                message ("Error connecting to Tracker: %s", error.message);
-
-                return;
-            }
-
-            message ("Error connecting to host Tracker Miners: %s", error.message);
-            try {
-                tracker_connection = Sparql.Connection.bus_new (Config.APPLICATION_ID + "Tracker3.Miner.Files",
-                                                        null, null);
-            } catch (GLib.Error error) {
-                warning ("Error starting local Tracker Miners: %s", error.message);
-            }
-        }
-    }
-
-    private static int compare_media_by_label (InstallerMedia media_a, InstallerMedia media_b) {
-        return strcmp (media_a.label, media_b.label);
-    }
-
-    private static int compare_media_by_release_date (InstallerMedia media_a, InstallerMedia media_b) {
-        if (media_a.os == null) {
-            if (media_b.os == null)
-                return 0;
-            else
-                return -1;
-        } else if (media_b.os == null)
-            return 1;
-        else {
-            var release_a = media_a.os.get_release_date ();
-            var release_b = media_b.os.get_release_date ();
-
-            if (release_a == null) {
-                if (release_b == null)
-                    return 0;
-                else
-                    return -1;
-            } else if (release_b == null)
-                return 1;
-            else
-                return -release_a.compare (release_b);
-        }
-    }
-
-    private static int compare_media_by_vendor (InstallerMedia media_a, InstallerMedia media_b) {
-        if (media_a.os == null) {
-            if (media_b.os == null)
-                return 0;
-            else
-                return 1;
-        } else if (media_b.os == null)
-            return -1;
-        else {
-            var vendor_comparison = strcmp (media_a.os.get_vendor (), media_b.os.get_vendor ());
-
-            if (vendor_comparison == 0)
-                // Within each vendor, list latest release date first
-                return compare_media_by_release_date (media_a, media_b);
-            else
-                return vendor_comparison;
-        }
-    }
-
-    private async InstallerMedia create_installer_media_from_iso_info (string   path,
-                                                                       string?  label,
-                                                                       string?  os_id,
-                                                                       string?  media_id,
-                                                                       string[] lang_list)
-                                                                       throws GLib.Error {
-        if (!FileUtils.test (path, FileTest.EXISTS))
-            throw new Boxes.Error.INVALID (_("No such file %s").printf (path));
-
-        if (label == null || os_id == null || media_id == null || lang_list == null)
-            return yield create_installer_media_for_path (path);
-
-        var os = yield os_db.get_os_by_id (os_id);
-        var os_media = os_db.get_media_by_id (os, media_id);
-        foreach (var lang in lang_list)
-            os_media.add_param (Osinfo.MEDIA_PROP_LANG, lang);
-        var resources = os_db.get_resources_for_os (os, os_media.architecture);
-        var media = new InstallerMedia.from_iso_info (path, label, os, os_media, resources);
-
-        return create_installer_media_from_media (media);
     }
 }

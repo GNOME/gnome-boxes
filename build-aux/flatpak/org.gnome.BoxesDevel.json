@@ -20,8 +20,7 @@
         "--filesystem=~/.config/dconf:ro",
         "--filesystem=home",
         "--talk-name=ca.desrt.dconf",
-        "--env=DCONF_USER_CONFIG_DIR=.config/dconf",
-        "--add-policy=Tracker3.dbus:org.freedesktop.Tracker3.Miner.Files=tracker:Software"
+        "--env=DCONF_USER_CONFIG_DIR=.config/dconf"
     ],
     "modules": [
         {
@@ -373,33 +372,6 @@
                             "branch": "main"
                         }
                     ]
-                }
-            ]
-        },
-        {
-            "name": "tracker-miners",
-            "buildsystem": "meson",
-            "cleanup": [
-                "/etc",
-                "/libexec",
-                "/share/tracker/miners"
-            ],
-            "config-opts": [
-                "-Ddomain_prefix=org.gnome.BoxesDevel",
-                "-Dbattery_detection=none",
-                "-Dextract=true",
-                "-Dgeneric_media_extractor=none",
-                "-Dman=false",
-                "-Dminer_fs=true",
-                "-Dminer_fs_cache_location=$XDG_CACHE_HOME/gnome-boxes/miner/files",
-                "-Dminer_rss=false",
-                "-Dsystemd_user_services=false",
-                "-Dwriteback=false"
-            ],
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://gitlab.gnome.org/GNOME/tracker-miners.git"
                 }
             ]
         },

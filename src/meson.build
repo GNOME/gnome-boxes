@@ -89,7 +89,6 @@ vala_sources = [
   'welcome-tutorial.vala',
   'welcome-tutorial-page.vala',
   'downloader.vala',
-  'tracker-iso-query.vala',
 ]
 
 subdir('ui')
@@ -110,7 +109,6 @@ dependencies = [
   dependency ('libvirt-gobject-1.0', version: '>= 4.0.0'),
   dependency ('libxml-2.0', version: '>= 2.7.8'),
   dependency ('spice-client-gtk-3.0', version: '>= 0.32'),
-  dependency ('tracker-sparql-3.0'),
   dependency ('webkit2gtk-4.1'),
   cc.find_library('m', required : false),
   valac.find_library ('gio-2.0-workaround', dirs: vapi_dir),
