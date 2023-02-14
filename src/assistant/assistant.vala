@@ -70,26 +70,18 @@ private class Boxes.Assistant : Hdy.Window {
     }
 
     private async void prepare_for_path (string path) {
+        installer_media = yield create_installer_media (path);
 
-        try {
-            installer_media = yield create_installer_media (path);
-
-            if (installer_media.os != null) {
-                os_chooser_row.select_os (os);
-                os_chooser_row.subtitle = os.get_name ();
-            } else {
-                create_button.sensitive = false;
-                os_chooser_row.expanded = true;
-            }
-
-            update_rows ();
-            pages.set_visible_child (editing_page);
-        } catch (GLib.Error error) {
-            debug("Failed to analyze installer image: %s", error.message);
-
-            var msg = _("Failed to analyze installer media: %s").printf (error.message);
-            show_error (msg);
+        if (installer_media.os != null) {
+            os_chooser_row.select_os (os);
+            os_chooser_row.subtitle = os.get_name ();
+        } else {
+            create_button.sensitive = false;
+            os_chooser_row.expanded = true;
         }
+
+        update_rows ();
+        pages.set_visible_child (editing_page);
     }
 
     private void update_rows () {
