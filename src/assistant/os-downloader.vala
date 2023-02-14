@@ -33,12 +33,20 @@ private class Boxes.OsDownloader : Hdy.PreferencesWindow {
             }
         }
 
-        var manager = MediaManager.get_default ();
-        foreach (var media in yield manager.os_db.list_downloadable_oses ()) {
-            if (media != null) {
-                all_downloads.add (create_entry_from_media (media)); 
+        try {
+            var manager = MediaManager.get_default ();
+            var os_list = yield manager.os_db.list_downloadable_oses ();
+
+            foreach (var media in os_list) {
+                if (media != null) {
+                    all_downloads.add (create_entry_from_media (media)); 
+                }
             }
+        } catch (GLib.Error error) {
+            warning ("Failed to obtain list of downloadable OSes: %s", error.message);
+            return;
         }
+
     }
 
     private async void on_os_entry_activated (Hdy.ActionRow row) {
