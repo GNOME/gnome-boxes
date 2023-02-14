@@ -134,7 +134,7 @@ private class Boxes.Assistant : Hdy.Window {
                 create_button.sensitive = express_install_row.ready_to_install;
             });
         } catch (GLib.Error error) {
-            print (error.message);
+            show_error (_("Failed to prepare express installation: %s").printf (error.message));
         }
     }
 
