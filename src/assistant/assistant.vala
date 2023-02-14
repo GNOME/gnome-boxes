@@ -98,12 +98,11 @@ private class Boxes.Assistant : Hdy.Window {
     }
 
     private void setup_resource_rows () {
-        var media_manager = MediaManager.get_default ();
         Osinfo.Resources? resources = null;
         if (os == null)
-            resources = media_manager.os_db.get_default_resources ();
+            resources = OSDatabase.get_default_resources ();
         else
-            resources = media_manager.os_db.get_recommended_resources_for_os (os);
+            resources = OSDatabase.get_recommended_resources_for_os (os);
 
         ram_row.memory = resources.ram / Osinfo.KIBIBYTES;
 
@@ -121,8 +120,7 @@ private class Boxes.Assistant : Hdy.Window {
             return;
 
         try {
-            var media_manager = MediaManager.get_default ();
-            unattended_installer = (UnattendedInstaller)media_manager.create_unattended_installer (installer_media);
+            unattended_installer = (UnattendedInstaller)MediaManager.create_unattended_installer (installer_media);
 
             express_install_row.needs_password = unattended_installer.needs_password;
             express_install_row.product_key_format = unattended_installer.get_product_key_format ();
