@@ -56,9 +56,17 @@ private class Boxes.Assistant : Hdy.Window {
         yield prepare_for_path (path);
     }
 
-    private async InstallerMedia create_installer_media (string path) {
+    private async InstallerMedia? create_installer_media (string path) {
         var media_manager = MediaManager.get_default ();
-        return yield media_manager.create_installer_media_for_path (path, cancellable);
+        InstallerMedia? media = null;
+
+        try {
+            media = yield media_manager.create_installer_media_for_path (path, cancellable);
+        } catch (GLib.Error error) {
+            show_error (error.message);
+        }
+
+        return media;
     }
 
     private async void prepare_for_path (string path) {

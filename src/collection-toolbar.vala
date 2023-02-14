@@ -60,11 +60,7 @@ private class Boxes.CollectionToolbar: Hdy.HeaderBar {
         file_chooser.set_filter (filter);
 
         if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
-            try {
-                new Boxes.Assistant (window, file_chooser.get_filename ()).present ();
-            } catch (GLib.Error error) {
-                warning ("Failed to create installer media for path '%s': %s", file_chooser.get_filename (), error.message); // FIXME: propage this to the UI
-            }
+            new Boxes.Assistant (window, file_chooser.get_filename ()).present ();
         }
 
         new_vm_popover.popdown ();
