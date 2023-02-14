@@ -35,12 +35,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         }
     }
 
-    public override bool ready_to_create {
-        get {
-            return setup_box.ready_to_create;
-        }
-    }
-
     public override Osinfo.DeviceList supported_devices {
         owned get {
             var devices = base.supported_devices;
@@ -63,8 +57,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             return true;
         }
     }
-
-    public UnattendedSetupBox setup_box;
 
     public File? disk_file;           // Used for installer scripts, user avatar, pre & post installation drivers
     public File? kernel_file;
@@ -193,17 +185,20 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         domain.add_device (disk);
     }
 
+    public string? username;
+    public string? password;
+    public string? product_key;
     public void configure_install_script (InstallScript script) {
-        if (setup_box.password != null) {
-            config.set_user_password (setup_box.password);
-            config.set_admin_password (setup_box.password);
+        if (password != null) {
+            config.set_user_password (password);
+            config.set_admin_password (password);
         }
-        if (setup_box.username != null) {
-            config.set_user_login (setup_box.username);
-            config.set_user_realname (setup_box.username);
+        if (username != null) {
+            config.set_user_login (username);
+            config.set_user_realname (username);
         }
-        if (setup_box.product_key != null)
-            config.set_reg_product_key (setup_box.product_key);
+        if (product_key != null)
+            config.set_reg_product_key (product_key);
         if (timezone != null)
             config.set_l10n_timezone (timezone);
         config.set_l10n_language (lang);
@@ -243,8 +238,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
     public override void clean_up () {
         base.clean_up ();
-
-        setup_box.clean_up ();
 
         try {
             if (disk_file != null) {

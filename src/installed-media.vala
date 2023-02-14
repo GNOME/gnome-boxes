@@ -9,7 +9,6 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
     };
 
     public override bool need_user_input_for_vm_creation { get { return false; } }
-    public override bool ready_to_create { get { return true; } }
     public override bool live { get { return false; } }
     private bool is_gnome;
 

@@ -161,6 +161,10 @@ private class Boxes.Assistant : Hdy.Window {
             if (express_install_row.enabled) {
                 installer_media = unattended_installer;
 
+                unattended_installer.username = express_install_row.username;
+                unattended_installer.password = express_install_row.password;
+                unattended_installer.product_key = express_install_row.product_key;
+
                 // nothing here is slow except for "setting up drivers" for express-installs
                 // no need to setup progress bars for regular vms.
                 pages.set_visible_child (creating_page);
@@ -176,7 +180,6 @@ private class Boxes.Assistant : Hdy.Window {
             // Apply VM preferences
             var config = machine.domain.get_config (GVir.DomainXMLFlags.INACTIVE);
 
-            print ("Name %s\n", name_entry.text);
             config.set_title (name_entry.text); // FIXME: this isn't working
             config.memory = ram_row.memory;
             if (firmware_row.is_uefi)
@@ -192,6 +195,7 @@ private class Boxes.Assistant : Hdy.Window {
                 machine.domain.start (0);
             else
                 App.app.main_window.select_item (machine);
+            vm_creator.launch_vm (machine);
         } catch (GLib.Error error) {
             debug ("Failed to create virtual machine: %s", error.message);
 

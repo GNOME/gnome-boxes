@@ -34,7 +34,6 @@ private class Boxes.InstallerMedia : GLib.Object {
     // FIXME: Currently this information is always unknown so practically we never show any progress for installations.
     public virtual uint64 installed_size { get { return 0; } }
     public virtual bool need_user_input_for_vm_creation { get { return false; } }
-    public virtual bool ready_to_create { get { return true; } }
 
     public bool supports_virtio1_disk {
         get {
