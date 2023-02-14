@@ -35,7 +35,11 @@
               <property name="visible">True</property>
               <property name="hexpand">True</property>
               <property name="valign">center</property>
+              <property name="visibility">False</property>
+              <property name="secondary-icon-activatable">True</property>
+              <property name="secondary-icon-name">eye-not-looking-symbolic</property>
               <property name="placeholder-text">Enter password...</property>
+              <signal name="icon-release" handler="on_secondary_icon_clicked"/>
               <signal name="notify::text" handler="on_entry_changed"/>
             </object>
           </child>
