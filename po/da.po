@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2022-08-04 10:52+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-16 14:19+0100\n"
 "PO-Revision-Date: 2022-08-29 18:46+0200\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -110,7 +110,7 @@ msgstr ""
 msgid "Setup Shared Folders between your system and virtual machines."
 msgstr "Opret delte mapper mellem dit system og dine virtuelle maskiner."
 
-#: data/org.gnome.Boxes.appdata.xml.in:74
+#: data/org.gnome.Boxes.appdata.xml.in:61
 msgid "The GNOME Project"
 msgstr "GNOME-projektet"
 
@@ -191,183 +191,154 @@ msgstr "Velkommen til Boxes"
 msgid "Use the <b>+</b> button to create your first virtual machine."
 msgstr "Brug <b>+</b>-knappen for at oprette din første virtuelle maskine."
 
+#: data/ui/assistant/assistant.ui:51
+#, fuzzy
+msgid "New Virtual Machine"
+msgstr "Opret en virtuel maskine"
+
+#: data/ui/assistant/assistant.ui:55
+#: data/ui/preferences/shared-folder-popover.ui:97
+#: data/ui/shared-folder-popover.ui:97 src/preferences/cdrom-row.vala:65
+msgid "Cancel"
+msgstr "Annullér"
+
+#: data/ui/assistant/assistant.ui:62
+msgid "Create"
+msgstr "Opret"
+
+#: data/ui/assistant/assistant.ui:82 data/ui/preferences/resources-page.ui:12
+#: data/ui/preferences/shared-folder-popover.ui:44
+#: data/ui/shared-folder-popover.ui:44
+msgid "Name"
+msgstr "Navn"
+
+#: data/ui/assistant/assistant.ui:95
+msgid "Operating System"
+msgstr "Styresystem"
+
+#: data/ui/assistant/assistant.ui:100
+#, fuzzy
+msgid "Operating System not found"
+msgstr "Fandt ingen styresystemer"
+
+#: data/ui/assistant/assistant.ui:123 data/ui/preferences/resources-page.ui:7
+#: data/ui/preferences/resources-page.ui:47
+msgid "Resources"
+msgstr "Ressourcer"
+
+#: data/ui/assistant/assistant.ui:128 data/ui/preferences/resources-page.ui:70
+msgid "Memory"
+msgstr "Hukommelse"
+
+#: data/ui/assistant/assistant.ui:134 data/ui/preferences/resources-page.ui:77
+msgid "Storage limit"
+msgstr "Lagringsgrænse"
+
+#: data/ui/assistant/assistant.ui:171
+#, fuzzy
+msgid "Ops! Something went wrong!"
+msgstr "Ups, noget gik galt"
+
+#: data/ui/assistant/assistant.ui:204
+#, fuzzy
+msgid "Setting up drivers..."
+msgstr "Indstiller klon …"
+
+#: data/ui/assistant/express-install-row.ui:5 data/ui/welcome-tutorial.ui:49
+msgid "Express Installation"
+msgstr "Lyninstallation"
+
+#: data/ui/assistant/express-install-row.ui:6
+#, fuzzy
+msgid "Set credentials for an automatic install of the operating system."
+msgstr "3D-acceleration for nogle af de understøttede styresystemer."
+
+#: data/ui/assistant/express-install-row.ui:16
+msgid "Username"
+msgstr "Brugernavn"
+
+#: data/ui/assistant/express-install-row.ui:32
+msgid "Password"
+msgstr "Adgangskode"
+
+#: data/ui/assistant/express-install-row.ui:53
+msgid "Product Key"
+msgstr "Produktnøgle"
+
 #: data/ui/assistant/media-entry.ui:8
 msgid "Unknown media"
 msgstr "Ukendt medie"
 
-#: data/ui/assistant/pages/downloads-page.ui:81
-msgid "No operating systems found"
-msgstr "Fandt ingen styresystemer"
-
-#: data/ui/assistant/pages/downloads-page.ui:82
-msgid "Try a different search"
-msgstr "Prøv en anden søgning"
-
-#: data/ui/assistant/pages/downloads-page.ui:95
-#: src/assistant/downloads-page.vala:59
-msgid "Search for an OS or enter a download link…"
-msgstr "Led efter et OS eller indtast et downloadlink …"
-
-#: data/ui/assistant/pages/identify-os-page.ui:18
-msgid "Boxes was unable to identify the operating system on the image file."
-msgstr "Boxes kunne ikke identificere styresystemet i aftryksfilen."
-
-#: data/ui/assistant/pages/identify-os-page.ui:29
-msgid ""
-"It is not advised to try booting an unknown OS, but you may try your luck "
-"forcing a specific kind of OS from the list below:"
-msgstr ""
-"Det anbefales ikke at boote et ukendt styresystem, men du kan prøve at "
-"gennemtvinge et bestemt styresystem fra listen nedenfor:"
-
-#: data/ui/assistant/pages/identify-os-page.ui:41
-msgid "Template"
-msgstr "Skabelon"
-
-#: data/ui/assistant/pages/identify-os-page.ui:57
-#: src/assistant/identify-os-page.vala:31
-msgid "Unknown OS"
-msgstr "Ukendt styresystem"
-
-#: data/ui/assistant/pages/identify-os-popover.ui:19
-msgid "Search for an OS…"
-msgstr "Søg efter et styresystem …"
-
-#: data/ui/assistant/pages/index-page.ui:5 data/ui/assistant/vm-assistant.ui:7
-msgid "Create a Virtual Machine"
-msgstr "Opret en virtuel maskine"
-
-#: data/ui/assistant/pages/index-page.ui:41
-msgid ""
-"A new virtual machine will be created and an operating system installed into "
-"it. Select an operating system source to begin."
-msgstr ""
-"En ny virtuel maskine vil blive oprettet og et styresystem installeret på "
-"den. Vælg en kilde til styresystemet for at begynde."
-
-#: data/ui/assistant/pages/index-page.ui:54
-msgid "Detected Sources"
-msgstr "Registrerede kilder"
-
-#: data/ui/assistant/pages/index-page.ui:55
-msgid "Create virtual machine from one of the medias detected in your system."
-msgstr "Opret virtuelle maskiner fra et af medierne registreret på dit system."
-
-#: data/ui/assistant/pages/index-page.ui:72
-msgid "Featured Downloads"
-msgstr "Udvalgte filer til hentning"
-
-#: data/ui/assistant/pages/index-page.ui:73
-msgid "You will be notified when the download has completed."
-msgstr "Du vil få besked, når filen er blevet hentet."
-
-#: data/ui/assistant/pages/index-page.ui:117
-msgid "Create virtual machine from file"
-msgstr "Opret virtuel maskine fra fil"
-
-#: data/ui/assistant/pages/index-page.ui:134
-msgid "Download an operating system"
-msgstr "Hent et styresystem"
-
-#: data/ui/assistant/pages/index-page.ui:135
-msgid "Browse and search for operating systems to install."
-msgstr "Gennemse og søg efter styresystemer, der kan installeres."
-
-#: data/ui/assistant/pages/preparation-page.ui:5
-msgid "Preparing…"
-msgstr "Forbereder …"
-
-#: data/ui/assistant/pages/preparation-page.ui:24
-msgid "Preparing to create a new box"
-msgstr "Forbereder oprettelse af en ny boks"
-
-#: data/ui/assistant/pages/review-page.ui:5
-msgid "Review and Create"
-msgstr "Gennemgå og opret"
-
-#: data/ui/assistant/pages/review-page.ui:18
-msgid "Boxes is ready to set up a new box with the following properties:"
-msgstr "Boxes er klar til at opsætte en ny boks med følgende indstillinger:"
-
-#: data/ui/assistant/pages/review-page.ui:45
-msgid ""
-"Virtualization extensions are unavailable on your system.\n"
-"Check your BIOS settings to enable them."
-msgstr ""
-"Virtualiseringsudvidelser er ikke tilgængelige på dit system. Se om du kan "
-"slå dem til i dine BIOS-indstillinger."
-
-#: data/ui/assistant/pages/review-page.ui:78
-msgid "Operating System"
+#: data/ui/assistant/os-chooser-row.ui:4
+#, fuzzy
+msgid "Select an Operating System"
 msgstr "Styresystem"
 
-#: data/ui/assistant/pages/review-page.ui:94
-#: data/ui/preferences/resources-page.ui:90
-msgid "Memory"
-msgstr "Hukommelse"
+#: data/ui/assistant/os-chooser-row.ui:24
+#, fuzzy
+msgid "Search for an operating system…"
+msgstr "Hent et styresystem"
 
-#: data/ui/assistant/pages/review-page.ui:101
-#: data/ui/preferences/resources-page.ui:97
-msgid "Storage limit"
-msgstr "Lagringsgrænse"
+#: data/ui/assistant/os-downloader.ui:4
+#, fuzzy
+msgid "Search for an Operating System"
+msgstr "Styresystem"
 
-#: data/ui/assistant/pages/review-page.ui:107
-#: data/ui/unattended-setup-box.ui:69 src/unattended-installer.vala:270
-msgid "Username"
-msgstr "Brugernavn"
-
-#: data/ui/assistant/pages/review-page.ui:123
-#: data/ui/unattended-setup-box.ui:85 src/unattended-installer.vala:271
-msgid "Password"
-msgstr "Adgangskode"
-
-#: data/ui/assistant/pages/review-page.ui:141
-msgid "Enable EFI"
-msgstr "Aktivér EFI"
-
-#: data/ui/assistant/pages/setup-page.ui:5 data/ui/welcome-tutorial.ui:49
-msgid "Express Installation"
-msgstr "Lyninstallation"
-
-#: data/ui/assistant/vm-assistant.ui:54
-#: data/ui/preferences/shared-folder-popover.ui:97
-#: data/ui/shared-folder-popover.ui:97 src/assistant/index-page.vala:120
-#: src/assistant/index-page.vala:168 src/assistant/vm-assistant.vala:72
-#: src/preferences/cdrom-row.vala:65
-msgid "Cancel"
-msgstr "Annullér"
-
-#: data/ui/assistant/vm-assistant.ui:61 src/assistant/vm-assistant.vala:75
-msgid "Next"
-msgstr "Næste"
+#: data/ui/assistant/os-downloader.ui:13
+#, fuzzy
+msgid "Download an Operating System"
+msgstr "Hent et styresystem"
 
 #: data/ui/collection-toolbar.ui:22
 msgid "New"
 msgstr "Ny"
 
-#: data/ui/collection-toolbar.ui:46 data/ui/display-toolbar.ui:29
+#: data/ui/collection-toolbar.ui:58 data/ui/display-toolbar.ui:29
 msgid "Back"
 msgstr "Tilbage"
 
-#: data/ui/collection-toolbar.ui:69
+#: data/ui/collection-toolbar.ui:81
 msgid "Application Menu"
 msgstr "Programmenu"
 
-#: data/ui/collection-toolbar.ui:97
+#: data/ui/collection-toolbar.ui:109
 msgid "List view"
 msgstr "Listevisning"
 
-#: data/ui/collection-toolbar.ui:125
+#: data/ui/collection-toolbar.ui:137
 msgid "Grid view"
 msgstr "Gittervisning"
 
-#: data/ui/collection-toolbar.ui:152
+#: data/ui/collection-toolbar.ui:164
 msgid "Search"
 msgstr "Søg"
 
-#: data/ui/collection-toolbar.ui:179
+#: data/ui/collection-toolbar.ui:191
 msgid "Downloads"
 msgstr "Hentet"
+
+#: data/ui/collection-toolbar.ui:213
+#, fuzzy
+msgid "Create new virtual machine"
+msgstr "Opret en ny virtuel maskine"
+
+#: data/ui/collection-toolbar.ui:220
+msgid "Install from File"
+msgstr ""
+
+#: data/ui/collection-toolbar.ui:221
+#, fuzzy
+msgid "Select an .iso or .qcow2 file to install a virtual machine."
+msgstr "Vælg et bootaftryk, som skal installeres på en virtuel maskine."
+
+#: data/ui/collection-toolbar.ui:237
+#, fuzzy
+msgid "Download OS"
+msgstr "Hent et styresystem"
+
+#: data/ui/collection-toolbar.ui:238
+msgid "Browse and search for operating systems to install."
+msgstr "Gennemse og søg efter styresystemer, der kan installeres."
 
 #: data/ui/display-page.ui:96
 msgid "Ready to Receive File"
@@ -499,48 +470,39 @@ msgstr "Usb-enheder"
 msgid "CDROM/DVD Drive"
 msgstr "Cd-rom/dvd-drev"
 
-#: data/ui/preferences/resources-page.ui:7
-#: data/ui/preferences/resources-page.ui:67
-msgid "Resources"
-msgstr "Ressourcer"
-
-#: data/ui/preferences/resources-page.ui:22
-msgid "_Name"
-msgstr "_Navn"
-
-#: data/ui/preferences/resources-page.ui:48
+#: data/ui/preferences/resources-page.ui:28
 msgid "IP Address"
 msgstr "IP-adresse"
 
-#: data/ui/preferences/resources-page.ui:73
+#: data/ui/preferences/resources-page.ui:53
 msgid "CPUs"
 msgstr "CPU'er"
 
-#: data/ui/preferences/resources-page.ui:106
+#: data/ui/preferences/resources-page.ui:86
 msgid "3D acceleration"
 msgstr "3D-acceleration"
 
-#: data/ui/preferences/resources-page.ui:129
+#: data/ui/preferences/resources-page.ui:109
 msgid "Allow running in background"
 msgstr "Tillad kørsel i baggrunden"
 
-#: data/ui/preferences/resources-page.ui:147
+#: data/ui/preferences/resources-page.ui:127
 msgid "Configuration"
 msgstr "Konfiguration"
 
-#: data/ui/preferences/resources-page.ui:152
+#: data/ui/preferences/resources-page.ui:132
 msgid "Troubleshooting Logs"
 msgstr "Fejlfindingslogge"
 
-#: data/ui/preferences/resources-page.ui:153
+#: data/ui/preferences/resources-page.ui:133
 msgid "Diagnose problems with your box using the log file."
 msgstr "Diagnosticér problemer med din boks ved brug af logfilen."
 
-#: data/ui/preferences/resources-page.ui:175
+#: data/ui/preferences/resources-page.ui:155
 msgid "Edit Configuration"
 msgstr "Redigér konfiguration"
 
-#: data/ui/preferences/resources-page.ui:176
+#: data/ui/preferences/resources-page.ui:156
 msgid "Edit the Libvirt domain configuration for this box."
 msgstr "Redigér Libvirt-domænekonfigurationen for denne boks."
 
@@ -548,11 +510,6 @@ msgstr "Redigér Libvirt-domænekonfigurationen for denne boks."
 #: data/ui/shared-folder-popover.ui:29
 msgid "Local Folder"
 msgstr "Lokal mappe"
-
-#: data/ui/preferences/shared-folder-popover.ui:44
-#: data/ui/shared-folder-popover.ui:44
-msgid "Name"
-msgstr "Navn"
 
 #: data/ui/preferences/shared-folder-popover.ui:70
 #: data/ui/shared-folder-popover.ui:70
@@ -590,6 +547,11 @@ msgstr "Øjebliksbilleder"
 msgid "Creating new snapshot…"
 msgstr "Opretter nyt øjebliksbillede …"
 
+#: data/ui/searchbar.ui:10
+#, fuzzy
+msgid "Search for a virtual machine…"
+msgstr "Opret en virtuel maskine …"
+
 #: data/ui/toast.ui:34 src/app.vala:601
 #: src/preferences/snapshot-list-row.vala:157
 msgid "Undo"
@@ -602,23 +564,6 @@ msgstr "Ups, noget gik galt"
 #: data/ui/troubleshoot-view.ui:58
 msgid "Boxes cannot access the virtualization backend."
 msgstr "Boxes kan ikke tilgå virtualiseringsmotoren."
-
-#: data/ui/unattended-setup-box.ui:47
-msgid ""
-"Choose express install to automatically preconfigure the box with optimal "
-"settings."
-msgstr ""
-"Vælg lyninstallation for at forkonfigurere boksen automatisk med de optimale "
-"indstillinger."
-
-#. Translators: 'Express Install' means that the new box installation will be fully automated, the user won't be asked anything while it's performed.
-#: data/ui/unattended-setup-box.ui:53
-msgid "Express Install"
-msgstr "Lyninstallation"
-
-#: data/ui/unattended-setup-box.ui:107
-msgid "Product Key"
-msgstr "Produktnøgle"
 
 #: data/ui/welcome-tutorial.ui:7
 msgid "Welcome Tutorial"
@@ -810,17 +755,10 @@ msgstr "_Annullér"
 msgid "_Open"
 msgstr "_Åbn"
 
-#: src/assistant/index-page.vala:165 src/preferences/cdrom-row.vala:62
-msgid "Select a device or ISO file"
-msgstr "Vælg en enhed eller ISO-fil"
-
-#: src/assistant/index-page.vala:168 src/preferences/cdrom-row.vala:65
-msgid "Open"
-msgstr "Åbn"
-
-#: src/assistant/index-page.vala:188 src/assistant/vm-assistant.vala:72
-msgid "Previous"
-msgstr "Forrige"
+#: src/assistant/assistant.vala:137
+#, fuzzy, c-format
+msgid "Failed to prepare express installation: %s"
+msgstr "Kunne ikke omdøbe øjebliksbilledet: %s"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
@@ -841,15 +779,6 @@ msgstr "64-bit x86-system"
 #, c-format
 msgid " from %s"
 msgstr " fra %s"
-
-#: src/assistant/vm-assistant.vala:62
-msgid "Failed to analyze installer media. Corrupted or incomplete media?"
-msgstr ""
-"Kunne ikke analysere installationsmedie. Beskadiget eller ufærdigt medie?"
-
-#: src/assistant/vm-assistant.vala:75
-msgid "Create"
-msgstr "Opret"
 
 #: src/display-page.vala:127
 msgid "Press (left) Ctrl+Alt to ungrab"
@@ -888,80 +817,81 @@ msgstr "Installér"
 msgid "Failed to download: %s"
 msgstr "Kunne ikke hente: %s"
 
-#: src/installed-media.vala:80 src/installer-media.vala:199
-msgid "System"
-msgstr "System"
-
-#: src/keys-input-popover.vala:27
+#: src/keys-input-popover.vala:28
 msgid "Ctrl + Alt + Backspace"
 msgstr "Ctrl + Alt + Tilbagetast"
 
-#: src/keys-input-popover.vala:28
+#: src/keys-input-popover.vala:29
 msgid "Ctrl + Alt + Del"
 msgstr "Ctrl + Alt + Del"
 
 #. New section
-#: src/keys-input-popover.vala:32
+#: src/keys-input-popover.vala:33
 msgid "Ctrl + Alt + F1"
 msgstr "Ctrl + Alt + F1"
 
-#: src/keys-input-popover.vala:33
+#: src/keys-input-popover.vala:34
 msgid "Ctrl + Alt + F2"
 msgstr "Ctrl + Alt + F2"
 
-#: src/keys-input-popover.vala:34
+#: src/keys-input-popover.vala:35
 msgid "Ctrl + Alt + F3"
 msgstr "Ctrl + Alt + F3"
 
-#: src/keys-input-popover.vala:35
+#: src/keys-input-popover.vala:36
+#, fuzzy
+msgid "Ctrl + Alt + F6"
+msgstr "Ctrl + Alt + F1"
+
+#: src/keys-input-popover.vala:37
 msgid "Ctrl + Alt + F7"
 msgstr "Ctrl + Alt + F7"
 
-#: src/keys-input-popover.vala:36
+#: src/keys-input-popover.vala:38
 msgid "Ctrl + Alt + F9"
 msgstr "Ctrl + Alt + F9"
 
 #. Translators: Accessibility name for context menu with a set of keyboard combos (that would normally be
 #. intercepted by host/client, to send to the box.
-#: src/keys-input-popover.vala:45
+#: src/keys-input-popover.vala:47
 msgid "Send key combinations"
 msgstr "Send tastekombinationer"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:470
+#: src/libvirt-machine.vala:491
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Gendanner %s fra disken"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:473
+#: src/libvirt-machine.vala:494
 #, c-format
 msgid "Starting %s"
 msgstr "Starter %s"
 
-#: src/libvirt-machine.vala:546
+#: src/libvirt-machine.vala:567
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "Genstart af “%s” varer for længe. Tving den til at lukke?"
 
-#: src/libvirt-machine.vala:549
+#: src/libvirt-machine.vala:570
 msgid "Shutdown"
 msgstr "Sluk"
 
-#: src/libvirt-machine.vala:564
+#: src/libvirt-machine.vala:585
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Kloner “%s” …"
 
-#: src/libvirt-machine.vala:690
+#: src/libvirt-machine.vala:711
 msgid "Installing…"
 msgstr "Installerer …"
 
-#: src/libvirt-machine.vala:692
+#: src/libvirt-machine.vala:713
 msgid "Setting up clone…"
 msgstr "Indstiller klon …"
 
-#: src/libvirt-machine.vala:694
+#: src/libvirt-machine.vala:715
 msgid "Importing…"
 msgstr "Importerer …"
 
@@ -1053,14 +983,9 @@ msgstr "Rapportér programfejl til <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "Hjemmeside for %s: <%s>.\n"
 
-#: src/media-manager.vala:34
+#: src/media-manager.vala:31
 msgid "Media is not supported"
 msgstr "Mediet understøttes ikke"
-
-#: src/media-manager.vala:368
-#, c-format
-msgid "No such file %s"
-msgstr "Der findes ikke nogen fil kaldet %s"
 
 #: src/portals.vala:45
 msgid "Boxes wants to run VM in background"
@@ -1069,6 +994,14 @@ msgstr "Boxes vil køre VM i baggrunden"
 #: src/preferences/cdrom-row.vala:33
 msgid "No CD/DVD image"
 msgstr "Intet cd/dvd-aftryk"
+
+#: src/preferences/cdrom-row.vala:62
+msgid "Select a device or ISO file"
+msgstr "Vælg en enhed eller ISO-fil"
+
+#: src/preferences/cdrom-row.vala:65
+msgid "Open"
+msgstr "Åbn"
 
 #: src/preferences/devices-page.vala:25
 msgid "The Flatpak version of GNOME Boxes does not support USB redirection."
@@ -1080,20 +1013,20 @@ msgid "Turn on your box to see the USB devices available for redirection."
 msgstr "Tænd din boks for at se USB-enheder, som kan omdirigeres."
 
 #. Translators: %s is a recommended value for RAM/storage limit. For example "Recommended 4 GB."
-#: src/preferences/resources-page.vala:81
+#: src/preferences/resources-page.vala:82
 #, c-format
 msgid "Recommended %s."
 msgstr "%s anbefalet."
 
-#: src/preferences/resources-page.vala:159
+#: src/preferences/resources-page.vala:160
 msgid "Boxes is not authorized to run in background"
 msgstr "Boxes har ikke rettigheder til at køre i baggrunden"
 
-#: src/preferences/resources-page.vala:165
+#: src/preferences/resources-page.vala:166
 msgid "Do you want to open Settings to manage application permissions?"
 msgstr "Vil du åbne Indstillinger for at administrere programtilladelser?"
 
-#: src/preferences/resources-page.vala:203
+#: src/preferences/resources-page.vala:204
 msgid ""
 "Editing your box configuration can cause issues to the operating system of "
 "your box. Would you like to create a snapshot to recover from your changes?"
@@ -1102,12 +1035,12 @@ msgstr ""
 "boksens operativsystem. Vil du oprette et øjebliksbillede for at kunne "
 "genoprette efter dine ændringer?"
 
-#: src/preferences/resources-page.vala:269
+#: src/preferences/resources-page.vala:270
 #, c-format
 msgid "Failed to save domain configuration: %s"
 msgstr "Kunne ikke gemme domænekonfigurationen: %s"
 
-#: src/preferences/resources-page.vala:278
+#: src/preferences/resources-page.vala:279
 msgid "Changes to the settings below take effect after you restart your box."
 msgstr ""
 "Ændringer til indstillingerne nedenfor træder i kraft efter genstart af din "
@@ -1200,32 +1133,18 @@ msgstr "Kopierer “%s” til “Hentet”"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: src/unattended-installer.vala:204
+#: src/unattended-installer.vala:174
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr ""
 "Der opstod en fejl under installationsforberedelsen. Lyninstallation "
 "deaktiveret."
 
-#: src/unattended-installer.vala:422
+#: src/unattended-installer.vala:371
 msgid "Downloading device drivers…"
 msgstr "Henter enhedsdrivere …"
 
-#: src/unattended-setup-box.vala:51
-msgid "no password"
-msgstr "ingen adgangskode"
-
-#: src/unattended-setup-box.vala:108
-#, c-format
-msgid "Express installation of %s requires an internet connection."
-msgstr "Lyninstallation af %s kræver en internetforbindelse."
-
-#: src/unattended-setup-box.vala:206
-#, c-format
-msgid "GNOME Boxes credentials for “%s”"
-msgstr "GNOME Boxes-akkreditiver for “%s”"
-
-#: src/util-app.vala:410
+#: src/util-app.vala:414
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1234,11 +1153,11 @@ msgstr ""
 "Din SELinux-kontekst ser forkert ud; du kan prøve at fikse det ved at køre:\n"
 "%s"
 
-#: src/util-app.vala:414
+#: src/util-app.vala:418
 msgid "SELinux not installed?"
 msgstr "SELinux ikke installeret?"
 
-#: src/util-app.vala:496
+#: src/util-app.vala:500
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1246,7 +1165,7 @@ msgstr ""
 "Kunne ikke hente information om lagerpulje for “gnome-boxes” fra libvirt. "
 "Sikr dig at “virsh -c qemu:///session pool-dumpxml gnome-boxes” fungerer."
 
-#: src/util-app.vala:501
+#: src/util-app.vala:505
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
@@ -1255,14 +1174,14 @@ msgstr ""
 "%s kendes hos libvirt som GNOME Boxes' lagerpulje, men dette katalog findes "
 "ikke"
 
-#: src/util-app.vala:505
+#: src/util-app.vala:509
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
 msgstr ""
 "%s kendes hos libvirt som GNOME Boxes' lagerpulje, men er ikke et katalog"
 
-#: src/util-app.vala:509
+#: src/util-app.vala:513
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
@@ -1281,7 +1200,7 @@ msgstr "nej"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:794
+#: src/vm-configurator.vala:791
 msgid "Incapable host system"
 msgstr "Værtssystem understøtter ikke handling"
 
@@ -1290,6 +1209,118 @@ msgstr "Værtssystem understøtter ikke handling"
 #, c-format
 msgid "Box import from file “%s” failed: %s"
 msgstr "Boksimport fra filen “%s” mislykkedes: %s"
+
+#~ msgid "Try a different search"
+#~ msgstr "Prøv en anden søgning"
+
+#~ msgid "Search for an OS or enter a download link…"
+#~ msgstr "Led efter et OS eller indtast et downloadlink …"
+
+#~ msgid "Boxes was unable to identify the operating system on the image file."
+#~ msgstr "Boxes kunne ikke identificere styresystemet i aftryksfilen."
+
+#~ msgid ""
+#~ "It is not advised to try booting an unknown OS, but you may try your luck "
+#~ "forcing a specific kind of OS from the list below:"
+#~ msgstr ""
+#~ "Det anbefales ikke at boote et ukendt styresystem, men du kan prøve at "
+#~ "gennemtvinge et bestemt styresystem fra listen nedenfor:"
+
+#~ msgid "Template"
+#~ msgstr "Skabelon"
+
+#~ msgid "Unknown OS"
+#~ msgstr "Ukendt styresystem"
+
+#~ msgid "Search for an OS…"
+#~ msgstr "Søg efter et styresystem …"
+
+#~ msgid ""
+#~ "A new virtual machine will be created and an operating system installed "
+#~ "into it. Select an operating system source to begin."
+#~ msgstr ""
+#~ "En ny virtuel maskine vil blive oprettet og et styresystem installeret på "
+#~ "den. Vælg en kilde til styresystemet for at begynde."
+
+#~ msgid "Detected Sources"
+#~ msgstr "Registrerede kilder"
+
+#~ msgid ""
+#~ "Create virtual machine from one of the medias detected in your system."
+#~ msgstr ""
+#~ "Opret virtuelle maskiner fra et af medierne registreret på dit system."
+
+#~ msgid "Featured Downloads"
+#~ msgstr "Udvalgte filer til hentning"
+
+#~ msgid "You will be notified when the download has completed."
+#~ msgstr "Du vil få besked, når filen er blevet hentet."
+
+#~ msgid "Create virtual machine from file"
+#~ msgstr "Opret virtuel maskine fra fil"
+
+#~ msgid "Preparing…"
+#~ msgstr "Forbereder …"
+
+#~ msgid "Preparing to create a new box"
+#~ msgstr "Forbereder oprettelse af en ny boks"
+
+#~ msgid "Review and Create"
+#~ msgstr "Gennemgå og opret"
+
+#~ msgid "Boxes is ready to set up a new box with the following properties:"
+#~ msgstr "Boxes er klar til at opsætte en ny boks med følgende indstillinger:"
+
+#~ msgid ""
+#~ "Virtualization extensions are unavailable on your system.\n"
+#~ "Check your BIOS settings to enable them."
+#~ msgstr ""
+#~ "Virtualiseringsudvidelser er ikke tilgængelige på dit system. Se om du "
+#~ "kan slå dem til i dine BIOS-indstillinger."
+
+#~ msgid "Enable EFI"
+#~ msgstr "Aktivér EFI"
+
+#~ msgid "Next"
+#~ msgstr "Næste"
+
+#~ msgid "_Name"
+#~ msgstr "_Navn"
+
+#~ msgid ""
+#~ "Choose express install to automatically preconfigure the box with optimal "
+#~ "settings."
+#~ msgstr ""
+#~ "Vælg lyninstallation for at forkonfigurere boksen automatisk med de "
+#~ "optimale indstillinger."
+
+#~ msgid "Express Install"
+#~ msgstr "Lyninstallation"
+
+#~ msgid "Previous"
+#~ msgstr "Forrige"
+
+#~ msgid "Failed to analyze installer media. Corrupted or incomplete media?"
+#~ msgstr ""
+#~ "Kunne ikke analysere installationsmedie. Beskadiget eller ufærdigt medie?"
+
+#~ msgid "System"
+#~ msgstr "System"
+
+#, c-format
+#~ msgid "No such file %s"
+#~ msgstr "Der findes ikke nogen fil kaldet %s"
+
+#~ msgid "no password"
+#~ msgstr "ingen adgangskode"
+
+#, c-format
+#~ msgid "Express installation of %s requires an internet connection."
+#~ msgstr "Lyninstallation af %s kræver en internetforbindelse."
+
+#, c-format
+#~ msgid "GNOME Boxes credentials for “%s”"
+#~ msgstr "GNOME Boxes-akkreditiver for “%s”"
 
 #~ msgid "Cdrom/dvd Drive"
 #~ msgstr "CDROM/DVD-drev"
@@ -1358,9 +1389,6 @@ msgstr "Boksimport fra filen “%s” mislykkedes: %s"
 
 #~ msgid "Select Items"
 #~ msgstr "Vælg elementer"
-
-#~ msgid "Create a Virtual Machine…"
-#~ msgstr "Opret en virtuel maskine …"
 
 #~ msgid "Connect to a Remote Computer…"
 #~ msgstr "Forbind til en fjerncomputer …"
@@ -1438,17 +1466,11 @@ msgstr "Boksimport fra filen “%s” mislykkedes: %s"
 #~ "Indsæt installationsmedie til operativsystemet eller vælg en kilde "
 #~ "nedenfor"
 
-#~ msgid "Download an OS"
-#~ msgstr "Hent et styresystem"
-
 #~ msgid "▶"
 #~ msgstr "▶"
 
 #~ msgid "Select a file"
 #~ msgstr "Vælg en fil"
-
-#~ msgid "Select a bootable image file to install in a virtual machine."
-#~ msgstr "Vælg et bootaftryk, som skal installeres på en virtuel maskine."
 
 #~ msgid ""
 #~ "Any trademarks shown above are used merely for identification of software "

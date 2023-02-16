@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2022-08-04 10:52+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-16 14:19+0100\n"
 "PO-Revision-Date: 2022-08-28 20:09+0900\n"
 "Last-Translator: Seong-ho Cho <shcho@gnome.org>\n"
 "Language-Team: 한국어 <gnome-kr@googlegroups.com>\n"
@@ -107,7 +107,7 @@ msgstr ""
 msgid "Setup Shared Folders between your system and virtual machines."
 msgstr "시스템과 가상 머신이 공유할 폴더를 설정합니다."
 
-#: data/org.gnome.Boxes.appdata.xml.in:74
+#: data/org.gnome.Boxes.appdata.xml.in:61
 msgid "The GNOME Project"
 msgstr "그놈 프로젝트"
 
@@ -188,183 +188,154 @@ msgstr "박스 사용을 환영합니다"
 msgid "Use the <b>+</b> button to create your first virtual machine."
 msgstr "첫 가상 머신을 만들려면 <b>+</b> 단추를 활용하십시오."
 
+#: data/ui/assistant/assistant.ui:51
+#, fuzzy
+msgid "New Virtual Machine"
+msgstr "가상 머신 만들기"
+
+#: data/ui/assistant/assistant.ui:55
+#: data/ui/preferences/shared-folder-popover.ui:97
+#: data/ui/shared-folder-popover.ui:97 src/preferences/cdrom-row.vala:65
+msgid "Cancel"
+msgstr "취소"
+
+#: data/ui/assistant/assistant.ui:62
+msgid "Create"
+msgstr "만들기"
+
+#: data/ui/assistant/assistant.ui:82 data/ui/preferences/resources-page.ui:12
+#: data/ui/preferences/shared-folder-popover.ui:44
+#: data/ui/shared-folder-popover.ui:44
+msgid "Name"
+msgstr "이름"
+
+#: data/ui/assistant/assistant.ui:95
+msgid "Operating System"
+msgstr "운영 체제"
+
+#: data/ui/assistant/assistant.ui:100
+#, fuzzy
+msgid "Operating System not found"
+msgstr "운영 체제 없음"
+
+#: data/ui/assistant/assistant.ui:123 data/ui/preferences/resources-page.ui:7
+#: data/ui/preferences/resources-page.ui:47
+msgid "Resources"
+msgstr "자원"
+
+#: data/ui/assistant/assistant.ui:128 data/ui/preferences/resources-page.ui:70
+msgid "Memory"
+msgstr "메모리"
+
+#: data/ui/assistant/assistant.ui:134 data/ui/preferences/resources-page.ui:77
+msgid "Storage limit"
+msgstr "저장용량 제한"
+
+#: data/ui/assistant/assistant.ui:171
+#, fuzzy
+msgid "Ops! Something went wrong!"
+msgstr "앗, 뭔가가 잘못됐네요"
+
+#: data/ui/assistant/assistant.ui:204
+#, fuzzy
+msgid "Setting up drivers..."
+msgstr "복제 설치 중…"
+
+#: data/ui/assistant/express-install-row.ui:5 data/ui/welcome-tutorial.ui:49
+msgid "Express Installation"
+msgstr "빠른 설치"
+
+#: data/ui/assistant/express-install-row.ui:6
+#, fuzzy
+msgid "Set credentials for an automatic install of the operating system."
+msgstr "일부 운영체제에서 3D 가속 기능을 지원합니다."
+
+#: data/ui/assistant/express-install-row.ui:16
+msgid "Username"
+msgstr "사용자 이름"
+
+#: data/ui/assistant/express-install-row.ui:32
+msgid "Password"
+msgstr "암호"
+
+#: data/ui/assistant/express-install-row.ui:53
+msgid "Product Key"
+msgstr "제품 키"
+
 #: data/ui/assistant/media-entry.ui:8
 msgid "Unknown media"
 msgstr "알 수 없는 미디어"
 
-#: data/ui/assistant/pages/downloads-page.ui:81
-msgid "No operating systems found"
-msgstr "운영 체제 없음"
-
-#: data/ui/assistant/pages/downloads-page.ui:82
-msgid "Try a different search"
-msgstr "다른 단어로 검색해보십시오"
-
-#: data/ui/assistant/pages/downloads-page.ui:95
-#: src/assistant/downloads-page.vala:59
-msgid "Search for an OS or enter a download link…"
-msgstr "운영체제를 검색하거나 다운로드 링크를 입력하십시오…"
-
-#: data/ui/assistant/pages/identify-os-page.ui:18
-msgid "Boxes was unable to identify the operating system on the image file."
-msgstr "박스에서 이미지 파일의 운영체제를 인식할 수 없습니다."
-
-#: data/ui/assistant/pages/identify-os-page.ui:29
-msgid ""
-"It is not advised to try booting an unknown OS, but you may try your luck "
-"forcing a specific kind of OS from the list below:"
-msgstr ""
-"알 수 없는 운영 체제로의 부팅 시도를 권장하지 않으며, 아래 몇가지 종류의 운"
-"영 체제를 사용하시는게 좋습니다:"
-
-#: data/ui/assistant/pages/identify-os-page.ui:41
-msgid "Template"
-msgstr "서식"
-
-#: data/ui/assistant/pages/identify-os-page.ui:57
-#: src/assistant/identify-os-page.vala:31
-msgid "Unknown OS"
-msgstr "알 수 없는 운영체제"
-
-#: data/ui/assistant/pages/identify-os-popover.ui:19
-msgid "Search for an OS…"
-msgstr "운영체제를 검색하십시오…"
-
-#: data/ui/assistant/pages/index-page.ui:5 data/ui/assistant/vm-assistant.ui:7
-msgid "Create a Virtual Machine"
-msgstr "가상 머신 만들기"
-
-#: data/ui/assistant/pages/index-page.ui:41
-msgid ""
-"A new virtual machine will be created and an operating system installed into "
-"it. Select an operating system source to begin."
-msgstr ""
-"새 가상 머신을 만들고 운영체제를 가상 머신에 설치합니다. 사용을 시작할 운영체"
-"제 원본을 선택하십시오."
-
-#: data/ui/assistant/pages/index-page.ui:54
-msgid "Detected Sources"
-msgstr "찾은 원본"
-
-#: data/ui/assistant/pages/index-page.ui:55
-msgid "Create virtual machine from one of the medias detected in your system."
-msgstr "시스템에서 발견한 미디어 중 하나로 가상 머신을 만듭니다."
-
-#: data/ui/assistant/pages/index-page.ui:72
-msgid "Featured Downloads"
-msgstr "추천 다운로드"
-
-#: data/ui/assistant/pages/index-page.ui:73
-msgid "You will be notified when the download has completed."
-msgstr "다운로드가 끝나면 알려드립니다."
-
-#: data/ui/assistant/pages/index-page.ui:117
-msgid "Create virtual machine from file"
-msgstr "파일로 새 가상 머신 만들기"
-
-#: data/ui/assistant/pages/index-page.ui:134
-msgid "Download an operating system"
-msgstr "운영 체제 다운로드"
-
-#: data/ui/assistant/pages/index-page.ui:135
-msgid "Browse and search for operating systems to install."
-msgstr "설치할 운영체제를 찾아보고 검색합니다."
-
-#: data/ui/assistant/pages/preparation-page.ui:5
-msgid "Preparing…"
-msgstr "준비중…"
-
-#: data/ui/assistant/pages/preparation-page.ui:24
-msgid "Preparing to create a new box"
-msgstr "새 박스 만들기 준비중"
-
-#: data/ui/assistant/pages/review-page.ui:5
-msgid "Review and Create"
-msgstr "검토하고 만들기"
-
-#: data/ui/assistant/pages/review-page.ui:18
-msgid "Boxes is ready to set up a new box with the following properties:"
-msgstr "다음 속성을 따라 새 박스 구성을 준비했습니다:"
-
-#: data/ui/assistant/pages/review-page.ui:45
-msgid ""
-"Virtualization extensions are unavailable on your system.\n"
-"Check your BIOS settings to enable them."
-msgstr ""
-"시스템에서 가상화 확장을 사용할 수 없습니다.\n"
-"BIOS 설정에서 가상화 확장을 활성화했는지 확인하십시오."
-
-#: data/ui/assistant/pages/review-page.ui:78
-msgid "Operating System"
+#: data/ui/assistant/os-chooser-row.ui:4
+#, fuzzy
+msgid "Select an Operating System"
 msgstr "운영 체제"
 
-#: data/ui/assistant/pages/review-page.ui:94
-#: data/ui/preferences/resources-page.ui:90
-msgid "Memory"
-msgstr "메모리"
+#: data/ui/assistant/os-chooser-row.ui:24
+#, fuzzy
+msgid "Search for an operating system…"
+msgstr "운영 체제 다운로드"
 
-#: data/ui/assistant/pages/review-page.ui:101
-#: data/ui/preferences/resources-page.ui:97
-msgid "Storage limit"
-msgstr "저장용량 제한"
+#: data/ui/assistant/os-downloader.ui:4
+#, fuzzy
+msgid "Search for an Operating System"
+msgstr "운영 체제"
 
-#: data/ui/assistant/pages/review-page.ui:107
-#: data/ui/unattended-setup-box.ui:69 src/unattended-installer.vala:270
-msgid "Username"
-msgstr "사용자 이름"
-
-#: data/ui/assistant/pages/review-page.ui:123
-#: data/ui/unattended-setup-box.ui:85 src/unattended-installer.vala:271
-msgid "Password"
-msgstr "암호"
-
-#: data/ui/assistant/pages/review-page.ui:141
-msgid "Enable EFI"
-msgstr "EFI 사용"
-
-#: data/ui/assistant/pages/setup-page.ui:5 data/ui/welcome-tutorial.ui:49
-msgid "Express Installation"
-msgstr "빠른 설치"
-
-#: data/ui/assistant/vm-assistant.ui:54
-#: data/ui/preferences/shared-folder-popover.ui:97
-#: data/ui/shared-folder-popover.ui:97 src/assistant/index-page.vala:120
-#: src/assistant/index-page.vala:168 src/assistant/vm-assistant.vala:72
-#: src/preferences/cdrom-row.vala:65
-msgid "Cancel"
-msgstr "취소"
-
-#: data/ui/assistant/vm-assistant.ui:61 src/assistant/vm-assistant.vala:75
-msgid "Next"
-msgstr "다음"
+#: data/ui/assistant/os-downloader.ui:13
+#, fuzzy
+msgid "Download an Operating System"
+msgstr "운영 체제 다운로드"
 
 #: data/ui/collection-toolbar.ui:22
 msgid "New"
 msgstr "새로 만들기"
 
-#: data/ui/collection-toolbar.ui:46 data/ui/display-toolbar.ui:29
+#: data/ui/collection-toolbar.ui:58 data/ui/display-toolbar.ui:29
 msgid "Back"
 msgstr "뒤로"
 
-#: data/ui/collection-toolbar.ui:69
+#: data/ui/collection-toolbar.ui:81
 msgid "Application Menu"
 msgstr "프로그램 메뉴"
 
-#: data/ui/collection-toolbar.ui:97
+#: data/ui/collection-toolbar.ui:109
 msgid "List view"
 msgstr "목록 보기"
 
-#: data/ui/collection-toolbar.ui:125
+#: data/ui/collection-toolbar.ui:137
 msgid "Grid view"
 msgstr "바둑판식 보기"
 
-#: data/ui/collection-toolbar.ui:152
+#: data/ui/collection-toolbar.ui:164
 msgid "Search"
 msgstr "검색"
 
-#: data/ui/collection-toolbar.ui:179
+#: data/ui/collection-toolbar.ui:191
 msgid "Downloads"
 msgstr "다운로드"
+
+#: data/ui/collection-toolbar.ui:213
+#, fuzzy
+msgid "Create new virtual machine"
+msgstr "새 가상 머신 만들기"
+
+#: data/ui/collection-toolbar.ui:220
+msgid "Install from File"
+msgstr ""
+
+#: data/ui/collection-toolbar.ui:221
+#, fuzzy
+msgid "Select an .iso or .qcow2 file to install a virtual machine."
+msgstr "가상 머신에 설치하려면 부팅 가능한 이미지 파일을 선택하십시오."
+
+#: data/ui/collection-toolbar.ui:237
+#, fuzzy
+msgid "Download OS"
+msgstr "운영체제 다운로드"
+
+#: data/ui/collection-toolbar.ui:238
+msgid "Browse and search for operating systems to install."
+msgstr "설치할 운영체제를 찾아보고 검색합니다."
 
 #: data/ui/display-page.ui:96
 msgid "Ready to Receive File"
@@ -496,48 +467,39 @@ msgstr "USB 장치"
 msgid "CDROM/DVD Drive"
 msgstr "CDROM/DVD 드라이브"
 
-#: data/ui/preferences/resources-page.ui:7
-#: data/ui/preferences/resources-page.ui:67
-msgid "Resources"
-msgstr "자원"
-
-#: data/ui/preferences/resources-page.ui:22
-msgid "_Name"
-msgstr "이름(_N)"
-
-#: data/ui/preferences/resources-page.ui:48
+#: data/ui/preferences/resources-page.ui:28
 msgid "IP Address"
 msgstr "IP 주소"
 
-#: data/ui/preferences/resources-page.ui:73
+#: data/ui/preferences/resources-page.ui:53
 msgid "CPUs"
 msgstr "CPU"
 
-#: data/ui/preferences/resources-page.ui:106
+#: data/ui/preferences/resources-page.ui:86
 msgid "3D acceleration"
 msgstr "3D 가속"
 
-#: data/ui/preferences/resources-page.ui:129
+#: data/ui/preferences/resources-page.ui:109
 msgid "Allow running in background"
 msgstr "백그라운드 실행 허용"
 
-#: data/ui/preferences/resources-page.ui:147
+#: data/ui/preferences/resources-page.ui:127
 msgid "Configuration"
 msgstr "설정"
 
-#: data/ui/preferences/resources-page.ui:152
+#: data/ui/preferences/resources-page.ui:132
 msgid "Troubleshooting Logs"
 msgstr "문제 해결 로그"
 
-#: data/ui/preferences/resources-page.ui:153
+#: data/ui/preferences/resources-page.ui:133
 msgid "Diagnose problems with your box using the log file."
 msgstr "로그 파일을 활용하여 박스 문제를 진단합니다."
 
-#: data/ui/preferences/resources-page.ui:175
+#: data/ui/preferences/resources-page.ui:155
 msgid "Edit Configuration"
 msgstr "설정 편집"
 
-#: data/ui/preferences/resources-page.ui:176
+#: data/ui/preferences/resources-page.ui:156
 msgid "Edit the Libvirt domain configuration for this box."
 msgstr "이 박스의 libvirt 도메인 설정을 편집합니다."
 
@@ -545,11 +507,6 @@ msgstr "이 박스의 libvirt 도메인 설정을 편집합니다."
 #: data/ui/shared-folder-popover.ui:29
 msgid "Local Folder"
 msgstr "로컬 폴더"
-
-#: data/ui/preferences/shared-folder-popover.ui:44
-#: data/ui/shared-folder-popover.ui:44
-msgid "Name"
-msgstr "이름"
 
 #: data/ui/preferences/shared-folder-popover.ui:70
 #: data/ui/shared-folder-popover.ui:70
@@ -587,6 +544,11 @@ msgstr "스냅샷"
 msgid "Creating new snapshot…"
 msgstr "새 스냅샷 만드는 중…"
 
+#: data/ui/searchbar.ui:10
+#, fuzzy
+msgid "Search for a virtual machine…"
+msgstr "가상 머신 만들기…"
+
 #: data/ui/toast.ui:34 src/app.vala:601
 #: src/preferences/snapshot-list-row.vala:157
 msgid "Undo"
@@ -599,22 +561,6 @@ msgstr "앗, 뭔가가 잘못됐네요"
 #: data/ui/troubleshoot-view.ui:58
 msgid "Boxes cannot access the virtualization backend."
 msgstr "박스에서 가상화 백엔드에 접근할 수 없습니다."
-
-#: data/ui/unattended-setup-box.ui:47
-msgid ""
-"Choose express install to automatically preconfigure the box with optimal "
-"settings."
-msgstr ""
-"박스를 최적의 설정으로 자동으로 미리 설정하려면 빠른 설치를 선택합니다."
-
-#. Translators: 'Express Install' means that the new box installation will be fully automated, the user won't be asked anything while it's performed.
-#: data/ui/unattended-setup-box.ui:53
-msgid "Express Install"
-msgstr "빠른 설치"
-
-#: data/ui/unattended-setup-box.ui:107
-msgid "Product Key"
-msgstr "제품 키"
 
 #: data/ui/welcome-tutorial.ui:7
 msgid "Welcome Tutorial"
@@ -797,17 +743,10 @@ msgstr "취소(_C)"
 msgid "_Open"
 msgstr "열기(_O)"
 
-#: src/assistant/index-page.vala:165 src/preferences/cdrom-row.vala:62
-msgid "Select a device or ISO file"
-msgstr "장치 또는 ISO 파일을 선택하십시오"
-
-#: src/assistant/index-page.vala:168 src/preferences/cdrom-row.vala:65
-msgid "Open"
-msgstr "열기"
-
-#: src/assistant/index-page.vala:188 src/assistant/vm-assistant.vala:72
-msgid "Previous"
-msgstr "이전"
+#: src/assistant/assistant.vala:137
+#, fuzzy, c-format
+msgid "Failed to prepare express installation: %s"
+msgstr "스냅샷 이름 바꾸기 실패: %s"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
@@ -828,14 +767,6 @@ msgstr "64비트 x86 시스템"
 #, c-format
 msgid " from %s"
 msgstr " %s에서"
-
-#: src/assistant/vm-assistant.vala:62
-msgid "Failed to analyze installer media. Corrupted or incomplete media?"
-msgstr "설치 미디어 분석에 실패했습니다. 깨졌거나 호환성 없는 미디어입니까?"
-
-#: src/assistant/vm-assistant.vala:75
-msgid "Create"
-msgstr "만들기"
 
 #: src/display-page.vala:127
 msgid "Press (left) Ctrl+Alt to ungrab"
@@ -874,80 +805,81 @@ msgstr "설치"
 msgid "Failed to download: %s"
 msgstr "다운로드 실패: %s"
 
-#: src/installed-media.vala:80 src/installer-media.vala:199
-msgid "System"
-msgstr "시스템"
-
-#: src/keys-input-popover.vala:27
+#: src/keys-input-popover.vala:28
 msgid "Ctrl + Alt + Backspace"
 msgstr "Ctrl + Alt + 백스페이스"
 
-#: src/keys-input-popover.vala:28
+#: src/keys-input-popover.vala:29
 msgid "Ctrl + Alt + Del"
 msgstr "Ctrl + Alt + Del"
 
 #. New section
-#: src/keys-input-popover.vala:32
+#: src/keys-input-popover.vala:33
 msgid "Ctrl + Alt + F1"
 msgstr "Ctrl + Alt + F1"
 
-#: src/keys-input-popover.vala:33
+#: src/keys-input-popover.vala:34
 msgid "Ctrl + Alt + F2"
 msgstr "Ctrl + Alt + F2"
 
-#: src/keys-input-popover.vala:34
+#: src/keys-input-popover.vala:35
 msgid "Ctrl + Alt + F3"
 msgstr "Ctrl + Alt + F3"
 
-#: src/keys-input-popover.vala:35
+#: src/keys-input-popover.vala:36
+#, fuzzy
+msgid "Ctrl + Alt + F6"
+msgstr "Ctrl + Alt + F1"
+
+#: src/keys-input-popover.vala:37
 msgid "Ctrl + Alt + F7"
 msgstr "Ctrl + Alt + F7"
 
-#: src/keys-input-popover.vala:36
+#: src/keys-input-popover.vala:38
 msgid "Ctrl + Alt + F9"
 msgstr "Ctrl + Alt + F9"
 
 #. Translators: Accessibility name for context menu with a set of keyboard combos (that would normally be
 #. intercepted by host/client, to send to the box.
-#: src/keys-input-popover.vala:45
+#: src/keys-input-popover.vala:47
 msgid "Send key combinations"
 msgstr "키 조합 보내기"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:470
+#: src/libvirt-machine.vala:491
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "디스크에서 %s 복원중"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:473
+#: src/libvirt-machine.vala:494
 #, c-format
 msgid "Starting %s"
 msgstr "%s 시작중"
 
-#: src/libvirt-machine.vala:546
+#: src/libvirt-machine.vala:567
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "“%s” 다시 시작이 상당히 오래걸립니다. 강제로 끄시겠습니까?"
 
-#: src/libvirt-machine.vala:549
+#: src/libvirt-machine.vala:570
 msgid "Shutdown"
 msgstr "강제로 끄기"
 
-#: src/libvirt-machine.vala:564
+#: src/libvirt-machine.vala:585
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "“%s” 복제 중…"
 
-#: src/libvirt-machine.vala:690
+#: src/libvirt-machine.vala:711
 msgid "Installing…"
 msgstr "설치 중…"
 
-#: src/libvirt-machine.vala:692
+#: src/libvirt-machine.vala:713
 msgid "Setting up clone…"
 msgstr "복제 설치 중…"
 
-#: src/libvirt-machine.vala:694
+#: src/libvirt-machine.vala:715
 msgid "Importing…"
 msgstr "가져오는 중…"
 
@@ -1039,14 +971,9 @@ msgstr "<%s>에게 버그를 알려주십시오.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "%s의 홈페이지: <%s>.\n"
 
-#: src/media-manager.vala:34
+#: src/media-manager.vala:31
 msgid "Media is not supported"
 msgstr "미디어를 지원하지 않습니다"
-
-#: src/media-manager.vala:368
-#, c-format
-msgid "No such file %s"
-msgstr "%s 파일이 없습니다"
 
 #: src/portals.vala:45
 msgid "Boxes wants to run VM in background"
@@ -1055,6 +982,14 @@ msgstr "박스에서 가상 머신을 백그라운드에서 실행하려고 합�
 #: src/preferences/cdrom-row.vala:33
 msgid "No CD/DVD image"
 msgstr "CD/DVD 이미지 아님"
+
+#: src/preferences/cdrom-row.vala:62
+msgid "Select a device or ISO file"
+msgstr "장치 또는 ISO 파일을 선택하십시오"
+
+#: src/preferences/cdrom-row.vala:65
+msgid "Open"
+msgstr "열기"
 
 #: src/preferences/devices-page.vala:25
 msgid "The Flatpak version of GNOME Boxes does not support USB redirection."
@@ -1065,20 +1000,20 @@ msgid "Turn on your box to see the USB devices available for redirection."
 msgstr "입력을 전달할 수 있는 USB 장치를 보려면 박스를 켜십시오."
 
 #. Translators: %s is a recommended value for RAM/storage limit. For example "Recommended 4 GB."
-#: src/preferences/resources-page.vala:81
+#: src/preferences/resources-page.vala:82
 #, c-format
 msgid "Recommended %s."
 msgstr "%s을(를) 권장합니다."
 
-#: src/preferences/resources-page.vala:159
+#: src/preferences/resources-page.vala:160
 msgid "Boxes is not authorized to run in background"
 msgstr "박스의 백그라운드 실행을 허용하지 않았습니다"
 
-#: src/preferences/resources-page.vala:165
+#: src/preferences/resources-page.vala:166
 msgid "Do you want to open Settings to manage application permissions?"
 msgstr "프로그램 권한을 관리할 설정을 여시겠습니까?"
 
-#: src/preferences/resources-page.vala:203
+#: src/preferences/resources-page.vala:204
 msgid ""
 "Editing your box configuration can cause issues to the operating system of "
 "your box. Would you like to create a snapshot to recover from your changes?"
@@ -1086,12 +1021,12 @@ msgstr ""
 "박스 설정을 편집하면 박스 운영체제에 문제를 야기할 수 있습니다. 바뀐 내용을 "
 "복원할 스냅샷을 만드시겠습니까?"
 
-#: src/preferences/resources-page.vala:269
+#: src/preferences/resources-page.vala:270
 #, c-format
 msgid "Failed to save domain configuration: %s"
 msgstr "도메인 설정 저장 실패: %s"
 
-#: src/preferences/resources-page.vala:278
+#: src/preferences/resources-page.vala:279
 msgid "Changes to the settings below take effect after you restart your box."
 msgstr "바뀐 설정은 박스를 다시 시작한 다음에 적용됩니다."
 
@@ -1180,30 +1115,16 @@ msgstr "“%s” 파일을 “다운로드”폴더로 복사중"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: src/unattended-installer.vala:204
+#: src/unattended-installer.vala:174
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr "설치 준비중 오류가 발생했습니다. 빠른 설치를 비활성화했습니다."
 
-#: src/unattended-installer.vala:422
+#: src/unattended-installer.vala:371
 msgid "Downloading device drivers…"
 msgstr "장치 드라이버 다운로드 중…"
 
-#: src/unattended-setup-box.vala:51
-msgid "no password"
-msgstr "암호 없음"
-
-#: src/unattended-setup-box.vala:108
-#, c-format
-msgid "Express installation of %s requires an internet connection."
-msgstr "%s 고속 설치는 인터넷 연결이 필요합니다."
-
-#: src/unattended-setup-box.vala:206
-#, c-format
-msgid "GNOME Boxes credentials for “%s”"
-msgstr "“%s” 그놈 박스 자격 정보"
-
-#: src/util-app.vala:410
+#: src/util-app.vala:414
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1213,11 +1134,11 @@ msgstr ""
 "다:\n"
 "%s"
 
-#: src/util-app.vala:414
+#: src/util-app.vala:418
 msgid "SELinux not installed?"
 msgstr "SELinux를 설치하지 않았습니까?"
 
-#: src/util-app.vala:496
+#: src/util-app.vala:500
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1225,7 +1146,7 @@ msgstr ""
 "libvirt에서 “gnome-boxes” 저장소 풀 정보를 가져올 수 없습니다. “virsh -c "
 "qemu:///session pool-dumpxml gnome-boxes” 명령이 동작하는지 확인하십시오."
 
-#: src/util-app.vala:501
+#: src/util-app.vala:505
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
@@ -1234,14 +1155,14 @@ msgstr ""
 "%s은(는) libvirt에서 그놈 박스 저장소 풀로 알고 있지만, 해당 디렉터리가 없습"
 "니다"
 
-#: src/util-app.vala:505
+#: src/util-app.vala:509
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
 msgstr ""
 "%s은(는) libvirt에서 그놈 박스 저장소 풀로 알고 있지만 디렉터리가 아닙니다"
 
-#: src/util-app.vala:509
+#: src/util-app.vala:513
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
@@ -1260,7 +1181,7 @@ msgstr "아니요"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:794
+#: src/vm-configurator.vala:791
 msgid "Incapable host system"
 msgstr "사용할 수 없는 호스트 시스템"
 
@@ -1269,6 +1190,115 @@ msgstr "사용할 수 없는 호스트 시스템"
 #, c-format
 msgid "Box import from file “%s” failed: %s"
 msgstr "“%s” 파일에서 박스 가져오기 실패: %s"
+
+#~ msgid "Try a different search"
+#~ msgstr "다른 단어로 검색해보십시오"
+
+#~ msgid "Search for an OS or enter a download link…"
+#~ msgstr "운영체제를 검색하거나 다운로드 링크를 입력하십시오…"
+
+#~ msgid "Boxes was unable to identify the operating system on the image file."
+#~ msgstr "박스에서 이미지 파일의 운영체제를 인식할 수 없습니다."
+
+#~ msgid ""
+#~ "It is not advised to try booting an unknown OS, but you may try your luck "
+#~ "forcing a specific kind of OS from the list below:"
+#~ msgstr ""
+#~ "알 수 없는 운영 체제로의 부팅 시도를 권장하지 않으며, 아래 몇가지 종류의 "
+#~ "운영 체제를 사용하시는게 좋습니다:"
+
+#~ msgid "Template"
+#~ msgstr "서식"
+
+#~ msgid "Unknown OS"
+#~ msgstr "알 수 없는 운영체제"
+
+#~ msgid "Search for an OS…"
+#~ msgstr "운영체제를 검색하십시오…"
+
+#~ msgid ""
+#~ "A new virtual machine will be created and an operating system installed "
+#~ "into it. Select an operating system source to begin."
+#~ msgstr ""
+#~ "새 가상 머신을 만들고 운영체제를 가상 머신에 설치합니다. 사용을 시작할 운"
+#~ "영체제 원본을 선택하십시오."
+
+#~ msgid "Detected Sources"
+#~ msgstr "찾은 원본"
+
+#~ msgid ""
+#~ "Create virtual machine from one of the medias detected in your system."
+#~ msgstr "시스템에서 발견한 미디어 중 하나로 가상 머신을 만듭니다."
+
+#~ msgid "Featured Downloads"
+#~ msgstr "추천 다운로드"
+
+#~ msgid "You will be notified when the download has completed."
+#~ msgstr "다운로드가 끝나면 알려드립니다."
+
+#~ msgid "Create virtual machine from file"
+#~ msgstr "파일로 새 가상 머신 만들기"
+
+#~ msgid "Preparing…"
+#~ msgstr "준비중…"
+
+#~ msgid "Preparing to create a new box"
+#~ msgstr "새 박스 만들기 준비중"
+
+#~ msgid "Review and Create"
+#~ msgstr "검토하고 만들기"
+
+#~ msgid "Boxes is ready to set up a new box with the following properties:"
+#~ msgstr "다음 속성을 따라 새 박스 구성을 준비했습니다:"
+
+#~ msgid ""
+#~ "Virtualization extensions are unavailable on your system.\n"
+#~ "Check your BIOS settings to enable them."
+#~ msgstr ""
+#~ "시스템에서 가상화 확장을 사용할 수 없습니다.\n"
+#~ "BIOS 설정에서 가상화 확장을 활성화했는지 확인하십시오."
+
+#~ msgid "Enable EFI"
+#~ msgstr "EFI 사용"
+
+#~ msgid "Next"
+#~ msgstr "다음"
+
+#~ msgid "_Name"
+#~ msgstr "이름(_N)"
+
+#~ msgid ""
+#~ "Choose express install to automatically preconfigure the box with optimal "
+#~ "settings."
+#~ msgstr ""
+#~ "박스를 최적의 설정으로 자동으로 미리 설정하려면 빠른 설치를 선택합니다."
+
+#~ msgid "Express Install"
+#~ msgstr "빠른 설치"
+
+#~ msgid "Previous"
+#~ msgstr "이전"
+
+#~ msgid "Failed to analyze installer media. Corrupted or incomplete media?"
+#~ msgstr "설치 미디어 분석에 실패했습니다. 깨졌거나 호환성 없는 미디어입니까?"
+
+#~ msgid "System"
+#~ msgstr "시스템"
+
+#, c-format
+#~ msgid "No such file %s"
+#~ msgstr "%s 파일이 없습니다"
+
+#~ msgid "no password"
+#~ msgstr "암호 없음"
+
+#, c-format
+#~ msgid "Express installation of %s requires an internet connection."
+#~ msgstr "%s 고속 설치는 인터넷 연결이 필요합니다."
+
+#, c-format
+#~ msgid "GNOME Boxes credentials for “%s”"
+#~ msgstr "“%s” 그놈 박스 자격 정보"
 
 #~ msgid "GNOME Boxes"
 #~ msgstr "그놈 박스"
@@ -1554,17 +1584,11 @@ msgstr "“%s” 파일에서 박스 가져오기 실패: %s"
 #~ msgid "Insert operating system installation media or select a source below"
 #~ msgstr "운영체제 설치 미디어를 넣거나 아래의 소스를 선택합니다"
 
-#~ msgid "Download an OS"
-#~ msgstr "운영체제 다운로드"
-
 #~ msgid "▶"
 #~ msgstr "▶"
 
 #~ msgid "Select a file"
 #~ msgstr "파일을 선택 하십시오"
-
-#~ msgid "Select a bootable image file to install in a virtual machine."
-#~ msgstr "가상 머신에 설치하려면 부팅 가능한 이미지 파일을 선택하십시오."
 
 #~ msgid ""
 #~ "Any trademarks shown above are used merely for identification of software "
@@ -1612,9 +1636,6 @@ msgstr "“%s” 파일에서 박스 가져오기 실패: %s"
 
 #~ msgid "Connect"
 #~ msgstr "연결"
-
-#~ msgid "Create a Virtual Machine…"
-#~ msgstr "가상 머신 만들기…"
 
 #~ msgid "Connect to a Remote Computer…"
 #~ msgstr "원격 컴퓨터에 연결…"

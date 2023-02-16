@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GNOME-Boxes\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2023-01-28 12:47+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-16 14:19+0100\n"
 "PO-Revision-Date: 2023-02-05 11:11+0200\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
 "Language-Team: Hebrew <>\n"
@@ -181,183 +181,154 @@ msgstr "ברוך בואך אל קופסאות"
 msgid "Use the <b>+</b> button to create your first virtual machine."
 msgstr "הכפתור <b>+</b> ישמש אותך ליצירת המכונה הווירטואלית הראשונה שלך."
 
+#: data/ui/assistant/assistant.ui:51
+#, fuzzy
+msgid "New Virtual Machine"
+msgstr "יצירת מכונה וירטואלית"
+
+#: data/ui/assistant/assistant.ui:55
+#: data/ui/preferences/shared-folder-popover.ui:97
+#: data/ui/shared-folder-popover.ui:97 src/preferences/cdrom-row.vala:65
+msgid "Cancel"
+msgstr "ביטול"
+
+#: data/ui/assistant/assistant.ui:62
+msgid "Create"
+msgstr "יצירה"
+
+#: data/ui/assistant/assistant.ui:82 data/ui/preferences/resources-page.ui:12
+#: data/ui/preferences/shared-folder-popover.ui:44
+#: data/ui/shared-folder-popover.ui:44
+msgid "Name"
+msgstr "שם"
+
+#: data/ui/assistant/assistant.ui:95
+msgid "Operating System"
+msgstr "מערכת הפעלה"
+
+#: data/ui/assistant/assistant.ui:100
+#, fuzzy
+msgid "Operating System not found"
+msgstr "הורדת מערכת הפעלה"
+
+#: data/ui/assistant/assistant.ui:123 data/ui/preferences/resources-page.ui:7
+#: data/ui/preferences/resources-page.ui:47
+msgid "Resources"
+msgstr "משאבים"
+
+#: data/ui/assistant/assistant.ui:128 data/ui/preferences/resources-page.ui:70
+msgid "Memory"
+msgstr "זיכרון"
+
+#: data/ui/assistant/assistant.ui:134 data/ui/preferences/resources-page.ui:77
+msgid "Storage limit"
+msgstr "מגבלת אחסון"
+
+#: data/ui/assistant/assistant.ui:171
+#, fuzzy
+msgid "Ops! Something went wrong!"
+msgstr "אופס, משהו השתבש"
+
+#: data/ui/assistant/assistant.ui:204
+#, fuzzy
+msgid "Setting up drivers..."
+msgstr "הגדרת שיבוט…"
+
+#: data/ui/assistant/express-install-row.ui:5 data/ui/welcome-tutorial.ui:49
+msgid "Express Installation"
+msgstr "התקנה מהירה"
+
+#: data/ui/assistant/express-install-row.ui:6
+#, fuzzy
+msgid "Set credentials for an automatic install of the operating system."
+msgstr "האצה תלת־ממדית לחלק ממערכות ההפעלה הנתמכות."
+
+#: data/ui/assistant/express-install-row.ui:16
+msgid "Username"
+msgstr "שם משתמש"
+
+#: data/ui/assistant/express-install-row.ui:32
+msgid "Password"
+msgstr "ססמה"
+
+#: data/ui/assistant/express-install-row.ui:53
+msgid "Product Key"
+msgstr "מפתח המוצר"
+
 #: data/ui/assistant/media-entry.ui:8
 msgid "Unknown media"
 msgstr "מדיה בלתי מוכרת"
 
-#: data/ui/assistant/pages/downloads-page.ui:81
-msgid "No operating systems found"
-msgstr "לא נמצאה מערכת הפעלה"
-
-#: data/ui/assistant/pages/downloads-page.ui:82
-msgid "Try a different search"
-msgstr "כדאי לנסות חיפוש אחר"
-
-#: data/ui/assistant/pages/downloads-page.ui:95
-#: src/assistant/downloads-page.vala:59
-msgid "Search for an OS or enter a download link…"
-msgstr "חיפוש אחר מערכת הפעלה או מילוי כתובת הורדה…"
-
-#: data/ui/assistant/pages/identify-os-page.ui:18
-msgid "Boxes was unable to identify the operating system on the image file."
-msgstr "לקופסאות לא הייתה אפשרות לזהות את מערכת ההפעלה בקובץ הדמות."
-
-#: data/ui/assistant/pages/identify-os-page.ui:29
-msgid ""
-"It is not advised to try booting an unknown OS, but you may try your luck "
-"forcing a specific kind of OS from the list below:"
-msgstr ""
-"לא מומלץ לנסות להפעיל מערכת הפעלה בלתי מוכרת אך אפשר לנסות את מזלך באילוץ "
-"סוג מסוים של מערכת הפעלה מהרשימה שלהלן:"
-
-#: data/ui/assistant/pages/identify-os-page.ui:41
-msgid "Template"
-msgstr "תבנית"
-
-#: data/ui/assistant/pages/identify-os-page.ui:57
-#: src/assistant/identify-os-page.vala:31
-msgid "Unknown OS"
-msgstr "מערכת הפעלה לא ידועה"
-
-#: data/ui/assistant/pages/identify-os-popover.ui:19
-msgid "Search for an OS…"
-msgstr "חיפוש אחר מערכת הפעלה…"
-
-#: data/ui/assistant/pages/index-page.ui:5 data/ui/assistant/vm-assistant.ui:7
-msgid "Create a Virtual Machine"
-msgstr "יצירת מכונה וירטואלית"
-
-#: data/ui/assistant/pages/index-page.ui:41
-msgid ""
-"A new virtual machine will be created and an operating system installed into "
-"it. Select an operating system source to begin."
-msgstr ""
-"תיווצר מכונה וירטואלית חדשה ועליה תוקם מערכת הפעלה. נא לבחור מקור מערכת "
-"הפעלה כדי להתחיל."
-
-#: data/ui/assistant/pages/index-page.ui:54
-msgid "Detected Sources"
-msgstr "מקורות שזוהו"
-
-#: data/ui/assistant/pages/index-page.ui:55
-msgid "Create virtual machine from one of the medias detected in your system."
-msgstr "יצירת מכונה וירטואלית מאחד מאמצעי האחסון שזוהו על ידי המערכת שלך."
-
-#: data/ui/assistant/pages/index-page.ui:72
-msgid "Featured Downloads"
-msgstr "הורדות מובילות"
-
-#: data/ui/assistant/pages/index-page.ui:73
-msgid "You will be notified when the download has completed."
-msgstr "תופיע התראה עם השלמת ההורדה."
-
-#: data/ui/assistant/pages/index-page.ui:117
-msgid "Create virtual machine from file"
-msgstr "יצירת מכונה וירטואלית מקובץ"
-
-#: data/ui/assistant/pages/index-page.ui:134
-msgid "Download an operating system"
-msgstr "הורדת מערכת הפעלה"
-
-#: data/ui/assistant/pages/index-page.ui:135
-msgid "Browse and search for operating systems to install."
-msgstr "עיון וחיפוש מערכות הפעלה להתקנה."
-
-#: data/ui/assistant/pages/preparation-page.ui:5
-msgid "Preparing…"
-msgstr "מתבצעות הכנות…"
-
-#: data/ui/assistant/pages/preparation-page.ui:24
-msgid "Preparing to create a new box"
-msgstr "מתבצעות הכנות ליצירת קופסה חדשה"
-
-#: data/ui/assistant/pages/review-page.ui:5
-msgid "Review and Create"
-msgstr "סקירה ויצירה"
-
-#: data/ui/assistant/pages/review-page.ui:18
-msgid "Boxes is ready to set up a new box with the following properties:"
-msgstr "תכנית הקופסאות מוכנה ליצירת קופסה חדשה עם המאפיינים הבאים:"
-
-#: data/ui/assistant/pages/review-page.ui:45
-msgid ""
-"Virtualization extensions are unavailable on your system.\n"
-"Check your BIOS settings to enable them."
-msgstr ""
-"הרחבות ההדמיה אינן זמינות במערכת שלך.\n"
-"יש לבדוק בהגדרות ה־BIOS ולאפשר אותן."
-
-#: data/ui/assistant/pages/review-page.ui:78
-msgid "Operating System"
+#: data/ui/assistant/os-chooser-row.ui:4
+#, fuzzy
+msgid "Select an Operating System"
 msgstr "מערכת הפעלה"
 
-#: data/ui/assistant/pages/review-page.ui:94
-#: data/ui/preferences/resources-page.ui:70
-msgid "Memory"
-msgstr "זיכרון"
+#: data/ui/assistant/os-chooser-row.ui:24
+#, fuzzy
+msgid "Search for an operating system…"
+msgstr "הורדת מערכת הפעלה"
 
-#: data/ui/assistant/pages/review-page.ui:101
-#: data/ui/preferences/resources-page.ui:77
-msgid "Storage limit"
-msgstr "מגבלת אחסון"
+#: data/ui/assistant/os-downloader.ui:4
+#, fuzzy
+msgid "Search for an Operating System"
+msgstr "מערכת הפעלה"
 
-#: data/ui/assistant/pages/review-page.ui:107
-#: data/ui/unattended-setup-box.ui:69 src/unattended-installer.vala:270
-msgid "Username"
-msgstr "שם משתמש"
-
-#: data/ui/assistant/pages/review-page.ui:123
-#: data/ui/unattended-setup-box.ui:85 src/unattended-installer.vala:271
-msgid "Password"
-msgstr "ססמה"
-
-#: data/ui/assistant/pages/review-page.ui:141
-msgid "Enable EFI"
-msgstr "הפעלת EFI"
-
-#: data/ui/assistant/pages/setup-page.ui:5 data/ui/welcome-tutorial.ui:49
-msgid "Express Installation"
-msgstr "התקנה מהירה"
-
-#: data/ui/assistant/vm-assistant.ui:54
-#: data/ui/preferences/shared-folder-popover.ui:97
-#: data/ui/shared-folder-popover.ui:97 src/assistant/index-page.vala:131
-#: src/assistant/index-page.vala:179 src/assistant/vm-assistant.vala:72
-#: src/preferences/cdrom-row.vala:65
-msgid "Cancel"
-msgstr "ביטול"
-
-#: data/ui/assistant/vm-assistant.ui:61 src/assistant/vm-assistant.vala:75
-msgid "Next"
-msgstr "הבא"
+#: data/ui/assistant/os-downloader.ui:13
+#, fuzzy
+msgid "Download an Operating System"
+msgstr "הורדת מערכת הפעלה"
 
 #: data/ui/collection-toolbar.ui:22
 msgid "New"
 msgstr "חדש"
 
-#: data/ui/collection-toolbar.ui:46 data/ui/display-toolbar.ui:29
+#: data/ui/collection-toolbar.ui:58 data/ui/display-toolbar.ui:29
 msgid "Back"
 msgstr "חזרה"
 
-#: data/ui/collection-toolbar.ui:69
+#: data/ui/collection-toolbar.ui:81
 msgid "Application Menu"
 msgstr "תפריט יישומים"
 
-#: data/ui/collection-toolbar.ui:97
+#: data/ui/collection-toolbar.ui:109
 msgid "List view"
 msgstr "תצוגת רשימה"
 
-#: data/ui/collection-toolbar.ui:125
+#: data/ui/collection-toolbar.ui:137
 msgid "Grid view"
 msgstr "תצוגת רשת"
 
-#: data/ui/collection-toolbar.ui:152
+#: data/ui/collection-toolbar.ui:164
 msgid "Search"
 msgstr "חיפוש"
 
-#: data/ui/collection-toolbar.ui:179
+#: data/ui/collection-toolbar.ui:191
 msgid "Downloads"
 msgstr "הורדות"
+
+#: data/ui/collection-toolbar.ui:213
+#, fuzzy
+msgid "Create new virtual machine"
+msgstr "יצירת מכונה וירטואלית חדשה"
+
+#: data/ui/collection-toolbar.ui:220
+msgid "Install from File"
+msgstr ""
+
+#: data/ui/collection-toolbar.ui:221
+#, fuzzy
+msgid "Select an .iso or .qcow2 file to install a virtual machine."
+msgstr "נא לבחור קובץ להתקנת מכונה וירטואלית."
+
+#: data/ui/collection-toolbar.ui:237
+#, fuzzy
+msgid "Download OS"
+msgstr "הורדות"
+
+#: data/ui/collection-toolbar.ui:238
+msgid "Browse and search for operating systems to install."
+msgstr "עיון וחיפוש מערכות הפעלה להתקנה."
 
 #: data/ui/display-page.ui:96
 msgid "Ready to Receive File"
@@ -489,17 +460,6 @@ msgstr "התקני USB"
 msgid "CDROM/DVD Drive"
 msgstr "כונן תקליטור/DVD"
 
-#: data/ui/preferences/resources-page.ui:7
-#: data/ui/preferences/resources-page.ui:47
-msgid "Resources"
-msgstr "משאבים"
-
-#: data/ui/preferences/resources-page.ui:12
-#: data/ui/preferences/shared-folder-popover.ui:44
-#: data/ui/shared-folder-popover.ui:44
-msgid "Name"
-msgstr "שם"
-
 #: data/ui/preferences/resources-page.ui:28
 msgid "IP Address"
 msgstr "כתובת IP"
@@ -577,8 +537,8 @@ msgstr "תמונות מצב"
 msgid "Creating new snapshot…"
 msgstr "יוצר תמונה מצב…"
 
-#: data/ui/searchbar.ui:10
 # msgctxt "shortcut window"
+#: data/ui/searchbar.ui:10
 msgid "Search for a virtual machine…"
 msgstr "חיפוש מכונה וירטואלית…"
 
@@ -594,23 +554,6 @@ msgstr "אופס, משהו השתבש"
 #: data/ui/troubleshoot-view.ui:58
 msgid "Boxes cannot access the virtualization backend."
 msgstr "לקופסאות אין גישה למנגנון הווירטואליזציה."
-
-#: data/ui/unattended-setup-box.ui:47
-msgid ""
-"Choose express install to automatically preconfigure the box with optimal "
-"settings."
-msgstr ""
-"יש לבחור בהתקנה מהירה כדי להגדיר מראש אוטומטית את הקופסה עם ההגדרות הטובות "
-"ביותר."
-
-#. Translators: 'Express Install' means that the new box installation will be fully automated, the user won't be asked anything while it's performed.
-#: data/ui/unattended-setup-box.ui:53
-msgid "Express Install"
-msgstr "התקנה מהירה"
-
-#: data/ui/unattended-setup-box.ui:107
-msgid "Product Key"
-msgstr "מפתח המוצר"
 
 #: data/ui/welcome-tutorial.ui:7
 msgid "Welcome Tutorial"
@@ -801,13 +744,10 @@ msgstr "_ביטול"
 msgid "_Open"
 msgstr "_פתיחה"
 
-#: src/assistant/index-page.vala:176 src/preferences/cdrom-row.vala:62
-msgid "Select a device or ISO file"
-msgstr "בחירת התקן או קובץ ISO"
-
-#: src/assistant/index-page.vala:179 src/preferences/cdrom-row.vala:65
-msgid "Open"
-msgstr "פתיחה"
+#: src/assistant/assistant.vala:137
+#, fuzzy, c-format
+msgid "Failed to prepare express installation: %s"
+msgstr "נדרשת ססמה לצורך ביצוע התקנה מהירה של %s"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
@@ -828,18 +768,6 @@ msgstr "מערכת 64-סיביות x86"
 #, c-format
 msgid " from %s"
 msgstr " מבית %s"
-
-#: src/assistant/vm-assistant.vala:62
-msgid "Failed to analyze installer media. Corrupted or incomplete media?"
-msgstr "זיהוי המדיה של ההתקנה נכשל. האם המדיה פגומה או חלקית?"
-
-#: src/assistant/vm-assistant.vala:72
-msgid "Previous"
-msgstr "הקודם"
-
-#: src/assistant/vm-assistant.vala:75
-msgid "Create"
-msgstr "יצירה"
 
 #: src/display-page.vala:127
 msgid "Press (left) Ctrl+Alt to ungrab"
@@ -878,10 +806,6 @@ msgstr "התקנה"
 #, c-format
 msgid "Failed to download: %s"
 msgstr "ההורדה נכשלה: %s"
-
-#: src/installed-media.vala:80 src/installer-media.vala:199
-msgid "System"
-msgstr "מערכת"
 
 #: src/keys-input-popover.vala:28
 msgid "Ctrl + Alt + Backspace"
@@ -923,40 +847,40 @@ msgid "Send key combinations"
 msgstr "שליחת צירופי מקשים"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:470
+#: src/libvirt-machine.vala:491
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "%s משוחזר מהכונן"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:473
+#: src/libvirt-machine.vala:494
 #, c-format
 msgid "Starting %s"
 msgstr "%s מופעל"
 
-#: src/libvirt-machine.vala:546
+#: src/libvirt-machine.vala:567
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "ההפעלה של „%s” מחדש אורכת זמן רב מדי. לכפות כיבוי?"
 
-#: src/libvirt-machine.vala:549
+#: src/libvirt-machine.vala:570
 msgid "Shutdown"
 msgstr "כיבוי"
 
-#: src/libvirt-machine.vala:564
+#: src/libvirt-machine.vala:585
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "‫„%s” משוכפלת…"
 
-#: src/libvirt-machine.vala:690
+#: src/libvirt-machine.vala:711
 msgid "Installing…"
 msgstr "מתבצעת התקנה…"
 
-#: src/libvirt-machine.vala:692
+#: src/libvirt-machine.vala:713
 msgid "Setting up clone…"
 msgstr "הגדרת שיבוט…"
 
-#: src/libvirt-machine.vala:694
+#: src/libvirt-machine.vala:715
 msgid "Importing…"
 msgstr "מתבצע יבוא…"
 
@@ -1048,14 +972,9 @@ msgstr "דיווח על באגים אל <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "אתר הבית של %s: <%s>.\n"
 
-#: src/media-manager.vala:34
+#: src/media-manager.vala:31
 msgid "Media is not supported"
 msgstr "אין תמיכה במדיה הזאת"
-
-#: src/media-manager.vala:372
-#, c-format
-msgid "No such file %s"
-msgstr "אין כזה קובץ: %s"
 
 #: src/portals.vala:45
 msgid "Boxes wants to run VM in background"
@@ -1064,6 +983,14 @@ msgstr "קופסאות מעוניינת להריץ מכונה וירטואלית
 #: src/preferences/cdrom-row.vala:33
 msgid "No CD/DVD image"
 msgstr "אין דמות תקליטור/DVD"
+
+#: src/preferences/cdrom-row.vala:62
+msgid "Select a device or ISO file"
+msgstr "בחירת התקן או קובץ ISO"
+
+#: src/preferences/cdrom-row.vala:65
+msgid "Open"
+msgstr "פתיחה"
 
 #: src/preferences/devices-page.vala:25
 msgid "The Flatpak version of GNOME Boxes does not support USB redirection."
@@ -1074,20 +1001,20 @@ msgid "Turn on your box to see the USB devices available for redirection."
 msgstr "יש להפעיל את המכונה שלך כדי לראות שהתקני ה־USB זמינים להפנייה."
 
 #. Translators: %s is a recommended value for RAM/storage limit. For example "Recommended 4 GB."
-#: src/preferences/resources-page.vala:81
+#: src/preferences/resources-page.vala:82
 #, c-format
 msgid "Recommended %s."
 msgstr "‫%s מומלץ."
 
-#: src/preferences/resources-page.vala:159
+#: src/preferences/resources-page.vala:160
 msgid "Boxes is not authorized to run in background"
 msgstr "לקופסאות אין הרשאה לפעול ברקע"
 
-#: src/preferences/resources-page.vala:165
+#: src/preferences/resources-page.vala:166
 msgid "Do you want to open Settings to manage application permissions?"
 msgstr "לפתוח את ההגדרות כדי לנהל את הרשאות היישום?"
 
-#: src/preferences/resources-page.vala:203
+#: src/preferences/resources-page.vala:204
 msgid ""
 "Editing your box configuration can cause issues to the operating system of "
 "your box. Would you like to create a snapshot to recover from your changes?"
@@ -1095,12 +1022,12 @@ msgstr ""
 "עריכת הגדרות המכונה שלך יכולות לגרום לתקלות במערכת ההפעלה של המכונה שלך. "
 "ליצור תמונת מצב כדי לאפשר שיחזור של השינויים שלך?"
 
-#: src/preferences/resources-page.vala:269
+#: src/preferences/resources-page.vala:270
 #, c-format
 msgid "Failed to save domain configuration: %s"
 msgstr "שמירת הגדרות שם התחום נכשלו: %s"
 
-#: src/preferences/resources-page.vala:278
+#: src/preferences/resources-page.vala:279
 msgid "Changes to the settings below take effect after you restart your box."
 msgstr "שינויי ההגדרות שלהלן יחולו לאחר הפעלת המכונה שלך מחדש."
 
@@ -1190,28 +1117,14 @@ msgstr "‫„%s” מועתקת אל ה„הורדות”"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: src/unattended-installer.vala:204
+#: src/unattended-installer.vala:174
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr "אירעה שגיאה במהלך ההכנות להתקנה. התקנה מהירה נוטרלה."
 
-#: src/unattended-installer.vala:422
+#: src/unattended-installer.vala:371
 msgid "Downloading device drivers…"
 msgstr "מנהלי ההתקנים מתקבלים…"
-
-#: src/unattended-setup-box.vala:45
-msgid "no password"
-msgstr "אין ססמה"
-
-#: src/unattended-setup-box.vala:101
-#, c-format
-msgid "Express installation of %s requires an internet connection."
-msgstr "הורדה ישירה של %s דורשת חיבור לאינטרנט."
-
-#: src/unattended-setup-box.vala:178
-#, c-format
-msgid "GNOME Boxes credentials for “%s”"
-msgstr "פרטי גישה של קופסאות של GNOME עבור „%s”"
 
 #: src/util-app.vala:414
 #, c-format
@@ -1277,20 +1190,124 @@ msgstr "מערכת האירוח אינה מסוגלת לכך"
 msgid "Box import from file “%s” failed: %s"
 msgstr "הייבוא של קופסה מהקובץ „%s” נכשל: %s"
 
+#~ msgid "No operating systems found"
+#~ msgstr "לא נמצאה מערכת הפעלה"
+
+#~ msgid "Try a different search"
+#~ msgstr "כדאי לנסות חיפוש אחר"
+
+#~ msgid "Search for an OS or enter a download link…"
+#~ msgstr "חיפוש אחר מערכת הפעלה או מילוי כתובת הורדה…"
+
+#~ msgid "Boxes was unable to identify the operating system on the image file."
+#~ msgstr "לקופסאות לא הייתה אפשרות לזהות את מערכת ההפעלה בקובץ הדמות."
+
+#~ msgid ""
+#~ "It is not advised to try booting an unknown OS, but you may try your luck "
+#~ "forcing a specific kind of OS from the list below:"
+#~ msgstr ""
+#~ "לא מומלץ לנסות להפעיל מערכת הפעלה בלתי מוכרת אך אפשר לנסות את מזלך באילוץ "
+#~ "סוג מסוים של מערכת הפעלה מהרשימה שלהלן:"
+
+#~ msgid "Template"
+#~ msgstr "תבנית"
+
+#~ msgid "Unknown OS"
+#~ msgstr "מערכת הפעלה לא ידועה"
+
+#~ msgid "Search for an OS…"
+#~ msgstr "חיפוש אחר מערכת הפעלה…"
+
+#~ msgid ""
+#~ "A new virtual machine will be created and an operating system installed "
+#~ "into it. Select an operating system source to begin."
+#~ msgstr ""
+#~ "תיווצר מכונה וירטואלית חדשה ועליה תוקם מערכת הפעלה. נא לבחור מקור מערכת "
+#~ "הפעלה כדי להתחיל."
+
+#~ msgid "Detected Sources"
+#~ msgstr "מקורות שזוהו"
+
+#~ msgid ""
+#~ "Create virtual machine from one of the medias detected in your system."
+#~ msgstr "יצירת מכונה וירטואלית מאחד מאמצעי האחסון שזוהו על ידי המערכת שלך."
+
+#~ msgid "Featured Downloads"
+#~ msgstr "הורדות מובילות"
+
+#~ msgid "You will be notified when the download has completed."
+#~ msgstr "תופיע התראה עם השלמת ההורדה."
+
+#~ msgid "Create virtual machine from file"
+#~ msgstr "יצירת מכונה וירטואלית מקובץ"
+
+#~ msgid "Preparing…"
+#~ msgstr "מתבצעות הכנות…"
+
+#~ msgid "Preparing to create a new box"
+#~ msgstr "מתבצעות הכנות ליצירת קופסה חדשה"
+
+#~ msgid "Review and Create"
+#~ msgstr "סקירה ויצירה"
+
+#~ msgid "Boxes is ready to set up a new box with the following properties:"
+#~ msgstr "תכנית הקופסאות מוכנה ליצירת קופסה חדשה עם המאפיינים הבאים:"
+
+#~ msgid ""
+#~ "Virtualization extensions are unavailable on your system.\n"
+#~ "Check your BIOS settings to enable them."
+#~ msgstr ""
+#~ "הרחבות ההדמיה אינן זמינות במערכת שלך.\n"
+#~ "יש לבדוק בהגדרות ה־BIOS ולאפשר אותן."
+
+#~ msgid "Enable EFI"
+#~ msgstr "הפעלת EFI"
+
+#~ msgid "Next"
+#~ msgstr "הבא"
+
+#~ msgid ""
+#~ "Choose express install to automatically preconfigure the box with optimal "
+#~ "settings."
+#~ msgstr ""
+#~ "יש לבחור בהתקנה מהירה כדי להגדיר מראש אוטומטית את הקופסה עם ההגדרות "
+#~ "הטובות ביותר."
+
+#~ msgid "Express Install"
+#~ msgstr "התקנה מהירה"
+
+#~ msgid "Failed to analyze installer media. Corrupted or incomplete media?"
+#~ msgstr "זיהוי המדיה של ההתקנה נכשל. האם המדיה פגומה או חלקית?"
+
+#~ msgid "Previous"
+#~ msgstr "הקודם"
+
+#~ msgid "System"
+#~ msgstr "מערכת"
+
+#, c-format
+#~ msgid "No such file %s"
+#~ msgstr "אין כזה קובץ: %s"
+
+#~ msgid "no password"
+#~ msgstr "אין ססמה"
+
+#, c-format
+#~ msgid "Express installation of %s requires an internet connection."
+#~ msgstr "הורדה ישירה של %s דורשת חיבור לאינטרנט."
+
+#, c-format
+#~ msgid "GNOME Boxes credentials for “%s”"
+#~ msgstr "פרטי גישה של קופסאות של GNOME עבור „%s”"
+
 #~ msgid "_Name"
 #~ msgstr "_שם"
 
 #~ msgid "Select an OS Source"
 #~ msgstr "בחירת מקור מערכת הפעלה"
 
-#~ msgid "Operating System Download"
-#~ msgstr "הורדת מערכת הפעלה"
-
 #~ msgid "Operating System Image File"
 #~ msgstr "קובץ דמות מערכת הפעלה"
-
-#~ msgid "Select a file to install a virtual machine."
-#~ msgstr "נא לבחור קובץ להתקנת מכונה וירטואלית."
 
 #~ msgid "_Add Password"
 #~ msgstr "הוספת _ססמה"
@@ -1665,11 +1682,11 @@ msgstr "הייבוא של קופסה מהקובץ „%s” נכשל: %s"
 #~ msgstr "%s (לכל היותר)"
 
 #~ msgid ""
-#~ "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span "
-#~ "color=\"grey\">(%s used)</span>"
+#~ "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
+#~ "\">(%s used)</span>"
 #~ msgstr ""
-#~ "<span color=\"grey\">גודל כונן מרבי</span>\t\t %s <span "
-#~ "color=\"grey\">(%s בשימוש)</span>"
+#~ "<span color=\"grey\">גודל כונן מרבי</span>\t\t %s <span color=\"grey"
+#~ "\">(%s בשימוש)</span>"
 
 #~ msgid "_Import '%s' from system broker"
 #~ msgstr "_ייבוא '%s' ממתווך המערכת"
@@ -1901,9 +1918,6 @@ msgstr "הייבוא של קופסה מהקובץ „%s” נכשל: %s"
 
 #~ msgid "No username provided"
 #~ msgstr "לא סופק שם משתמש"
-
-#~ msgid "Password required for express installation of %s"
-#~ msgstr "נדרשת ססמה לצורך ביצוע התקנה מהירה של %s"
 
 #~ msgid "_Add Product Key"
 #~ msgstr "הוספת מ_פתח מוצר"

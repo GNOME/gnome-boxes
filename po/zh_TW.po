@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2022-08-10 07:57+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-16 14:19+0100\n"
 "PO-Revision-Date: 2022-09-03 16:49+0800\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese <zh-l10n@linux.org.tw>\n"
@@ -93,7 +93,7 @@ msgstr "從您的檔案管理員拖曳檔案至《機櫃》視窗以共享它們
 msgid "Setup Shared Folders between your system and virtual machines."
 msgstr "設定您的系統與虛擬機之間的共享資料夾。"
 
-#: data/org.gnome.Boxes.appdata.xml.in:75
+#: data/org.gnome.Boxes.appdata.xml.in:61
 msgid "The GNOME Project"
 msgstr "GNOME 專案"
 
@@ -174,181 +174,154 @@ msgstr "歡迎使用機櫃"
 msgid "Use the <b>+</b> button to create your first virtual machine."
 msgstr "只要按下 <b>+</b> 按鈕以建立您的第一個虛擬機。"
 
+#: data/ui/assistant/assistant.ui:51
+#, fuzzy
+msgid "New Virtual Machine"
+msgstr "建立虛擬主機"
+
+#: data/ui/assistant/assistant.ui:55
+#: data/ui/preferences/shared-folder-popover.ui:97
+#: data/ui/shared-folder-popover.ui:97 src/preferences/cdrom-row.vala:65
+msgid "Cancel"
+msgstr "取消"
+
+#: data/ui/assistant/assistant.ui:62
+msgid "Create"
+msgstr "建立"
+
+#: data/ui/assistant/assistant.ui:82 data/ui/preferences/resources-page.ui:12
+#: data/ui/preferences/shared-folder-popover.ui:44
+#: data/ui/shared-folder-popover.ui:44
+msgid "Name"
+msgstr "名稱"
+
+#: data/ui/assistant/assistant.ui:95
+msgid "Operating System"
+msgstr "作業系統"
+
+#: data/ui/assistant/assistant.ui:100
+#, fuzzy
+msgid "Operating System not found"
+msgstr "找不到作業系統"
+
+#: data/ui/assistant/assistant.ui:123 data/ui/preferences/resources-page.ui:7
+#: data/ui/preferences/resources-page.ui:47
+msgid "Resources"
+msgstr "資源"
+
+#: data/ui/assistant/assistant.ui:128 data/ui/preferences/resources-page.ui:70
+msgid "Memory"
+msgstr "記憶體"
+
+#: data/ui/assistant/assistant.ui:134 data/ui/preferences/resources-page.ui:77
+msgid "Storage limit"
+msgstr "貯藏空間限制"
+
+#: data/ui/assistant/assistant.ui:171
+#, fuzzy
+msgid "Ops! Something went wrong!"
+msgstr "糟糕，有個地方出錯了"
+
+#: data/ui/assistant/assistant.ui:204
+#, fuzzy
+msgid "Setting up drivers..."
+msgstr "正在設置拓製品…"
+
+#: data/ui/assistant/express-install-row.ui:5 data/ui/welcome-tutorial.ui:49
+msgid "Express Installation"
+msgstr "快速安裝"
+
+#: data/ui/assistant/express-install-row.ui:6
+#, fuzzy
+msgid "Set credentials for an automatic install of the operating system."
+msgstr "在一些支援的作業系統中啟用 3D 加速。"
+
+#: data/ui/assistant/express-install-row.ui:16
+msgid "Username"
+msgstr "使用者名稱"
+
+#: data/ui/assistant/express-install-row.ui:32
+msgid "Password"
+msgstr "密碼"
+
+#: data/ui/assistant/express-install-row.ui:53
+msgid "Product Key"
+msgstr "產品金鑰"
+
 #: data/ui/assistant/media-entry.ui:8
 msgid "Unknown media"
 msgstr "未知的媒體"
 
-#: data/ui/assistant/pages/downloads-page.ui:81
-msgid "No operating systems found"
-msgstr "找不到作業系統"
-
-#: data/ui/assistant/pages/downloads-page.ui:82
-msgid "Try a different search"
-msgstr "嘗試不同的搜尋方式"
-
-#: data/ui/assistant/pages/downloads-page.ui:95
-#: src/assistant/downloads-page.vala:59
-msgid "Search for an OS or enter a download link…"
-msgstr "搜尋作業系統、或輸入下載連結…"
-
-#: data/ui/assistant/pages/identify-os-page.ui:18
-msgid "Boxes was unable to identify the operating system on the image file."
-msgstr "機櫃無法辨識映像檔上的作業系統。"
-
-#: data/ui/assistant/pages/identify-os-page.ui:29
-msgid ""
-"It is not advised to try booting an unknown OS, but you may try your luck "
-"forcing a specific kind of OS from the list below:"
-msgstr ""
-"不建議嘗試開機未知的作業系統，但您或許可以試試手氣以下列清單中的特定作業系統"
-"強制執行："
-
-#: data/ui/assistant/pages/identify-os-page.ui:41
-msgid "Template"
-msgstr "模板"
-
-#: data/ui/assistant/pages/identify-os-page.ui:57
-#: src/assistant/identify-os-page.vala:31
-msgid "Unknown OS"
-msgstr "未知 OS"
-
-#: data/ui/assistant/pages/identify-os-popover.ui:19
-msgid "Search for an OS…"
-msgstr "搜尋作業系統…"
-
-#: data/ui/assistant/pages/index-page.ui:5 data/ui/assistant/vm-assistant.ui:7
-msgid "Create a Virtual Machine"
-msgstr "建立虛擬主機"
-
-#: data/ui/assistant/pages/index-page.ui:41
-msgid ""
-"A new virtual machine will be created and an operating system installed into "
-"it. Select an operating system source to begin."
-msgstr "將會建立並安裝作業系統進新的虛擬機。請選擇作業系統開始。"
-
-#: data/ui/assistant/pages/index-page.ui:54
-msgid "Detected Sources"
-msgstr "偵測到的來源"
-
-#: data/ui/assistant/pages/index-page.ui:55
-msgid "Create virtual machine from one of the medias detected in your system."
-msgstr "從您的系統中偵測到的媒體之一建立虛擬機。"
-
-#: data/ui/assistant/pages/index-page.ui:72
-msgid "Featured Downloads"
-msgstr "推薦下載"
-
-#: data/ui/assistant/pages/index-page.ui:73
-msgid "You will be notified when the download has completed."
-msgstr "下載完成後會通知你。"
-
-#: data/ui/assistant/pages/index-page.ui:117
-msgid "Create virtual machine from file"
-msgstr "從檔案建立新的虛擬機"
-
-#: data/ui/assistant/pages/index-page.ui:134
-msgid "Download an operating system"
-msgstr "下載一個作業系統"
-
-#: data/ui/assistant/pages/index-page.ui:135
-msgid "Browse and search for operating systems to install."
-msgstr "瀏覽並搜尋要安裝的作業系統。"
-
-#: data/ui/assistant/pages/preparation-page.ui:5
-msgid "Preparing…"
-msgstr "正在準備…"
-
-#: data/ui/assistant/pages/preparation-page.ui:24
-msgid "Preparing to create a new box"
-msgstr "正在準備建立新機臺"
-
-#: data/ui/assistant/pages/review-page.ui:5
-msgid "Review and Create"
-msgstr "檢閱並建立"
-
-#: data/ui/assistant/pages/review-page.ui:18
-msgid "Boxes is ready to set up a new box with the following properties:"
-msgstr "機櫃已準備好設定有下列屬性的新機臺："
-
-#: data/ui/assistant/pages/review-page.ui:45
-msgid ""
-"Virtualization extensions are unavailable on your system.\n"
-"Check your BIOS settings to enable them."
-msgstr ""
-"您的系統沒有虛擬化延伸功能。\n"
-"請檢查您的 BIOS 設定值以啟用它們。"
-
-#: data/ui/assistant/pages/review-page.ui:78
-msgid "Operating System"
+#: data/ui/assistant/os-chooser-row.ui:4
+#, fuzzy
+msgid "Select an Operating System"
 msgstr "作業系統"
 
-#: data/ui/assistant/pages/review-page.ui:94
-#: data/ui/preferences/resources-page.ui:90
-msgid "Memory"
-msgstr "記憶體"
+#: data/ui/assistant/os-chooser-row.ui:24
+#, fuzzy
+msgid "Search for an operating system…"
+msgstr "下載一個作業系統"
 
-#: data/ui/assistant/pages/review-page.ui:101
-#: data/ui/preferences/resources-page.ui:97
-msgid "Storage limit"
-msgstr "貯藏空間限制"
+#: data/ui/assistant/os-downloader.ui:4
+#, fuzzy
+msgid "Search for an Operating System"
+msgstr "作業系統"
 
-#: data/ui/assistant/pages/review-page.ui:107
-#: data/ui/unattended-setup-box.ui:69 src/unattended-installer.vala:270
-msgid "Username"
-msgstr "使用者名稱"
-
-#: data/ui/assistant/pages/review-page.ui:123
-#: data/ui/unattended-setup-box.ui:85 src/unattended-installer.vala:271
-msgid "Password"
-msgstr "密碼"
-
-#: data/ui/assistant/pages/review-page.ui:141
-msgid "Enable EFI"
-msgstr "啟用 EFI"
-
-#: data/ui/assistant/pages/setup-page.ui:5 data/ui/welcome-tutorial.ui:49
-msgid "Express Installation"
-msgstr "快速安裝"
-
-#: data/ui/assistant/vm-assistant.ui:54
-#: data/ui/preferences/shared-folder-popover.ui:97
-#: data/ui/shared-folder-popover.ui:97 src/assistant/index-page.vala:120
-#: src/assistant/index-page.vala:168 src/assistant/vm-assistant.vala:72
-#: src/preferences/cdrom-row.vala:65
-msgid "Cancel"
-msgstr "取消"
-
-#: data/ui/assistant/vm-assistant.ui:61 src/assistant/vm-assistant.vala:75
-msgid "Next"
-msgstr "下一步"
+#: data/ui/assistant/os-downloader.ui:13
+#, fuzzy
+msgid "Download an Operating System"
+msgstr "下載一個作業系統"
 
 #: data/ui/collection-toolbar.ui:22
 msgid "New"
 msgstr "新增"
 
-#: data/ui/collection-toolbar.ui:46 data/ui/display-toolbar.ui:29
+#: data/ui/collection-toolbar.ui:58 data/ui/display-toolbar.ui:29
 msgid "Back"
 msgstr "返回"
 
-#: data/ui/collection-toolbar.ui:69
+#: data/ui/collection-toolbar.ui:81
 msgid "Application Menu"
 msgstr "應用程式選單"
 
-#: data/ui/collection-toolbar.ui:97
+#: data/ui/collection-toolbar.ui:109
 msgid "List view"
 msgstr "列表檢視"
 
-#: data/ui/collection-toolbar.ui:125
+#: data/ui/collection-toolbar.ui:137
 msgid "Grid view"
 msgstr "方格檢視"
 
-#: data/ui/collection-toolbar.ui:152
+#: data/ui/collection-toolbar.ui:164
 msgid "Search"
 msgstr "搜尋"
 
-#: data/ui/collection-toolbar.ui:179
+#: data/ui/collection-toolbar.ui:191
 msgid "Downloads"
 msgstr "下載"
+
+#: data/ui/collection-toolbar.ui:213
+#, fuzzy
+msgid "Create new virtual machine"
+msgstr "建立新的虛擬機"
+
+#: data/ui/collection-toolbar.ui:220
+msgid "Install from File"
+msgstr ""
+
+#: data/ui/collection-toolbar.ui:221
+#, fuzzy
+msgid "Select an .iso or .qcow2 file to install a virtual machine."
+msgstr "選擇要安裝於虛擬主機的可開機映像檔案。"
+
+#: data/ui/collection-toolbar.ui:237
+#, fuzzy
+msgid "Download OS"
+msgstr "下載作業系統"
+
+#: data/ui/collection-toolbar.ui:238
+msgid "Browse and search for operating systems to install."
+msgstr "瀏覽並搜尋要安裝的作業系統。"
 
 #: data/ui/display-page.ui:96
 msgid "Ready to Receive File"
@@ -480,48 +453,39 @@ msgstr "USB 裝置"
 msgid "CDROM/DVD Drive"
 msgstr "CDROM/DVD 光碟機"
 
-#: data/ui/preferences/resources-page.ui:7
-#: data/ui/preferences/resources-page.ui:67
-msgid "Resources"
-msgstr "資源"
-
-#: data/ui/preferences/resources-page.ui:22
-msgid "_Name"
-msgstr "名稱(_N)"
-
-#: data/ui/preferences/resources-page.ui:48
+#: data/ui/preferences/resources-page.ui:28
 msgid "IP Address"
 msgstr "IP 位址"
 
-#: data/ui/preferences/resources-page.ui:73
+#: data/ui/preferences/resources-page.ui:53
 msgid "CPUs"
 msgstr "CPU"
 
-#: data/ui/preferences/resources-page.ui:106
+#: data/ui/preferences/resources-page.ui:86
 msgid "3D acceleration"
 msgstr "3D 加速"
 
-#: data/ui/preferences/resources-page.ui:129
+#: data/ui/preferences/resources-page.ui:109
 msgid "Allow running in background"
 msgstr "允許於背景中執行"
 
-#: data/ui/preferences/resources-page.ui:147
+#: data/ui/preferences/resources-page.ui:127
 msgid "Configuration"
 msgstr "設定"
 
-#: data/ui/preferences/resources-page.ui:152
+#: data/ui/preferences/resources-page.ui:132
 msgid "Troubleshooting Logs"
 msgstr "疑難排解紀錄"
 
-#: data/ui/preferences/resources-page.ui:153
+#: data/ui/preferences/resources-page.ui:133
 msgid "Diagnose problems with your box using the log file."
 msgstr "用紀錄檔診斷你的機櫃的的問題。"
 
-#: data/ui/preferences/resources-page.ui:175
+#: data/ui/preferences/resources-page.ui:155
 msgid "Edit Configuration"
 msgstr "編輯設定"
 
-#: data/ui/preferences/resources-page.ui:176
+#: data/ui/preferences/resources-page.ui:156
 msgid "Edit the Libvirt domain configuration for this box."
 msgstr "編輯這個機櫃的 Libvirt 域設定。"
 
@@ -529,11 +493,6 @@ msgstr "編輯這個機櫃的 Libvirt 域設定。"
 #: data/ui/shared-folder-popover.ui:29
 msgid "Local Folder"
 msgstr "本地端資料夾"
-
-#: data/ui/preferences/shared-folder-popover.ui:44
-#: data/ui/shared-folder-popover.ui:44
-msgid "Name"
-msgstr "名稱"
 
 #: data/ui/preferences/shared-folder-popover.ui:70
 #: data/ui/shared-folder-popover.ui:70
@@ -571,6 +530,11 @@ msgstr "快照"
 msgid "Creating new snapshot…"
 msgstr "正在建立新的快照…"
 
+#: data/ui/searchbar.ui:10
+#, fuzzy
+msgid "Search for a virtual machine…"
+msgstr "建立虛擬主機…"
+
 #: data/ui/toast.ui:34 src/app.vala:601
 #: src/preferences/snapshot-list-row.vala:157
 msgid "Undo"
@@ -583,21 +547,6 @@ msgstr "糟糕，有個地方出錯了"
 #: data/ui/troubleshoot-view.ui:58
 msgid "Boxes cannot access the virtualization backend."
 msgstr "機櫃無法存取虛擬化後端。"
-
-#: data/ui/unattended-setup-box.ui:47
-msgid ""
-"Choose express install to automatically preconfigure the box with optimal "
-"settings."
-msgstr "選擇快速安裝會以最佳化的設定值自動將機臺預先設定好。"
-
-#. Translators: 'Express Install' means that the new box installation will be fully automated, the user won't be asked anything while it's performed.
-#: data/ui/unattended-setup-box.ui:53
-msgid "Express Install"
-msgstr "快速安裝"
-
-#: data/ui/unattended-setup-box.ui:107
-msgid "Product Key"
-msgstr "產品金鑰"
 
 #: data/ui/welcome-tutorial.ui:7
 msgid "Welcome Tutorial"
@@ -780,17 +729,10 @@ msgstr "取消(_C)"
 msgid "_Open"
 msgstr "開啟(_O)"
 
-#: src/assistant/index-page.vala:165 src/preferences/cdrom-row.vala:62
-msgid "Select a device or ISO file"
-msgstr "選取裝置或 ISO 檔案"
-
-#: src/assistant/index-page.vala:168 src/preferences/cdrom-row.vala:65
-msgid "Open"
-msgstr "開啟"
-
-#: src/assistant/index-page.vala:188 src/assistant/vm-assistant.vala:72
-msgid "Previous"
-msgstr "上一個"
+#: src/assistant/assistant.vala:137
+#, fuzzy, c-format
+msgid "Failed to prepare express installation: %s"
+msgstr "無法建立快照：%s"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
@@ -811,14 +753,6 @@ msgstr "64 位元 x86 系統"
 #, c-format
 msgid " from %s"
 msgstr " 來自 %s"
-
-#: src/assistant/vm-assistant.vala:62
-msgid "Failed to analyze installer media. Corrupted or incomplete media?"
-msgstr "安裝程式媒體分析失敗。媒體是否損壞或檔案不完整？"
-
-#: src/assistant/vm-assistant.vala:75
-msgid "Create"
-msgstr "建立"
 
 #: src/display-page.vala:127
 msgid "Press (left) Ctrl+Alt to ungrab"
@@ -857,80 +791,81 @@ msgstr "安裝"
 msgid "Failed to download: %s"
 msgstr "下載失敗：%s"
 
-#: src/installed-media.vala:80 src/installer-media.vala:199
-msgid "System"
-msgstr "系統"
-
-#: src/keys-input-popover.vala:27
+#: src/keys-input-popover.vala:28
 msgid "Ctrl + Alt + Backspace"
 msgstr "Ctrl + Alt + Backspace"
 
-#: src/keys-input-popover.vala:28
+#: src/keys-input-popover.vala:29
 msgid "Ctrl + Alt + Del"
 msgstr "Ctrl + Alt + Del"
 
 #. New section
-#: src/keys-input-popover.vala:32
+#: src/keys-input-popover.vala:33
 msgid "Ctrl + Alt + F1"
 msgstr "Ctrl + Alt + F1"
 
-#: src/keys-input-popover.vala:33
+#: src/keys-input-popover.vala:34
 msgid "Ctrl + Alt + F2"
 msgstr "Ctrl + Alt + F2"
 
-#: src/keys-input-popover.vala:34
+#: src/keys-input-popover.vala:35
 msgid "Ctrl + Alt + F3"
 msgstr "Ctrl + Alt + F3"
 
-#: src/keys-input-popover.vala:35
+#: src/keys-input-popover.vala:36
+#, fuzzy
+msgid "Ctrl + Alt + F6"
+msgstr "Ctrl + Alt + F1"
+
+#: src/keys-input-popover.vala:37
 msgid "Ctrl + Alt + F7"
 msgstr "Ctrl + Alt + F7"
 
-#: src/keys-input-popover.vala:36
+#: src/keys-input-popover.vala:38
 msgid "Ctrl + Alt + F9"
 msgstr "Ctrl + Alt + F9"
 
 #. Translators: Accessibility name for context menu with a set of keyboard combos (that would normally be
 #. intercepted by host/client, to send to the box.
-#: src/keys-input-popover.vala:45
+#: src/keys-input-popover.vala:47
 msgid "Send key combinations"
 msgstr "傳送組合鍵"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:470
+#: src/libvirt-machine.vala:491
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "正從磁碟還原 %s"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:473
+#: src/libvirt-machine.vala:494
 #, c-format
 msgid "Starting %s"
 msgstr "正在啟動 %s"
 
-#: src/libvirt-machine.vala:546
+#: src/libvirt-machine.vala:567
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "「%s」的重新啟動時間過長。是否要強迫關機？"
 
-#: src/libvirt-machine.vala:549
+#: src/libvirt-machine.vala:570
 msgid "Shutdown"
 msgstr "關閉"
 
-#: src/libvirt-machine.vala:564
+#: src/libvirt-machine.vala:585
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "正在拓製「%s」…"
 
-#: src/libvirt-machine.vala:690
+#: src/libvirt-machine.vala:711
 msgid "Installing…"
 msgstr "正在安裝…"
 
-#: src/libvirt-machine.vala:692
+#: src/libvirt-machine.vala:713
 msgid "Setting up clone…"
 msgstr "正在設置拓製品…"
 
-#: src/libvirt-machine.vala:694
+#: src/libvirt-machine.vala:715
 msgid "Importing…"
 msgstr "正在匯入…"
 
@@ -1022,14 +957,9 @@ msgstr "報告錯誤給 <%s>。\n"
 msgid "%s home page: <%s>.\n"
 msgstr "%s首頁：<%s>。\n"
 
-#: src/media-manager.vala:34
+#: src/media-manager.vala:31
 msgid "Media is not supported"
 msgstr "不支援的媒體"
-
-#: src/media-manager.vala:368
-#, c-format
-msgid "No such file %s"
-msgstr "沒有這個檔案 %s"
 
 #: src/portals.vala:45
 msgid "Boxes wants to run VM in background"
@@ -1038,6 +968,14 @@ msgstr "《機櫃》要在背景中執行虛擬機"
 #: src/preferences/cdrom-row.vala:33
 msgid "No CD/DVD image"
 msgstr "沒有 CD/DVD 映像"
+
+#: src/preferences/cdrom-row.vala:62
+msgid "Select a device or ISO file"
+msgstr "選取裝置或 ISO 檔案"
+
+#: src/preferences/cdrom-row.vala:65
+msgid "Open"
+msgstr "開啟"
 
 #: src/preferences/devices-page.vala:25
 msgid "The Flatpak version of GNOME Boxes does not support USB redirection."
@@ -1048,20 +986,20 @@ msgid "Turn on your box to see the USB devices available for redirection."
 msgstr "啟動您的機櫃以查看可以重新導向的 USB 裝置。"
 
 #. Translators: %s is a recommended value for RAM/storage limit. For example "Recommended 4 GB."
-#: src/preferences/resources-page.vala:81
+#: src/preferences/resources-page.vala:82
 #, c-format
 msgid "Recommended %s."
 msgstr "建議 %s。"
 
-#: src/preferences/resources-page.vala:159
+#: src/preferences/resources-page.vala:160
 msgid "Boxes is not authorized to run in background"
 msgstr "《機櫃》未獲授權在背景執行"
 
-#: src/preferences/resources-page.vala:165
+#: src/preferences/resources-page.vala:166
 msgid "Do you want to open Settings to manage application permissions?"
 msgstr "您想要開啟《設定值》以管理應用程式權限嗎？"
 
-#: src/preferences/resources-page.vala:203
+#: src/preferences/resources-page.vala:204
 msgid ""
 "Editing your box configuration can cause issues to the operating system of "
 "your box. Would you like to create a snapshot to recover from your changes?"
@@ -1069,12 +1007,12 @@ msgstr ""
 "編輯您的機櫃設定可能會導致機櫃的作業系統發生問題。您想要建立一個快照以復原您"
 "的修改嗎？"
 
-#: src/preferences/resources-page.vala:269
+#: src/preferences/resources-page.vala:270
 #, c-format
 msgid "Failed to save domain configuration: %s"
 msgstr "機櫃無法儲存域設定：%s"
 
-#: src/preferences/resources-page.vala:278
+#: src/preferences/resources-page.vala:279
 msgid "Changes to the settings below take effect after you restart your box."
 msgstr "對下列設定的修改會在您重新啟動您的機櫃後生效。"
 
@@ -1163,28 +1101,14 @@ msgstr "正在將「%s」複製到「下載」"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: src/unattended-installer.vala:204
+#: src/unattended-installer.vala:174
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr "在安裝準備期間遇到錯誤。快速安裝已停用。"
 
-#: src/unattended-installer.vala:422
+#: src/unattended-installer.vala:371
 msgid "Downloading device drivers…"
 msgstr "正在下載裝置驅動程式…"
-
-#: src/unattended-setup-box.vala:51
-msgid "no password"
-msgstr "無密碼"
-
-#: src/unattended-setup-box.vala:108
-#, c-format
-msgid "Express installation of %s requires an internet connection."
-msgstr "%s 的快速安裝需要有網際網路連線。"
-
-#: src/unattended-setup-box.vala:206
-#, c-format
-msgid "GNOME Boxes credentials for “%s”"
-msgstr "「%s」的 GNOME 機櫃憑證"
 
 #: src/util-app.vala:414
 #, c-format
@@ -1237,7 +1161,7 @@ msgstr "否"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:794
+#: src/vm-configurator.vala:791
 msgid "Incapable host system"
 msgstr "無能力的主機系統"
 
@@ -1246,6 +1170,112 @@ msgstr "無能力的主機系統"
 #, c-format
 msgid "Box import from file “%s” failed: %s"
 msgstr "從檔案「%s」匯入機臺失敗：%s"
+
+#~ msgid "Try a different search"
+#~ msgstr "嘗試不同的搜尋方式"
+
+#~ msgid "Search for an OS or enter a download link…"
+#~ msgstr "搜尋作業系統、或輸入下載連結…"
+
+#~ msgid "Boxes was unable to identify the operating system on the image file."
+#~ msgstr "機櫃無法辨識映像檔上的作業系統。"
+
+#~ msgid ""
+#~ "It is not advised to try booting an unknown OS, but you may try your luck "
+#~ "forcing a specific kind of OS from the list below:"
+#~ msgstr ""
+#~ "不建議嘗試開機未知的作業系統，但您或許可以試試手氣以下列清單中的特定作業系"
+#~ "統強制執行："
+
+#~ msgid "Template"
+#~ msgstr "模板"
+
+#~ msgid "Unknown OS"
+#~ msgstr "未知 OS"
+
+#~ msgid "Search for an OS…"
+#~ msgstr "搜尋作業系統…"
+
+#~ msgid ""
+#~ "A new virtual machine will be created and an operating system installed "
+#~ "into it. Select an operating system source to begin."
+#~ msgstr "將會建立並安裝作業系統進新的虛擬機。請選擇作業系統開始。"
+
+#~ msgid "Detected Sources"
+#~ msgstr "偵測到的來源"
+
+#~ msgid ""
+#~ "Create virtual machine from one of the medias detected in your system."
+#~ msgstr "從您的系統中偵測到的媒體之一建立虛擬機。"
+
+#~ msgid "Featured Downloads"
+#~ msgstr "推薦下載"
+
+#~ msgid "You will be notified when the download has completed."
+#~ msgstr "下載完成後會通知你。"
+
+#~ msgid "Create virtual machine from file"
+#~ msgstr "從檔案建立新的虛擬機"
+
+#~ msgid "Preparing…"
+#~ msgstr "正在準備…"
+
+#~ msgid "Preparing to create a new box"
+#~ msgstr "正在準備建立新機臺"
+
+#~ msgid "Review and Create"
+#~ msgstr "檢閱並建立"
+
+#~ msgid "Boxes is ready to set up a new box with the following properties:"
+#~ msgstr "機櫃已準備好設定有下列屬性的新機臺："
+
+#~ msgid ""
+#~ "Virtualization extensions are unavailable on your system.\n"
+#~ "Check your BIOS settings to enable them."
+#~ msgstr ""
+#~ "您的系統沒有虛擬化延伸功能。\n"
+#~ "請檢查您的 BIOS 設定值以啟用它們。"
+
+#~ msgid "Enable EFI"
+#~ msgstr "啟用 EFI"
+
+#~ msgid "Next"
+#~ msgstr "下一步"
+
+#~ msgid "_Name"
+#~ msgstr "名稱(_N)"
+
+#~ msgid ""
+#~ "Choose express install to automatically preconfigure the box with optimal "
+#~ "settings."
+#~ msgstr "選擇快速安裝會以最佳化的設定值自動將機臺預先設定好。"
+
+#~ msgid "Express Install"
+#~ msgstr "快速安裝"
+
+#~ msgid "Previous"
+#~ msgstr "上一個"
+
+#~ msgid "Failed to analyze installer media. Corrupted or incomplete media?"
+#~ msgstr "安裝程式媒體分析失敗。媒體是否損壞或檔案不完整？"
+
+#~ msgid "System"
+#~ msgstr "系統"
+
+#, c-format
+#~ msgid "No such file %s"
+#~ msgstr "沒有這個檔案 %s"
+
+#~ msgid "no password"
+#~ msgstr "無密碼"
+
+#, c-format
+#~ msgid "Express installation of %s requires an internet connection."
+#~ msgstr "%s 的快速安裝需要有網際網路連線。"
+
+#, c-format
+#~ msgid "GNOME Boxes credentials for “%s”"
+#~ msgstr "「%s」的 GNOME 機櫃憑證"
 
 #~ msgid "GNOME Boxes"
 #~ msgstr "GNOME 機櫃"
@@ -1352,17 +1382,11 @@ msgstr "從檔案「%s」匯入機臺失敗：%s"
 #~ msgid "Insert operating system installation media or select a source below"
 #~ msgstr "插入作業系統安裝媒體，或從下方選取來源"
 
-#~ msgid "Download an OS"
-#~ msgstr "下載作業系統"
-
 #~ msgid "▶"
 #~ msgstr "▶"
 
 #~ msgid "Select a file"
 #~ msgstr "選擇一個檔案"
-
-#~ msgid "Select a bootable image file to install in a virtual machine."
-#~ msgstr "選擇要安裝於虛擬主機的可開機映像檔案。"
 
 #~ msgid ""
 #~ "Any trademarks shown above are used merely for identification of software "
@@ -1600,9 +1624,6 @@ msgstr "從檔案「%s」匯入機臺失敗：%s"
 #~ msgid "Connect"
 #~ msgstr "連線"
 
-#~ msgid "Create a Virtual Machine…"
-#~ msgstr "建立虛擬主機…"
-
 #~ msgid "Connect to a Remote Computer…"
 #~ msgstr "連線至遠端電腦…"
 
@@ -1769,8 +1790,8 @@ msgstr "從檔案「%s」匯入機臺失敗：%s"
 #~ msgstr "%s <span color=\"grey\">(已使用 %s)</span>"
 
 #~ msgid ""
-#~ "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span "
-#~ "color=\"grey\">(%s used)</span>"
+#~ "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
+#~ "\">(%s used)</span>"
 #~ msgstr ""
 #~ "<span color=\"grey\">磁碟最大容量</span>\t\t %s <span color=\"grey\">(已使"
 #~ "用 %s )</span>"

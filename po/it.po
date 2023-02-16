@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2022-02-11 12:42+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-16 14:19+0100\n"
 "PO-Revision-Date: 2022-03-17 09:12+0100\n"
 "Last-Translator: Milo Casagrande <milo@milo.name>\n"
 "Language-Team: Italiano <tp@lists.linux.it>\n"
@@ -24,7 +24,7 @@ msgstr ""
 # singolare? Plurale??
 #: data/org.gnome.Boxes.appdata.xml.in:7 data/org.gnome.Boxes.desktop.in:3
 #: data/ui/app-window.ui:6 data/ui/collection-toolbar.ui:7 src/app.vala:117
-#: src/app-window.vala:105 src/app-window.vala:217 src/app-window.vala:219
+#: src/app-window.vala:105 src/app-window.vala:218 src/app-window.vala:220
 #: src/main.vala:72 src/topbar.vala:70
 msgid "Boxes"
 msgstr "Boxes"
@@ -109,7 +109,7 @@ msgstr ""
 msgid "Setup Shared Folders between your system and virtual machines."
 msgstr "Configura le cartelle condivise tra il sistema e le macchine virtuali."
 
-#: data/org.gnome.Boxes.appdata.xml.in:66
+#: data/org.gnome.Boxes.appdata.xml.in:61
 msgid "The GNOME Project"
 msgstr "Il progetto GNOME"
 
@@ -175,6 +175,14 @@ msgstr "Cartelle condivise"
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Elenco di nomi di cartelle e percorsi"
 
+#: data/org.gnome.boxes.gschema.xml:59
+msgid "Recommended Downloads Source URL"
+msgstr ""
+
+#: data/org.gnome.boxes.gschema.xml:60
+msgid "An URL pointing at a recommended-downloads.xml file"
+msgstr ""
+
 #: data/ui/app-window.ui:81 data/ui/welcome-tutorial.ui:40
 msgid "Welcome to Boxes"
 msgstr "Benvenuti in Boxes"
@@ -183,183 +191,154 @@ msgstr "Benvenuti in Boxes"
 msgid "Use the <b>+</b> button to create your first virtual machine."
 msgstr "Usare il pulsante <b>+</b> per creare la prima macchina virtuale."
 
+#: data/ui/assistant/assistant.ui:51
+#, fuzzy
+msgid "New Virtual Machine"
+msgstr "Crea una macchina virtuale"
+
+#: data/ui/assistant/assistant.ui:55
+#: data/ui/preferences/shared-folder-popover.ui:97
+#: data/ui/shared-folder-popover.ui:97 src/preferences/cdrom-row.vala:65
+msgid "Cancel"
+msgstr "Annulla"
+
+#: data/ui/assistant/assistant.ui:62
+msgid "Create"
+msgstr "Crea"
+
+#: data/ui/assistant/assistant.ui:82 data/ui/preferences/resources-page.ui:12
+#: data/ui/preferences/shared-folder-popover.ui:44
+#: data/ui/shared-folder-popover.ui:44
+msgid "Name"
+msgstr "Nome"
+
+#: data/ui/assistant/assistant.ui:95
+msgid "Operating System"
+msgstr "Sistema operativo"
+
+#: data/ui/assistant/assistant.ui:100
+#, fuzzy
+msgid "Operating System not found"
+msgstr "Nessun sistema operativo trovato"
+
+#: data/ui/assistant/assistant.ui:123 data/ui/preferences/resources-page.ui:7
+#: data/ui/preferences/resources-page.ui:47
+msgid "Resources"
+msgstr "Risorse"
+
+#: data/ui/assistant/assistant.ui:128 data/ui/preferences/resources-page.ui:70
+msgid "Memory"
+msgstr "Memoria"
+
+#: data/ui/assistant/assistant.ui:134 data/ui/preferences/resources-page.ui:77
+msgid "Storage limit"
+msgstr "Limite di archiviazione"
+
+#: data/ui/assistant/assistant.ui:171
+#, fuzzy
+msgid "Ops! Something went wrong!"
+msgstr "Oops! Qualcosa è andato storto."
+
+#: data/ui/assistant/assistant.ui:204
+#, fuzzy
+msgid "Setting up drivers..."
+msgstr "Impostazione clone…"
+
+#: data/ui/assistant/express-install-row.ui:5 data/ui/welcome-tutorial.ui:49
+msgid "Express Installation"
+msgstr "Installazione rapida"
+
+#: data/ui/assistant/express-install-row.ui:6
+#, fuzzy
+msgid "Set credentials for an automatic install of the operating system."
+msgstr "Accelerazione 3D per alcuni dei sistemi operativi supportati."
+
+#: data/ui/assistant/express-install-row.ui:16
+msgid "Username"
+msgstr "Nome utente"
+
+#: data/ui/assistant/express-install-row.ui:32
+msgid "Password"
+msgstr "Password"
+
+#: data/ui/assistant/express-install-row.ui:53
+msgid "Product Key"
+msgstr "Chiave prodotto"
+
 #: data/ui/assistant/media-entry.ui:8
 msgid "Unknown media"
 msgstr "Supporto sconosciuto"
 
-#: data/ui/assistant/pages/downloads-page.ui:68
-msgid "No operating systems found"
-msgstr "Nessun sistema operativo trovato"
-
-#: data/ui/assistant/pages/downloads-page.ui:69
-msgid "Try a different search"
-msgstr "Provare con un'altra ricerca"
-
-#: data/ui/assistant/pages/downloads-page.ui:82
-#: src/assistant/downloads-page.vala:57
-msgid "Search for an OS or enter a download link…"
-msgstr "Cercare un SO o inserire un collegamento da scaricare…"
-
-#: data/ui/assistant/pages/identify-os-page.ui:18
-msgid "Boxes was unable to identify the operating system on the image file."
-msgstr "Impossibile identificare il sistema operativo del file immagine."
-
-#: data/ui/assistant/pages/identify-os-page.ui:29
-msgid ""
-"It is not advised to try booting an unknown OS, but you may try your luck "
-"forcing a specific kind of OS from the list below:"
-msgstr ""
-"È altamente sconsigliato avviare un SO sconosciuto, ma è comunque possibile "
-"tentare l'avvio forzandone uno specifico dal seguente elenco:"
-
-#: data/ui/assistant/pages/identify-os-page.ui:41
-msgid "Template"
-msgstr "Modello"
-
-#: data/ui/assistant/pages/identify-os-page.ui:57
-#: src/assistant/identify-os-page.vala:31
-msgid "Unknown OS"
-msgstr "SO sconosciuto"
-
-#: data/ui/assistant/pages/identify-os-popover.ui:19
-msgid "Search for an OS…"
-msgstr "Cerca un SO…"
-
-#: data/ui/assistant/pages/index-page.ui:5 data/ui/assistant/vm-assistant.ui:7
-msgid "Create a Virtual Machine"
-msgstr "Crea una macchina virtuale"
-
-#: data/ui/assistant/pages/index-page.ui:41
-msgid ""
-"A new virtual machine will be created and an operating system installed into "
-"it. Select an operating system source to begin."
-msgstr ""
-"Verrà creata una nuova macchina virtuale e verrà installato un sistema "
-"operativo. Selezionare un sistema operativo per cominciare."
-
-#: data/ui/assistant/pages/index-page.ui:54
-msgid "Detected Sources"
-msgstr "Sorgenti rilevate"
-
-#: data/ui/assistant/pages/index-page.ui:55
-msgid "Create virtual machine from one of the medias detected in your system."
-msgstr "Crea una macchina virtuale da uno dei supporti rilevati nel sistema"
-
-#: data/ui/assistant/pages/index-page.ui:72
-msgid "Featured Downloads"
-msgstr "In primo piano"
-
-#: data/ui/assistant/pages/index-page.ui:73
-msgid "You will be notified when the download has completed."
-msgstr "Verrà inviata una notifica al termine dello scaricamento."
-
-#: data/ui/assistant/pages/index-page.ui:117
-msgid "Create virtual machine from file"
-msgstr "Crea macchina virtuale da file"
-
-#: data/ui/assistant/pages/index-page.ui:134
-msgid "Download an operating system"
-msgstr "Scarica un sistema operativo"
-
-#: data/ui/assistant/pages/index-page.ui:135
-msgid "Browse and search for operating systems to install."
-msgstr "Esplorare e cercare sistemi operativi da installare."
-
-#: data/ui/assistant/pages/preparation-page.ui:5
-msgid "Preparing…"
-msgstr "Preparazione…"
-
-#: data/ui/assistant/pages/preparation-page.ui:24
-msgid "Preparing to create a new box"
-msgstr "Preparazione creazione nuova box"
-
-#: data/ui/assistant/pages/review-page.ui:5
-msgid "Review and Create"
-msgstr "Verifica e crea"
-
-#: data/ui/assistant/pages/review-page.ui:18
-msgid "Boxes is ready to set up a new box with the following properties:"
-msgstr "Boxes creerà una nuova box con le seguenti proprietà:"
-
-#: data/ui/assistant/pages/review-page.ui:45
-msgid ""
-"Virtualization extensions are unavailable on your system.\n"
-"Check your BIOS settings to enable them."
-msgstr ""
-"Le estensioni di virtualizzazione non sono disponibili su questo sistema.\n"
-"Verificare le impostazioni BIOS per abilitarle."
-
-#: data/ui/assistant/pages/review-page.ui:78
-msgid "Operating System"
+#: data/ui/assistant/os-chooser-row.ui:4
+#, fuzzy
+msgid "Select an Operating System"
 msgstr "Sistema operativo"
 
-#: data/ui/assistant/pages/review-page.ui:94
-#: data/ui/preferences/resources-page.ui:90
-msgid "Memory"
-msgstr "Memoria"
+#: data/ui/assistant/os-chooser-row.ui:24
+#, fuzzy
+msgid "Search for an operating system…"
+msgstr "Scarica un sistema operativo"
 
-#: data/ui/assistant/pages/review-page.ui:101
-#: data/ui/preferences/resources-page.ui:97
-msgid "Storage limit"
-msgstr "Limite di archiviazione"
+#: data/ui/assistant/os-downloader.ui:4
+#, fuzzy
+msgid "Search for an Operating System"
+msgstr "Sistema operativo"
 
-#: data/ui/assistant/pages/review-page.ui:107
-#: data/ui/unattended-setup-box.ui:68 src/unattended-installer.vala:270
-msgid "Username"
-msgstr "Nome utente"
-
-#: data/ui/assistant/pages/review-page.ui:123
-#: data/ui/unattended-setup-box.ui:84 src/unattended-installer.vala:271
-msgid "Password"
-msgstr "Password"
-
-#: data/ui/assistant/pages/review-page.ui:140
-msgid "Enable EFI"
-msgstr "Abilita EFI"
-
-#: data/ui/assistant/pages/setup-page.ui:5 data/ui/welcome-tutorial.ui:49
-msgid "Express Installation"
-msgstr "Installazione rapida"
-
-#: data/ui/assistant/vm-assistant.ui:54
-#: data/ui/preferences/shared-folder-popover.ui:97
-#: data/ui/shared-folder-popover.ui:97 src/assistant/index-page.vala:120
-#: src/assistant/index-page.vala:168 src/assistant/vm-assistant.vala:72
-#: src/preferences/cdrom-row.vala:65
-msgid "Cancel"
-msgstr "Annulla"
-
-#: data/ui/assistant/vm-assistant.ui:61 src/assistant/vm-assistant.vala:75
-msgid "Next"
-msgstr "Successivo"
+#: data/ui/assistant/os-downloader.ui:13
+#, fuzzy
+msgid "Download an Operating System"
+msgstr "Scarica un sistema operativo"
 
 #: data/ui/collection-toolbar.ui:22
 msgid "New"
 msgstr "Nuova"
 
-#: data/ui/collection-toolbar.ui:46 data/ui/display-toolbar.ui:29
+#: data/ui/collection-toolbar.ui:58 data/ui/display-toolbar.ui:29
 msgid "Back"
 msgstr "Indietro"
 
-#: data/ui/collection-toolbar.ui:69
+#: data/ui/collection-toolbar.ui:81
 msgid "Application Menu"
 msgstr "Menù applicazione"
 
-#: data/ui/collection-toolbar.ui:97
+#: data/ui/collection-toolbar.ui:109
 msgid "List view"
 msgstr "Vista elenco"
 
-#: data/ui/collection-toolbar.ui:125
+#: data/ui/collection-toolbar.ui:137
 msgid "Grid view"
 msgstr "Vista griglia"
 
-#: data/ui/collection-toolbar.ui:152
+#: data/ui/collection-toolbar.ui:164
 msgid "Search"
 msgstr "Cerca"
 
-#: data/ui/collection-toolbar.ui:179
+#: data/ui/collection-toolbar.ui:191
 msgid "Downloads"
 msgstr "Scaricamenti"
+
+#: data/ui/collection-toolbar.ui:213
+#, fuzzy
+msgid "Create new virtual machine"
+msgstr "Crea una nuova macchina virtuale"
+
+#: data/ui/collection-toolbar.ui:220
+msgid "Install from File"
+msgstr ""
+
+#: data/ui/collection-toolbar.ui:221
+#, fuzzy
+msgid "Select an .iso or .qcow2 file to install a virtual machine."
+msgstr "Boxes facilita l'installazione e l'esecuzione di macchine virtuali."
+
+#: data/ui/collection-toolbar.ui:237
+#, fuzzy
+msgid "Download OS"
+msgstr "Scaricamenti"
+
+#: data/ui/collection-toolbar.ui:238
+msgid "Browse and search for operating systems to install."
+msgstr "Esplorare e cercare sistemi operativi da installare."
 
 #: data/ui/display-page.ui:96
 msgid "Ready to Receive File"
@@ -491,50 +470,41 @@ msgstr "Dispositivi USB"
 msgid "CDROM/DVD Drive"
 msgstr "Unità CD-ROM/DVD"
 
-#: data/ui/preferences/resources-page.ui:7
-#: data/ui/preferences/resources-page.ui:67
-msgid "Resources"
-msgstr "Risorse"
-
-#: data/ui/preferences/resources-page.ui:22
-msgid "_Name"
-msgstr "_Nome"
-
-#: data/ui/preferences/resources-page.ui:48
+#: data/ui/preferences/resources-page.ui:28
 msgid "IP Address"
 msgstr "Indirizzo IP"
 
-#: data/ui/preferences/resources-page.ui:73
+#: data/ui/preferences/resources-page.ui:53
 msgid "CPUs"
 msgstr "CPU"
 
-#: data/ui/preferences/resources-page.ui:105
+#: data/ui/preferences/resources-page.ui:86
 msgid "3D acceleration"
 msgstr "Accelerazione 3D"
 
-#: data/ui/preferences/resources-page.ui:127
+#: data/ui/preferences/resources-page.ui:109
 msgid "Allow running in background"
 msgstr "Consenti esecuzione in background"
 
-#: data/ui/preferences/resources-page.ui:145
+#: data/ui/preferences/resources-page.ui:127
 msgid "Configuration"
 msgstr "Configurazione"
 
-#: data/ui/preferences/resources-page.ui:150
+#: data/ui/preferences/resources-page.ui:132
 msgid "Troubleshooting Logs"
 msgstr "Registro di soluzione problemi"
 
-#: data/ui/preferences/resources-page.ui:151
+#: data/ui/preferences/resources-page.ui:133
 msgid "Diagnose problems with your box using the log file."
 msgstr ""
 "Diagnostica i problemi con la macchina virtuale utilizzando il file di "
 "registro"
 
-#: data/ui/preferences/resources-page.ui:173
+#: data/ui/preferences/resources-page.ui:155
 msgid "Edit Configuration"
 msgstr "Modifica configurazione"
 
-#: data/ui/preferences/resources-page.ui:174
+#: data/ui/preferences/resources-page.ui:156
 msgid "Edit the Libvirt domain configuration for this box."
 msgstr "Modifica la configurazione del dominio Libvirt per questa box"
 
@@ -542,11 +512,6 @@ msgstr "Modifica la configurazione del dominio Libvirt per questa box"
 #: data/ui/shared-folder-popover.ui:29
 msgid "Local Folder"
 msgstr "Cartella locale"
-
-#: data/ui/preferences/shared-folder-popover.ui:44
-#: data/ui/shared-folder-popover.ui:44
-msgid "Name"
-msgstr "Nome"
 
 #: data/ui/preferences/shared-folder-popover.ui:70
 #: data/ui/shared-folder-popover.ui:70
@@ -584,7 +549,12 @@ msgstr "Snapshot"
 msgid "Creating new snapshot…"
 msgstr "Creazione nuovo snapshot…"
 
-#: data/ui/toast.ui:34 src/app.vala:604
+#: data/ui/searchbar.ui:10
+#, fuzzy
+msgid "Search for a virtual machine…"
+msgstr "Crea una nuova macchina virtuale"
+
+#: data/ui/toast.ui:34 src/app.vala:601
 #: src/preferences/snapshot-list-row.vala:157
 msgid "Undo"
 msgstr "Annulla"
@@ -596,23 +566,6 @@ msgstr "Oops! Qualcosa è andato storto."
 #: data/ui/troubleshoot-view.ui:58
 msgid "Boxes cannot access the virtualization backend."
 msgstr "Impossibile accedere al sistema di virtualizzazione."
-
-#: data/ui/unattended-setup-box.ui:47
-msgid ""
-"Choose express install to automatically preconfigure the box with optimal "
-"settings."
-msgstr ""
-"Scegliere l'installazione rapida per pre-configurare automaticamente la box "
-"con impostazioni ottimali."
-
-#. Translators: 'Express Install' means that the new box installation will be fully automated, the user won't be asked anything while it's performed.
-#: data/ui/unattended-setup-box.ui:52
-msgid "Express Install"
-msgstr "Installazione rapida"
-
-#: data/ui/unattended-setup-box.ui:106
-msgid "Product Key"
-msgstr "Chiave prodotto"
 
 #: data/ui/welcome-tutorial.ui:7
 msgid "Welcome Tutorial"
@@ -700,8 +653,14 @@ msgstr "Riavvia"
 msgid "Preferences"
 msgstr "Preferenze"
 
+#. Translators: name of the folder under ~/Pictures for screenshots. This is the same folder where GNOME Shell saves screenshots.
+#: src/actions-popover.vala:109
+#, fuzzy
+msgid "Screenshots"
+msgstr "Cattura schermata"
+
 #. Translators: %s => the timestamp of when the screenshot was taken.
-#: src/actions-popover.vala:112
+#: src/actions-popover.vala:126
 #, c-format
 msgid "Screenshot from %s"
 msgstr "Schermata da %s"
@@ -749,63 +708,56 @@ msgstr "URL da mostrare, broker o supporto d'installazione"
 msgid "— A simple application to access virtual machines"
 msgstr "— Un'applicazione per accedere a macchine virtuali"
 
-#: src/app.vala:220
+#: src/app.vala:217
 msgid "Too many command line arguments specified.\n"
 msgstr "Specificati troppi argomenti da riga di comando.\n"
 
-#: src/app.vala:460
+#: src/app.vala:457
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Box «%s» installata e pronta per l'uso"
 
-#: src/app.vala:462
+#: src/app.vala:459
 msgid "Launch"
 msgstr "Lancia"
 
-#: src/app.vala:492
+#: src/app.vala:489
 #, c-format
 msgid "“%s“ is running in the background"
 msgstr "«%s» è in esecuzione sullo sfondo"
 
-#: src/app.vala:573
+#: src/app.vala:570
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "La box «%s» è stata eliminata"
 
-#: src/app.vala:574
+#: src/app.vala:571
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u box è stata eliminata"
 msgstr[1] "%u box sono state eliminate"
 
-#: src/app.vala:645
+#: src/app.vala:642
 msgid "Boxes is doing something"
 msgstr "Boxes sta facendo qualcosa"
 
-#: src/app-window.vala:272
+#: src/app-window.vala:273
 msgid "Select files to transfer"
 msgstr "Seleziona file da inviare"
 
-#: src/app-window.vala:273
+#: src/app-window.vala:274
 msgid "_Cancel"
 msgstr "A_nnulla"
 
-#: src/app-window.vala:275
+#: src/app-window.vala:276
 msgid "_Open"
 msgstr "_Apri"
 
-#: src/assistant/index-page.vala:165 src/preferences/cdrom-row.vala:62
-msgid "Select a device or ISO file"
-msgstr "Selezionare un dispositivo o un file ISO"
-
-#: src/assistant/index-page.vala:168 src/preferences/cdrom-row.vala:65
-msgid "Open"
-msgstr "Apri"
-
-#: src/assistant/index-page.vala:186 src/assistant/vm-assistant.vala:72
-msgid "Previous"
-msgstr "Precedente"
+#: src/assistant/assistant.vala:137
+#, fuzzy, c-format
+msgid "Failed to prepare express installation: %s"
+msgstr "Rinomina dello snapshot none riuscita: %s"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
@@ -827,28 +779,18 @@ msgstr "sistema x86 64 bit"
 msgid " from %s"
 msgstr " da %s"
 
-#: src/assistant/vm-assistant.vala:62
-msgid "Failed to analyze installer media. Corrupted or incomplete media?"
-msgstr ""
-"Analisi del supporto di installazione non riuscita. Il supporto è "
-"danneggiato o incompleto?"
-
-#: src/assistant/vm-assistant.vala:75
-msgid "Create"
-msgstr "Crea"
-
-#: src/display-page.vala:133
+#: src/display-page.vala:127
 msgid "Press (left) Ctrl+Alt to ungrab"
 msgstr "Premere Ctrl+Alt (a sinistra) per annullare il grab"
 
-#: src/display-page.vala:135
+#: src/display-page.vala:129
 msgid "Press & release (left) Ctrl+Alt to ungrab keyboard."
 msgstr ""
 "Premere e rilasciare Ctrl+Alt (a sinistra) per annullare il grab della "
 "tastiera."
 
 #. Translators: Showing size of widget as WIDTH×HEIGHT here.
-#: src/display-page.vala:324
+#: src/display-page.vala:318
 #, c-format
 msgid "%d×%d"
 msgstr "%d×%d"
@@ -871,86 +813,86 @@ msgid "Install"
 msgstr "Installa"
 
 #. We did this, so ignore!
-#: src/downloads-hub.vala:186
+#: src/downloads-hub.vala:180 src/downloads-hub.vala:189
 #, c-format
 msgid "Failed to download: %s"
 msgstr "Scaricamento non riuscito: %s"
 
-#: src/installed-media.vala:80 src/installer-media.vala:199
-msgid "System"
-msgstr "Sistema"
-
-#: src/keys-input-popover.vala:27
+#: src/keys-input-popover.vala:28
 msgid "Ctrl + Alt + Backspace"
 msgstr "Ctrl + Alt + Backspace"
 
-#: src/keys-input-popover.vala:28
+#: src/keys-input-popover.vala:29
 msgid "Ctrl + Alt + Del"
 msgstr "Ctrl + Alt + Canc"
 
 #. New section
-#: src/keys-input-popover.vala:32
+#: src/keys-input-popover.vala:33
 msgid "Ctrl + Alt + F1"
 msgstr "Ctrl + Alt + F1"
 
-#: src/keys-input-popover.vala:33
+#: src/keys-input-popover.vala:34
 msgid "Ctrl + Alt + F2"
 msgstr "Ctrl + Alt + F2"
 
-#: src/keys-input-popover.vala:34
+#: src/keys-input-popover.vala:35
 msgid "Ctrl + Alt + F3"
 msgstr "Ctrl + Alt + F3"
 
-#: src/keys-input-popover.vala:35
+#: src/keys-input-popover.vala:36
+#, fuzzy
+msgid "Ctrl + Alt + F6"
+msgstr "Ctrl + Alt + F1"
+
+#: src/keys-input-popover.vala:37
 msgid "Ctrl + Alt + F7"
 msgstr "Ctrl + Alt + F7"
 
-#: src/keys-input-popover.vala:36
-#| msgid "Ctrl + Alt + F1"
+#: src/keys-input-popover.vala:38
 msgid "Ctrl + Alt + F9"
 msgstr "Ctrl + Alt + F9"
 
 #. Translators: Accessibility name for context menu with a set of keyboard combos (that would normally be
 #. intercepted by host/client, to send to the box.
-#: src/keys-input-popover.vala:45
+#: src/keys-input-popover.vala:47
 msgid "Send key combinations"
 msgstr "Invia combinazioni di tasti"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:466
+#: src/libvirt-machine.vala:491
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Ripristino di %s dal disco"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:469
+#: src/libvirt-machine.vala:494
 #, c-format
 msgid "Starting %s"
 msgstr "Avvio di %s"
 
-#: src/libvirt-machine.vala:542
+#: src/libvirt-machine.vala:567
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "Il riavvio di «%s» sta impiegando troppo tempo. Forzarne l'arresto?"
 
-#: src/libvirt-machine.vala:545
+#: src/libvirt-machine.vala:570
 msgid "Shutdown"
 msgstr "Arresta"
 
-#: src/libvirt-machine.vala:560
+#: src/libvirt-machine.vala:585
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Clonazione di «%s»…"
 
-#: src/libvirt-machine.vala:686
+#: src/libvirt-machine.vala:711
 msgid "Installing…"
 msgstr "Installazione…"
 
-#: src/libvirt-machine.vala:688
+#: src/libvirt-machine.vala:713
 msgid "Setting up clone…"
 msgstr "Impostazione clone…"
 
-#: src/libvirt-machine.vala:690
+#: src/libvirt-machine.vala:715
 msgid "Importing…"
 msgstr "Importazione…"
 
@@ -1042,14 +984,9 @@ msgstr "Segnalare bug a <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "Home page di %s: <%s>.\n"
 
-#: src/media-manager.vala:34
+#: src/media-manager.vala:31
 msgid "Media is not supported"
 msgstr "Immagine non supportata"
-
-#: src/media-manager.vala:368
-#, c-format
-msgid "No such file %s"
-msgstr "File %s inesistente"
 
 #: src/portals.vala:45
 msgid "Boxes wants to run VM in background"
@@ -1058,6 +995,14 @@ msgstr "L'applicazione Boxes vuole eseguire VM in background"
 #: src/preferences/cdrom-row.vala:33
 msgid "No CD/DVD image"
 msgstr "Nessuna immagine CD/DVD"
+
+#: src/preferences/cdrom-row.vala:62
+msgid "Select a device or ISO file"
+msgstr "Selezionare un dispositivo o un file ISO"
+
+#: src/preferences/cdrom-row.vala:65
+msgid "Open"
+msgstr "Apri"
 
 #: src/preferences/devices-page.vala:25
 msgid "The Flatpak version of GNOME Boxes does not support USB redirection."
@@ -1070,21 +1015,21 @@ msgstr ""
 "reindirizzamento."
 
 #. Translators: %s is a recommended value for RAM/storage limit. For example "Recommended 4 GB."
-#: src/preferences/resources-page.vala:81
+#: src/preferences/resources-page.vala:82
 #, c-format
 msgid "Recommended %s."
 msgstr "Consigliato %s."
 
-#: src/preferences/resources-page.vala:157
+#: src/preferences/resources-page.vala:160
 msgid "Boxes is not authorized to run in background"
 msgstr "Boxes non è autorizzata a essere eseguita in background"
 
-#: src/preferences/resources-page.vala:163
+#: src/preferences/resources-page.vala:166
 msgid "Do you want to open Settings to manage application permissions?"
 msgstr ""
 "Aprire le impostazioni per gestire le autorizzazioni dell'applicazione?"
 
-#: src/preferences/resources-page.vala:201
+#: src/preferences/resources-page.vala:204
 msgid ""
 "Editing your box configuration can cause issues to the operating system of "
 "your box. Would you like to create a snapshot to recover from your changes?"
@@ -1093,12 +1038,12 @@ msgstr ""
 "operativo della box stessa. Creare uno snapshot per ripristinare le "
 "modifiche apportate?"
 
-#: src/preferences/resources-page.vala:267
+#: src/preferences/resources-page.vala:270
 #, c-format
 msgid "Failed to save domain configuration: %s"
 msgstr "Salvataggio della configurazione del dominio non riuscito: %s"
 
-#: src/preferences/resources-page.vala:276
+#: src/preferences/resources-page.vala:279
 msgid "Changes to the settings below take effect after you restart your box."
 msgstr ""
 "Le modifiche alle impostazioni riportate di seguito hanno effetto dopo il "
@@ -1192,32 +1137,18 @@ msgstr "Copia di «%s» in «Scaricati»"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: src/unattended-installer.vala:204
+#: src/unattended-installer.vala:174
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr ""
 "Si è verificato un errore durante la preparazione dell'installazione. "
 "Installazione rapida disabilitata."
 
-#: src/unattended-installer.vala:422
+#: src/unattended-installer.vala:371
 msgid "Downloading device drivers…"
 msgstr "Scaricamento driver di dispositivo…"
 
-#: src/unattended-setup-box.vala:53
-msgid "no password"
-msgstr "nessuna password"
-
-#: src/unattended-setup-box.vala:110
-#, c-format
-msgid "Express installation of %s requires an internet connection."
-msgstr "L'installazione veloce di %s richiede una connessione a Internet."
-
-#: src/unattended-setup-box.vala:208
-#, c-format
-msgid "GNOME Boxes credentials for “%s”"
-msgstr "Credenziali dell'applicazione per «%s»"
-
-#: src/util-app.vala:359
+#: src/util-app.vala:414
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1227,11 +1158,11 @@ msgstr ""
 "eseguendo:\n"
 "%s"
 
-#: src/util-app.vala:363
+#: src/util-app.vala:418
 msgid "SELinux not installed?"
 msgstr "SELinux non è installato?"
 
-#: src/util-app.vala:445
+#: src/util-app.vala:500
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1240,7 +1171,7 @@ msgstr ""
 "boxes» da libvirt. Assicurarsi che «virsh -c qemu:///session pool-dumpxml "
 "gnome-boxes» funzioni."
 
-#: src/util-app.vala:450
+#: src/util-app.vala:505
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
@@ -1249,7 +1180,7 @@ msgstr ""
 "%s è noto a libvirt come pool di archiviazione di Boxes GNOME, ma questa "
 "directory non esiste"
 
-#: src/util-app.vala:454
+#: src/util-app.vala:509
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
@@ -1257,7 +1188,7 @@ msgstr ""
 "%s è noto a libvirt come pool di archiviazione di Boxes GNOME, ma non è una "
 "directory"
 
-#: src/util-app.vala:458
+#: src/util-app.vala:513
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
@@ -1276,7 +1207,7 @@ msgstr "no"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:793
+#: src/vm-configurator.vala:791
 msgid "Incapable host system"
 msgstr "Sistema host incapace"
 
@@ -1285,3 +1216,116 @@ msgstr "Sistema host incapace"
 #, c-format
 msgid "Box import from file “%s” failed: %s"
 msgstr "Importazione box dal file «%s» non riuscita: %s"
+
+#~ msgid "Try a different search"
+#~ msgstr "Provare con un'altra ricerca"
+
+#~ msgid "Search for an OS or enter a download link…"
+#~ msgstr "Cercare un SO o inserire un collegamento da scaricare…"
+
+#~ msgid "Boxes was unable to identify the operating system on the image file."
+#~ msgstr "Impossibile identificare il sistema operativo del file immagine."
+
+#~ msgid ""
+#~ "It is not advised to try booting an unknown OS, but you may try your luck "
+#~ "forcing a specific kind of OS from the list below:"
+#~ msgstr ""
+#~ "È altamente sconsigliato avviare un SO sconosciuto, ma è comunque "
+#~ "possibile tentare l'avvio forzandone uno specifico dal seguente elenco:"
+
+#~ msgid "Template"
+#~ msgstr "Modello"
+
+#~ msgid "Unknown OS"
+#~ msgstr "SO sconosciuto"
+
+#~ msgid "Search for an OS…"
+#~ msgstr "Cerca un SO…"
+
+#~ msgid ""
+#~ "A new virtual machine will be created and an operating system installed "
+#~ "into it. Select an operating system source to begin."
+#~ msgstr ""
+#~ "Verrà creata una nuova macchina virtuale e verrà installato un sistema "
+#~ "operativo. Selezionare un sistema operativo per cominciare."
+
+#~ msgid "Detected Sources"
+#~ msgstr "Sorgenti rilevate"
+
+#~ msgid ""
+#~ "Create virtual machine from one of the medias detected in your system."
+#~ msgstr "Crea una macchina virtuale da uno dei supporti rilevati nel sistema"
+
+#~ msgid "Featured Downloads"
+#~ msgstr "In primo piano"
+
+#~ msgid "You will be notified when the download has completed."
+#~ msgstr "Verrà inviata una notifica al termine dello scaricamento."
+
+#~ msgid "Create virtual machine from file"
+#~ msgstr "Crea macchina virtuale da file"
+
+#~ msgid "Preparing…"
+#~ msgstr "Preparazione…"
+
+#~ msgid "Preparing to create a new box"
+#~ msgstr "Preparazione creazione nuova box"
+
+#~ msgid "Review and Create"
+#~ msgstr "Verifica e crea"
+
+#~ msgid "Boxes is ready to set up a new box with the following properties:"
+#~ msgstr "Boxes creerà una nuova box con le seguenti proprietà:"
+
+#~ msgid ""
+#~ "Virtualization extensions are unavailable on your system.\n"
+#~ "Check your BIOS settings to enable them."
+#~ msgstr ""
+#~ "Le estensioni di virtualizzazione non sono disponibili su questo "
+#~ "sistema.\n"
+#~ "Verificare le impostazioni BIOS per abilitarle."
+
+#~ msgid "Enable EFI"
+#~ msgstr "Abilita EFI"
+
+#~ msgid "Next"
+#~ msgstr "Successivo"
+
+#~ msgid "_Name"
+#~ msgstr "_Nome"
+
+#~ msgid ""
+#~ "Choose express install to automatically preconfigure the box with optimal "
+#~ "settings."
+#~ msgstr ""
+#~ "Scegliere l'installazione rapida per pre-configurare automaticamente la "
+#~ "box con impostazioni ottimali."
+
+#~ msgid "Express Install"
+#~ msgstr "Installazione rapida"
+
+#~ msgid "Previous"
+#~ msgstr "Precedente"
+
+#~ msgid "Failed to analyze installer media. Corrupted or incomplete media?"
+#~ msgstr ""
+#~ "Analisi del supporto di installazione non riuscita. Il supporto è "
+#~ "danneggiato o incompleto?"
+
+#~ msgid "System"
+#~ msgstr "Sistema"
+
+#, c-format
+#~ msgid "No such file %s"
+#~ msgstr "File %s inesistente"
+
+#~ msgid "no password"
+#~ msgstr "nessuna password"
+
+#, c-format
+#~ msgid "Express installation of %s requires an internet connection."
+#~ msgstr "L'installazione veloce di %s richiede una connessione a Internet."
+
+#, c-format
+#~ msgid "GNOME Boxes credentials for “%s”"
+#~ msgstr "Credenziali dell'applicazione per «%s»"
