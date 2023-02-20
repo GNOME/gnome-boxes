@@ -55,10 +55,7 @@ private class Boxes.CollectionToolbar: Hdy.HeaderBar {
                                                       window,
                                                       Gtk.FileChooserAction.OPEN,
                                                       _("Open"), _("Cancel"));
-        var filter = new Gtk.FileFilter ();
-        filter.add_mime_type ("application/x-raw-disk-image"); // FIXME: add all mime-types
-        file_chooser.set_filter (filter);
-
+        file_chooser.set_filter (MediaManager.get_default ().content_types_filter);
         if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
             new Boxes.Assistant (window, file_chooser.get_filename ()).present ();
         }

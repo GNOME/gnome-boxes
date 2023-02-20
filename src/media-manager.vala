@@ -34,6 +34,24 @@ private class Boxes.MediaManager : Object {
         return media;
     }
 
+    private Gtk.FileFilter? _content_types_filter;
+    public Gtk.FileFilter? content_types_filter {
+        get {
+            if (_content_types_filter != null)
+                return _content_types_filter;
+
+            _content_types_filter = new Gtk.FileFilter ();
+            foreach (var content_type in supported_installer_media_content_types)
+                _content_types_filter.add_mime_type (content_type);
+            foreach (var content_type in supported_installed_media_content_types)
+                _content_types_filter.add_mime_type (content_type);
+            foreach (var content_type in supported_compression_content_types)
+                _content_types_filter.add_mime_type (content_type);
+
+            return _content_types_filter;
+        }
+    }
+
     private const string[] supported_installed_media_content_types = {
         "application/x-qemu-disk",
         "application/x-raw-disk-image",
