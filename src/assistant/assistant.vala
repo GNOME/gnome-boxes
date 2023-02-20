@@ -76,7 +76,6 @@ private class Boxes.Assistant : Hdy.Window {
             os_chooser_row.select_os (os);
             os_chooser_row.subtitle = os.get_name ();
         } else {
-            create_button.sensitive = false;
             os_chooser_row.expanded = true;
         }
 
@@ -89,7 +88,6 @@ private class Boxes.Assistant : Hdy.Window {
         firmware_row.visible = installer_media.supports_efi && !installer_media.requires_efi;
 
         if (os != null) {
-            create_button.sensitive = true;
             os_chooser_row.subtitle = os.get_vendor ();
         }
 
