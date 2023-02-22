@@ -81,13 +81,13 @@ private class Boxes.VMConfigurator {
         install_media.setup_domain_config (domain);
 
         domain.add_device (create_graphics_device());
-        add_usb_support (domain, install_media);
+        //add_usb_support (domain, install_media);
 
         if (!App.is_running_in_flatpak ())
             add_smartcard_support (domain);
 
         set_video_config (domain, install_media);
-        set_sound_config (domain, install_media);
+        //set_sound_config (domain, install_media);
         set_tablet_config (domain, install_media);
         set_mouse_config (domain, install_media);
         set_keyboard_config (domain, install_media);
@@ -105,11 +105,12 @@ private class Boxes.VMConfigurator {
         console.set_source (new DomainChardevSourcePty ());
         domain.add_device (console);
 
+        /* FIXME: the network bridge setup codepath
         var supports_virtio_net = install_media.supports_virtio_net || install_media.supports_virtio1_net;
         var iface = create_network_interface (domain,
                                               is_libvirt_bridge_net_available (),
                                               supports_virtio_net);
-        domain.add_device (iface);
+        domain.add_device (iface); */
 
         return domain;
     }
@@ -313,8 +314,9 @@ private class Boxes.VMConfigurator {
                 devices.prepend (device);
         }
 
-        devices.prepend (create_spice_webdav_channel ());
-        devices.prepend (create_spice_agent_channel ());
+        // unplug the spice channels
+        //devices.prepend (create_spice_webdav_channel ());
+        //devices.prepend (create_spice_agent_channel ());
         devices.prepend (create_graphics_device ());
 
         if (iface != null) {
@@ -440,6 +442,8 @@ private class Boxes.VMConfigurator {
         if (install_media.supports_virtio_gpu) {
             video.set_model (DomainVideoModel.VIRTIO);
         }
+
+        video.set_accel3d (true);
 
         domain.add_device (video);
     }
@@ -712,11 +716,9 @@ private class Boxes.VMConfigurator {
         return channel;
     }
 
-    public static DomainGraphicsSpice create_graphics_device (bool accel3d = false) {
-        var graphics = new DomainGraphicsSpice ();
-        graphics.set_autoport (false);
+    public static DomainGraphicsDbusDisplay create_graphics_device (bool accel3d = true) {
+        var graphics = new DomainGraphicsDbusDisplay ();
         graphics.set_gl (accel3d);
-        graphics.set_image_compression (DomainGraphicsSpiceImageCompression.OFF);
 
         return graphics;
     }

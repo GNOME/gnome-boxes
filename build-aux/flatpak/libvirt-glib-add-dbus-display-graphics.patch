@@ -1,0 +1,253 @@
+From 537856d4cead97e8a8397974f563fdee3e58c0c0 Mon Sep 17 00:00:00 2001
+From: Felipe Borges <felipeborges@gnome.org>
+Date: Mon, 20 Feb 2023 15:09:12 +0100
+Subject: [PATCH] WIP: Add GVirConfig.DomainGraphics.DBus
+
+---
+ ...irt-gconfig-domain-graphics-dbus.c | 92 +++++++++++++++++++
+ ...irt-gconfig-domain-graphics-dbus.h | 68 ++++++++++++++
+ .../libvirt-gconfig-domain-graphics.c         |  2 +
+ libvirt-gconfig/libvirt-gconfig.h             |  1 +
+ libvirt-gconfig/libvirt-gconfig.sym           |  6 ++
+ libvirt-gconfig/meson.build                   |  2 +
+ 6 files changed, 171 insertions(+)
+ create mode 100644 libvirt-gconfig/libvirt-gconfig-domain-graphics-dbus.c
+ create mode 100644 libvirt-gconfig/libvirt-gconfig-domain-graphics-dbus.h
+
+diff --git a/libvirt-gconfig/libvirt-gconfig-domain-graphics-dbus.c b/libvirt-gconfig/libvirt-gconfig-domain-graphics-dbus.c
+new file mode 100644
+index 0000000..3579603
+--- /dev/null
++++ b/libvirt-gconfig/libvirt-gconfig-domain-graphics-dbus.c
+@@ -0,0 +1,92 @@
++/*
++ * libvirt-gconfig-domain-graphics-dbus.c: libvirt domain DBUS configuration
++ *
++ * Copyright (C) 2011 Red Hat, Inc.
++ *
++ * This library is free software; you can redistribute it and/or
++ * modify it under the terms of the GNU Lesser General Public
++ * License as published by the Free Software Foundation; either
++ * version 2.1 of the License, or (at your option) any later version.
++ *
++ * This library is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++ * Lesser General Public License for more details.
++ *
++ * You should have received a copy of the GNU Lesser General Public
++ * License along with this library. If not, see
++ * <http://www.gnu.org/licenses/>.
++ *
++ * Author: Daniel P. Berrange <berrange@redhat.com>
++ */
++
++#include <config.h>
++
++#include "libvirt-gconfig/libvirt-gconfig.h"
++#include "libvirt-gconfig/libvirt-gconfig-private.h"
++
++#define GVIR_CONFIG_DOMAIN_GRAPHICS_DBUS_GET_PRIVATE(obj)                         \
++        (G_TYPE_INSTANCE_GET_PRIVATE((obj), GVIR_CONFIG_TYPE_DOMAIN_GRAPHICS_DBUS, GVirConfigDomainGraphicsDbusDisplayPrivate))
++
++struct _GVirConfigDomainGraphicsDbusDisplayPrivate
++{
++    gboolean unused;
++};
++
++G_DEFINE_TYPE_WITH_PRIVATE(GVirConfigDomainGraphicsDbusDisplay, gvir_config_domain_graphics_dbus, GVIR_CONFIG_TYPE_DOMAIN_GRAPHICS);
++
++
++static void gvir_config_domain_graphics_dbus_class_init(GVirConfigDomainGraphicsDbusDisplayClass *klass G_GNUC_UNUSED)
++{
++}
++
++
++static void gvir_config_domain_graphics_dbus_init(GVirConfigDomainGraphicsDbusDisplay *graphics_dbus)
++{
++    graphics_dbus->priv = GVIR_CONFIG_DOMAIN_GRAPHICS_DBUS_GET_PRIVATE(graphics_dbus);
++}
++
++
++GVirConfigDomainGraphicsDbusDisplay *gvir_config_domain_graphics_dbus_new(void)
++{
++    GVirConfigObject *object;
++
++    object = gvir_config_object_new(GVIR_CONFIG_TYPE_DOMAIN_GRAPHICS_DBUS,
++                                    "graphics", NULL);
++    gvir_config_object_set_attribute(object, "type", "dbus", NULL);
++    return GVIR_CONFIG_DOMAIN_GRAPHICS_DBUS(object);
++}
++
++GVirConfigDomainGraphicsDbusDisplay *
++gvir_config_domain_graphics_dbus_new_from_xml(const gchar *xml,
++                                             GError **error)
++{
++    GVirConfigObject *object;
++
++    object = gvir_config_object_new_from_xml(GVIR_CONFIG_TYPE_DOMAIN_GRAPHICS_DBUS,
++                                             "graphics", NULL, xml, error);
++    if (g_strcmp0(gvir_config_object_get_attribute(object, NULL, "type"), "dbus") != 0) {
++        g_object_unref(G_OBJECT(object));
++        return NULL;
++    }
++    return GVIR_CONFIG_DOMAIN_GRAPHICS_DBUS(object);
++}
++
++
++gboolean gvir_config_domain_graphics_dbus_get_gl(GVirConfigDomainGraphicsDbusDisplay *graphics)
++{
++    g_return_val_if_fail(GVIR_CONFIG_IS_DOMAIN_GRAPHICS_DBUS(graphics), FALSE);
++
++    return g_strcmp0 (gvir_config_object_get_attribute(GVIR_CONFIG_OBJECT(graphics),
++                                     NULL, "gl"), "on") == 0;
++}
++
++void gvir_config_domain_graphics_dbus_set_gl(GVirConfigDomainGraphicsDbusDisplay *graphics,
++                                                gboolean gl)
++{
++    g_return_if_fail(GVIR_CONFIG_IS_DOMAIN_GRAPHICS_DBUS(graphics));
++
++    gvir_config_object_set_attribute(GVIR_CONFIG_OBJECT(graphics),
++                                     "gl", gl?"on":"off",
++                                     NULL);
++}
+diff --git a/libvirt-gconfig/libvirt-gconfig-domain-graphics-dbus.h b/libvirt-gconfig/libvirt-gconfig-domain-graphics-dbus.h
+new file mode 100644
+index 0000000..8b81aa2
+--- /dev/null
++++ b/libvirt-gconfig/libvirt-gconfig-domain-graphics-dbus.h
+@@ -0,0 +1,68 @@
++/*
++ * libvirt-gconfig-domain-graphics-dbus.h: libvirt domain DBUS graphics configuration
++ *
++ * Copyright (C) 2011 Red Hat, Inc.
++ *
++ * This library is free software; you can redistribute it and/or
++ * modify it under the terms of the GNU Lesser General Public
++ * License as published by the Free Software Foundation; either
++ * version 2.1 of the License, or (at your option) any later version.
++ *
++ * This library is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++ * Lesser General Public License for more details.
++ *
++ * You should have received a copy of the GNU Lesser General Public
++ * License along with this library. If not, see
++ * <http://www.gnu.org/licenses/>.
++ *
++ * Author: Daniel P. Berrange <berrange@redhat.com>
++ */
++
++#if !defined(__LIBVIRT_GCONFIG_H__) && !defined(LIBVIRT_GCONFIG_BUILD)
++#error "Only <libvirt-gconfig/libvirt-gconfig.h> can be included directly."
++#endif
++
++#pragma once
++
++G_BEGIN_DECLS
++
++#define GVIR_CONFIG_TYPE_DOMAIN_GRAPHICS_DBUS            (gvir_config_domain_graphics_dbus_get_type ())
++#define GVIR_CONFIG_DOMAIN_GRAPHICS_DBUS(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GVIR_CONFIG_TYPE_DOMAIN_GRAPHICS_DBUS, GVirConfigDomainGraphicsDbusDisplay))
++#define GVIR_CONFIG_DOMAIN_GRAPHICS_DBUS_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GVIR_CONFIG_TYPE_DOMAIN_GRAPHICS_DBUS, GVirConfigDomainGraphicsDbusDisplayClass))
++#define GVIR_CONFIG_IS_DOMAIN_GRAPHICS_DBUS(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GVIR_CONFIG_TYPE_DOMAIN_GRAPHICS_DBUS))
++#define GVIR_CONFIG_IS_DOMAIN_GRAPHICS_DBUS_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GVIR_CONFIG_TYPE_DOMAIN_GRAPHICS_DBUS))
++#define GVIR_CONFIG_DOMAIN_GRAPHICS_DBUS_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GVIR_CONFIG_TYPE_DOMAIN_GRAPHICS_DBUS, GVirConfigDomainGraphicsDbusDisplayClass))
++
++typedef struct _GVirConfigDomainGraphicsDbusDisplay GVirConfigDomainGraphicsDbusDisplay;
++typedef struct _GVirConfigDomainGraphicsDbusDisplayPrivate GVirConfigDomainGraphicsDbusDisplayPrivate;
++typedef struct _GVirConfigDomainGraphicsDbusDisplayClass GVirConfigDomainGraphicsDbusDisplayClass;
++
++struct _GVirConfigDomainGraphicsDbusDisplay
++{
++    GVirConfigDomainGraphics parent;
++
++    GVirConfigDomainGraphicsDbusDisplayPrivate *priv;
++
++    /* Do not add fields to this struct */
++};
++
++struct _GVirConfigDomainGraphicsDbusDisplayClass
++{
++    GVirConfigDomainGraphicsClass parent_class;
++
++    gpointer padding[20];
++};
++
++GType gvir_config_domain_graphics_dbus_get_type(void);
++
++GVirConfigDomainGraphicsDbusDisplay *gvir_config_domain_graphics_dbus_new(void);
++GVirConfigDomainGraphicsDbusDisplay *gvir_config_domain_graphics_dbus_new_from_xml(const gchar *xml,
++                                                                          GError **error);
++
++gboolean gvir_config_domain_graphics_dbus_get_gl(GVirConfigDomainGraphicsDbusDisplay *graphics);
++void gvir_config_domain_graphics_dbus_set_gl(GVirConfigDomainGraphicsDbusDisplay *graphics,
++                                                gboolean gl);
++
++G_END_DECLS
+diff --git a/libvirt-gconfig/libvirt-gconfig-domain-graphics.c b/libvirt-gconfig/libvirt-gconfig-domain-graphics.c
+index 8c24adc..740fa78 100644
+--- a/libvirt-gconfig/libvirt-gconfig-domain-graphics.c
++++ b/libvirt-gconfig/libvirt-gconfig-domain-graphics.c
+@@ -61,6 +61,8 @@ gvir_config_domain_graphics_new_from_tree(GVirConfigXmlDoc *doc,
+         gtype = GVIR_CONFIG_TYPE_DOMAIN_GRAPHICS_SDL;
+     } else if (g_str_equal(type, "vnc")) {
+         gtype = GVIR_CONFIG_TYPE_DOMAIN_GRAPHICS_VNC;
++    } else if (g_str_equal(type, "dbus")) {
++        gtype = GVIR_CONFIG_TYPE_DOMAIN_GRAPHICS_DBUS;
+     } else if (g_str_equal(type, "spice")) {
+         gtype = GVIR_CONFIG_TYPE_DOMAIN_GRAPHICS_SPICE;
+     } else if (g_str_equal(type, "rdp")) {
+diff --git a/libvirt-gconfig/libvirt-gconfig.h b/libvirt-gconfig/libvirt-gconfig.h
+index 8a9fa32..93a3a7a 100644
+--- a/libvirt-gconfig/libvirt-gconfig.h
++++ b/libvirt-gconfig/libvirt-gconfig.h
+@@ -70,6 +70,7 @@
+ #include <libvirt-gconfig/libvirt-gconfig-domain-graphics-sdl.h>
+ #include <libvirt-gconfig/libvirt-gconfig-domain-graphics-spice.h>
+ #include <libvirt-gconfig/libvirt-gconfig-domain-graphics-vnc.h>
++#include <libvirt-gconfig/libvirt-gconfig-domain-graphics-dbus.h>
+ #include <libvirt-gconfig/libvirt-gconfig-domain-hostdev.h>
+ #include <libvirt-gconfig/libvirt-gconfig-domain-hostdev-pci.h>
+ #include <libvirt-gconfig/libvirt-gconfig-domain-input.h>
+diff --git a/libvirt-gconfig/libvirt-gconfig.sym b/libvirt-gconfig/libvirt-gconfig.sym
+index ec71f3b..715f1f2 100644
+--- a/libvirt-gconfig/libvirt-gconfig.sym
++++ b/libvirt-gconfig/libvirt-gconfig.sym
+@@ -791,6 +791,12 @@ LIBVIRT_GCONFIG_3.1.0 {
+ global:
+ 	gvir_config_domain_controller_get_ports;
+ 	gvir_config_domain_controller_set_ports;
++
++	gvir_config_domain_graphics_dbus_get_gl;
++	gvir_config_domain_graphics_dbus_set_gl;
++	gvir_config_domain_graphics_dbus_get_type;
++	gvir_config_domain_graphics_dbus_new;
++	gvir_config_domain_graphics_dbus_new_from_xml;
+ } LIBVIRT_GCONFIG_3.0.0;
+ 
+ # .... define new API here using predicted next version number ....
+diff --git a/libvirt-gconfig/meson.build b/libvirt-gconfig/meson.build
+index 5a7804d..550f7d0 100644
+--- a/libvirt-gconfig/meson.build
++++ b/libvirt-gconfig/meson.build
+@@ -43,6 +43,7 @@ libvirt_gconfig_public_headers = [
+   'libvirt-gconfig-domain-graphics-sdl.h',
+   'libvirt-gconfig-domain-graphics-spice.h',
+   'libvirt-gconfig-domain-graphics-vnc.h',
++  'libvirt-gconfig-domain-graphics-dbus.h',
+   'libvirt-gconfig-domain-hostdev.h',
+   'libvirt-gconfig-domain-hostdev-pci.h',
+   'libvirt-gconfig-domain-input.h',
+@@ -130,6 +131,7 @@ libvirt_gconfig_sources = [
+   'libvirt-gconfig-domain-graphics-sdl.c',
+   'libvirt-gconfig-domain-graphics-spice.c',
+   'libvirt-gconfig-domain-graphics-vnc.c',
++  'libvirt-gconfig-domain-graphics-dbus.c',
+   'libvirt-gconfig-domain-hostdev.c',
+   'libvirt-gconfig-domain-hostdev-pci.c',
+   'libvirt-gconfig-domain-input.c',
+-- 
+2.37.3
+

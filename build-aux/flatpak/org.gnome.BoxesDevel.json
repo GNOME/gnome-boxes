@@ -11,6 +11,7 @@
         "--socket=x11",
         "--socket=wayland",
         "--socket=pulseaudio",
+        "--socket=session-bus",
         "--share=network",
         "--device=all",
         "--system-talk-name=org.freedesktop.timedate1",
@@ -42,6 +43,10 @@
                     "type": "archive",
                     "url": "https://libvirt.org/sources/glib/libvirt-glib-4.0.0.tar.xz",
                     "sha256": "8423f7069daa476307321d1c11e2ecc285340cd32ca9fc05207762843edeacbd"
+                },
+                {
+                    "type": "patch",
+                    "path": "libvirt-glib-add-dbus-display-graphics.patch"
                 }
             ],
             "modules": [
@@ -254,13 +259,14 @@
                 "--enable-usb-redir",
                 "--enable-smartcard",
                 "--python=/bin/python3",
+                "--enable-dbus-display",
                 "--target-list=x86_64-softmmu,i386-softmmu"
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.qemu.org/qemu-6.1.0.tar.xz",
-                    "sha256": "eebc089db3414bbeedf1e464beda0a7515aad30f73261abc246c9b27503a3c96"
+                    "url": "https://download.qemu.org/qemu-7.2.0.tar.xz",
+                    "sha256": "5b49ce2687744dad494ae90a898c52204a3406e84d072482a1e1be854eeb2157"
                 }
             ],
             "modules": [
@@ -297,8 +303,8 @@
                     "sources": [
                         {
                             "type": "archive",
-                            "url": "https://github.com/freedesktop/virglrenderer/archive/virglrenderer-0.9.1.tar.gz",
-                            "sha256": "dd4a8008ca7bcaaf56666c94fcd738d705cdeda6313a82b3cea78bc3fb1b1ba5"
+                            "url": "https://gitlab.freedesktop.org/virgl/virglrenderer/-/archive/0.10.4/virglrenderer-0.10.4.tar.gz",
+                            "sha256": "da3fdc59821f645632d986482594410614a95c0c7c703b25bfb3473bd6674214"
                         }
                     ]
                 }
@@ -385,6 +391,21 @@
                 {
                     "type": "git",
                     "url": "https://gitlab.gnome.org/felipeborges/libovf-glib.git"
+                }
+            ]
+        },
+        {
+            "name" : "mks",
+            "builddir" : true,
+            "buildsystem" : "meson",
+            "config-opts" : [
+                "-Dinstall-tools=true"
+            ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "branch" : "main",
+                    "url" : "https://gitlab.gnome.org/chergert/libmks.git"
                 }
             ]
         },

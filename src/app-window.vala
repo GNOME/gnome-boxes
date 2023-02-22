@@ -327,10 +327,25 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
 
         current_item = item;
 
-        if (current_item is Machine)
+
+        // HACK. Let's start but not connect to the display and instead just spawn "mks"
+        LibvirtMachine libvirt_machine = machine as LibvirtMachine;
+        libvirt_machine.domain.start (0);
+
+        string[] args = {};
+        args += "mks";
+        try {
+            if (!Process.spawn_async (null, args, null, GLib.SpawnFlags.SEARCH_PATH, null, null))
+                print ("Failed to launch mks\n");
+        } catch (GLib.SpawnError error) {
+            print (error.message);
+        }
+
+        /*if (current_item is Machine)
             connect_to (machine);
         else
             warning ("unknown item, fix your code");
+        */
     }
 
     [GtkCallback]
