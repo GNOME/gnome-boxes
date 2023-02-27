@@ -111,7 +111,7 @@ private class Boxes.App: Gtk.Application {
                                    "artists", artists,
                                    "authors", authors,
                                    "translator-credits", _("translator-credits"),
-                                   "comments", _("A simple GNOME 3 application to access virtual systems"),
+                                   "comments", _("A simple GNOME application to access virtual systems"),
                                    "copyright", "\xc2\xa9 2011-2018 Red Hat, Inc.",
                                    "license-type", Gtk.License.LGPL_2_1,
                                    "program-name", _("Boxes") + Config.NAME_SUFFIX,

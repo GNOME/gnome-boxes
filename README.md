@@ -1,6 +1,6 @@
 # GNOME Boxes
 
-A simple GNOME 3 application to access virtual machines.
+A simple GNOME application to access virtual machines.
 
 [![Download on Flathub](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Flathub-badge-en.svg/240px-Flathub-badge-en.svg.png)](https://flathub.org/apps/details/org.gnome.Boxes)
 
