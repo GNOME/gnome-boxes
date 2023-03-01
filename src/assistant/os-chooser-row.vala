@@ -21,7 +21,7 @@ public class Boxes.OsChooserRow : Hdy.ExpanderRow {
         setup_model.begin ();
     }
 
-    private void on_os_selected (Osinfo.Os? os) {
+    private async void on_os_selected (Osinfo.Os? os) {
         expanded = false;
 
         title = os.get_name ();
@@ -29,7 +29,7 @@ public class Boxes.OsChooserRow : Hdy.ExpanderRow {
 
         os_icon.icon_name = "media-optical-symbolic";
         os_icon.pixel_size = 32;
-        Downloader.fetch_os_logo.begin (os_icon, os, os_icon.pixel_size);
+        yield Downloader.fetch_os_logo (os_icon, os, os_icon.pixel_size);
 
         os_selected (os);
     }
@@ -115,7 +115,7 @@ public class Boxes.OsChooserRow : Hdy.ExpanderRow {
     }
 
     [GtkCallback]
-    private void on_listbox_row_selected () {
+    private async void on_listbox_row_selected () {
         var row = listbox.get_selected_row ();
         if (row == null)
             return;
@@ -130,7 +130,7 @@ public class Boxes.OsChooserRow : Hdy.ExpanderRow {
         var os_list_entry = row.get_child () as OsListEntry;
         os_list_entry.selected = true;
 
-        on_os_selected (os_list_entry.os);
+        yield on_os_selected (os_list_entry.os);
     }
 }
 
