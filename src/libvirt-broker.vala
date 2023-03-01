@@ -96,11 +96,7 @@ private class Boxes.LibvirtBroker : Boxes.Broker {
             var machine = yield add_domain (source, connection, domain);
             var config = machine.domain_config;
 
-            // These instance will take care of their own lifecycles
-            if (VMConfigurator.is_install_config (config) || VMConfigurator.is_live_config (config)) {
-                debug ("Continuing installation/live session for '%s', ..", machine.name);
-                new VMCreator.for_install_completion (machine);
-            } else if (VMConfigurator.is_import_config (config)) {
+            if (VMConfigurator.is_import_config (config)) {
                 debug ("Continuing import of '%s', ..", machine.name);
                 new VMImporter.for_import_completion (machine);
             } else if (VMConfigurator.is_libvirt_system_import_config (config)) {
