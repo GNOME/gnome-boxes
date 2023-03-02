@@ -182,6 +182,8 @@ private class Boxes.Assistant : Hdy.Window {
 
             config.set_title (name_entry.text); // FIXME: this isn't working
             config.memory = ram_row.memory;
+            machine.storage_volume.resize (storage_limit_row.memory * Osinfo.KIBIBYTES,
+                                           GVir.StorageVolResizeFlags.SHRINK);
             if (firmware_row.is_uefi)
                 installer_media.set_uefi_firmware (config, true);
 
