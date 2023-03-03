@@ -154,11 +154,19 @@ private class Boxes.MediaManager : Object {
     }
 
 #if !FLATPAK
-    public GUdev.Client client;
+    private GUdev.Client _client;
+    public GUdev.Client client {
+        get {
+            if (_client == null)
+                _client = new GUdev.Client ({"block"});
+
+            return _client;
+        }
+    }
+
     private async GLib.List<InstallerMedia> load_physical_medias () {
         var list = new GLib.List<InstallerMedia> ();
 
-        client = new GUdev.Client ({"block"});
         var enumerator = new GUdev.Enumerator (client);
         // We don't want to deal with partitions to avoid duplicate medias
         enumerator.add_match_property ("DEVTYPE", "disk");
