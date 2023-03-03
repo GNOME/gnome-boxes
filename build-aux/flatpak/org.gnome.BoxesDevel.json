@@ -145,8 +145,8 @@
                     "sources": [
                         {
                             "type": "archive",
-                            "url": "https://libvirt.org/sources/libvirt-8.4.0.tar.xz",
-                            "sha256": "601a6e9bb03a43d05659f63e4a403df253ab0975b4a973f10a5607f3bbc018dd"
+                            "url": "https://libvirt.org/sources/libvirt-9.0.0.tar.xz",
+                            "sha256": "deca5cff1b7baac297bca9663907c61f71a47183371dc7ac019c107806d5435a"
                         },
                         {
                             "type": "patch",
@@ -174,8 +174,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://gitlab.freedesktop.org/spice/spice-gtk/uploads/05c649d612f31b60e4aa44a7c44e611c/spice-gtk-0.41.tar.xz",
-                    "sha256": "d8f8b5cbea9184702eeb8cc276a67d72acdb6e36e7c73349fb8445e5bca0969f"
+                    "url": "https://www.spice-space.org/download/gtk/spice-gtk-0.42.tar.xz",
+                    "sha256": "9380117f1811ad1faa1812cb6602479b6290d4a0d8cc442d44427f7f6c0e7a58"
                 }
             ],
             "modules": [
@@ -236,8 +236,8 @@
                     "sources": [
                         {
                             "type": "archive",
-                            "url": "https://gitlab.freedesktop.org/spice/spice/uploads/670d32029f4ebd3e59044bde9ef989df/spice-0.15.0.tar.bz2",
-                            "sha256": "b320cf8f4bd2852750acb703c15b72856027e5a8554f8217dfbb3cc09deba0f5"
+                            "url": "https://www.spice-space.org/download/releases/spice-0.15.1.tar.bz2",
+                            "sha256": "ada9af67ab321916bd7eb59e3d619a4a7796c08a28c732edfc7f02fc80b1a37a"
                         }
                     ]
                 }
@@ -253,17 +253,29 @@
                 "--enable-virglrenderer",
                 "--enable-usb-redir",
                 "--enable-smartcard",
+                "--enable-slirp",
                 "--python=/bin/python3",
                 "--target-list=x86_64-softmmu,i386-softmmu"
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.qemu.org/qemu-6.1.0.tar.xz",
-                    "sha256": "eebc089db3414bbeedf1e464beda0a7515aad30f73261abc246c9b27503a3c96"
+                    "url": "https://download.qemu.org/qemu-7.2.0.tar.xz",
+                    "sha256": "5b49ce2687744dad494ae90a898c52204a3406e84d072482a1e1be854eeb2157"
                 }
             ],
             "modules": [
+                {
+                    "name": "slirp",
+                    "buildsystem": "meson",
+                    "sources": [
+                        {
+                            "type": "archive",
+                            "url": "https://gitlab.freedesktop.org/slirp/libslirp//-/archive/v4.7.0.tar.gz",
+                            "sha256": "ccfd4e330b3d59be19e0cce25b0da000d61bcee2cfb608eb23418920d991a6da"
+                        }
+                    ]
+                },
                 {
                     "name": "libusb",
                     "config-opts": [
@@ -286,8 +298,8 @@
                     "sources": [
                         {
                             "type": "archive",
-                            "url": "https://spice-space.org/download/usbredir/usbredir-0.11.0.tar.xz",
-                            "sha256": "72dd5f3aa90dfbc0510b5149bb5b1654c8f21fdc405dfce7b5dc163dcff19cba"
+                            "url": "https://spice-space.org/download/usbredir/usbredir-0.13.0.tar.xz",
+                            "sha256": "4ba6faa02c0ae6deeb4c53883d66ab54b3a5899bead42ce4ded9568b9a7dc46e"
                         }
                     ]
                 },
@@ -297,8 +309,8 @@
                     "sources": [
                         {
                             "type": "archive",
-                            "url": "https://github.com/freedesktop/virglrenderer/archive/virglrenderer-0.9.1.tar.gz",
-                            "sha256": "dd4a8008ca7bcaaf56666c94fcd738d705cdeda6313a82b3cea78bc3fb1b1ba5"
+                            "url": "https://github.com/freedesktop/virglrenderer/archive/refs/tags/0.10.3.tar.gz",
+                            "sha256": "8e6ea421e6abee295741aef1884482fb1375315b212ba024b32aed0f303e0ad0"
                         }
                     ]
                 }
