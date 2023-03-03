@@ -93,7 +93,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             try {
                 domain.set_config (domain_config);
             } catch (GLib.Error error) {
-                warning ("Failed to disable 3D Acceleration");
+                warning ("Failed to disable 3D Acceleration: %s", error.message);
             }
         }
     }
