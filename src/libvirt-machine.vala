@@ -172,7 +172,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
     public void update_domain_config () {
         try {
-            domain_config = domain.get_config (GVir.DomainXMLFlags.NONE);
+            domain_config = domain.get_config (GVir.DomainXMLFlags.INACTIVE);
             storage_volume = get_storage_volume (connection, domain);
         } catch (GLib.Error error) {
             critical ("Failed to fetch configuration for domain '%s': %s", domain.get_name (), error.message);
