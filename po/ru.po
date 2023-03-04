@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2023-01-28 12:47+0000\n"
-"PO-Revision-Date: 2023-01-28 17:20+0300\n"
+"POT-Creation-Date: 2023-02-17 09:54+0000\n"
+"PO-Revision-Date: 2023-02-17 14:16+0300\n"
 "Last-Translator: Aleksandr Melman <Alexmelman88@gmail.com>\n"
 "Language-Team: Russian <Alexmelman88@gmail.com>\n"
 "Language: ru\n"
@@ -198,186 +198,148 @@ msgid "Use the <b>+</b> button to create your first virtual machine."
 msgstr ""
 "Чтобы создать свою первую виртуальную машину, нажмите на кнопку <b>+</b>."
 
+#: data/ui/assistant/assistant.ui:51
+msgid "New Virtual Machine"
+msgstr "Новая виртуальная машина"
+
+#: data/ui/assistant/assistant.ui:55
+#: data/ui/preferences/shared-folder-popover.ui:97
+#: data/ui/shared-folder-popover.ui:97 src/collection-toolbar.vala:57
+#: src/preferences/cdrom-row.vala:65
+msgid "Cancel"
+msgstr "Отменить"
+
+#: data/ui/assistant/assistant.ui:62
+msgid "Create"
+msgstr "Создать"
+
+#: data/ui/assistant/assistant.ui:82 data/ui/preferences/resources-page.ui:12
+#: data/ui/preferences/shared-folder-popover.ui:44
+#: data/ui/shared-folder-popover.ui:44
+msgid "Name"
+msgstr "Имя"
+
+#: data/ui/assistant/assistant.ui:95
+msgid "Operating System"
+msgstr "Операционная система"
+
+#: data/ui/assistant/assistant.ui:100
+msgid "Operating System not found"
+msgstr "Операционная система не найдена"
+
+#: data/ui/assistant/assistant.ui:123 data/ui/preferences/resources-page.ui:7
+#: data/ui/preferences/resources-page.ui:47
+msgid "Resources"
+msgstr "Ресурсы"
+
+#: data/ui/assistant/assistant.ui:128 data/ui/preferences/resources-page.ui:70
+msgid "Memory"
+msgstr "Память"
+
+#: data/ui/assistant/assistant.ui:134 data/ui/preferences/resources-page.ui:77
+msgid "Storage limit"
+msgstr "Предел хранилища"
+
+#: data/ui/assistant/assistant.ui:171
+msgid "Ops! Something went wrong!"
+msgstr "Ой! Что-то пошло не так!"
+
+#: data/ui/assistant/assistant.ui:204
+msgid "Setting up drivers..."
+msgstr "Настройка драйверов..."
+
+#: data/ui/assistant/express-install-row.ui:5 data/ui/welcome-tutorial.ui:49
+msgid "Express Installation"
+msgstr "Быстрая установка"
+
+#: data/ui/assistant/express-install-row.ui:6
+msgid "Set credentials for an automatic install of the operating system."
+msgstr ""
+"Установите учетные данные для автоматической установки операционной системы."
+
+#: data/ui/assistant/express-install-row.ui:16
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: data/ui/assistant/express-install-row.ui:32
+msgid "Password"
+msgstr "Пароль"
+
+#: data/ui/assistant/express-install-row.ui:53
+msgid "Product Key"
+msgstr "Ключ продукта"
+
+#: data/ui/assistant/firmware-row.ui:4
+msgid "Firmware"
+msgstr "Прошивка"
+
 #: data/ui/assistant/media-entry.ui:8
 msgid "Unknown media"
 msgstr "Неизвестный носитель"
 
-#: data/ui/assistant/pages/downloads-page.ui:81
-msgid "No operating systems found"
-msgstr "Операционные системы не найдены"
+#: data/ui/assistant/os-chooser-row.ui:4
+msgid "Select an Operating System"
+msgstr "Выбрать операционную систему"
 
-#: data/ui/assistant/pages/downloads-page.ui:82
-msgid "Try a different search"
-msgstr "Попробуйте другой поисковый запрос"
+#: data/ui/assistant/os-chooser-row.ui:24
+msgid "Search for an operating system…"
+msgstr "Поиск операционной системы…"
 
-#: data/ui/assistant/pages/downloads-page.ui:95
-#: src/assistant/downloads-page.vala:59
-msgid "Search for an OS or enter a download link…"
-msgstr "Найдите ОС или введите ссылку для скачивания…"
+#: data/ui/assistant/os-downloader.ui:4
+msgid "Search for an Operating System"
+msgstr "Поиск операционной системы"
 
-#: data/ui/assistant/pages/identify-os-page.ui:18
-msgid "Boxes was unable to identify the operating system on the image file."
-msgstr "Boxes не смогли идентифицировать операционную систему в файле образа."
-
-#: data/ui/assistant/pages/identify-os-page.ui:29
-msgid ""
-"It is not advised to try booting an unknown OS, but you may try your luck "
-"forcing a specific kind of OS from the list below:"
-msgstr ""
-"Не рекомендуется пытаться загрузить неизвестную ОС, но вы можете испытать "
-"удачу, выбрав определенный тип ОС из списка ниже:"
-
-#: data/ui/assistant/pages/identify-os-page.ui:41
-msgid "Template"
-msgstr "Шаблон"
-
-#: data/ui/assistant/pages/identify-os-page.ui:57
-#: src/assistant/identify-os-page.vala:31
-msgid "Unknown OS"
-msgstr "Неизвестная ОС"
-
-#: data/ui/assistant/pages/identify-os-popover.ui:19
-msgid "Search for an OS…"
-msgstr "Найдите ОС…"
-
-#: data/ui/assistant/pages/index-page.ui:5 data/ui/assistant/vm-assistant.ui:7
-msgid "Create a Virtual Machine"
-msgstr "Создать виртуальную машину"
-
-#: data/ui/assistant/pages/index-page.ui:41
-msgid ""
-"A new virtual machine will be created and an operating system installed into "
-"it. Select an operating system source to begin."
-msgstr ""
-"Будет создана новая виртуальная машина и в нее будет установлена "
-"операционная система. Выберите источник операционной системы для установки."
-
-#: data/ui/assistant/pages/index-page.ui:54
-msgid "Detected Sources"
-msgstr "Обнаруженные источники"
-
-#: data/ui/assistant/pages/index-page.ui:55
-msgid "Create virtual machine from one of the medias detected in your system."
-msgstr ""
-"Создайте виртуальную машину с помощью одного из носителей, обнаруженных в "
-"вашей системе."
-
-#: data/ui/assistant/pages/index-page.ui:72
-msgid "Featured Downloads"
-msgstr "Популярные загрузки"
-
-#: data/ui/assistant/pages/index-page.ui:73
-msgid "You will be notified when the download has completed."
-msgstr "Вы будете уведомлены, когда загрузка будет завершена."
-
-#: data/ui/assistant/pages/index-page.ui:117
-msgid "Create virtual machine from file"
-msgstr "Создать виртуальную машину из файла"
-
-#: data/ui/assistant/pages/index-page.ui:134
-msgid "Download an operating system"
+#: data/ui/assistant/os-downloader.ui:13
+msgid "Download an Operating System"
 msgstr "Загрузить операционную систему"
-
-#: data/ui/assistant/pages/index-page.ui:135
-msgid "Browse and search for operating systems to install."
-msgstr "Просмотр и поиск операционных систем для установки."
-
-#: data/ui/assistant/pages/preparation-page.ui:5
-msgid "Preparing…"
-msgstr "Подготовка…"
-
-#: data/ui/assistant/pages/preparation-page.ui:24
-msgid "Preparing to create a new box"
-msgstr "Подготовка к созданию новой виртуальной машины"
-
-#: data/ui/assistant/pages/review-page.ui:5
-msgid "Review and Create"
-msgstr "Обзор и создание"
-
-#: data/ui/assistant/pages/review-page.ui:18
-msgid "Boxes is ready to set up a new box with the following properties:"
-msgstr ""
-"Boxes готовы к настройке новой виртуальной машины со следующими свойствами:"
-
-#: data/ui/assistant/pages/review-page.ui:45
-msgid ""
-"Virtualization extensions are unavailable on your system.\n"
-"Check your BIOS settings to enable them."
-msgstr ""
-"Расширения виртуализации недоступны для вашей системы.\n"
-"Включите их в настройках BIOS."
-
-#: data/ui/assistant/pages/review-page.ui:78
-msgid "Operating System"
-msgstr "Операционная система"
-
-#: data/ui/assistant/pages/review-page.ui:94
-#: data/ui/preferences/resources-page.ui:70
-msgid "Memory"
-msgstr "Память"
-
-#: data/ui/assistant/pages/review-page.ui:101
-#: data/ui/preferences/resources-page.ui:77
-msgid "Storage limit"
-msgstr "Предел хранилища"
-
-#: data/ui/assistant/pages/review-page.ui:107
-#: data/ui/unattended-setup-box.ui:69 src/unattended-installer.vala:270
-msgid "Username"
-msgstr "Имя пользователя"
-
-#: data/ui/assistant/pages/review-page.ui:123
-#: data/ui/unattended-setup-box.ui:85 src/unattended-installer.vala:271
-msgid "Password"
-msgstr "Пароль"
-
-#: data/ui/assistant/pages/review-page.ui:141
-msgid "Enable EFI"
-msgstr "Включить EFI"
-
-#: data/ui/assistant/pages/setup-page.ui:5 data/ui/welcome-tutorial.ui:49
-msgid "Express Installation"
-msgstr "Быстрая установка"
-
-#: data/ui/assistant/vm-assistant.ui:54
-#: data/ui/preferences/shared-folder-popover.ui:97
-#: data/ui/shared-folder-popover.ui:97 src/assistant/index-page.vala:131
-#: src/assistant/index-page.vala:179 src/assistant/vm-assistant.vala:72
-#: src/preferences/cdrom-row.vala:65
-msgid "Cancel"
-msgstr "Отмена"
-
-#: data/ui/assistant/vm-assistant.ui:61 src/assistant/vm-assistant.vala:75
-msgid "Next"
-msgstr "Далее"
 
 #: data/ui/collection-toolbar.ui:22
 msgid "New"
 msgstr "Создать"
 
-#: data/ui/collection-toolbar.ui:46 data/ui/display-toolbar.ui:29
+#: data/ui/collection-toolbar.ui:59 data/ui/display-toolbar.ui:29
 msgid "Back"
 msgstr "Назад"
 
-#: data/ui/collection-toolbar.ui:69
+#: data/ui/collection-toolbar.ui:82
 msgid "Application Menu"
 msgstr "Меню приложения"
 
-#: data/ui/collection-toolbar.ui:97
+#: data/ui/collection-toolbar.ui:110
 msgid "List view"
 msgstr "Вид списком"
 
-#: data/ui/collection-toolbar.ui:125
+#: data/ui/collection-toolbar.ui:138
 msgid "Grid view"
 msgstr "Вид сеткой"
 
-#: data/ui/collection-toolbar.ui:152
+#: data/ui/collection-toolbar.ui:165
 msgid "Search"
 msgstr "Поиск"
 
-#: data/ui/collection-toolbar.ui:179
+#: data/ui/collection-toolbar.ui:192
 msgid "Downloads"
 msgstr "Загрузки"
+
+#: data/ui/collection-toolbar.ui:214
+msgid "Create new virtual machine"
+msgstr "Создать новую виртуальную машину"
+
+#: data/ui/collection-toolbar.ui:221
+msgid "Install from File"
+msgstr "Установить из файла"
+
+#: data/ui/collection-toolbar.ui:222
+msgid "Select an .iso or .qcow2 file to install a virtual machine."
+msgstr "Выберите файл .iso или .qcow2 для установки виртуальной машины."
+
+#: data/ui/collection-toolbar.ui:238
+msgid "Download OS"
+msgstr "Загрузить ОС"
+
+#: data/ui/collection-toolbar.ui:239
+msgid "Browse and search for operating systems to install."
+msgstr "Просмотр и поиск операционных систем для установки."
 
 #: data/ui/display-page.ui:96
 msgid "Ready to Receive File"
@@ -509,17 +471,6 @@ msgstr "Устройства USB"
 msgid "CDROM/DVD Drive"
 msgstr "Привод CD-ROM/DVD"
 
-#: data/ui/preferences/resources-page.ui:7
-#: data/ui/preferences/resources-page.ui:47
-msgid "Resources"
-msgstr "Ресурсы"
-
-#: data/ui/preferences/resources-page.ui:12
-#: data/ui/preferences/shared-folder-popover.ui:44
-#: data/ui/shared-folder-popover.ui:44
-msgid "Name"
-msgstr "Имя"
-
 #: data/ui/preferences/resources-page.ui:28
 msgid "IP Address"
 msgstr "IP-адрес"
@@ -614,23 +565,6 @@ msgstr "Ой! Что-то пошло не так"
 #: data/ui/troubleshoot-view.ui:58
 msgid "Boxes cannot access the virtualization backend."
 msgstr "Boxes не могут получить доступ к серверу виртуализации."
-
-#: data/ui/unattended-setup-box.ui:47
-msgid ""
-"Choose express install to automatically preconfigure the box with optimal "
-"settings."
-msgstr ""
-"Выберите быструю установку для автоматически настроенной виртуальной машины "
-"с оптимальными параметрами."
-
-#. Translators: 'Express Install' means that the new box installation will be fully automated, the user won't be asked anything while it's performed.
-#: data/ui/unattended-setup-box.ui:53
-msgid "Express Install"
-msgstr "Быстрая установка"
-
-#: data/ui/unattended-setup-box.ui:107
-msgid "Product Key"
-msgstr "Ключ продукта"
 
 #: data/ui/welcome-tutorial.ui:7
 msgid "Welcome Tutorial"
@@ -815,19 +749,16 @@ msgstr "Выбрать файлы для передачи"
 
 #: src/app-window.vala:274
 msgid "_Cancel"
-msgstr "_Отмена"
+msgstr "_Отменить"
 
 #: src/app-window.vala:276
 msgid "_Open"
 msgstr "_Открыть"
 
-#: src/assistant/index-page.vala:176 src/preferences/cdrom-row.vala:62
-msgid "Select a device or ISO file"
-msgstr "Выберите устройство или файл ISO"
-
-#: src/assistant/index-page.vala:179 src/preferences/cdrom-row.vala:65
-msgid "Open"
-msgstr "Открыть"
+#: src/assistant/assistant.vala:137
+#, c-format
+msgid "Failed to prepare express installation: %s"
+msgstr "Не удалось подготовить быструю установку: %s"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
@@ -849,18 +780,13 @@ msgstr "64-битная x86 система"
 msgid " from %s"
 msgstr " от %s"
 
-#: src/assistant/vm-assistant.vala:62
-msgid "Failed to analyze installer media. Corrupted or incomplete media?"
-msgstr ""
-"Ошибка анализа установочного носителям. Повреждённый или неполный носитель?"
+#: src/collection-toolbar.vala:54
+msgid "Select a device or OS media file"
+msgstr "Выберите устройство или носитель файла ISO"
 
-#: src/assistant/vm-assistant.vala:72
-msgid "Previous"
-msgstr "Назад"
-
-#: src/assistant/vm-assistant.vala:75
-msgid "Create"
-msgstr "Создать"
+#: src/collection-toolbar.vala:57 src/preferences/cdrom-row.vala:65
+msgid "Open"
+msgstr "Открыть"
 
 #: src/display-page.vala:127
 msgid "Press (left) Ctrl+Alt to ungrab"
@@ -898,10 +824,6 @@ msgstr "Установить"
 #, c-format
 msgid "Failed to download: %s"
 msgstr "Не удалось загрузить: %s"
-
-#: src/installed-media.vala:80 src/installer-media.vala:199
-msgid "System"
-msgstr "Система"
 
 #: src/keys-input-popover.vala:28
 msgid "Ctrl + Alt + Backspace"
@@ -943,40 +865,40 @@ msgid "Send key combinations"
 msgstr "Послать комбинации клавиш"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:470
+#: src/libvirt-machine.vala:491
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Восстановление %s с диска"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:473
+#: src/libvirt-machine.vala:494
 #, c-format
 msgid "Starting %s"
 msgstr "Запуск %s"
 
-#: src/libvirt-machine.vala:546
+#: src/libvirt-machine.vala:567
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "«%s» слишком долго перезапускается. Выключить принудительно?"
 
-#: src/libvirt-machine.vala:549
+#: src/libvirt-machine.vala:570
 msgid "Shutdown"
 msgstr "Выключить"
 
-#: src/libvirt-machine.vala:564
+#: src/libvirt-machine.vala:585
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Клонирование «%s»…"
 
-#: src/libvirt-machine.vala:690
+#: src/libvirt-machine.vala:711
 msgid "Installing…"
 msgstr "Установка…"
 
-#: src/libvirt-machine.vala:692
+#: src/libvirt-machine.vala:713
 msgid "Setting up clone…"
 msgstr "Настройка клона…"
 
-#: src/libvirt-machine.vala:694
+#: src/libvirt-machine.vala:715
 msgid "Importing…"
 msgstr "Импортирование…"
 
@@ -1068,14 +990,9 @@ msgstr "Об ошибках сообщайте на <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "Домашняя страница %s: <%s>.\n"
 
-#: src/media-manager.vala:34
+#: src/media-manager.vala:31
 msgid "Media is not supported"
 msgstr "Носитель не поддерживается"
-
-#: src/media-manager.vala:372
-#, c-format
-msgid "No such file %s"
-msgstr "Файл %s не найден"
 
 #: src/portals.vala:45
 msgid "Boxes wants to run VM in background"
@@ -1084,6 +1001,10 @@ msgstr "Boxes хочет запустить ВМ в фоновом режиме"
 #: src/preferences/cdrom-row.vala:33
 msgid "No CD/DVD image"
 msgstr "Нет образа CD/DVD"
+
+#: src/preferences/cdrom-row.vala:62
+msgid "Select a device or ISO file"
+msgstr "Выберите устройство или файл ISO"
 
 #: src/preferences/devices-page.vala:25
 msgid "The Flatpak version of GNOME Boxes does not support USB redirection."
@@ -1097,20 +1018,20 @@ msgstr ""
 "для перенаправления."
 
 #. Translators: %s is a recommended value for RAM/storage limit. For example "Recommended 4 GB."
-#: src/preferences/resources-page.vala:81
+#: src/preferences/resources-page.vala:82
 #, c-format
 msgid "Recommended %s."
 msgstr "Рекомендовано %s."
 
-#: src/preferences/resources-page.vala:159
+#: src/preferences/resources-page.vala:160
 msgid "Boxes is not authorized to run in background"
 msgstr "Boxes не разрешена для запуска в фоновом режиме"
 
-#: src/preferences/resources-page.vala:165
+#: src/preferences/resources-page.vala:166
 msgid "Do you want to open Settings to manage application permissions?"
 msgstr "Вы хотите открыть Настройки, чтобы управлять разрешениями приложений?"
 
-#: src/preferences/resources-page.vala:203
+#: src/preferences/resources-page.vala:204
 msgid ""
 "Editing your box configuration can cause issues to the operating system of "
 "your box. Would you like to create a snapshot to recover from your changes?"
@@ -1119,12 +1040,12 @@ msgstr ""
 "операционной системе вашей виртуальной машины. Хотите создать моментальный "
 "снимок для восстановления после внесенных изменений?"
 
-#: src/preferences/resources-page.vala:269
+#: src/preferences/resources-page.vala:270
 #, c-format
 msgid "Failed to save domain configuration: %s"
 msgstr "Не удалось сохранить конфигурацию домена: %s"
 
-#: src/preferences/resources-page.vala:278
+#: src/preferences/resources-page.vala:279
 msgid "Changes to the settings below take effect after you restart your box."
 msgstr ""
 "Изменения в приведенных ниже настройках вступают в силу после перезапуска "
@@ -1218,28 +1139,14 @@ msgstr "Копирование «%s» в «Загрузки»"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: src/unattended-installer.vala:204
+#: src/unattended-installer.vala:174
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr "Во время установки произошла ошибка. Быстрая установка отключена."
 
-#: src/unattended-installer.vala:422
+#: src/unattended-installer.vala:371
 msgid "Downloading device drivers…"
 msgstr "Загрузка драйверов устройств…"
-
-#: src/unattended-setup-box.vala:45
-msgid "no password"
-msgstr "без пароля"
-
-#: src/unattended-setup-box.vala:101
-#, c-format
-msgid "Express installation of %s requires an internet connection."
-msgstr "Для быстрой установки %s требуется подключение к Интернету."
-
-#: src/unattended-setup-box.vala:178
-#, c-format
-msgid "GNOME Boxes credentials for “%s”"
-msgstr "GNOME Boxes аккредитован для «%s»"
 
 #: src/util-app.vala:414
 #, c-format
@@ -1304,6 +1211,121 @@ msgstr "Система не поддерживает необходимые фу
 #, c-format
 msgid "Box import from file “%s” failed: %s"
 msgstr "Импорт виртуальной машины из файла \"%s\" не удался: %s"
+
+#~ msgid "Try a different search"
+#~ msgstr "Попробуйте другой поисковый запрос"
+
+#~ msgid "Search for an OS or enter a download link…"
+#~ msgstr "Найдите ОС или введите ссылку для скачивания…"
+
+#~ msgid "Boxes was unable to identify the operating system on the image file."
+#~ msgstr ""
+#~ "Boxes не смогли идентифицировать операционную систему в файле образа."
+
+#~ msgid ""
+#~ "It is not advised to try booting an unknown OS, but you may try your luck "
+#~ "forcing a specific kind of OS from the list below:"
+#~ msgstr ""
+#~ "Не рекомендуется пытаться загрузить неизвестную ОС, но вы можете испытать "
+#~ "удачу, выбрав определенный тип ОС из списка ниже:"
+
+#~ msgid "Template"
+#~ msgstr "Шаблон"
+
+#~ msgid "Unknown OS"
+#~ msgstr "Неизвестная ОС"
+
+#~ msgid "Search for an OS…"
+#~ msgstr "Найдите ОС…"
+
+#~ msgid ""
+#~ "A new virtual machine will be created and an operating system installed "
+#~ "into it. Select an operating system source to begin."
+#~ msgstr ""
+#~ "Будет создана новая виртуальная машина и в нее будет установлена "
+#~ "операционная система. Выберите источник операционной системы для "
+#~ "установки."
+
+#~ msgid "Detected Sources"
+#~ msgstr "Обнаруженные источники"
+
+#~ msgid ""
+#~ "Create virtual machine from one of the medias detected in your system."
+#~ msgstr ""
+#~ "Создайте виртуальную машину с помощью одного из носителей, обнаруженных в "
+#~ "вашей системе."
+
+#~ msgid "Featured Downloads"
+#~ msgstr "Популярные загрузки"
+
+#~ msgid "You will be notified when the download has completed."
+#~ msgstr "Вы будете уведомлены, когда загрузка будет завершена."
+
+#~ msgid "Create virtual machine from file"
+#~ msgstr "Создать виртуальную машину из файла"
+
+#~ msgid "Preparing…"
+#~ msgstr "Подготовка…"
+
+#~ msgid "Preparing to create a new box"
+#~ msgstr "Подготовка к созданию новой виртуальной машины"
+
+#~ msgid "Review and Create"
+#~ msgstr "Обзор и создание"
+
+#~ msgid "Boxes is ready to set up a new box with the following properties:"
+#~ msgstr ""
+#~ "Boxes готовы к настройке новой виртуальной машины со следующими "
+#~ "свойствами:"
+
+#~ msgid ""
+#~ "Virtualization extensions are unavailable on your system.\n"
+#~ "Check your BIOS settings to enable them."
+#~ msgstr ""
+#~ "Расширения виртуализации недоступны для вашей системы.\n"
+#~ "Включите их в настройках BIOS."
+
+#~ msgid "Enable EFI"
+#~ msgstr "Включить EFI"
+
+#~ msgid "Next"
+#~ msgstr "Далее"
+
+#~ msgid ""
+#~ "Choose express install to automatically preconfigure the box with optimal "
+#~ "settings."
+#~ msgstr ""
+#~ "Выберите быструю установку для автоматически настроенной виртуальной "
+#~ "машины с оптимальными параметрами."
+
+#~ msgid "Express Install"
+#~ msgstr "Быстрая установка"
+
+#~ msgid "Failed to analyze installer media. Corrupted or incomplete media?"
+#~ msgstr ""
+#~ "Ошибка анализа установочного носителям. Повреждённый или неполный "
+#~ "носитель?"
+
+#~ msgid "Previous"
+#~ msgstr "Назад"
+
+#~ msgid "System"
+#~ msgstr "Система"
+
+#, c-format
+#~ msgid "No such file %s"
+#~ msgstr "Файл %s не найден"
+
+#~ msgid "no password"
+#~ msgstr "без пароля"
+
+#, c-format
+#~ msgid "Express installation of %s requires an internet connection."
+#~ msgstr "Для быстрой установки %s требуется подключение к Интернету."
+
+#, c-format
+#~ msgid "GNOME Boxes credentials for “%s”"
+#~ msgstr "GNOME Boxes аккредитован для «%s»"
 
 #~ msgid "_Name"
 #~ msgstr "_Имя"
