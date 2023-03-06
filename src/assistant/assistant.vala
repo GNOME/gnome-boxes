@@ -176,11 +176,10 @@ private class Boxes.Assistant : Hdy.Window {
 
             var vm_creator = installer_media.get_vm_creator ();
             var machine = yield vm_creator.create_vm (cancellable);
+            machine.title = name_entry.text;
 
             // Apply VM preferences
             var config = machine.domain.get_config (GVir.DomainXMLFlags.INACTIVE);
-
-            config.set_title (name_entry.text); // FIXME: this isn't working
             config.memory = ram_row.memory;
             machine.storage_volume.resize (storage_limit_row.memory * Osinfo.KIBIBYTES,
                                            GVir.StorageVolResizeFlags.SHRINK);

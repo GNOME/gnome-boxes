@@ -40,7 +40,7 @@ private class Boxes.ResourcesPage : Hdy.PreferencesPage {
         this.machine = machine;
 
         setup_address_group ();
-        bind_widget_property (box_name_entry, "text", "name");
+        bind_widget_property (box_name_entry, "text", "title");
         bind_widget_property (run_in_bg_toggle, "active", "run-in-bg");
 
         on_run_in_bg_toggled.begin ();
