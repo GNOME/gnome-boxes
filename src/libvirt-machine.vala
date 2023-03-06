@@ -24,11 +24,12 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         }
     }
 
-    public new string name {
+    public new string title {
         set {
             try {
                 domain_config.set_title (value);
                 domain.set_config (domain_config);
+                this.name = value;
             } catch (GLib.Error error) {
                 warning ("Failed to rename box: %s", error.message);
             }
