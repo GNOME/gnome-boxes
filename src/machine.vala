@@ -614,7 +614,6 @@ private abstract class Boxes.Machine: Boxes.CollectionItem {
                         machine = this as LibvirtMachine,
                         transient_for = window
                     };
-                    preferences.present ();
                     preferences.show_troubleshoot_logs ();
                 };
 
