@@ -34,7 +34,8 @@ private class Boxes.MemoryRow : Hdy.ActionRow {
         if (text == null)
             return 1;
 
-        double user_input_value = double.parse (text);
+        // HACK: some locales will use commas, causing double.parse to fail
+        double user_input_value = double.parse (text.replace (",","."));
         if (user_input_value == 0)
             return 1;
 
