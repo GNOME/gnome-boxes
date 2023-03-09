@@ -263,7 +263,6 @@ private class Boxes.VMConfigurator {
     private static void update_domain_devices (Domain domain) throws GLib.Error {
         GLib.List<GVirConfig.DomainDevice> devices = null;
         DomainInterface iface = null;
-        bool supports_alternative_boot_device = false;
         foreach (var device in domain.get_devices ()) {
             // Let's always re-create the graphics device, so we can switch from SPICE
             // to VNC and back according to SPICE's availability in the build.
@@ -302,8 +301,6 @@ private class Boxes.VMConfigurator {
                         if (!FileUtils.test (domain_disk.get_source (), FileTest.EXISTS)) {
                             debug ("CDROM media '%s' cannot be found", domain_disk.get_source ());
                             domain_disk.set_source ("");
-                        } else {
-                            supports_alternative_boot_device = true;
                         }
                     }
                 }
@@ -339,23 +336,10 @@ private class Boxes.VMConfigurator {
             }
         }
 
-        enable_boot_menu (domain, supports_alternative_boot_device);
-
         devices.reverse ();
         domain.set_devices (devices);
 
         debug ("Updating domain devices for %s", domain.name);
-    }
-
-    public static void enable_boot_menu (Domain domain, bool enable) {
-        try {
-            var os = new DomainOs.from_xml (domain.get_os ().to_xml ());
-            os.enable_boot_menu (enable);
-
-            domain.set_os (os);
-        } catch (GLib.Error error) {
-            warning ("Failed to enable boot menu\n");
-        }
     }
 
     public static void set_target_media_config (Domain         domain,
@@ -403,6 +387,7 @@ private class Boxes.VMConfigurator {
         var boot_devices = old_os.get_boot_devices ();
         boot_devices.remove (DomainOsBootDevice.CDROM);
         os.set_boot_devices (boot_devices);
+        os.enable_boot_menu (true);
 
         os.set_arch (old_os.get_arch ());
         os.set_machine (old_os.get_machine ());
@@ -430,6 +415,8 @@ private class Boxes.VMConfigurator {
         boot_devices.append (DomainOsBootDevice.CDROM);
         boot_devices.append (DomainOsBootDevice.HD);
         os.set_boot_devices (boot_devices);
+
+        os.enable_boot_menu (true);
 
         domain.set_os (os);
     }
