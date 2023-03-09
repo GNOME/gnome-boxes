@@ -109,6 +109,7 @@ private class Boxes.Assistant : Hdy.Window {
             var pool_info = storage_pool.get_info ();
             var max_storage = storage_limit_row.spin_button.get_value () + pool_info.available;
 
+            storage_limit_row.spin_button.set_increments (256 * 1000 * 1000 , max_storage);
             storage_limit_row.spin_button.set_range (0, max_storage);
             storage_limit_row.memory = resources.storage / Osinfo.KIBIBYTES;
         } catch (GLib.Error error) {
