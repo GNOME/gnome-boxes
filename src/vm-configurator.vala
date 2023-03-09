@@ -80,7 +80,8 @@ private class Boxes.VMConfigurator {
         set_target_media_config (domain, target_path, install_media);
         install_media.setup_domain_config (domain);
 
-        domain.add_device (create_graphics_device());
+        domain.add_device (create_graphics_device ());
+        domain.add_device (create_spice_agent_channel ());
         add_usb_support (domain, install_media);
 
         if (!App.is_running_in_flatpak ())
