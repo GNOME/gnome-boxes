@@ -66,6 +66,13 @@ private class Boxes.LibvirtBroker : Boxes.Broker {
             var config = machine.domain.get_config (0);
             yield VMConfigurator.update_existing_domain (config, connection);
             machine.domain.set_config (config);
+
+            /* FIXME: reload local properties to sync with libvirt domain xml
+               since DomainGraphicsSpice doesn't have a get_gl method, we need to store
+               and reload that setting ourselves.
+            */
+            machine.acceleration_3d = !!machine.acceleration_3d;
+            machine.run_in_bg = !!machine.run_in_bg;
         } catch (GLib.Error e) {
             warning ("Failed to update domain '%s': %s", domain.get_name (), e.message);
         }
