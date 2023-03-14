@@ -118,7 +118,7 @@ public class Boxes.ArchiveWriter : GLib.Object {
 
         // get file info, read data into memory
         var filestream = GLib.FileStream.open (src, "r");
-        filestream.read ((uint8[]) buf, (size_t) len);
+        filestream.read ((uint8[]) buf);
         execute_libarchive_function (archive, () => { return archive.write_header(entry); });
         insert_data (buf, len);
     }
