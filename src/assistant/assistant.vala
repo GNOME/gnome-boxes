@@ -182,6 +182,10 @@ private class Boxes.Assistant : Hdy.Window {
             // Apply VM preferences
             var config = machine.domain.get_config (GVir.DomainXMLFlags.INACTIVE);
             config.memory = ram_row.memory;
+
+            if (config.get_class ().find_property ("current-memory") != null)
+                config.set ("current-memory", config.memory);
+
             machine.storage_volume.resize (storage_limit_row.memory * Osinfo.KIBIBYTES,
                                            GVir.StorageVolResizeFlags.SHRINK);
             if (firmware_row.is_uefi)
