@@ -242,7 +242,7 @@ private class Boxes.ResourcesPage : Hdy.PreferencesPage {
     private void on_domain_configuration_edited (File file,
                                                  File? other_file,
                                                  FileMonitorEvent event_type) {
-        if (event_type != FileMonitorEvent.CHANGED) {
+        if (event_type != FileMonitorEvent.CHANGES_DONE_HINT) {
             return;
         }
 
