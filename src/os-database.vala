@@ -244,8 +244,9 @@ private class Boxes.OSDatabase : GLib.Object {
     }
 
     public static Resources? get_recommended_resources_for_os (Os os, string? architecture = null) {
+        // Prefer x86_64 resources by default
         if (architecture == null)
-            architecture = ARCHITECTURE_ALL;
+            architecture = "x86_64";
         string[] prefs = { architecture, ARCHITECTURE_ALL };
 
         var list = os.get_recommended_resources ();
