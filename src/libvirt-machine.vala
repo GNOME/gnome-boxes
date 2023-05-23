@@ -598,6 +598,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             var clone_machine = yield vm_cloner.create_vm (null, true);
             vm_cloner.launch_vm (clone_machine, this.config.access_last_time, true);
 
+            clone_machine.acceleration_3d = this.acceleration_3d;
+
             ulong under_construct_id = 0;
             under_construct_id = clone_machine.notify["under-construction"].connect (() => {
                 if (!clone_machine.under_construction) {
