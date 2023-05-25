@@ -82,6 +82,7 @@ private class Boxes.VMConfigurator {
 
         domain.add_device (create_graphics_device ());
         domain.add_device (create_spice_agent_channel ());
+        domain.add_device (create_spice_webdav_channel ());
         add_usb_support (domain, install_media);
 
         if (!App.is_running_in_flatpak ())
