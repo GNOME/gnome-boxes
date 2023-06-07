@@ -71,8 +71,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         set {
             domain_config.memory = value;
 
-            if (config.get_class ().find_property ("current-memory") != null)
-                config.set ("current-memory", value);
+            if (domain_config.get_class ().find_property ("current-memory") != null)
+                domain_config.set ("current-memory", value);
 
             try {
                 domain.set_config (domain_config);
