@@ -3,6 +3,7 @@
     "runtime": "org.gnome.Platform",
     "runtime-version": "master",
     "sdk": "org.gnome.Sdk",
+    "sdk-extensions": ["org.freedesktop.Sdk.Extension.vala"],
     "command": "gnome-boxes",
     "tags": ["devel", "development", "nightly"],
     "finish-args": [
@@ -22,6 +23,10 @@
         "--talk-name=ca.desrt.dconf",
         "--env=DCONF_USER_CONFIG_DIR=.config/dconf"
     ],
+    "build-options": {
+        "prepend-path": "/usr/lib/sdk/vala/bin",
+        "prepend-ld-library-path": "/usr/lib/sdk/vala/lib"
+    },
     "modules": [
         {
             "name" : "intltool",
