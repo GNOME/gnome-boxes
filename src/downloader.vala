@@ -168,7 +168,7 @@ private class Boxes.Downloader : GLib.Object {
         if (msg.status_code != Soup.Status.OK) {
             download.cached_file.delete ();
             if (err == null)
-                err = new GLib.Error (IOError.FAILED, (int)msg.status_code, msg.reason_phrase);
+                err = new GLib.Error (G_IO_ERROR, (int)msg.status_code, msg.reason_phrase);
 
             throw err;
         }
