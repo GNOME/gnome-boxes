@@ -432,6 +432,12 @@ namespace Boxes {
             string[] argv = {"virsh", "capabilities"};
 
             yield exec (argv, null, out standard_output);
+            int index = standard_output.index_of ("<capabilities");
+
+            if (index < 0)
+                throw new Boxes.Error.INVALID ("Unexpected output while running command '%s %s'", argv[0], argv[1]);
+
+            standard_output = standard_output.substring (index);
             var kvm = extract_xpath (standard_output,
                                      "string(/capabilities/guest[os_type='hvm']/arch/domain[@type='kvm']/../emulator)");
             return kvm.length != 0;
@@ -494,6 +500,12 @@ namespace Boxes {
             string[] argv = {"virsh", "pool-dumpxml", Config.PACKAGE_TARNAME};
 
             yield exec (argv, null, out standard_output);
+            int index = standard_output.index_of ("<pool");
+
+            if (index < 0)
+                throw new Boxes.Error.INVALID ("Unexpected output while running command '%s %s %s'", argv[0], argv[1], argv[2]);
+
+            standard_output = standard_output.substring (index);
             pool_path = extract_xpath (standard_output, "string(/pool[@type='dir']/target/path)");
         } catch (GLib.Error error) {
             debug (error.message);
