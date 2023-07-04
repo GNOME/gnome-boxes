@@ -159,6 +159,7 @@ private class Boxes.Assistant : Hdy.Window {
 
     [GtkCallback]
     private async void on_create_button_clicked () {
+        create_button.sensitive = false;
         try {
             if (express_install_row.enabled) {
                 installer_media = unattended_installer;
@@ -172,8 +173,10 @@ private class Boxes.Assistant : Hdy.Window {
                 pages.set_visible_child (creating_page);
                 var progress = create_preparation_progress ();
                 progress.bind_property ("info", creating_status_page, "description");
-                if (!yield installer_media.prepare (progress, cancellable))
+                if (!yield installer_media.prepare (progress, cancellable)) {
+                    create_button.sensitive = true;
                     return;
+                }
             }
 
             var vm_creator = installer_media.get_vm_creator ();
@@ -208,7 +211,7 @@ private class Boxes.Assistant : Hdy.Window {
 
             show_error (error.message);
         }
-
+        create_button.sensitive = true;
         close ();
     }
 
