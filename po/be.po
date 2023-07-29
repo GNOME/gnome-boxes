@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2023-02-16 13:16+0000\n"
-"PO-Revision-Date: 2023-02-16 17:40+0300\n"
+"POT-Creation-Date: 2023-07-14 01:18+0000\n"
+"PO-Revision-Date: 2023-07-29 16:07+0300\n"
 "Last-Translator: Yuras Shumovich <shumovichy@gmail.com>\n"
 "Language-Team: Belarusian <i18n-bel-gnome@googlegroups.com>\n"
 "Language: be\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:7 data/org.gnome.Boxes.desktop.in:3
 #: data/ui/app-window.ui:6 data/ui/collection-toolbar.ui:7 src/app.vala:117
@@ -192,7 +192,8 @@ msgstr "Новая віртуальная машына"
 
 #: data/ui/assistant/assistant.ui:55
 #: data/ui/preferences/shared-folder-popover.ui:97
-#: data/ui/shared-folder-popover.ui:97 src/preferences/cdrom-row.vala:65
+#: data/ui/shared-folder-popover.ui:97 src/collection-toolbar.vala:57
+#: src/preferences/cdrom-row.vala:65
 msgid "Cancel"
 msgstr "Скасаваць"
 
@@ -228,7 +229,7 @@ msgid "Storage limit"
 msgstr "Абмежаванне сховішча"
 
 #: data/ui/assistant/assistant.ui:171
-msgid "Ops! Something went wrong!"
+msgid "Oops! Something went wrong!"
 msgstr "Вой! Штосьці пайшло не так!"
 
 #: data/ui/assistant/assistant.ui:204
@@ -256,6 +257,10 @@ msgstr "Пароль"
 msgid "Product Key"
 msgstr "Ключ прадукту"
 
+#: data/ui/assistant/firmware-row.ui:4
+msgid "Firmware"
+msgstr "Убудаванае ПЗ"
+
 #: data/ui/assistant/media-entry.ui:8
 msgid "Unknown media"
 msgstr "Невядомы носьбіт"
@@ -280,47 +285,47 @@ msgstr "Спампаваць аперацыйную сістэму"
 msgid "New"
 msgstr "Новы"
 
-#: data/ui/collection-toolbar.ui:58 data/ui/display-toolbar.ui:29
+#: data/ui/collection-toolbar.ui:59 data/ui/display-toolbar.ui:29
 msgid "Back"
 msgstr "Назад"
 
-#: data/ui/collection-toolbar.ui:81
+#: data/ui/collection-toolbar.ui:82
 msgid "Application Menu"
 msgstr "Меню праграмы"
 
-#: data/ui/collection-toolbar.ui:109
+#: data/ui/collection-toolbar.ui:110
 msgid "List view"
 msgstr "У выглядзе спіса"
 
-#: data/ui/collection-toolbar.ui:137
+#: data/ui/collection-toolbar.ui:138
 msgid "Grid view"
 msgstr "У выглядзе сеткі"
 
-#: data/ui/collection-toolbar.ui:164
+#: data/ui/collection-toolbar.ui:165
 msgid "Search"
 msgstr "Пошук"
 
-#: data/ui/collection-toolbar.ui:191
+#: data/ui/collection-toolbar.ui:192
 msgid "Downloads"
 msgstr "Спампоўкі"
 
-#: data/ui/collection-toolbar.ui:213
+#: data/ui/collection-toolbar.ui:214
 msgid "Create new virtual machine"
 msgstr "Стварыць новую віртуальную машыну"
 
-#: data/ui/collection-toolbar.ui:220
+#: data/ui/collection-toolbar.ui:221
 msgid "Install from File"
 msgstr "Усталяваць з файла"
 
-#: data/ui/collection-toolbar.ui:221
+#: data/ui/collection-toolbar.ui:222
 msgid "Select an .iso or .qcow2 file to install a virtual machine."
 msgstr "Выберыце файл .iso або .qcow2, каб усталяваць віртуальнаю машыну."
 
-#: data/ui/collection-toolbar.ui:237
+#: data/ui/collection-toolbar.ui:238
 msgid "Download OS"
 msgstr "Спампаваць АС"
 
-#: data/ui/collection-toolbar.ui:238
+#: data/ui/collection-toolbar.ui:239
 msgid "Browse and search for operating systems to install."
 msgstr "Агляд і пошук аперацыйных сістэм для ўсталявання."
 
@@ -652,8 +657,8 @@ msgstr ""
 "Юрась Шумовіч <shumovichy@gmail.com>"
 
 #: src/app.vala:114
-msgid "A simple GNOME 3 application to access virtual systems"
-msgstr "Простая праграма ў GNOME 3 для доступу да віртуальных сістэм"
+msgid "A simple GNOME application to access virtual systems"
+msgstr "Простая праграма ў GNOME для доступу да віртуальных сістэм"
 
 #: src/app.vala:175 src/main.vala:9
 msgid "Display version number"
@@ -735,7 +740,7 @@ msgstr "_Скасаваць"
 msgid "_Open"
 msgstr "_Адкрыць"
 
-#: src/assistant/assistant.vala:137
+#: src/assistant/assistant.vala:136
 #, c-format
 msgid "Failed to prepare express installation: %s"
 msgstr "Не ўдалося падрыхтаваць хуткае ўсталяванне: %s"
@@ -759,6 +764,14 @@ msgstr "x86 64-бітная сістэма"
 #, c-format
 msgid " from %s"
 msgstr " ад %s"
+
+#: src/collection-toolbar.vala:54
+msgid "Select a device or OS media file"
+msgstr "Выберыце прыладу або файл з вобразам АС"
+
+#: src/collection-toolbar.vala:57 src/preferences/cdrom-row.vala:65
+msgid "Open"
+msgstr "Адкрыць"
 
 #: src/display-page.vala:127
 msgid "Press (left) Ctrl+Alt to ungrab"
@@ -837,41 +850,41 @@ msgid "Send key combinations"
 msgstr "Адправіць спалучэнне клавіш"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:491
+#: src/libvirt-machine.vala:492
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Аднаўленне %s з дыска"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:494
+#: src/libvirt-machine.vala:495
 #, c-format
 msgid "Starting %s"
 msgstr "Запуск %s"
 
-#: src/libvirt-machine.vala:567
+#: src/libvirt-machine.vala:568
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr ""
 "«%s» занадта доўга перазапускаецца. Прымусова выключыць віртуальную машыну?"
 
-#: src/libvirt-machine.vala:570
+#: src/libvirt-machine.vala:571
 msgid "Shutdown"
 msgstr "Выключыць"
 
-#: src/libvirt-machine.vala:585
+#: src/libvirt-machine.vala:586
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Кланіраванне «%s»…"
 
-#: src/libvirt-machine.vala:711
+#: src/libvirt-machine.vala:715
 msgid "Installing…"
 msgstr "Усталяванне…"
 
-#: src/libvirt-machine.vala:713
+#: src/libvirt-machine.vala:717
 msgid "Setting up clone…"
 msgstr "Наладзіць клоны…"
 
-#: src/libvirt-machine.vala:715
+#: src/libvirt-machine.vala:719
 msgid "Importing…"
 msgstr "Імпартаванне…"
 
@@ -917,12 +930,12 @@ msgstr "Не ўдалося аднавіць «%s» з дыска: %s"
 msgid "Failed to start “%s”"
 msgstr "Не ўдалося запусціць «%s»"
 
-#: src/machine.vala:623
+#: src/machine.vala:622
 msgid "Troubleshooting Log"
 msgstr "Журнал выпраўлення непаладак"
 
 #. Translators: the first %s is the name of the box, the second is the reason of the error.
-#: src/machine.vala:634
+#: src/machine.vala:633
 #, c-format
 msgid "Connection to “%s” failed: %s"
 msgstr "Не ўдалося злучыцца з «%s»: %s"
@@ -979,10 +992,6 @@ msgstr "Няма вобраза CD/DVD"
 msgid "Select a device or ISO file"
 msgstr "Выберыце прыладу або файл ISO"
 
-#: src/preferences/cdrom-row.vala:65
-msgid "Open"
-msgstr "Адкрыць"
-
 #: src/preferences/devices-page.vala:25
 msgid "The Flatpak version of GNOME Boxes does not support USB redirection."
 msgstr "Гэта версія Flatpak GNOME Boxes не падтрымлівае перанакіраванне USB."
@@ -1015,12 +1024,12 @@ msgstr ""
 "Рэдагаванне канфігурацыі віртуальнай машыны можа выклікаць праблемы з яе "
 "аперацыйнай сістэмай. Зрабіць здымак для аднаўлення пасля ўнесеных змен?"
 
-#: src/preferences/resources-page.vala:270
+#: src/preferences/resources-page.vala:269
 #, c-format
 msgid "Failed to save domain configuration: %s"
 msgstr "Не ўдалося захаваць канфігурацыю дамена: %s"
 
-#: src/preferences/resources-page.vala:279
+#: src/preferences/resources-page.vala:278
 msgid "Changes to the settings below take effect after you restart your box."
 msgstr ""
 "Змены ў прыведзеных ніжэй наладах набудуць моц пасля перазапуску віртуальнай "
@@ -1183,7 +1192,7 @@ msgstr "не"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:791
+#: src/vm-configurator.vala:780
 msgid "Incapable host system"
 msgstr "Непрацаздольная асноўная сістэма"
 
