@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2023-02-16 08:42+0000\n"
-"PO-Revision-Date: 2023-02-16 12:58+0100\n"
+"POT-Creation-Date: 2023-08-08 08:50+0000\n"
+"PO-Revision-Date: 2023-08-11 22:13+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 "X-Project-Style: gnome\n"
 "X-DL-Team: gl\n"
 "X-DL-Module: gnome-boxes\n"
@@ -205,7 +205,8 @@ msgstr "Nova máquina virtual"
 
 #: data/ui/assistant/assistant.ui:55
 #: data/ui/preferences/shared-folder-popover.ui:97
-#: data/ui/shared-folder-popover.ui:97 src/preferences/cdrom-row.vala:65
+#: data/ui/shared-folder-popover.ui:97 src/collection-toolbar.vala:57
+#: src/preferences/cdrom-row.vala:65
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -241,7 +242,7 @@ msgid "Storage limit"
 msgstr "Límite de almacenamento"
 
 #: data/ui/assistant/assistant.ui:171
-msgid "Ops! Something went wrong!"
+msgid "Oops! Something went wrong!"
 msgstr "Recoiro! Algo foi mal!"
 
 #: data/ui/assistant/assistant.ui:204
@@ -270,6 +271,10 @@ msgstr "Contrasinal"
 msgid "Product Key"
 msgstr "Chave de produto"
 
+#: data/ui/assistant/firmware-row.ui:4
+msgid "Firmware"
+msgstr "Firmware"
+
 #: data/ui/assistant/media-entry.ui:8
 msgid "Unknown media"
 msgstr "Soporte descoñecido"
@@ -294,48 +299,48 @@ msgstr "Descargar un sistema operativo"
 msgid "New"
 msgstr "Nova"
 
-#: data/ui/collection-toolbar.ui:58 data/ui/display-toolbar.ui:29
+#: data/ui/collection-toolbar.ui:59 data/ui/display-toolbar.ui:29
 msgid "Back"
 msgstr "Atrás"
 
-#: data/ui/collection-toolbar.ui:81
+#: data/ui/collection-toolbar.ui:82
 msgid "Application Menu"
 msgstr "Menú da aplicación"
 
-#: data/ui/collection-toolbar.ui:109
+#: data/ui/collection-toolbar.ui:110
 msgid "List view"
 msgstr "Vista en listado"
 
-#: data/ui/collection-toolbar.ui:137
+#: data/ui/collection-toolbar.ui:138
 msgid "Grid view"
 msgstr "Vista en grella"
 
-#: data/ui/collection-toolbar.ui:164
+#: data/ui/collection-toolbar.ui:165
 msgid "Search"
 msgstr "Buscar"
 
-#: data/ui/collection-toolbar.ui:191
+#: data/ui/collection-toolbar.ui:192
 msgid "Downloads"
 msgstr "Descargas"
 
-#: data/ui/collection-toolbar.ui:213
+#: data/ui/collection-toolbar.ui:214
 msgid "Create new virtual machine"
 msgstr "Crear máquina virtual nova"
 
-#: data/ui/collection-toolbar.ui:220
+#: data/ui/collection-toolbar.ui:221
 msgid "Install from File"
 msgstr "Instalar desde ficheiro"
 
-#: data/ui/collection-toolbar.ui:221
+#: data/ui/collection-toolbar.ui:222
 msgid "Select an .iso or .qcow2 file to install a virtual machine."
 msgstr ""
 "Seleccione un ficheiro .iso ou .qcow2 para instalar unha máquina virtual."
 
-#: data/ui/collection-toolbar.ui:237
+#: data/ui/collection-toolbar.ui:238
 msgid "Download OS"
 msgstr "Descargar sistema operativo"
 
-#: data/ui/collection-toolbar.ui:238
+#: data/ui/collection-toolbar.ui:239
 msgid "Browse and search for operating systems to install."
 msgstr "Navegar e buscar os sistemas operativos a instalar."
 
@@ -665,8 +670,8 @@ msgid "translator-credits"
 msgstr "Fran Diéguez <frandieguez@gnome.org>, 2019-2023."
 
 #: src/app.vala:114
-msgid "A simple GNOME 3 application to access virtual systems"
-msgstr "Unha aplicación sinxelo de GNOME 3 para acceder a sistemas virtuais"
+msgid "A simple GNOME application to access virtual systems"
+msgstr "Unha aplicación sinxela de GNOME para acceder a sistemas virtuais"
 
 #: src/app.vala:175 src/main.vala:9
 msgid "Display version number"
@@ -747,7 +752,7 @@ msgstr "_Cancelar"
 msgid "_Open"
 msgstr "_Abrir"
 
-#: src/assistant/assistant.vala:137
+#: src/assistant/assistant.vala:136
 #, c-format
 msgid "Failed to prepare express installation: %s"
 msgstr "Produciuse un fallo ao preparar a instalación rápida: %s"
@@ -771,6 +776,14 @@ msgstr "Sistema x86 de 64 bits"
 #, c-format
 msgid " from %s"
 msgstr " desde %s"
+
+#: src/collection-toolbar.vala:54
+msgid "Select a device or OS media file"
+msgstr "Seleccione un dispositivo ou ficheiro multimedia de SO"
+
+#: src/collection-toolbar.vala:57 src/preferences/cdrom-row.vala:65
+msgid "Open"
+msgstr "Abrir"
 
 #: src/display-page.vala:127
 msgid "Press (left) Ctrl+Alt to ungrab"
@@ -849,42 +862,42 @@ msgid "Send key combinations"
 msgstr "Enviar combinacións de teclas"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:491
+#: src/libvirt-machine.vala:492
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Restaurando %s desde o disco"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:494
+#: src/libvirt-machine.vala:495
 #, c-format
 msgid "Starting %s"
 msgstr "Iniciando %s"
 
-#: src/libvirt-machine.vala:567
+#: src/libvirt-machine.vala:568
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr ""
 "O reinicio de «%s» está levando debando demasiado tempo. Desexa forzar o "
 "apagado?"
 
-#: src/libvirt-machine.vala:570
+#: src/libvirt-machine.vala:571
 msgid "Shutdown"
 msgstr "Apagar"
 
-#: src/libvirt-machine.vala:585
+#: src/libvirt-machine.vala:586
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Clonando «%s»…"
 
-#: src/libvirt-machine.vala:711
+#: src/libvirt-machine.vala:715
 msgid "Installing…"
 msgstr "Instalando…"
 
-#: src/libvirt-machine.vala:713
+#: src/libvirt-machine.vala:717
 msgid "Setting up clone…"
 msgstr "Configurar un clon…"
 
-#: src/libvirt-machine.vala:715
+#: src/libvirt-machine.vala:719
 msgid "Importing…"
 msgstr "Importando…"
 
@@ -930,12 +943,12 @@ msgstr "«%s» non pode restaurarse desde o disco: %s"
 msgid "Failed to start “%s”"
 msgstr "Produciuse un fallo ao iniciar «%s»"
 
-#: src/machine.vala:623
+#: src/machine.vala:622
 msgid "Troubleshooting Log"
 msgstr "Rexistro de resolución de problemas"
 
 #. Translators: the first %s is the name of the box, the second is the reason of the error.
-#: src/machine.vala:634
+#: src/machine.vala:633
 #, c-format
 msgid "Connection to “%s” failed: %s"
 msgstr "Fallou a conexión «%s»: %s"
@@ -992,10 +1005,6 @@ msgstr "Sen imaxe de CD/DVD"
 msgid "Select a device or ISO file"
 msgstr "Seleccione un dispositivo ou ficheiro ISO"
 
-#: src/preferences/cdrom-row.vala:65
-msgid "Open"
-msgstr "Abrir"
-
 #: src/preferences/devices-page.vala:25
 msgid "The Flatpak version of GNOME Boxes does not support USB redirection."
 msgstr ""
@@ -1030,12 +1039,12 @@ msgstr ""
 "operativo da mesma. Desexa crear unha instantánea para recuperar os seus "
 "cambios no futuro?"
 
-#: src/preferences/resources-page.vala:270
+#: src/preferences/resources-page.vala:269
 #, c-format
 msgid "Failed to save domain configuration: %s"
 msgstr "Produciuse un fallo ao gardar a configuración do dominio: %s"
 
-#: src/preferences/resources-page.vala:279
+#: src/preferences/resources-page.vala:278
 msgid "Changes to the settings below take effect after you restart your box."
 msgstr ""
 "Os cambios realizados nas configuracións de abaixo aplicaranse ao reiniciar "
@@ -1199,7 +1208,7 @@ msgstr "non"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:791
+#: src/vm-configurator.vala:780
 msgid "Incapable host system"
 msgstr "Equipo non capacitado"
 
