@@ -423,7 +423,7 @@ private class Boxes.App: Gtk.Application {
             var src = File.new_for_path (get_pkgdata_source ("QEMU_Session"));
             var dst = File.new_for_path (path);
             try {
-                yield src.copy_async (dst, FileCopyFlags.OVERWRITE);
+                yield src.copy_async (dst, FileCopyFlags.OVERWRITE | FileCopyFlags.TARGET_DEFAULT_PERMS);
             } catch (GLib.Error error) {
                 critical ("Can't setup default sources: %s", error.message);
             }

@@ -314,7 +314,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         var template_file = File.new_for_path (template_path);
 
         debug ("Creating disk image for unattended installation at '%s'..", disk_file.get_path ());
-        yield template_file.copy_async (disk_file, FileCopyFlags.OVERWRITE, Priority.DEFAULT, cancellable);
+        yield template_file.copy_async (disk_file, FileCopyFlags.OVERWRITE | FileCopyFlags.TARGET_DEFAULT_PERMS, Priority.DEFAULT, cancellable);
         debug ("Floppy image for unattended installation created at '%s'", disk_file.get_path ());
     }
 
