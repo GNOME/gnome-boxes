@@ -503,7 +503,7 @@ private class Boxes.App: Gtk.Application {
 
             var keep_vm_running = (machine.run_in_bg && machine.is_running);
             if (keep_vm_running) {
-                run_in_bg = is_flatpak;
+                run_in_bg = is_running_in_flatpak ();
 
                 notify_vm_is_running_in_background (machine);
                 debug ("Keep running %s in the background", machine.name);
