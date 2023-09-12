@@ -193,6 +193,10 @@
                 {
                     "name": "phodav",
                     "buildsystem": "meson",
+                    "config-opts": [
+                        "-Dsystemdsystemunitdir=/app/lib/systemd/system",
+                        "-Dudevrulesdir=usr/lib/udev/rules.d"
+                    ],
                     "sources": [
                         {
                             "type": "archive",
