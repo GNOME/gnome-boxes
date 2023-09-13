@@ -178,6 +178,7 @@ private class Boxes.DownloadsHubRow : Gtk.ListBoxRow {
             download.begin (entry.url, filename);
         } catch (UriError error) {
             App.app.main_window.display_toast (new Boxes.Toast (_("Failed to download: %s").printf (error.message)));
+            warning ("Failed to download '%s': %s", entry.url, error.message);
         }
     }
 
@@ -186,9 +187,9 @@ private class Boxes.DownloadsHubRow : Gtk.ListBoxRow {
             local_file = yield Downloader.fetch_media (url, filename, progress, cancellable);
         } catch (IOError.CANCELLED cancel_error) { // We did this, so ignore!
         } catch (GLib.Error error) {
-            App.app.main_window.display_toast (new Boxes.Toast (_("Failed to download: %s").printf (error.message)));
+            App.app.main_window.display_toast (new Boxes.Toast (_("Failed to download '%s': %s").printf (filename, error.message)));
 
-            warning (error.message);
+            warning ("Failed to download '%s': %s", url, error.message);
             return;
         }
 
