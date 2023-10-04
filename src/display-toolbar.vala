@@ -61,18 +61,6 @@ private class Boxes.DisplayToolbar: Hdy.HeaderBar {
             menu_button.get_style_context ().add_class (Gtk.STYLE_CLASS_RAISED);
             keys_menu_button.get_style_context ().add_class (Gtk.STYLE_CLASS_RAISED);
         }
-
-        App.app.notify["fullscreened"].connect_after ( () => {
-            var a11y = fullscreen.get_accessible ();
-
-            if (window.fullscreened) {
-                fullscreen_image.icon_name = "view-restore-symbolic";
-                a11y.accessible_name = _("Exit fullscreen");
-            } else {
-                fullscreen_image.icon_name = "view-fullscreen-symbolic";
-                a11y.accessible_name = _("Fullscreen");
-            }
-        });
     }
 
     public void setup_ui (AppWindow window) {
@@ -90,6 +78,18 @@ private class Boxes.DisplayToolbar: Hdy.HeaderBar {
         });
         keys_menu_button.popover = new KeysInputPopover (window);
         transfers_drawing_area.draw.connect (on_draw);
+
+        window.notify["fullscreened"].connect_after ( () => {
+            var a11y = fullscreen.get_accessible ();
+
+            if (window.fullscreened) {
+                fullscreen_image.icon_name = "view-restore-symbolic";
+                a11y.accessible_name = _("Exit fullscreen");
+            } else {
+                fullscreen_image.icon_name = "view-fullscreen-symbolic";
+                a11y.accessible_name = _("Fullscreen");
+            }
+        });
     }
 
     private bool on_draw (Widget da, Cairo.Context ctx) {
