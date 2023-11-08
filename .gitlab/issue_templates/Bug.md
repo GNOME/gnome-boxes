@@ -5,6 +5,7 @@ first to ensure that you create a clear and specific issue.
 
 ## Affected version
 - Boxes version:
+- Flatpak: Yes/No
 - Operating system name and version:
 
 ## Steps to reproduce
