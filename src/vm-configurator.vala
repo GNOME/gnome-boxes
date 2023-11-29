@@ -408,8 +408,10 @@ private class Boxes.VMConfigurator {
         if (install_media.prefers_q35)
             os.set_machine ("q35");
 
-        if (install_media.requires_efi)
+        if (install_media.requires_efi) {
             os.set_firmware (DomainOsFirmware.EFI);
+            os.enable_firmware_feature ("secure-boot", false);
+        }
 
         var boot_devices = new GLib.List<DomainOsBootDevice> ();
         install_media.set_direct_boot_params (os);
