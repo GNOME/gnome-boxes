@@ -98,10 +98,14 @@ private class Boxes.Assistant : Hdy.Window {
 
     private void setup_resource_rows () {
         Osinfo.Resources? resources = null;
-        if (os == null)
-            resources = OSDatabase.get_default_resources ();
-        else
+
+        if (os != null)
             resources = OSDatabase.get_recommended_resources_for_os (os);
+
+        // fallback to default resources if we cannot detect the OS or
+        // the detected OS hasn't provided any recommended resources
+        if (resources == null)
+            resources = OSDatabase.get_default_resources ();
 
         ram_row.memory = resources.ram / Osinfo.KIBIBYTES;
 
