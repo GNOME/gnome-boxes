@@ -145,6 +145,12 @@ private class Boxes.LibvirtBroker : Boxes.Broker {
 
         foreach (var clone in clones) {
             var vm_importer = clone.vm_creator as VMImporter;
+
+            if (vm_importer == null) {
+                warning ("Failed to find creater of clone '%s'", clone.name);
+
+                continue;
+            }
             var disk_path = vm_importer.source_media.device_file;
             LibvirtMachine? cloned = null;
 
