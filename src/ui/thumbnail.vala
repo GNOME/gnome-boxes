@@ -39,10 +39,13 @@ private class Boxes.Thumbnail: Gtk.Box {
                                                           Gdk.InterpType.BILINEAR);
                     live_thumbnail.set_from_pixbuf (scaled);
                     stack.visible_child = live_thumbnail;
+                    debug ("Updating thumbnail with image!");
                 } catch (GLib.Error error) {
                     debug (error.message);
                 }
             });
+
+            return;
         }
 
         stack.visible_child = blank_thumbnail;
@@ -55,6 +58,6 @@ private class Boxes.Thumbnail: Gtk.Box {
             emblem_icon_name = "computer";
         }
 
-        debug ("Updating thumbnail!");
+        debug ("Updating thumbnail with '%s' icon!", emblem.icon_name);
     }
 }
