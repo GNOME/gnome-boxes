@@ -625,6 +625,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem {
             } else {
                 window.display_toast (new Boxes.Toast (msg));
             }
+        } catch (IOError.CANCELLED e) {
+            window.set_state (UIState.COLLECTION);
         } catch (GLib.Error e) {
             warning ("Failed to connect to %s: %s", name, e.message);
             window.set_state (UIState.COLLECTION);
