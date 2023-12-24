@@ -73,6 +73,10 @@ private class Boxes.Assistant : Hdy.Window {
     private async void prepare_for_path (string path) {
         installer_media = yield create_installer_media (path);
 
+        /* e.g. when media is not bootable */
+        if (installer_media == null)
+            return;
+
         if (installer_media.os != null) {
             os_chooser_row.select_os (os);
             os_chooser_row.subtitle = os.get_name ();
