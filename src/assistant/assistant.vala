@@ -210,13 +210,13 @@ private class Boxes.Assistant : Hdy.Window {
             else
                 App.app.main_window.select_item (machine);
             vm_creator.launch_vm (machine);
+            close ();
         } catch (GLib.Error error) {
             debug ("Failed to create virtual machine: %s", error.message);
 
             show_error (error.message);
         }
         create_button.sensitive = true;
-        close ();
     }
 
     private void show_error (string reason) {
