@@ -34,6 +34,11 @@ private class Boxes.Thumbnail: Gtk.Box {
             machine.take_screenshot.begin ((source, result) => {
                 try {
                     var screenshot = machine.take_screenshot.end (result);
+
+                    /* machine is stopping / stopped */
+                    if (screenshot == null)
+                        return;
+
                     var scaled = screenshot.scale_simple (width_request,
                                                           height_request,
                                                           Gdk.InterpType.BILINEAR);
