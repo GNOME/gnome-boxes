@@ -155,6 +155,9 @@ private abstract class Boxes.Machine: Boxes.CollectionItem {
             widget_remove (widget);
             window.display_page.replace_display (display, widget);
             break;
+
+        default:
+            break;
         }
     }
 
@@ -578,6 +581,9 @@ private abstract class Boxes.Machine: Boxes.CollectionItem {
         case UIState.COLLECTION:
             disconnect_display ();
 
+            break;
+
+        default:
             break;
         }
     }
