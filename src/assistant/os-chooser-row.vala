@@ -111,7 +111,7 @@ public class Boxes.OsChooserRow : Hdy.ExpanderRow {
             child.selected = (child.os.id == os.id);
         }
 
-        on_os_selected (os);
+        on_os_selected.begin (os);
     }
 
     [GtkCallback]
