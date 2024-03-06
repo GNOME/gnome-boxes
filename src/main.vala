@@ -70,6 +70,7 @@ public int main (string[] args) {
     Intl.bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
     Intl.textdomain (GETTEXT_PACKAGE);
     GLib.Environment.set_application_name (_("Boxes"));
+    GLib.Environment.set_prgname (Config.APPLICATION_ID);
 
     typeof (Boxes.WelcomeTutorial).ensure ();
     typeof (Boxes.WelcomeTutorialPage).ensure ();
