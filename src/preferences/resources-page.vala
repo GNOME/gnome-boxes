@@ -147,14 +147,15 @@ private class Boxes.ResourcesPage : Hdy.PreferencesPage {
         if (!run_in_bg_toggle.get_active ())
             return;
 
-        yield Portals.get_default ().request_to_run_in_background (
-        (response, results) => {
-            if (response == 0) {
-                debug ("User authorized Boxes to run in background");
-
-                return;
-            }
-
+        try {
+            var portal = new Xdp.Portal.initable_new ();
+            var window = App.app.main_window;
+            var parent = Xdp.parent_new_gtk (window);
+            var reason = _("Boxes wants to run VM in background");
+            var cancellable = null;
+            yield portal.request_background (parent, reason, null, NONE, cancellable);
+        } catch (GLib.Error error) {
+            warning ("Failed to request to run in background: %s", error.message);
             machine.run_in_bg = false;
 
             var msg = _("Boxes is not authorized to run in background");
@@ -171,7 +172,7 @@ private class Boxes.ResourcesPage : Hdy.PreferencesPage {
 
                 message_dialog.destroy ();
             });
-        });
+        }
     }
 
     [GtkCallback]

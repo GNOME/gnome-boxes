@@ -405,6 +405,23 @@
             ]
         },
         {
+            "name" : "libportal",
+            "buildsystem" : "meson",
+            "config-opts" : [
+                "-Dbackend-gtk3=enabled",
+                "-Dbackend-gtk4=disabled",
+                "-Ddocs=false",
+                "-Dtests=false"
+            ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://github.com/flatpak/libportal.git",
+                    "branch" : "main"
+                }
+            ]
+        },
+        {
             "name": "gnome-boxes",
             "buildsystem": "meson",
             "config-opts": [
