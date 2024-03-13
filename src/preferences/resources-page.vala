@@ -153,7 +153,7 @@ private class Boxes.ResourcesPage : Hdy.PreferencesPage {
             var parent = Xdp.parent_new_gtk (window);
             var reason = _("Boxes wants to run VM in background");
             var cancellable = null;
-            yield portal.request_background (parent, reason, null, NONE, cancellable);
+            yield portal.request_background (parent, reason, new GLib.GenericArray<weak string>(), NONE, cancellable);
         } catch (GLib.Error error) {
             warning ("Failed to request to run in background: %s", error.message);
             machine.run_in_bg = false;
