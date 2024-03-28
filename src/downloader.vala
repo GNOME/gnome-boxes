@@ -214,7 +214,8 @@ private class Boxes.Downloader : GLib.Object {
             basename = filename;
         }
 
-        return_val_if_fail (basename != null && basename != "" && basename != "/", null);
+        if (basename == null || basename == "" || basename == "/")
+            throw (new GLib.IOError.INVALID_FILENAME ("File name is either null, empty or '/'."));
 
         var downloader = Downloader.get_default ();
         var cache = Path.build_filename (GLib.Environment.get_user_special_dir (GLib.UserDirectory.DOWNLOAD),
