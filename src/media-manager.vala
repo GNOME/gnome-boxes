@@ -142,7 +142,8 @@ private class Boxes.MediaManager : Object {
         var resources = os_db.get_resources_for_os (os, architecture);
 
         var media = new InstallerMedia.from_iso_info (path, label, os, os_media, resources);
-        return_val_if_fail (media != null, null);
+        if (media == null)
+            return null;
 
         try {
             media = create_installer_media_from_media (media);
