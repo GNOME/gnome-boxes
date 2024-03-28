@@ -19,15 +19,12 @@ private class Boxes.LibvirtBroker : Boxes.Broker {
         pending_domains = new GLib.List<GVir.Domain> ();
     }
 
-    public GVir.Connection get_connection (string name) {
-        return_val_if_fail (broker != null, null);
+    public GVir.Connection get_connection (string name) requires (broker != null) {
         return broker.connections.get (name);
     }
 
     public async LibvirtMachine add_domain (CollectionSource source, GVir.Connection connection, GVir.Domain domain)
-                                            throws GLib.Error {
-        return_val_if_fail (broker != null, null);
-
+                                            throws GLib.Error requires (broker != null) {
         if (pending_domains.find (domain) != null) {
             // Already being added asychronously
             SourceFunc callback = add_domain.callback;
