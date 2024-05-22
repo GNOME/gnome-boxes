@@ -76,7 +76,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
             try {
                 domain.set_config (domain_config);
-                debug ("RAM changed to %llu KiB", ram);
+                debug ("RAM changed to %" + uint64.FORMAT + " KiB", ram);
             } catch (GLib.Error error) {
                 warning ("Failed to save domain config: %s", error.message);
                 // TODO: propagate this message to the UI

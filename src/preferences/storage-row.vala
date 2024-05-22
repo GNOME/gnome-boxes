@@ -107,7 +107,7 @@ private class Boxes.StorageRow : Boxes.MemoryRow {
             yield pool.refresh_async (null);
             machine.update_domain_config ();
         } catch (GLib.Error error) {
-            warning ("Failed to change storage capacity of volume '%s' to %llu KiB: %s",
+            warning ("Failed to change storage capacity of volume '%s' to %" + uint64.FORMAT + " KiB: %s",
                      machine.storage_volume.get_name (),
                      storage,
                      error.message);
@@ -127,6 +127,6 @@ private class Boxes.StorageRow : Boxes.MemoryRow {
             machine.storage_volume.resize (size, GVir.StorageVolResizeFlags.SHRINK);
         }
 
-        debug ("Storage changed to %llu", size);
+        debug ("Storage changed to %" + uint64.FORMAT, size);
     }
 }
