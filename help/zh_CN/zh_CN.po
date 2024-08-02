@@ -6,15 +6,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
-"POT-Creation-Date: 2022-06-29 10:33+0000\n"
-"PO-Revision-Date: 2022-09-03 17:25-0400\n"
+"POT-Creation-Date: 2024-05-19 13:02+0000\n"
+"PO-Revision-Date: 2024-08-02 10:43+0800\n"
 "Last-Translator: Boyuan Yang <073plan@gmail.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -34,7 +34,7 @@ msgstr "2020"
 #. (itstool) path: info/desc
 #: C/3d-acceleration.page:17
 msgid "Enable 3D Acceleration for your box."
-msgstr "为您的盒子启用 3D 加速。"
+msgstr "为您的虚拟机启用 3D 加速。"
 
 #. (itstool) path: page/title
 #: C/3d-acceleration.page:20
@@ -50,16 +50,19 @@ msgid ""
 "uses <sys>Virgil</sys> to create a virtual 3D capable graphics card for your "
 "QEMU virtual machines."
 msgstr ""
+"Boxes 现在允许您为虚拟机启用或禁用 3D 加速（如果客户机和主机都支持）。这应该"
+"可以让您提高日常图形密集型应用程序和游戏的性能。它使用 <sys>Virgil</sys> 为您"
+"的 QEMU 虚拟机创建支持 3D 的虚拟显卡。"
 
 #. (itstool) path: note/p
 #: C/3d-acceleration.page:35
 msgid "Currently only Linux guests support 3D acceleration."
-msgstr ""
+msgstr "目前只有 Linux 客户机支持 3D 加速。"
 
 #. (itstool) path: steps/title
 #: C/3d-acceleration.page:39
 msgid "To enable 3D Acceleration in a box:"
-msgstr "要在盒子中启用 3D 加速："
+msgstr "要在虚拟机中启用 3D 加速："
 
 #. (itstool) path: media/span
 #: C/3d-acceleration.page:42 C/edit-domain.page:42 C/interface.page:102
@@ -72,11 +75,14 @@ msgstr "设置"
 
 #. (itstool) path: item/p
 #: C/3d-acceleration.page:40 C/edit-domain.page:40 C/shared-folders.page:27
+#: C/usb-redirection.page:46
 msgid ""
 "Right-click on the box in the collection view and select <gui>Preferences</"
 "gui>, or click the menu (<_:media-1/>) button in the header bar and select "
 "<gui>Preferences</gui>."
 msgstr ""
+"右键点击集合视图中的虚拟机并选择<gui>首选项</gui>，或点击标题栏中的菜单（<_:"
+"media-1/>）按钮并选择<gui>首选项</gui>。"
 
 #. (itstool) path: item/p
 #: C/3d-acceleration.page:44
@@ -84,6 +90,8 @@ msgid ""
 "The <link xref=\"interface#preferences\">Preferences view</link> opens, with "
 "the <gui>Resources</gui> tab selected by default."
 msgstr ""
+"<link xref=\"interface#preferences\">首选项视图</link>将打开，将默认选择<gui>"
+"资源</gui>选项卡。"
 
 #. (itstool) path: item/p
 #: C/3d-acceleration.page:46
@@ -92,13 +100,16 @@ msgid ""
 "appear here. By default, it is disabled. To enable 3D Acceleration, simply "
 "toggle the switch next to it to <gui style=\"switch\">ON</gui>."
 msgstr ""
+"如果支持 3D 加速，<gui>3D 加速</gui> 开关将出现在此处。默认情况下，此开关处于"
+"禁用状态。要启用 3D 加速，只需将其旁边的开关切换为 <gui style=\"switch\">开启"
+"</gui>。"
 
 #. (itstool) path: note/p
 #: C/3d-acceleration.page:52
 msgid ""
 "When you enable 3D Acceleration for a virtual machine that is already "
 "running, the changes apply after you restart the box."
-msgstr ""
+msgstr "当您为已经运行的虚拟机启用 3D 加速时，重新启动虚拟机后更改才会应用。"
 
 #. (itstool) path: credit/name
 #: C/backup.page:10 C/create.page:12 C/delete.page:9 C/disk-images.page:9
@@ -122,12 +133,12 @@ msgstr "2018"
 #. (itstool) path: info/desc
 #: C/backup.page:17
 msgid "Write the configuration of a box to a file to back it up or move it."
-msgstr ""
+msgstr "将虚拟机的配置写入文件以进行备份或移动。"
 
 #. (itstool) path: page/title
 #: C/backup.page:20
 msgid "Back up or move a box"
-msgstr ""
+msgstr "备份或移动虚拟机"
 
 #. (itstool) path: page/p
 #: C/backup.page:22
@@ -137,17 +148,20 @@ msgid ""
 "requires the <cmd>virsh</cmd> command from the <app>libvirt</app> or "
 "<app>libvirt-client</app> package."
 msgstr ""
+"备份或移动虚拟机需要两个组件：镜像文件和保存为 XML 文件的虚拟机配置。保存配置"
+"需要 <app>libvirt</app> 或 <app>libvirt-client</app> 包中的 <cmd>virsh</cmd> "
+"命令。"
 
 #. (itstool) path: item/p
 #: C/backup.page:29
 msgid "In a terminal window, type"
-msgstr ""
+msgstr "在终端窗口中输入"
 
 #. (itstool) path: item/code
 #: C/backup.page:30
 #, no-wrap
 msgid "virsh dumpxml Name &gt; Name.xml"
-msgstr ""
+msgstr "virsh dumpxml Name &gt; Name.xml"
 
 #. (itstool) path: item/p
 #: C/backup.page:31
@@ -155,19 +169,21 @@ msgid ""
 "where <cmd>Name</cmd> is the <app>Boxes</app> name, or <em>domain</em>, of "
 "your box. To list the domains seen by <app>Boxes</app>, type"
 msgstr ""
+"其中 <cmd>Name</cmd> 为 <app>Boxes</app> 中的虚拟机名称或 <em>域名</em>。要列"
+"出<app>Boxes</app>中可见的域名，请输入"
 
 #. (itstool) path: item/code
 #: C/backup.page:33
 #, no-wrap
 msgid "virsh -c qemu:///session list --all"
-msgstr ""
+msgstr "virsh -c qemu:///session list --all"
 
 #. (itstool) path: item/p
 #: C/backup.page:36
 msgid ""
 "Copy the <cmd>.xml</cmd> file you just created to your backup or temporary "
 "storage location."
-msgstr ""
+msgstr "将刚刚创建的 <cmd>.xml</cmd> 文件复制到备份位置或临时存储位置。"
 
 #. (itstool) path: item/p
 #: C/backup.page:40
@@ -176,11 +192,14 @@ msgid ""
 "a file with the domain name of your box and ending in <cmd>.qcow2</cmd>, "
 "located in <file>~/.local/share/gnome-boxes/images/</file>."
 msgstr ""
+"将镜像文件复制到备份位置或临时存储位置。它将是一个以虚拟机的域名命名的文件，"
+"以 <cmd>.qcow2</cmd> 结尾，位于 <file>~/.local/share/gnome-boxes/images/</"
+"file>。"
 
 #. (itstool) path: section/title
 #: C/backup.page:48
 msgid "Restore a box"
-msgstr "创建一个盒子"
+msgstr "恢复虚拟机"
 
 #. (itstool) path: section/p
 #: C/backup.page:50
@@ -188,11 +207,13 @@ msgid ""
 "The saved box can be installed into <app>Boxes</app> on a new host machine, "
 "or on the original machine as part of a disaster recovery scenario."
 msgstr ""
+"保存的虚拟机可以安装到新主机上 <app>Boxes</app> 中，或者作为灾难恢复场景的一"
+"部分安装在原始机器上。"
 
 #. (itstool) path: item/p
 #: C/backup.page:56
 msgid "Exit <app>Boxes</app>."
-msgstr "退出<app>盒子</app>。"
+msgstr "退出 <app>Boxes</app>。"
 
 #. (itstool) path: item/p
 #: C/backup.page:59
@@ -201,6 +222,8 @@ msgid ""
 "location into the <file>~/.local/share/gnome-boxes/images/</file> directory "
 "in the new location."
 msgstr ""
+"将 <cmd>.qcow2</cmd> 镜像文件从备份位置或临时存储位置复制到新位置的 <file>~/."
+"local/share/gnome-boxes/images/</file> 目录中。"
 
 #. (itstool) path: item/p
 #: C/backup.page:64
@@ -208,22 +231,23 @@ msgid ""
 "In a terminal window, navigate to the directory or device containing the "
 "<cmd>.xml</cmd> file you stored. Type"
 msgstr ""
+"在终端窗口中，导航到包含您存储的 <cmd>.xml</cmd> 文件的目录或设备。输入"
 
 #. (itstool) path: item/code
 #: C/backup.page:66
 #, no-wrap
 msgid "virsh define Name.xml"
-msgstr ""
+msgstr "virsh define Name.xml"
 
 #. (itstool) path: item/p
 #: C/backup.page:67
 msgid "where <cmd>Name</cmd> is the domain of your box."
-msgstr ""
+msgstr "其中 <cmd>Name</cmd> 为虚拟机的域名。"
 
 #. (itstool) path: item/p
 #: C/backup.page:70
 msgid "Launch <app>Boxes</app>."
-msgstr "启动<app>盒子</app>。"
+msgstr "启动 <app>Boxes</app>。"
 
 #. (itstool) path: credit/years
 #: C/create.page:14 C/interface.page:15 C/search.page:12
@@ -234,73 +258,60 @@ msgid "2013"
 msgstr "2013"
 
 #. (itstool) path: credit/name
-#: C/create.page:22 C/edit-domain.page:10 C/interface.page:18
-#: C/shared-folders.page:10 C/snapshot-create.page:17 C/snapshot-revert.page:17
-#: C/usb-redirection.page:24
+#: C/create.page:22 C/edit-domain.page:10 C/install-guest-agent.page:9
+#: C/interface.page:18 C/shared-folders.page:10 C/snapshot-create.page:17
+#: C/snapshot-revert.page:17 C/usb-redirection.page:24
 msgid "Felipe Borges"
-msgstr ""
+msgstr "Felipe Borges"
 
 #. (itstool) path: credit/years
-#: C/create.page:24
+#: C/create.page:24 C/install-guest-agent.page:11
 msgid "2022"
-msgstr ""
+msgstr "2022"
 
 #. (itstool) path: info/desc
 #: C/create.page:29
-#, fuzzy
-#| msgid "Click <gui style=\"button\">New</gui> to begin creating a box."
 msgid "Click <gui style=\"button\">+</gui> to begin creating a box."
-msgstr "点击<gui style=\"button\">新建</gui>来开始创建一个 box 。"
+msgstr "点击<gui style=\"button\">+</gui>来创建一个虚拟机。"
 
 #. (itstool) path: page/title
 #: C/create.page:32
 msgid "Create a box"
-msgstr "创建一个盒子"
+msgstr "创建一个虚拟机"
 
 #. (itstool) path: page/p
 #: C/create.page:34
-#, fuzzy
-#| msgid ""
-#| "When <app>Boxes</app> is launched, the collection view opens, displaying "
-#| "your existing boxes. If you haven't yet created a box, the greeting reads "
-#| "<gui>No boxes found.</gui>"
 msgid ""
 "When <app>Boxes</app> is launched, the collection view opens, displaying "
 "your existing boxes. If you haven't yet created a box, an introductory "
 "message is displayed."
 msgstr ""
-"<app>Boxes</app> 启动后，会打开集合视图，显示您现有的 box 。如果您还没有创建 "
-"box ，会显示<gui>找不到 box 。</gui>"
+"<app>Boxes</app> 启动后，会打开集合视图，显示您现有的虚拟机。如果您还没有创建"
+"虚拟机，会显示一段介绍信息。"
 
 #. (itstool) path: item/p
 #: C/create.page:39
-#, fuzzy
-#| msgid ""
-#| "Click <gui style=\"button\">New</gui> in the top left corner to launch "
-#| "the box creation wizard."
 msgid ""
 "Click <gui style=\"button\">+</gui> in the top left corner to launch the box "
 "creation assistant. Create a virtual machine from:"
-msgstr "点击左上角的<gui style=\"button\">新建</gui>来启动 box 创建向导。"
+msgstr ""
+"点击左上角的<gui style=\"button\">+</gui>来启动虚拟机创建向导。可通过以下方式"
+"创建虚拟机："
 
 #. (itstool) path: item/p
 #: C/create.page:43
 msgid ""
 "An operating system image file in your home folder detected by <app>Boxes</"
 "app>."
-msgstr ""
+msgstr "<app>Boxes</app> 检测到的主文件夹中的操作系统映像文件。"
 
 #. (itstool) path: item/p
 #: C/create.page:44
-#, fuzzy
-#| msgid "A local ISO file (if not found automatically above)."
 msgid "A selected local ISO file (if not found automatically above)."
-msgstr "本地 ISO 文件（如果没有被自动发现）。"
+msgstr "已选择的本地 ISO 文件（如果没有被自动发现）。"
 
 #. (itstool) path: item/p
 #: C/create.page:45
-#, fuzzy
-#| msgid "Installation media on a CD/DVD/USB drive."
 msgid "An installation media on a CD/DVD/USB drive."
 msgstr "CD/DVD/USB 驱动器上的安装介质。"
 
@@ -309,14 +320,10 @@ msgstr "CD/DVD/USB 驱动器上的安装介质。"
 msgid ""
 "A supported operating system available on the <gui>Operating System "
 "Download</gui> page"
-msgstr ""
+msgstr "<gui>操作系统下载</gui>页面提供的受支持的操作系统"
 
 #. (itstool) path: note/p
 #: C/create.page:50
-#, fuzzy
-#| msgid ""
-#| "If your installation media supports <gui>Express Installation</gui>, the "
-#| "installation will proceed without further input."
 msgid ""
 "If your installation media supports <gui>Express Installation</gui>, the "
 "installation can proceed without further input."
@@ -330,6 +337,8 @@ msgid ""
 "<gui>Review and Create</gui> page where you can adjust memory, disk capacity "
 "and other preferences for your box."
 msgstr ""
+"选择上述其中一种安装方法后，继续进入<gui>查看和创建</gui>页面，您可以在此调整"
+"内存、磁盘容量和虚拟机的其它首选项。"
 
 #. (itstool) path: item/p
 #: C/create.page:58
@@ -339,46 +348,46 @@ msgstr "点击<gui style=\"button\">创建</gui>。"
 #. (itstool) path: page/p
 #: C/create.page:61
 msgid "The collection view returns, and the installation of the box begins."
-msgstr ""
+msgstr "返回到集合视图，并且开始虚拟机的安装。"
 
 #. (itstool) path: credit/years
 #: C/delete.page:11 C/disk-images.page:11 C/index.page:22 C/prop-system.page:13
-#: C/prop-trouble.page:13 C/shortcuts.page:13 C/shutdown.page:13
-#: C/snapshot-create.page:14 C/snapshot-delete.page:13
-#: C/snapshot-rename.page:13 C/snapshot-revert.page:14 C/virtualization.page:11
+#: C/prop-trouble.page:13 C/shutdown.page:13 C/snapshot-create.page:14
+#: C/snapshot-delete.page:13 C/snapshot-rename.page:13
+#: C/snapshot-revert.page:14 C/virtualization.page:11
 msgid "2014"
 msgstr "2014"
 
 #. (itstool) path: info/desc
 #: C/delete.page:16
 msgid "Remove a box that you no longer need."
-msgstr "删除您不再需要的盒子。"
+msgstr "删除您不再需要的虚拟机。"
 
 #. (itstool) path: page/title
 #: C/delete.page:19
 msgid "Delete a box"
-msgstr "删除一个盒子"
+msgstr "删除一个虚拟机"
 
 #. (itstool) path: page/p
 #: C/delete.page:21
 msgid ""
 "When a box is no longer needed, it can be deleted from <app>Boxes</app>."
-msgstr "如果您不再需要一个盒子，可以从<app>盒子</app>应用中删除它。"
+msgstr "如果您不再需要一个虚拟机，可以从 <app>Boxes</app> 中删除它。"
 
 #. (itstool) path: item/p
 #: C/delete.page:24
 msgid "In the collection view, right click the box to be deleted."
-msgstr ""
+msgstr "在集合视图中，右键点击要删除的虚拟机。"
 
 #. (itstool) path: item/p
 #: C/delete.page:25
 msgid "Click the <gui style=\"button\">Delete</gui> menu option."
-msgstr "点击<gui style=\"button\">删除</gui>菜单选项。"
+msgstr "点击 <gui style=\"button\">删除</gui> 菜单选项。"
 
 #. (itstool) path: page/title
 #: C/disk-images.page:19
 msgid "Where does Boxes store disk images?"
-msgstr "盒子在哪里储存磁盘镜像？"
+msgstr "Boxes 在哪里储存磁盘镜像？"
 
 #. (itstool) path: page/p
 #: C/disk-images.page:21
@@ -388,10 +397,10 @@ msgid ""
 "interfaces with libvirt, such as <app>virt-manager</app>, then <app>Boxes</"
 "app> will also read from the folder that software uses to store its images."
 msgstr ""
-"默认情况下，<app>盒子</app>在 <file>~/.local/share/gnome-boxes/images/</"
+"默认情况下，<app>Boxes</app> 在 <file>~/.local/share/gnome-boxes/images/</"
 "file> 文件夹中储存磁盘镜像。如果您使用其他与 libvirt 交互的软件，例如 "
-"<app>virt-manager</app> ，那么 <app>盒子</app> 也会读取该软件用于储存其镜像的"
-"文件夹。"
+"<app>virt-manager</app> ，那么 <app>Boxes</app> 也会读取该软件用于储存其镜像"
+"的文件夹。"
 
 #. (itstool) path: credit/years
 #: C/edit-domain.page:12
@@ -401,12 +410,12 @@ msgstr "2021"
 #. (itstool) path: info/desc
 #: C/edit-domain.page:17
 msgid "Edit advanced configurations of your box."
-msgstr ""
+msgstr "编辑虚拟机的高级配置。"
 
 #. (itstool) path: page/title
 #: C/edit-domain.page:20
 msgid "Edit the Libvirt domain XML configuration of a box"
-msgstr ""
+msgstr "编辑虚拟机的 Libvirt 域 XML 配置"
 
 #. (itstool) path: page/p
 #: C/edit-domain.page:30
@@ -415,55 +424,49 @@ msgid ""
 "configuration XML of your box. You can achieve specific setups which are not "
 "exposed in the Boxes interface and neither supported by the Boxes developers."
 msgstr ""
+"Boxes 允许您手工编辑虚拟机的 <sys>Libvirt</sys> 域配置 XML。您可以实现 Boxes "
+"界面中未公开且不受 Boxes 开发人员支持的特定设置。"
 
 #. (itstool) path: note/p
 #: C/edit-domain.page:35
 msgid ""
 "See the Libvirt domain configuration format in documentation at https://"
 "libvirt.org/format.html"
-msgstr ""
+msgstr "请参阅 https://libvirt.org/format.html 文档中的 Libvirt 域配置格式"
 
 #. (itstool) path: steps/title
 #: C/edit-domain.page:39
 msgid "To edit the Libvirt XML configuration of a box:"
-msgstr ""
+msgstr "要编辑虚拟机的 Libvirt XML 配置："
 
 #. (itstool) path: item/p
 #: C/edit-domain.page:44 C/prop-system.page:31 C/prop-trouble.page:33
-#, fuzzy
-#| msgid "Click <gui>Snapshots</gui> in the sidebar."
 msgid "Click the <gui>Resources</gui> tab."
-msgstr "点击侧边栏中的<gui>快照</gui>。"
+msgstr "点击<gui>资源</gui>选项卡。"
 
 #. (itstool) path: item/p
 #: C/edit-domain.page:45 C/prop-trouble.page:34
 msgid "Scroll to the <gui>Configuration</gui> section."
-msgstr ""
+msgstr "滚动到<gui>配置</gui>部分。"
 
 #. (itstool) path: item/p
 #: C/edit-domain.page:46
-#, fuzzy
-#| msgid ""
-#| "Click the <gui style=\"button\">Properties</gui> button to enter the "
-#| "properties view of a box."
 msgid ""
 "Click the <gui style=\"button\">Edit Configuration</gui> button to open the "
 "configuration in a text editor."
-msgstr "点击<gui style=\"button\">属性</gui>按钮来进入 box 的属性视图。"
+msgstr "点击<gui style=\"button\">编辑配置</gui>按键，在文本编辑器中打开配置。"
 
 #. (itstool) path: item/p
 #: C/edit-domain.page:48
-#, fuzzy
-#| msgid "Click <gui style=\"button\">Create</gui>."
 msgid "Edit the XML configuration and <gui style=\"button\">Save</gui>."
-msgstr "点击<gui style=\"button\">创建</gui>。"
+msgstr "编辑 XML 配置，然后点击<gui style=\"button\">保存</gui>。"
 
 #. (itstool) path: item/p
 #: C/edit-domain.page:49
 msgid ""
 "If the virtual machine which has been edited is already running, the changes "
 "will take effect after restarting the running virtual machine."
-msgstr ""
+msgstr "如果已编辑的虚拟机已经在运行，则重新启动虚拟机后更改才会生效。"
 
 #. (itstool) path: note/p
 #: C/edit-domain.page:54
@@ -471,27 +474,23 @@ msgid ""
 "Before editing the box configuration, Boxes will suggest that you create a "
 "snapshot. Snapshots allow you to revert your changes in case of a mistake."
 msgstr ""
+"在编辑虚拟机配置之前，Boxes 会建议您创建快照。如果出现错误，快照可让您恢复更"
+"改。"
 
 #. (itstool) path: info/title
 #: C/index.page:7
-#, fuzzy
-#| msgid "Boxes"
 msgctxt "link:trail"
 msgid "Boxes"
 msgstr "Boxes"
 
 #. (itstool) path: info/title
 #: C/index.page:8
-#, fuzzy
-#| msgid "Boxes"
 msgctxt "link"
 msgid "Boxes"
 msgstr "Boxes"
 
 #. (itstool) path: info/title
 #: C/index.page:9
-#, fuzzy
-#| msgid "Boxes"
 msgctxt "text"
 msgid "Boxes"
 msgstr "Boxes"
@@ -522,20 +521,15 @@ msgstr "<_:media-1/> Boxes"
 
 #. (itstool) path: page/p
 #: C/index.page:35
-#, fuzzy
-#| msgid ""
-#| "<app>Boxes</app> is an application that gives you access to <link "
-#| "xref=\"what-is-a-virtual-machine\">virtual machines</link>, running "
-#| "locally or remotely. It also allows you to connect to the display of a "
-#| "remote computer."
 msgid ""
 "<app>Boxes</app> is an application that gives you access to local <link "
 "xref=\"what-is-a-virtual-machine\">virtual machines</link>. If you want to "
 "get access to a remote virtual machine or connect to the display of a remote "
 "computer, you can use another GNOME app called <app>Connections</app>."
 msgstr ""
-"<app>Boxes</app> 允许您访问在本地或远程运行的<link xref=\"what-is-a-virtual-"
-"machine\">虚拟机</link>。它也允许您连接到远程计算机显示。"
+"<app>Boxes</app> 允许您访问本地的<link xref=\"what-is-a-virtual-machine\">虚"
+"拟机</link>。如果您想要访问远程虚拟机或连接到远程计算机，您可以使用另一个名为"
+"<app>连接</app>的 GNOME 应用程序。"
 
 #. (itstool) path: section/title
 #: C/index.page:42
@@ -545,12 +539,12 @@ msgstr "入门"
 #. (itstool) path: section/title
 #: C/index.page:52
 msgid "Using Boxes"
-msgstr "使用盒子"
+msgstr "使用 Boxes"
 
 #. (itstool) path: section/title
 #: C/index.page:56
 msgid "Preferences"
-msgstr ""
+msgstr "首选项"
 
 #. (itstool) path: section/title
 #: C/index.page:60
@@ -568,6 +562,112 @@ msgid "Advanced topics"
 msgstr "高级话题"
 
 #. (itstool) path: info/desc
+#: C/install-guest-agent.page:16
+msgid "Enable additional integrations with your box."
+msgstr "为您的虚拟机启用额外集成。"
+
+#. (itstool) path: page/title
+#: C/install-guest-agent.page:19
+msgid "Install guest tools"
+msgstr "安装客户机工具"
+
+#. (itstool) path: page/p
+#: C/install-guest-agent.page:28
+msgid ""
+"Guest tools are a collection of drivers and utilities that improve the "
+"usability of your virtual machine. It provides improved input performance, "
+"automatic screen resolution adjustment, shared clipboard, and file transfer."
+msgstr ""
+"客户机工具是一组驱动程序和实用程序，可提高虚拟机的可用性。它提供改进的输入性"
+"能、自动屏幕分辨率调整、共享剪贴板和文件传输。"
+
+#. (itstool) path: section/title
+#: C/install-guest-agent.page:31
+msgid "Installing on Windows virtual machines"
+msgstr "在 Windows 虚拟机上安装"
+
+#. (itstool) path: section/p
+#: C/install-guest-agent.page:33
+msgid ""
+"Visit <link href=\"https://win.gnomeboxes.org\">win.gnomeboxes.org</link> in "
+"your Windows virtual machine to download and install the <app>spice-guest-"
+"tools</app> application, which provides the guest integration for GNOME "
+"Boxes."
+msgstr ""
+"在您的 Windows 虚拟机中访问 <link href=\"https://win.gnomeboxes.org\">win."
+"gnomeboxes.org</link>，下载并安装 <app>spice-guest-tools</app> 应用程序，该应"
+"用程序为 GNOME Boxes 提供客户机集成。"
+
+#. (itstool) path: section/title
+#: C/install-guest-agent.page:37
+msgid "Installing on Linux virtual machines"
+msgstr "在 Linux 虚拟机上安装"
+
+#. (itstool) path: section/p
+#: C/install-guest-agent.page:39
+msgid ""
+"Most popular Linux distributions package the guest tools as <app>spice-"
+"vdagent</app>."
+msgstr ""
+"大多数流行的 Linux 发行版都将客户机工具打包为 <app>spice-vdagent</app>。"
+
+#. (itstool) path: section/p
+#: C/install-guest-agent.page:41
+msgid ""
+"The spice agent for Linux consists of 2 parts, a daemon <app>spice-vdagentd</"
+"app> and a per X-session process <app>spice-vdagent</app>. The daemon gets "
+"started in Spice guests through a Sys-V initscript or a systemd unit. The "
+"per X-session gets automatically started in desktop environments which honor "
+"<file>/etc/xdg/autostart</file>, and under <app>gdm</app>."
+msgstr ""
+"Linux 的 Spice 代理由两部分组成，一个守护进程 <app>spice-vdagentd</app> 和一"
+"个与 X 会话关联的进程 <app>spice-vdagent</app>。守护进程通过 Sys-V "
+"initscript 或 systemd 单元在 Spice 客户机中启动。与 X 会话关联的进程在遵守 "
+"<file>/etc/xdg/autostart</file> 的桌面环境中以及在 <app>gdm</app> 下自动启"
+"动。"
+
+#. (itstool) path: section/title
+#: C/install-guest-agent.page:48
+msgid "Installing on RPM based distributions"
+msgstr "在基于 RPM 的发行版上安装"
+
+#. (itstool) path: section/p
+#: C/install-guest-agent.page:50
+msgid ""
+"Distributions such as Fedora, Red Hat Enterprise Linux, CentOS Stream, "
+"OpenSUSE, are known to provide <app>spice-vdagent</app> in their "
+"repositories."
+msgstr ""
+"Fedora、Red Hat Enterprise Linux、CentOS Stream、OpenSUSE 等发行版已知在其软"
+"件仓库中提供 <app>spice-vdagent</app>。"
+
+#. (itstool) path: section/screen
+#: C/install-guest-agent.page:52
+#, no-wrap
+msgid "sudo dnf install spice-vdagent"
+msgstr "sudo dnf install spice-vdagent"
+
+#. (itstool) path: section/title
+#: C/install-guest-agent.page:56
+msgid "Installing on Deb based distributions"
+msgstr "在基于 DEB 的发行版上安装"
+
+#. (itstool) path: section/p
+#: C/install-guest-agent.page:58
+msgid ""
+"Distributions such as Ubuntu, Debian, Linux Mint are known to provide "
+"<app>spice-vdagent</app> in their repositories."
+msgstr ""
+"Ubuntu、Debian、Linux Mint 等发行版已知在其软件仓库中提供 <app>spice-"
+"vdagent</app>。"
+
+#. (itstool) path: section/screen
+#: C/install-guest-agent.page:60
+#, no-wrap
+msgid "sudo apt install spice-vdagent"
+msgstr "sudo apt install spice-vdagent"
+
+#. (itstool) path: info/desc
 #: C/interface.page:30
 msgid "Get around the application."
 msgstr "应用程序入门。"
@@ -575,7 +675,7 @@ msgstr "应用程序入门。"
 #. (itstool) path: page/title
 #: C/interface.page:33
 msgid "The Boxes interface"
-msgstr "盒子界面"
+msgstr "Boxes 界面"
 
 #. (itstool) path: section/title
 #: C/interface.page:36
@@ -584,14 +684,6 @@ msgstr "集合视图"
 
 #. (itstool) path: section/p
 #: C/interface.page:38
-#, fuzzy
-#| msgid ""
-#| "When you first launch <app>Boxes</app>, the greeting tells you to click "
-#| "the <gui style=\"button\">New</gui> button to create your first box. On "
-#| "subsequent visits, <app>Boxes</app> opens in the <em>collection view</"
-#| "em>, displaying thumbnails of your boxes in a grid. Favourites or "
-#| "frequently-used boxes appear at the top of the list. Collection view "
-#| "allows you to:"
 msgid ""
 "When you first launch <app>Boxes</app>, the greeting tells you to click the "
 "<gui style=\"button\">+</gui> button to create your first box. On subsequent "
@@ -599,33 +691,29 @@ msgid ""
 "thumbnails of your boxes in a grid. Frequently used boxes appear at the top "
 "of the list. Collection view allows you to:"
 msgstr ""
-"当您首次启动 <app>Boxes</app> 时，问候语会提示您点击<gui style=\"button\">新"
-"建</gui>按钮来创建您的第一个 box 。以后再启动时，<app>Boxes</app> 会进入<em>"
-"集合视图</em>，在网格中显示您的 box 的缩略图。收藏的或经常使用的 box 会出现在"
-"列表顶部。集合视图允许您："
+"当您首次启动 <app>Boxes</app> 时，欢迎界面会提示您点击 <gui "
+"style=\"button\">+</gui> 按钮来创建您的第一个虚拟机。以后再启动时，"
+"<app>Boxes</app> 会进入<em>集合视图</em>，在网格中显示您的虚拟机的缩略图。经"
+"常使用的虚拟机会出现在列表顶部。集合视图允许您："
 
 #. (itstool) path: item/p
 #: C/interface.page:45
-#, fuzzy
-#| msgid ""
-#| "Click <gui style=\"button\">New</gui> to <link xref=\"create\">create</"
-#| "link> a box."
 msgid ""
 "Click <gui style=\"button\">+</gui> to <link xref=\"create\">create</link> a "
 "box."
 msgstr ""
-"点击<gui style=\"button\">新建</gui>来<link xref=\"create\">创建</link>一个 "
-"box 。"
+"点击 <gui style=\"button\">+</gui> 来<link xref=\"create\">创建</link>一个虚"
+"拟机。"
 
 #. (itstool) path: item/p
 #: C/interface.page:47
 msgid "Click a box to launch a virtual machine session."
-msgstr "点击一个盒子来启动虚拟机会话。"
+msgstr "点击一个虚拟机来启动虚拟机会话。"
 
 #. (itstool) path: item/p
 #: C/interface.page:48
 msgid "<link xref=\"search\">Search</link> for a box."
-msgstr "<link xref=\"search\">搜索</link>盒子。"
+msgstr "<link xref=\"search\">搜索</link>虚拟机。"
 
 #. (itstool) path: item/p
 #: C/interface.page:49
@@ -634,31 +722,27 @@ msgid ""
 "Shutdown</gui>, <gui>Clone</gui>, <gui>Delete</gui>, or to open the "
 "<gui>Preferences</gui> view for the box."
 msgstr ""
+"右键点击虚拟机以选择<gui>在新窗口中打开</gui>、<gui>强制关闭</gui>、<gui>克隆"
+"</gui>、<gui>删除</gui>，或打开该虚拟机的<gui>首选项</gui>视图。"
 
 #. (itstool) path: section/title
 #: C/interface.page:58
 msgid "The assistant"
-msgstr ""
+msgstr "助手"
 
 #. (itstool) path: section/p
 #: C/interface.page:60
-#, fuzzy
-#| msgid ""
-#| "Clicking <gui style=\"button\">New</gui> launches the <em>wizard</em>, "
-#| "which guides you through the process of box creation."
 msgid ""
 "Clicking <gui style=\"button\">+</gui> launches the box creation "
 "<em>Assistant</em>, which guides you through the process of box creation."
 msgstr ""
-"点击<gui style=\"button\">新建</gui>会启动<em>向导</em>，指导您进行 box 的创"
-"建过程。"
+"点击 <gui style=\"button\">+</gui> 会启动虚拟机创建<em>助手</em>，指导您进行"
+"虚拟机的创建过程。"
 
 #. (itstool) path: section/title
 #: C/interface.page:66
-#, fuzzy
-#| msgid "Properties view"
 msgid "Preferences view"
-msgstr "属性视图"
+msgstr "首选项视图"
 
 #. (itstool) path: section/p
 #: C/interface.page:68
@@ -669,35 +753,38 @@ msgid ""
 "view allows you to display or change settings depending on which of the "
 "following tabs is selected:"
 msgstr ""
+"右键点击集合视图中的虚拟机并选择 <gui style=\"button\">首选项</gui> 以打开"
+"<em>首选项视图</em>，您可以在其中配置虚拟机的一些详细信息。首选项视图允许根据"
+"下列您选择的选项卡显示或更改设置："
 
 #. (itstool) path: section/title
 #: C/interface.page:75
 msgid "The Resources tab"
-msgstr ""
+msgstr "资源选项卡"
 
 #. (itstool) path: item/p
 #: C/interface.page:78
 msgid ""
 "View the <gui>Name</gui> of your box and its <gui>IP Address</gui> (when "
 "available)."
-msgstr ""
+msgstr "查看您的虚拟机的<gui>名称</gui>与<gui>IP 地址</gui>（如果可用）。"
 
 #. (itstool) path: item/p
 #: C/interface.page:79
 msgid ""
 "Set the values for <gui>CPU</gui>, <gui>Memory</gui> and <gui>Storage</gui> "
 "of your box."
-msgstr ""
+msgstr "设置虚拟机的<gui>CPU</gui>、<gui>内存</gui>和<gui>存储</gui>的值。"
 
 #. (itstool) path: item/p
 #: C/interface.page:80
 msgid "Set the <gui>Allow running in background</gui> preference of your box."
-msgstr ""
+msgstr "设置虚拟机的<gui>允许在后台运行</gui>首选项。"
 
 #. (itstool) path: item/p
 #: C/interface.page:81
 msgid "Enable <gui>3D acceleration</gui> for supported operating systems."
-msgstr ""
+msgstr "为支持的操作系统启用 <gui>3D 加速</gui>。"
 
 #. (itstool) path: item/p
 #: C/interface.page:82
@@ -705,79 +792,74 @@ msgid ""
 "Access the logs of your box in the <gui>Troubleshooting logs</gui> option, "
 "which can be useful for troubleshooting issues."
 msgstr ""
+"通过<gui>故障排除日志</gui>选项访问您的虚拟机的日志，这有助于解决问题。"
 
 #. (itstool) path: item/p
 #: C/interface.page:83
 msgid ""
 "The <gui>Edit Configuration</gui> option lets you edit the libvirt domain "
 "configuration of your box manually."
-msgstr ""
+msgstr "<gui>编辑配置</gui>选项允许您手工编辑您的虚拟机的 libvirt 域配置。"
 
 #. (itstool) path: section/title
 #: C/interface.page:88
 msgid "The Devices and Shares tab"
-msgstr ""
+msgstr "设备与分享选项卡"
 
 #. (itstool) path: item/p
 #: C/interface.page:91
 msgid "Choose the <gui>USB Devices</gui> to redirect to your box."
-msgstr ""
+msgstr "选择要重定向到您的虚拟机的 <gui>USB 设备</gui>。"
 
 #. (itstool) path: item/p
 #: C/interface.page:92
 msgid "Set the <gui>Shared Folders</gui> to be made available in your box."
-msgstr ""
+msgstr "设置<gui>共享文件夹</gui>，使其在您的虚拟机中可用。"
 
 #. (itstool) path: item/p
 #: C/interface.page:93
 msgid ""
 "Set a <gui>CDROM/DVD Drive</gui> file or device to make available in your "
 "box."
-msgstr ""
+msgstr "设置 <gui>CDROM/DVD 驱动器</gui> 文件或设备以在您的虚拟机中使用。"
 
 #. (itstool) path: section/title
 #: C/interface.page:98
-#, fuzzy
-#| msgid "Snapshots"
 msgid "The Snapshots tab"
-msgstr "快照"
+msgstr "快照选项卡"
 
 #. (itstool) path: section/p
 #: C/interface.page:99
-#, fuzzy
-#| msgid ""
-#| "<gui>Snapshots</gui>: <link xref=\"snapshot-create\">creating</link> and "
-#| "managing snapshots of the box."
 msgid ""
 "With <gui>Snapshots</gui> you can <link xref=\"snapshot-create\">create</"
 "link> and manage snapshots of your box."
 msgstr ""
-"<gui>快照</gui>：<link xref=\"snapshot-create\">创建</link>和管理 box 的快"
-"照。"
+"通过<gui>快照</gui>您可以<link xref=\"snapshot-create\">创建</link>并管理您的"
+"虚拟机的快照。"
 
 #. (itstool) path: section/p
 #: C/interface.page:102
-#, fuzzy
-#| msgid "Click the menu button on the right and select <gui>Delete</gui>."
 msgid ""
 "If the box is running, click the menu (<_:media-1/>) button in the header "
 "bar and select <gui>Preferences</gui>."
-msgstr "点击右边的菜单按钮并选择<gui>删除</gui>。"
+msgstr ""
+"如果虚拟机正在运行，请点击标题栏中的菜单（<_:media-1/>）按键并选择<gui>首选项"
+"</gui>。"
 
 #. (itstool) path: credit/years
 #: C/keystrokes.page:12
 msgid "2017"
-msgstr ""
+msgstr "2017"
 
 #. (itstool) path: info/desc
 #: C/keystrokes.page:15
 msgid "Keystroke combinations can be sent from the menu."
-msgstr ""
+msgstr "可以从菜单发送按键组合。"
 
 #. (itstool) path: page/title
 #: C/keystrokes.page:21
 msgid "Send a keystroke combination to a box"
-msgstr ""
+msgstr "向虚拟机发送按键组合"
 
 #. (itstool) path: page/p
 #: C/keystrokes.page:23
@@ -785,53 +867,45 @@ msgid ""
 "Some combinations of keystrokes are automatically directed to the host "
 "machine. To send a key sequence instead to the running guest:"
 msgstr ""
+"某些按键组合会自动定向到主机。要将按键组合发送给正在运行的客户机，请执行以下"
+"操作："
 
 #. (itstool) path: item/p
 #: C/keystrokes.page:27
 msgid "Click the keyboard (<_:media-1/>) button in the header bar."
-msgstr ""
+msgstr "点击标题栏中的键盘 (<_:media-1/>) 按钮。"
 
 #. (itstool) path: item/p
 #: C/keystrokes.page:31
 msgid ""
 "Click the key combination you want to send. The available key combinations "
 "are:"
-msgstr ""
+msgstr "点击要发送的按键组合。可用的按键组合包括："
 
 #. (itstool) path: item/p
 #: C/keystrokes.page:34
-#, fuzzy
-#| msgid "<keyseq><key>Ctrl</key><key>Alt</key></keyseq>"
 msgid "<keyseq><key>Ctrl</key><key>Alt</key><key>Backspace</key></keyseq>"
-msgstr "<keyseq><key>Ctrl</key><key>Alt</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>Alt</key><key>Backspace</key></keyseq>"
 
 #. (itstool) path: item/p
 #: C/keystrokes.page:35
-#, fuzzy
-#| msgid "<keyseq><key>Ctrl</key><key>Alt</key></keyseq>"
 msgid "<keyseq><key>Ctrl</key><key>Alt</key><key>F1</key></keyseq>"
-msgstr "<keyseq><key>Ctrl</key><key>Alt</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>Alt</key><key>F1</key></keyseq>"
 
 #. (itstool) path: item/p
 #: C/keystrokes.page:36
-#, fuzzy
-#| msgid "<keyseq><key>Ctrl</key><key>Alt</key></keyseq>"
 msgid "<keyseq><key>Ctrl</key><key>Alt</key><key>F2</key></keyseq>"
-msgstr "<keyseq><key>Ctrl</key><key>Alt</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>Alt</key><key>F2</key></keyseq>"
 
 #. (itstool) path: item/p
 #: C/keystrokes.page:37
-#, fuzzy
-#| msgid "<keyseq><key>Ctrl</key><key>Alt</key></keyseq>"
 msgid "<keyseq><key>Ctrl</key><key>Alt</key><key>F3</key></keyseq>"
-msgstr "<keyseq><key>Ctrl</key><key>Alt</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>Alt</key><key>F3</key></keyseq>"
 
 #. (itstool) path: item/p
 #: C/keystrokes.page:38
-#, fuzzy
-#| msgid "<keyseq><key>Ctrl</key><key>Alt</key></keyseq>"
 msgid "<keyseq><key>Ctrl</key><key>Alt</key><key>F7</key></keyseq>"
-msgstr "<keyseq><key>Ctrl</key><key>Alt</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>Alt</key><key>F7</key></keyseq>"
 
 #. (itstool) path: note/p
 #: C/keystrokes.page:44
@@ -843,6 +917,11 @@ msgid ""
 "the virtual console, and <keyseq><key>Ctrl</key><key>Alt</key><key>F1</key></"
 "keyseq> will switch back to the graphical desktop."
 msgstr ""
+"如果您的客户机操作系统是 Linux，您通常可以使用这些按键组合之一切换到第一个虚"
+"拟控制台，并使用另一个按键组合切换回图形控制台。在许多 Linux 发行版中，"
+"<keyseq><key>Ctrl</key><key>Alt</key><key>F3</key></keyseq> 将切换到虚拟控制"
+"台，而 <keyseq><key>Ctrl</key><key>Alt</key><key>F1</key></keyseq> 将切换回图"
+"形桌面。"
 
 #. (itstool) path: p/link
 #: C/legal.xml:4
@@ -862,44 +941,36 @@ msgstr "指定内存和最大磁盘分配。"
 #. (itstool) path: page/title
 #: C/prop-system.page:21
 msgid "Adjust the system requirements of a box"
-msgstr "调整盒子的系统需求"
+msgstr "调整虚拟机的系统需求"
 
 #. (itstool) path: page/p
 #: C/prop-system.page:23
-#, fuzzy
-#| msgid ""
-#| "In <app>Boxes</app>, each virtual machine has its own settings for RAM "
-#| "and maximum allocated disk space."
 msgid ""
 "In <app>Boxes</app>, each virtual machine has its own settings for RAM, CPU "
 "and maximum allocated disk space."
 msgstr ""
-"在 <app>Boxes</app> 中，每个虚拟机都可以分别设置内存和最大分配的磁盘空间。"
+"在 <app>Boxes</app> 中，每个虚拟机都可以分别设置内存、CPU 和最大分配的磁盘空"
+"间。"
 
 #. (itstool) path: item/p
-#: C/prop-system.page:27 C/snapshot-create.page:39
-#, fuzzy
-#| msgid ""
-#| "Right-click on the box in the collection view, or if the box is already "
-#| "open, click the properties button in the toolbar."
+#: C/prop-system.page:27 C/prop-trouble.page:29 C/snapshot-create.page:39
+#: C/snapshot-delete.page:26 C/snapshot-rename.page:34
+#: C/snapshot-revert.page:34
 msgid ""
 "Right-click on the box in the collection view and select <gui>Preferences</"
 "gui>, or if the box is running, click the menu (<_:media-1/>) button in the "
 "header bar and select <gui>Preferences</gui>."
 msgstr ""
-"在集合视图中右键单击该 box ，或者，如果该 box 已经打开，点击工具栏上的属性按"
-"钮。"
+"右键点击集合视图中的虚拟机并选择<gui>首选项</gui>，或者虚拟机正在运行，请单击"
+"标题栏中的菜单（<_:media-1/>）按键并选择<gui>首选项</gui>。"
 
 #. (itstool) path: item/p
 #: C/prop-system.page:32
-#, fuzzy
-#| msgid ""
-#| "Adjust the <gui>Memory</gui> and <gui>Maximum disk space</gui> sliders to "
-#| "reflect the desired values."
 msgid ""
-"Adjust the <gui>Memory</gui>, <gui>CPU</gui> and <gui>Maximum disk size</"
-"gui> sliders to reflect the desired values."
-msgstr "调整<gui>内存</gui>和<gui>最大磁盘空间</gui>滑块来设置所需的值。"
+"Adjust the <gui>Memory</gui>, <gui>CPU</gui> and <gui>Storage limit</gui> "
+"values to reflect the desired configuration."
+msgstr ""
+"调整<gui>内存</gui>、<gui>CPU</gui>和<gui>存储限制</gui>值至需要的配置。"
 
 #. (itstool) path: note/p
 #: C/prop-system.page:37
@@ -909,16 +980,18 @@ msgid ""
 "take to suspend/resume. The recommended memory will be sufficient since this "
 "information comes from the OSes documentations."
 msgstr ""
+"您不应分配所有可用内存，因为您的主机系统也需要内存来运行，分配的内存越多，挂"
+"起/恢复所需的时间就越长。建议的内存值就足够了，因为此信息来自操作系统文档。"
 
 #. (itstool) path: info/desc
 #: C/prop-trouble.page:16
 msgid "Diagnose problems with your box using the log file."
-msgstr "使用日志文件来诊断您的盒子的问题。"
+msgstr "使用日志文件来诊断您的虚拟机的问题。"
 
 #. (itstool) path: page/title
 #: C/prop-trouble.page:21
 msgid "View the troubleshooting log of a box"
-msgstr "查看盒子的故障日志"
+msgstr "查看虚拟机的故障日志"
 
 #. (itstool) path: page/p
 #: C/prop-trouble.page:23
@@ -928,60 +1001,36 @@ msgid ""
 "virtual machine state, the virtual machine libvirt configuration, and the "
 "QEMU hypervisor log."
 msgstr ""
-"如果一个盒子在启动或运行时出现问题，帮助您修复该问题的线索可能会在故障日志中"
-"找到。故障日志显示了虚拟机的状态、虚拟机的 libvirt 配置，和 QEMU 虚拟层日志。"
-
-#. (itstool) path: item/p
-#: C/prop-trouble.page:29 C/snapshot-delete.page:26 C/snapshot-rename.page:34
-#: C/snapshot-revert.page:34
-#, fuzzy
-#| msgid ""
-#| "Right-click on the box in the collection view, or if the box is already "
-#| "open, click the properties button in the toolbar."
-msgid ""
-"Right-click the box in the collection view and select <gui>Preferences</"
-"gui>, or if the box is running, click the menu (<_:media-1/>) button in the "
-"header bar and select <gui>Preferences</gui>."
-msgstr ""
-"在集合视图中右键单击该 box ，或者，如果该 box 已经打开，点击工具栏上的属性按"
-"钮。"
+"如果一个虚拟机在启动或运行时出现问题，帮助您修复该问题的线索可能会在故障日志"
+"中找到。故障日志显示了虚拟机的状态、虚拟机的 libvirt 配置，和 QEMU 虚拟层日"
+"志。"
 
 #. (itstool) path: item/p
 #: C/prop-trouble.page:35
-#, fuzzy
-#| msgid ""
-#| "Click the <gui style=\"button\">Trouble Log</gui> button to view the log."
 msgid ""
 "Click the <gui style=\"button\">Troubleshooting Log</gui> button to view the "
 "log in a text editor."
-msgstr "点击<gui style=\"button\">故障日志</gui>按钮来查看日志。"
+msgstr "点击<gui style=\"button\">故障日志</gui>按键在文本编辑器中查看日志。"
 
 #. (itstool) path: info/desc
 #: C/search.page:17
 msgid "Quickly access a box by name."
-msgstr "通过名称快速访问一个盒子。"
+msgstr "通过名称快速访问一个虚拟机。"
 
 #. (itstool) path: page/title
 #: C/search.page:20
 msgid "Search for a box"
-msgstr "搜索盒子"
+msgstr "搜索虚拟机"
 
 #. (itstool) path: page/p
 #: C/search.page:22
-#, fuzzy
-#| msgid ""
-#| "If there is more than one box, you can locate or filter boxes by name in "
-#| "the <link xref=\"interface#collection\">collection view</link> or <link "
-#| "xref=\"interface#selection\">selection mode</link>. Click the search "
-#| "icon, or just start typing to initiate a search."
 msgid ""
 "If there is more than one box, you can locate or filter boxes by name in the "
 "<link xref=\"interface#collection\">collection view</link>. Click the search "
 "icon, or just start typing to initiate a search."
 msgstr ""
-"如果不止有一个 box ，您可以在<link xref=\"interface#collection\">集合视图</"
-"link>或<link xref=\"interface#selection\">选择模式</link>中通过名称来定位或过"
-"滤 box 。点击搜索图标，或直接开始输入来发起搜索。"
+"如果有多个虚拟机，您可以在<link xref=\"interface#collection\">集合视图</link>"
+"中按名称查找或过滤虚拟机。点击搜索图标，或直接键盘输入以启动搜索。"
 
 #. (itstool) path: page/p
 #: C/search.page:26
@@ -991,12 +1040,12 @@ msgstr "按 <key>Esc</key> 来取消搜索。"
 #. (itstool) path: info/desc
 #: C/shared-folders.page:15
 msgid "Share folders between host and guest."
-msgstr ""
+msgstr "在主机和客户机之间共享文件夹。"
 
 #. (itstool) path: page/title
 #: C/shared-folders.page:20
 msgid "Shared Folders"
-msgstr ""
+msgstr "共享文件夹"
 
 #. (itstool) path: page/p
 #: C/shared-folders.page:22
@@ -1005,132 +1054,30 @@ msgid ""
 "to set folders in your host system which you desire to browse from inside "
 "your virtual machine."
 msgstr ""
+"如果您的虚拟机正在运行并且包含 spice-webdavd，您可能需要在主机系统中设置您希"
+"望在虚拟机中浏览的文件夹。"
 
 #. (itstool) path: item/p
 #: C/shared-folders.page:31 C/usb-redirection.page:50
-#, fuzzy
-#| msgid "Click <gui>Display</gui> in the sidebar."
 msgid "Click the <gui>Devices &amp; Shares</gui> tab."
-msgstr "点击侧边栏中的<gui>显示</gui>。"
+msgstr "点击<gui>设备与分享</gui>选项卡。"
 
 #. (itstool) path: item/p
 #: C/shared-folders.page:32
 msgid ""
 "In the <gui>Shared Folders</gui> section you can view, remove, and create "
 "new shared folders."
-msgstr ""
-
-#. (itstool) path: credit/name
-#: C/shortcuts.page:11
-msgid "Lasse Schuirmann"
-msgstr "Lasse Schuirmann"
-
-#. (itstool) path: info/desc
-#: C/shortcuts.page:18
-msgid "Operate <app>Boxes</app> using keyboard shortcuts."
-msgstr "使用键盘快捷键来操作 <app>Boxes</app> 。"
-
-#. (itstool) path: page/title
-#: C/shortcuts.page:21
-msgid "Keyboard shortcuts"
-msgstr "键盘快捷键"
-
-#. (itstool) path: page/p
-#: C/shortcuts.page:23
-msgid ""
-"Various shortcuts can be used to operate Boxes. Besides mnemonics, the "
-"following shortcuts are available:"
-msgstr "可以使用各种快捷键来操作盒子。除了助记符，还有以下快捷键："
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:29
-msgid "Action"
-msgstr "动作"
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:32
-msgid "Shortcut"
-msgstr "快捷键"
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:39
-msgid "Create new virtual machine"
-msgstr "创建新的虚拟机"
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:42
-msgid "<keyseq><key>Ctrl</key><key>N</key></keyseq>"
-msgstr "<keyseq><key>Ctrl</key><key>N</key></keyseq>"
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:47
-msgid "Toggle search"
-msgstr "触发搜索"
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:50
-msgid "<keyseq><key>Ctrl</key><key>F</key></keyseq>"
-msgstr "<keyseq><key>Ctrl</key><key>F</key></keyseq>"
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:55
-msgid "Go back"
-msgstr "后退"
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:58
-msgid "<keyseq><key>Alt</key><key>Left</key></keyseq>"
-msgstr "<keyseq><key>Alt</key><key>Left</key></keyseq>"
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:63
-msgid "Go forward"
-msgstr "前进"
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:66
-msgid "<keyseq><key>Alt</key><key>Right</key></keyseq>"
-msgstr "<keyseq><key>Alt</key><key>Right</key></keyseq>"
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:71
-msgid "Cancel"
-msgstr "取消"
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:74
-msgid "<keyseq><key>Escape</key></keyseq>"
-msgstr "<keyseq><key>Escape</key></keyseq>"
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:79
-msgid "Release mouse and keyboard grab"
-msgstr "释放鼠标和键盘按住"
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:82
-msgid "<keyseq><key>Ctrl</key><key>Alt</key></keyseq>"
-msgstr "<keyseq><key>Ctrl</key><key>Alt</key></keyseq>"
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:87
-msgid "Quit Boxes"
-msgstr "退出盒子"
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:90
-msgid "<keyseq><key>Ctrl</key><key>Q</key></keyseq>"
-msgstr "<keyseq><key>Ctrl</key><key>Q</key></keyseq>"
+msgstr "在<gui>共享文件夹</gui>部分，您可以查看、移除或创建新的共享文件夹。"
 
 #. (itstool) path: info/desc
 #: C/shutdown.page:16
 msgid "Shut down a box that has stopped working."
-msgstr "关闭已停止工作的盒子。"
+msgstr "关闭已停止工作的虚拟机。"
 
 #. (itstool) path: page/title
 #: C/shutdown.page:21
 msgid "Force a box to shut down"
-msgstr "强制关闭一个盒子"
+msgstr "强制关闭一个虚拟机"
 
 #. (itstool) path: page/p
 #: C/shutdown.page:23
@@ -1138,27 +1085,23 @@ msgid ""
 "If a box stops responding, you can force it to shut down. This allows you to "
 "restart the virtual machine in the hope of returning it to its working state."
 msgstr ""
-"如果一个盒子停止响应，您可以强制关闭它。如果希望让它返回到工作状态，您可以重"
-"新启动该虚拟机。"
+"如果虚拟机停止响应，您可以强制关闭它。如果希望让它返回到工作状态，您可以重新"
+"启动该虚拟机。"
 
 #. (itstool) path: item/p
 #: C/shutdown.page:28
-#, fuzzy
-#| msgid "The remote box will open in the collection view."
 msgid "Right-click the box in the collection view."
-msgstr "该远程 box 会在集合视图中打开。"
+msgstr "在集合视图中右键点击该虚拟机。"
 
 #. (itstool) path: item/p
 #: C/shutdown.page:29
-#, fuzzy
-#| msgid "Click <gui style=\"button\">Shutdown</gui> to confirm."
 msgid "Select the <gui style=\"button\">Force Shutdown</gui> option."
-msgstr "点击<gui style=\"button\">关机</gui>来确认。"
+msgstr "点击<gui style=\"button\">强制关机</gui>选项。"
 
 #. (itstool) path: info/desc
 #: C/snapshot-create.page:22
 msgid "Save the state of a box for later use."
-msgstr "保存一个盒子的状态以便以后使用。"
+msgstr "保存虚拟机的状态以便日后使用。"
 
 #. (itstool) path: page/title
 #: C/snapshot-create.page:27
@@ -1174,7 +1117,7 @@ msgid ""
 "current state so you can return to it as often as you want."
 msgstr ""
 "如果您的虚拟机在所需配置中运行良好，您可能希望在它被软件更新或配置的改变打破"
-"之前保存该设置。保存该盒子的快照会保留其当前状态，所以您可以在需要时返回该状"
+"之前保存该设置。保存该Boxes的快照会保留其当前状态，所以您可以在需要时返回该状"
 "态。"
 
 #. (itstool) path: page/p
@@ -1184,14 +1127,14 @@ msgid ""
 "also include the memory data for boxes which are running at the moment of "
 "the snapshot creation."
 msgstr ""
+"快照包括虚拟机磁盘的精确状态，还可以包括在快照创建时正在运行的虚拟机的内存数"
+"据。"
 
 #. (itstool) path: item/p
 #: C/snapshot-create.page:43 C/snapshot-delete.page:30
 #: C/snapshot-rename.page:38 C/snapshot-revert.page:38
-#, fuzzy
-#| msgid "Click <gui>Snapshots</gui> in the sidebar."
 msgid "Click the <gui>Snapshots</gui> tab."
-msgstr "点击侧边栏中的<gui>快照</gui>。"
+msgstr "点击<gui>快照</gui>选项卡。"
 
 #. (itstool) path: item/p
 #: C/snapshot-create.page:44
@@ -1203,7 +1146,7 @@ msgstr "点击<gui>快照</gui>列表下方的 <key>+</key> 。"
 msgid ""
 "A snapshot is saved reflecting the current state of your box. It appears in "
 "the list."
-msgstr "一个反映您盒子当前状态的快照被保存。它会出现在列表中。"
+msgstr "一个反映您虚拟机当前状态的快照被保存。它会出现在列表中。"
 
 #. (itstool) path: info/desc
 #: C/snapshot-delete.page:16
@@ -1222,19 +1165,14 @@ msgstr "不再需要的快照可以从列表中删除。"
 
 #. (itstool) path: item/p
 #: C/snapshot-delete.page:31
-#, fuzzy
-#| msgid "Select the snapshot to be deleted from the list."
 msgid "Select the snapshot that you want to delete from the list."
-msgstr "选择要从列表中删除的快照。"
+msgstr "从列表中选择需要删除的快照。"
 
 #. (itstool) path: item/p
 #: C/snapshot-delete.page:32
-#, fuzzy
-#| msgid ""
-#| "Click the <gui style=\"button\">Trouble Log</gui> button to view the log."
 msgid ""
 "Click the <gui style=\"button\">X</gui> button on the list to delete it."
-msgstr "点击<gui style=\"button\">故障日志</gui>按钮来查看日志。"
+msgstr "点击列表中的 <gui style=\"button\">X</gui> 按键来删除它。"
 
 #. (itstool) path: info/desc
 #: C/snapshot-rename.page:16
@@ -1273,17 +1211,13 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/snapshot-rename.page:39
-#, fuzzy
-#| msgid "Select the snapshot from the list to which to revert."
 msgid "From the list, select the snapshot that you want to rename."
-msgstr "从要恢复的快照列表中选择该快照。"
+msgstr "从列表中选择要重命名的快照。"
 
 #. (itstool) path: item/p
 #: C/snapshot-rename.page:40
-#, fuzzy
-#| msgid "Click the menu button on the right and select <gui>Rename</gui>."
 msgid "Click the edit button on the list to rename."
-msgstr "点击右边的菜单按钮并选择<gui>重命名</gui>。"
+msgstr "点击列表中的编译按键以重命名。"
 
 #. (itstool) path: info/desc
 #: C/snapshot-revert.page:22
@@ -1293,7 +1227,7 @@ msgstr "恢复已保存的快照中的状态。"
 #. (itstool) path: page/title
 #: C/snapshot-revert.page:27
 msgid "Revert the state of a box"
-msgstr "恢复盒子状态"
+msgstr "恢复虚拟机的状态"
 
 #. (itstool) path: page/p
 #: C/snapshot-revert.page:29
@@ -1303,44 +1237,39 @@ msgid ""
 "running programs and settings at the exact same state of the snapshot "
 "creation."
 msgstr ""
+"<em>恢复</em>到快照会恢复该快照中保存的虚拟机状态。内存状态也会恢复，使正在运"
+"行的程序和设置恢复到和快照创建时的完全相同的状态。"
 
 #. (itstool) path: item/p
 #: C/snapshot-revert.page:39
-#, fuzzy
-#| msgid "Select the snapshot from the list to which to revert."
 msgid "From the list, select the snapshot to which you want to revert."
-msgstr "从要恢复的快照列表中选择该快照。"
+msgstr "从列表中选择需要恢复的快照。"
 
 #. (itstool) path: item/p
 #: C/snapshot-revert.page:41
 msgid "Click the revert button next to the snapshot name."
-msgstr ""
+msgstr "点击快照名称旁边的恢复按钮。"
 
 #. (itstool) path: note/p
 #: C/snapshot-revert.page:45
 msgid ""
 "Snapshots capture a state of your virtual machine. Changes that you make "
 "after creating a snapshot will be lost on revert."
-msgstr ""
+msgstr "快照可捕捉虚拟机的状态。创建快照后所做的更改将在恢复时丢失。"
 
 #. (itstool) path: page/title
 #: C/supported-protocols.page:26
 msgid "What is the technology used by Boxes?"
-msgstr "盒子使用了什么技术？"
+msgstr "Boxes使用了什么技术？"
 
 #. (itstool) path: page/p
 #: C/supported-protocols.page:36
-#, fuzzy
-#| msgid ""
-#| "Boxes uses <app>qemu-kvm</app>, <app>libvirt-glib</app> and <app>spice-"
-#| "gtk</app> to allow users to easily manage virtual machines and connect to "
-#| "remote machines."
 msgid ""
 "Boxes uses <app>qemu-kvm</app>, <app>libvirt-glib</app> and <app>spice-gtk</"
 "app> to allow users to easily manage virtual machines."
 msgstr ""
 "Boxes 使用 <app>qemu-kvm</app>、<app>libvirt-glib</app> 和 <app>spice-gtk</"
-"app> 来让用户很容易地管理虚拟机和连接到远程机器。"
+"app> 来让用户轻松地管理虚拟机。"
 
 #. (itstool) path: section/title
 #: C/supported-protocols.page:41
@@ -1378,16 +1307,11 @@ msgstr "libvirt"
 
 #. (itstool) path: section/p
 #: C/supported-protocols.page:58
-#, fuzzy
-#| msgid ""
-#| "<app>libvirt</app> is a toolkit for manipulating (creating, deleting and "
-#| "modifying) and monitoring virtual machines on remote hosts, securely."
 msgid ""
 "<app>libvirt</app> is a toolkit for manipulating (creating, deleting and "
 "modifying) and monitoring virtual machines."
 msgstr ""
-"<app>libvirt</app> 是一个用于在远程主机上安全操作（创建、删除、修改）和监视虚"
-"拟机的工具包。"
+"<app>libvirt</app> 是一个用于操作（创建、删除、修改）和监视虚拟机的工具包。"
 
 #. (itstool) path: section/p
 #: C/supported-protocols.page:61
@@ -1395,6 +1319,8 @@ msgid ""
 "<app>libvirt-glib</app> wraps libvirt to provide a high-level object-"
 "oriented API suited for glib-based applications."
 msgstr ""
+"<app>libvirt-glib</app> 封装了 libvirt 以提供适合基于 glib 应用程序的高级面向"
+"对象 API。"
 
 #. (itstool) path: section/title
 #: C/supported-protocols.page:67
@@ -1443,7 +1369,7 @@ msgstr "Zeeshan Ali (Khattak)"
 #. (itstool) path: info/desc
 #: C/system-requirements.page:31
 msgid "Hardware required to run a <app>Boxes</app> virtual machine."
-msgstr "运行 <app>盒子</app> 虚拟机的硬件需求。"
+msgstr "运行 <app>Boxes</app> 虚拟机的硬件需求。"
 
 #. (itstool) path: page/title
 #: C/system-requirements.page:36
@@ -1452,7 +1378,6 @@ msgstr "虚拟机入门"
 
 #. (itstool) path: page/p
 #: C/system-requirements.page:38
-#, fuzzy
 msgid ""
 "Your computer should meet certain criteria for best performance when "
 "creating and running virtual machines in <app>Boxes</app>. These "
@@ -1461,9 +1386,9 @@ msgid ""
 "on vendor recommendations. When such information is unavailable to "
 "<app>Boxes</app>, it allocates the following:"
 msgstr ""
-"在 <app>Boxes</app> 中创建和运行虚拟机时，要获得最佳性能，您的计算机应符合一"
-"定的标准。这些要求是由操作系统供应商提出的。<app>Boxes</app> 基于供应商的建议"
-"自动为虚拟机分配资源。当 <app>Boxes</app> 无法获取这些信息时，会按如下分配："
+"在 <app>Boxes</app> 中创建和运行虚拟机时，您的计算机应满足某些标准以获得最佳"
+"性能。这些要求由操作系统供应商指定。<app>Boxes</app> 会根据供应商的建议自动为"
+"虚拟机分配资源。当 <app>Boxes</app> 无法获得此类信息时，它会分配以下内容："
 
 #. (itstool) path: item/p
 #: C/system-requirements.page:47
@@ -1472,12 +1397,6 @@ msgstr "20 GB 的最大存储空间。"
 
 #. (itstool) path: note/p
 #: C/system-requirements.page:49
-#, fuzzy
-#| msgid ""
-#| "This does not mean that <app>Boxes</app> will allocate 20 GB of space "
-#| "when creating the virtual machine. The actual disk space used by "
-#| "<app>Boxes</app> will be less than (or in worst case, equal to) the disk "
-#| "space used by the virtual machine itself."
 msgid ""
 "This does not mean that <app>Boxes</app> will allocate 20 GB of space when "
 "creating the virtual machine. The actual disk space used by <app>Boxes</app> "
@@ -1509,11 +1428,13 @@ msgid ""
 "It is also recommended that you have at least 8GB RAM and 20GB of free disk "
 "space on your computer to efficiently run <app>Boxes</app>."
 msgstr ""
+"同时，建议您的计算机上至少有 8GB RAM 和 20GB 的可用磁盘空间，以高效运行 "
+"<app>Boxes</app>。"
 
 #. (itstool) path: info/desc
 #: C/usb-redirection.page:29
 msgid "Allow your box to access a USB device."
-msgstr "允许您的盒子访问 USB 设备。"
+msgstr "允许您的虚拟机访问 USB 设备。"
 
 #. (itstool) path: page/title
 #: C/usb-redirection.page:35
@@ -1522,14 +1443,6 @@ msgstr "USB 重定向"
 
 #. (itstool) path: page/p
 #: C/usb-redirection.page:37
-#, fuzzy
-#| msgid ""
-#| "<sys>USB</sys> is a universal hardware bus protocol used to plug any kind "
-#| "of device into your computer. <sys>USB redirection</sys> makes devices "
-#| "plugged into your local computer available in the machines you are "
-#| "connected to in <app>Boxes</app>. For instance, a USB flash drive or a "
-#| "webcam will appear as directly connected to the remote or virtual "
-#| "computer."
 msgid ""
 "<sys>USB</sys> is a universal hardware bus protocol used to plug any kind of "
 "device into your computer. <sys>USB redirection</sys> makes devices plugged "
@@ -1538,38 +1451,27 @@ msgid ""
 "connected to the virtual computer."
 msgstr ""
 "<sys>USB</sys> 是一个通用硬件总线协议，用于将任何类型的设备插入您的计算机。"
-"<sys>USB 重定向</sys>使您在 <app>Boxes</app> 中连接到的机器可以访问插入您本地"
-"计算机的设备。例如，USB 闪存驱动器或摄像头会像直接连接到了远程或虚拟计算机一"
-"样显示。"
+"<sys>USB 重定向</sys>使您在 <app>Boxes</app> 中运行的机器可以访问插入您本地计"
+"算机的设备。例如，USB 闪存驱动器或摄像头会像直接连接到了虚拟机一样显示。"
 
 #. (itstool) path: steps/title
 #: C/usb-redirection.page:44
 msgid "To enable host USB devices in a box:"
-msgstr "要在 box 中启用主机的 USB 设备："
+msgstr "要在虚拟机中启用主机的 USB 设备："
 
 #. (itstool) path: item/p
 #: C/usb-redirection.page:45
 msgid "Make sure the box is running."
-msgstr ""
-
-#. (itstool) path: item/p
-#: C/usb-redirection.page:46
-msgid ""
-"Right-click the box in the collection view and select <gui>Preferences</"
-"gui>, or click the menu (<_:media-1/>) button in the header bar and select "
-"<gui>Preferences</gui>."
-msgstr ""
+msgstr "确认虚拟机正在运行。"
 
 #. (itstool) path: item/p
 #: C/usb-redirection.page:51
-#, fuzzy
-#| msgid ""
-#| "Set the switch next to each desired device to <gui style=\"switch\">ON</"
-#| "gui>."
 msgid ""
 "<gui>USB Devices</gui> connected to the host machine are shown in a list. "
 "Set the switch next to each desired device to <gui style=\"switch\">ON</gui>."
-msgstr "将每个所需设备旁边的开关切换到<gui style=\"switch\">开启</gui>。"
+msgstr ""
+"连接到主机的 <gui>USB 设备</gui> 显示在列表中。将每个所需设备旁边的开关设置"
+"为 <gui style=\"switch\">开启</gui>。"
 
 #. (itstool) path: credit/name
 #: C/virtualization.page:15
@@ -1583,9 +1485,8 @@ msgstr "2019"
 
 #. (itstool) path: info/desc
 #: C/virtualization.page:22
-#, fuzzy
 msgid "Check the resources available to <app>Boxes</app>."
-msgstr "选择对 <app>Boxes</app> 可用的资源。"
+msgstr "检查 <app>Boxes</app> 可用的资源。"
 
 #. (itstool) path: page/title
 #: C/virtualization.page:25
@@ -1610,23 +1511,23 @@ msgstr "<cmd>gnome-boxes --checks</cmd>"
 #. (itstool) path: page/p
 #: C/virtualization.page:33
 msgid "To enable Virtualization on your system:"
-msgstr ""
+msgstr "要在您的系统中启用虚拟化："
 
 #. (itstool) path: item/p
 #: C/virtualization.page:35
 msgid "Reboot the system and open the <gui>BIOS</gui> menu"
-msgstr ""
+msgstr "重新启动系统并打开 <gui>BIOS</gui> 菜单"
 
 #. (itstool) path: item/p
 #: C/virtualization.page:36
 msgid ""
 "Select <gui>Restore Defaults</gui> option and then <gui>Save and Exit</gui>"
-msgstr ""
+msgstr "选择<gui>恢复默认值</gui>选项，然后选择<gui>保存并退出</gui>"
 
 #. (itstool) path: item/p
 #: C/virtualization.page:37
 msgid "Reboot and again open <gui>BIOS</gui>"
-msgstr ""
+msgstr "重新启动并再次打开 <gui>BIOS</gui>"
 
 #. (itstool) path: item/p
 #: C/virtualization.page:38
@@ -1634,6 +1535,8 @@ msgid ""
 "Open the <gui>Processor</gui> submenu in the <gui>Chipset, Advanced CPU "
 "Configuration</gui> or <gui>Northbridge</gui>"
 msgstr ""
+"在<gui>芯片组、高级 CPU 配置</gui>或<gui>北桥</gui>中打开<gui>处理器</gui>子"
+"菜单"
 
 #. (itstool) path: item/p
 #: C/virtualization.page:39
@@ -1643,16 +1546,19 @@ msgid ""
 "virtualization extensions may be labeled <gui>Virtualization Extensions, "
 "Vanderpool</gui> or various other names depending on the OEM and system BIOS"
 msgstr ""
+"根据处理器品牌启用 <gui>Intel 虚拟化技术</gui>（也称为 Intel VT）或 <gui>AMD-"
+"V</gui>。虚拟化扩展可能标记为 <gui>虚拟化扩展，Vanderpool</gui> 或各种其他名"
+"称，具体取决于 OEM 和系统 BIOS"
 
 #. (itstool) path: item/p
 #: C/virtualization.page:40
 msgid "<gui>Save and Exit</gui>"
-msgstr ""
+msgstr "<gui>保存并退出</gui>"
 
 #. (itstool) path: item/p
 #: C/virtualization.page:41
 msgid "Reboot and run: <cmd>cat /proc/cpuinfo | grep vmx svm</cmd>"
-msgstr ""
+msgstr "重启后运行：<cmd>cat /proc/cpuinfo | grep vmx svm</cmd>"
 
 #. (itstool) path: page/p
 #: C/virtualization.page:44
@@ -1661,6 +1567,8 @@ msgid ""
 "If there is no output your system may not have the virtualization extensions "
 "or the correct BIOS setting enabled"
 msgstr ""
+"如果有输出，则表示虚拟化扩展现已启用。如果没有输出，则您的系统可能未启用虚拟"
+"化扩展或正确的 BIOS 设置"
 
 #. (itstool) path: page/title
 #: C/what-is-a-virtual-machine.page:26
@@ -1702,6 +1610,77 @@ msgid ""
 msgstr ""
 "您可以使用虚拟机来运行只能在另一个操作系统上运行的应用程序，例如在 Microsoft "
 "Windows™ 上。虚拟机也可用于软件开发，以便在原始环境中进行测试。"
+
+#, fuzzy
+#~| msgid ""
+#~| "Right-click on the box in the collection view, or if the box is already "
+#~| "open, click the properties button in the toolbar."
+#~ msgid ""
+#~ "Right-click the box in the collection view and select <gui>Preferences</"
+#~ "gui>, or if the box is running, click the menu (<_:media-1/>) button in "
+#~ "the header bar and select <gui>Preferences</gui>."
+#~ msgstr ""
+#~ "在集合视图中右键单击该 box ，或者，如果该 box 已经打开，点击工具栏上的属性"
+#~ "按钮。"
+
+#~ msgid "Lasse Schuirmann"
+#~ msgstr "Lasse Schuirmann"
+
+#~ msgid "Operate <app>Boxes</app> using keyboard shortcuts."
+#~ msgstr "使用键盘快捷键来操作 <app>Boxes</app> 。"
+
+#~ msgid "Keyboard shortcuts"
+#~ msgstr "键盘快捷键"
+
+#~ msgid ""
+#~ "Various shortcuts can be used to operate Boxes. Besides mnemonics, the "
+#~ "following shortcuts are available:"
+#~ msgstr "可以使用各种快捷键来操作盒子。除了助记符，还有以下快捷键："
+
+#~ msgid "Action"
+#~ msgstr "动作"
+
+#~ msgid "Shortcut"
+#~ msgstr "快捷键"
+
+#~ msgid "<keyseq><key>Ctrl</key><key>N</key></keyseq>"
+#~ msgstr "<keyseq><key>Ctrl</key><key>N</key></keyseq>"
+
+#~ msgid "Toggle search"
+#~ msgstr "触发搜索"
+
+#~ msgid "<keyseq><key>Ctrl</key><key>F</key></keyseq>"
+#~ msgstr "<keyseq><key>Ctrl</key><key>F</key></keyseq>"
+
+#~ msgid "Go back"
+#~ msgstr "后退"
+
+#~ msgid "<keyseq><key>Alt</key><key>Left</key></keyseq>"
+#~ msgstr "<keyseq><key>Alt</key><key>Left</key></keyseq>"
+
+#~ msgid "Go forward"
+#~ msgstr "前进"
+
+#~ msgid "<keyseq><key>Alt</key><key>Right</key></keyseq>"
+#~ msgstr "<keyseq><key>Alt</key><key>Right</key></keyseq>"
+
+#~ msgid "Cancel"
+#~ msgstr "取消"
+
+#~ msgid "<keyseq><key>Escape</key></keyseq>"
+#~ msgstr "<keyseq><key>Escape</key></keyseq>"
+
+#~ msgid "Release mouse and keyboard grab"
+#~ msgstr "释放鼠标和键盘按住"
+
+#~ msgid "<keyseq><key>Ctrl</key><key>Alt</key></keyseq>"
+#~ msgstr "<keyseq><key>Ctrl</key><key>Alt</key></keyseq>"
+
+#~ msgid "Quit Boxes"
+#~ msgstr "退出盒子"
+
+#~ msgid "<keyseq><key>Ctrl</key><key>Q</key></keyseq>"
+#~ msgstr "<keyseq><key>Ctrl</key><key>Q</key></keyseq>"
 
 #~ msgid ""
 #~ "Learn to set up local virtual machines and to connect to remote virtual "
