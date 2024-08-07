@@ -1,0 +1,37 @@
+From 4a00870b5f91357cf9f415075a6633b401b47be4 Mon Sep 17 00:00:00 2001
+From: Felipe Borges <felipeborges@gnome.org>
+Date: Wed, 7 Aug 2024 11:41:55 +0200
+Subject: [PATCH] Fix checksum include missing
+
+---
+ genisoimage/genisoimage.c | 1 +
+ genisoimage/jte.c         | 1 +
+ 2 files changed, 2 insertions(+)
+
+diff --git a/genisoimage/genisoimage.c b/genisoimage/genisoimage.c
+index 46f0cb7..d7d38ce 100644
+--- a/genisoimage/genisoimage.c
++++ b/genisoimage/genisoimage.c
+@@ -47,6 +47,7 @@
+ 
+ #include <mconfig.h>
+ #include "genisoimage.h"
++#include "checksum.h"
+ #include <errno.h>
+ #include <timedefs.h>
+ #include <fctldefs.h>
+diff --git a/genisoimage/jte.c b/genisoimage/jte.c
+index 0dff289..4c4d986 100644
+--- a/genisoimage/jte.c
++++ b/genisoimage/jte.c
+@@ -27,6 +27,7 @@
+ #include "ifo_read.h"
+ #include "endianconv.h"
+ #include "checksum.h"
++#include "md5.h"
+ #endif
+ #ifdef APPLE_HYB
+ #include <ctype.h>
+-- 
+2.45.2
+
