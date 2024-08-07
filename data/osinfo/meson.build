@@ -16,7 +16,8 @@ osinfo_db = [
   ['popos-17.10.xml', 'gnome-boxes/osinfo/os/system76.com'],
   ['rhel-8.0.xml', 'gnome-boxes/osinfo/os/redhat.com'],
   ['rocky-8.4.xml', 'gnome-boxes/osinfo/os/rockylinux.org'],
-  ['silverblue-28.xml', 'gnome-boxes/osinfo/os/fedoraproject.org']
+  ['silverblue-28.xml', 'gnome-boxes/osinfo/os/fedoraproject.org'],
+  ['trisquel-9.xml', 'gnome-boxes/osinfo/os/trisquel.info']
 ]
 
 foreach os: osinfo_db
