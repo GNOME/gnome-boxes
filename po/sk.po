@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2023-11-15 11:30+0000\n"
-"PO-Revision-Date: 2024-04-29 21:32+0200\n"
+"POT-Creation-Date: 2024-06-17 08:18+0000\n"
+"PO-Revision-Date: 2024-07-14 13:28+0200\n"
 "Last-Translator: Matej Mrenica <matejm98mthw@gmail.com>\n"
 "Language-Team: Slovak <->\n"
 "Language: sk\n"
@@ -109,7 +109,8 @@ msgstr ""
 "Nastavenie sprístupnených priečinkov medzi vaším systémom a virtuálnymi "
 "počítačmi"
 
-#: data/org.gnome.Boxes.appdata.xml.in:62
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.Boxes.appdata.xml.in:87
 msgid "The GNOME Project"
 msgstr "Projekt GNOME"
 
@@ -124,7 +125,7 @@ msgstr "Zobrazuje a používa virtuálne počítače"
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Boxes.desktop.in:7
 msgid "virtual machine;vm;"
-msgstr "virtuálny počítač;stroj;vm;"
+msgstr "virtuálny počítač;stroj;vm;virtualizácia;"
 
 #: data/org.gnome.boxes.gschema.xml:11
 msgid "Screenshot interval"
@@ -232,11 +233,11 @@ msgstr "Pamäť"
 msgid "Storage limit"
 msgstr "Obmedzenie úložiska"
 
-#: data/ui/assistant/assistant.ui:171
+#: data/ui/assistant/assistant.ui:173
 msgid "Oops! Something went wrong!"
 msgstr "Ale nie, niekde sa stala chyba!"
 
-#: data/ui/assistant/assistant.ui:204
+#: data/ui/assistant/assistant.ui:208
 msgid "Setting up drivers..."
 msgstr "Nastavujú sa ovládače…"
 
@@ -381,18 +382,18 @@ msgstr "Pomocník"
 #: data/ui/kbd-shortcuts-window.ui:33
 msgctxt "shortcut window"
 msgid "Open main menu"
-msgstr "Otvorenie hlavnej ponuky"
+msgstr "Otvoriť hlavnú ponuku"
 
 #: data/ui/kbd-shortcuts-window.ui:41
 msgctxt "shortcut window"
 msgid "Create a new virtual machine"
-msgstr "Vytvorenie nového virtuálneho počítača"
+msgstr "Vytvoriť nový virtuálny počítač"
 
 # button
 #: data/ui/kbd-shortcuts-window.ui:49
 msgctxt "shortcut window"
 msgid "Search"
-msgstr "Vyhľadanie"
+msgstr "Hľadať"
 
 #: data/ui/kbd-shortcuts-window.ui:57
 msgctxt "shortcut window"
@@ -402,22 +403,22 @@ msgstr "Klávesové skratky"
 #: data/ui/kbd-shortcuts-window.ui:65 data/ui/kbd-shortcuts-window.ui:157
 msgctxt "shortcut window"
 msgid "Close Window/Quit Boxes"
-msgstr "Zatvorenie okna / ukončenie aplikácie Boxy"
+msgstr "Zatvoriť okno/ukončiť aplikáciu Boxy"
 
 #: data/ui/kbd-shortcuts-window.ui:75
 msgctxt "shortcut window"
 msgid "Box Creation and Properties"
-msgstr "Tvorba boxu a vlastnosti"
+msgstr "Vytváranie boxov a vlastnosti"
 
 #: data/ui/kbd-shortcuts-window.ui:84 data/ui/kbd-shortcuts-window.ui:103
 msgctxt "shortcut window"
 msgid "Switch to the next page"
-msgstr "Prepnutie na nasledujúcu stránku"
+msgstr "Prepnúť na nasledujúcu stránku"
 
 #: data/ui/kbd-shortcuts-window.ui:93 data/ui/kbd-shortcuts-window.ui:112
 msgctxt "shortcut window"
 msgid "Switch to the previous page"
-msgstr "Prepnutie na predchádzajúcu stránku"
+msgstr "Prepnúť na predchádzajúcu stránku"
 
 #: data/ui/kbd-shortcuts-window.ui:122
 msgctxt "shortcut window"
@@ -427,17 +428,17 @@ msgstr "Zobrazenie boxu"
 #: data/ui/kbd-shortcuts-window.ui:129
 msgctxt "shortcut window"
 msgid "Grab/Ungrab keyboard"
-msgstr "Zachytenie / zrušenie zachytenia klávesnice"
+msgstr "Zachytávať/nezachytávať klávesnicu"
 
 #: data/ui/kbd-shortcuts-window.ui:139 data/ui/kbd-shortcuts-window.ui:149
 msgctxt "shortcut window"
 msgid "Back to overview"
-msgstr "Prejdenie späť na prehľad"
+msgstr "Späť na prehľad"
 
 #: data/ui/kbd-shortcuts-window.ui:165
 msgctxt "shortcut window"
 msgid "Fullscreen/Restore from fullscreen"
-msgstr "Režim na celú obrazovku / obnova z režimu na celú obrazovku"
+msgstr "Režim na celú obrazovku/obnoviť pôvodné zobrazenie"
 
 #: data/ui/menus.ui:7
 msgid "Keyboard Shortcuts"
@@ -453,7 +454,7 @@ msgstr "O aplikácii Boxy"
 
 #: data/ui/preferences/cdrom-row.ui:5
 msgid "No CDROM/DVD image"
-msgstr "Žiadny obraz disku CDROM/DVD"
+msgstr "Žiadny obraz disku CD-ROM/DVD"
 
 #: data/ui/preferences/cdrom-row.ui:15
 msgid "Select"
@@ -473,7 +474,7 @@ msgstr "Zariadenia USB"
 
 #: data/ui/preferences/devices-page.ui:33
 msgid "CDROM/DVD Drive"
-msgstr "Jednotka CDROM/DVD"
+msgstr "Jednotka CD-ROM/DVD"
 
 #: data/ui/preferences/resources-page.ui:28
 msgid "IP Address"
@@ -652,7 +653,7 @@ msgstr "Klonovať"
 msgid "Delete"
 msgstr "Odstrániť"
 
-#: src/actions-popover.vala:85 src/machine.vala:600
+#: src/actions-popover.vala:85 src/machine.vala:606
 msgid "Restart"
 msgstr "Reštartovať"
 
@@ -770,7 +771,7 @@ msgstr "_Zrušiť"
 msgid "_Open"
 msgstr "_Otvoriť"
 
-#: src/assistant/assistant.vala:137
+#: src/assistant/assistant.vala:145
 #, c-format
 msgid "Failed to prepare express installation: %s"
 msgstr "Zlyhala príprava expresnej inštalácie: %s"
@@ -932,42 +933,42 @@ msgid "Powered Off"
 msgstr "Vypnutý"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:181
+#: src/machine.vala:184
 #, c-format
 msgid "Connecting to %s"
 msgstr "Pripája sa k %s"
 
-#: src/machine.vala:207
+#: src/machine.vala:210
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Pripojenie k virtuálnemu počítaču „%s“ zlyhalo"
 
-#: src/machine.vala:251
+#: src/machine.vala:254
 msgid "Machine is under construction"
 msgstr "Počítač je vo výstavbe"
 
-#: src/machine.vala:404
+#: src/machine.vala:407
 msgid "Saving…"
 msgstr "Ukladá sa…"
 
 #. Translators: The first %s is the name of the box, the second is the reason of the error
-#: src/machine.vala:597
+#: src/machine.vala:603
 #, c-format
 msgid "“%s” could not be restored from disk: %s"
 msgstr "Box „%s“ sa nepodarilo obnoviť z disku: %s"
 
-#: src/machine.vala:608
+#: src/machine.vala:614
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Zlyhalo spustenie boxu „%s“"
 
 # dalog
-#: src/machine.vala:622
+#: src/machine.vala:628
 msgid "Troubleshooting Log"
 msgstr "Záznam pre riešenie problémov"
 
 #. Translators: the first %s is the name of the box, the second is the reason of the error.
-#: src/machine.vala:633
+#: src/machine.vala:641
 #, c-format
 msgid "Connection to “%s” failed: %s"
 msgstr "Pripojenie k boxu „%s“ zlyhalo: %s"
@@ -1014,10 +1015,6 @@ msgstr "Domovská stránka aplikácie %s: <%s>.\n"
 msgid "Media is not supported"
 msgstr "Médium nie je podporované"
 
-#: src/portals.vala:45
-msgid "Boxes wants to run VM in background"
-msgstr "Aplikácia Boxy chce spustiť virtuálny počítač na pozadí"
-
 #: src/preferences/cdrom-row.vala:33
 msgid "No CD/DVD image"
 msgstr "Žiadny obraz disku CD/DVD"
@@ -1042,15 +1039,19 @@ msgstr "Zapnutím vášho boxu uvidíte USB zariadenia dostupné na presmerovani
 msgid "Recommended %s."
 msgstr "Odporúčaných: %s."
 
-#: src/preferences/resources-page.vala:160
+#: src/preferences/resources-page.vala:154
+msgid "Boxes wants to run VM in background"
+msgstr "Aplikácia Boxy chce spustiť virtuálny počítač na pozadí"
+
+#: src/preferences/resources-page.vala:161
 msgid "Boxes is not authorized to run in background"
 msgstr "Aplikácia Boxy nie je oprávnená na spúšťanie na pozadí"
 
-#: src/preferences/resources-page.vala:166
+#: src/preferences/resources-page.vala:167
 msgid "Do you want to open Settings to manage application permissions?"
 msgstr "Chcete otvoriť nastavenia na správu oprávnení aplikácie?"
 
-#: src/preferences/resources-page.vala:204
+#: src/preferences/resources-page.vala:205
 msgid ""
 "Editing your box configuration can cause issues to the operating system of "
 "your box. Would you like to create a snapshot to recover from your changes?"
@@ -1058,12 +1059,12 @@ msgstr ""
 "Úprava konfigurácie vášho boxu môže spôsobiť problémy s operačným systémom "
 "vášho boxu. Chcete vytvoriť snímok na obnovu vašich zmien?"
 
-#: src/preferences/resources-page.vala:269
+#: src/preferences/resources-page.vala:270
 #, c-format
 msgid "Failed to save domain configuration: %s"
 msgstr "Zlyhalo uloženie konfigurácie domény: %s"
 
-#: src/preferences/resources-page.vala:278
+#: src/preferences/resources-page.vala:279
 msgid "Changes to the settings below take effect after you restart your box."
 msgstr "Zmeny v nastaveniach nižšie sa prejavia až po reštartovaní vášho boxu."
 
@@ -1225,7 +1226,7 @@ msgstr "nie"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:780
+#: src/vm-configurator.vala:782
 msgid "Incapable host system"
 msgstr "Nevyhovujúci hostiteľský systém"
 
