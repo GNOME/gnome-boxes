@@ -10,14 +10,14 @@
 # Çağatay Yiğit Şahin <cyigitsahin@outlook.com>, 2017.
 # Nurperi Utlu <utlunurperi@gmail.com>, 2017.
 # Muhammet Kara <muhammetk@gmail.com>, 2013-2021.
-# Sabri Ünal <libreajans@gmail.com>, 2019, 2021, 2023, 2024.
+# Sabri Ünal <yakushabb@gmail.com>, 2019, 2021, 2023, 2024.
 # Emin Tufan Çetin <etcetin@gmail.com>, 2016-2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2024-02-21 17:21+0000\n"
+"POT-Creation-Date: 2024-08-02 17:49+0000\n"
 "PO-Revision-Date: 2024-05-07 12:13+0300\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
@@ -109,7 +109,8 @@ msgstr "Dosyaları, dosya yöneticinizden Kutular penceresine bırakarak paylaş
 msgid "Setup Shared Folders between your system and virtual machines"
 msgstr "Sisteminiz ve sanal makineler arasında Paylaşılan Klasörler kurun"
 
-#: data/org.gnome.Boxes.appdata.xml.in:62
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.Boxes.appdata.xml.in:87
 msgid "The GNOME Project"
 msgstr "GNOME Projesi"
 
@@ -235,11 +236,11 @@ msgstr "Bellek"
 msgid "Storage limit"
 msgstr "Depolama sınırı"
 
-#: data/ui/assistant/assistant.ui:171
+#: data/ui/assistant/assistant.ui:173
 msgid "Oops! Something went wrong!"
 msgstr "Amanın, bir şeyler yanlış gitti"
 
-#: data/ui/assistant/assistant.ui:204
+#: data/ui/assistant/assistant.ui:208
 msgid "Setting up drivers..."
 msgstr "Sürücüler ayarlanıyor…"
 
@@ -644,7 +645,7 @@ msgstr "Klonla"
 msgid "Delete"
 msgstr "Sil"
 
-#: src/actions-popover.vala:85 src/machine.vala:600
+#: src/actions-popover.vala:85 src/machine.vala:606
 msgid "Restart"
 msgstr "Yeniden Başlat"
 
@@ -754,7 +755,7 @@ msgstr "_İptal"
 msgid "_Open"
 msgstr "A_ç"
 
-#: src/assistant/assistant.vala:137
+#: src/assistant/assistant.vala:145
 #, c-format
 msgid "Failed to prepare express installation: %s"
 msgstr "Hızlı kurulum hazırlanamadı: %s"
@@ -914,41 +915,41 @@ msgid "Powered Off"
 msgstr "Kapatıldı"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:181
+#: src/machine.vala:184
 #, c-format
 msgid "Connecting to %s"
 msgstr "%s’e bağlanılıyor"
 
-#: src/machine.vala:207
+#: src/machine.vala:210
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "“%s”e bağlanılamadı"
 
-#: src/machine.vala:251
+#: src/machine.vala:254
 msgid "Machine is under construction"
 msgstr "Makine yapım aşamasında"
 
-#: src/machine.vala:404
+#: src/machine.vala:407
 msgid "Saving…"
 msgstr "Kaydediliyor…"
 
 #. Translators: The first %s is the name of the box, the second is the reason of the error
-#: src/machine.vala:597
+#: src/machine.vala:603
 #, c-format
 msgid "“%s” could not be restored from disk: %s"
 msgstr "“%s” diskten geri yüklenemedi: %s"
 
-#: src/machine.vala:608
+#: src/machine.vala:614
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "“%s” başlatılamadı"
 
-#: src/machine.vala:622
+#: src/machine.vala:628
 msgid "Troubleshooting Log"
 msgstr "Sorun Giderme Günlüğü"
 
 #. Translators: the first %s is the name of the box, the second is the reason of the error.
-#: src/machine.vala:633
+#: src/machine.vala:641
 #, c-format
 msgid "Connection to “%s” failed: %s"
 msgstr "“%s”e bağlanılamadı: %s"
@@ -993,10 +994,6 @@ msgstr "%s ana sayfa: <%s>.\n"
 msgid "Media is not supported"
 msgstr "Ortam desteklenmiyor"
 
-#: src/portals.vala:45
-msgid "Boxes wants to run VM in background"
-msgstr "Kutular, VM'i (Sanal Makineyi) arka planda çalıştırmak istiyor"
-
 #: src/preferences/cdrom-row.vala:33
 msgid "No CD/DVD image"
 msgstr "CD/DVD kalıbı yok"
@@ -1019,15 +1016,19 @@ msgstr "Yönlendirmeye uygun USB aygıtları görmek için kutunuzu açın."
 msgid "Recommended %s."
 msgstr "%s önerilir."
 
-#: src/preferences/resources-page.vala:160
+#: src/preferences/resources-page.vala:154
+msgid "Boxes wants to run VM in background"
+msgstr "Kutular, VM'i (Sanal Makineyi) arka planda çalıştırmak istiyor"
+
+#: src/preferences/resources-page.vala:161
 msgid "Boxes is not authorized to run in background"
 msgstr "Kutular, arka planda çalışmaya yetkilendirilmedi"
 
-#: src/preferences/resources-page.vala:166
+#: src/preferences/resources-page.vala:167
 msgid "Do you want to open Settings to manage application permissions?"
 msgstr "Uygulama izinlerini yönetmek için Ayarlar’ı açmak ister misiniz?"
 
-#: src/preferences/resources-page.vala:204
+#: src/preferences/resources-page.vala:205
 msgid ""
 "Editing your box configuration can cause issues to the operating system of "
 "your box. Would you like to create a snapshot to recover from your changes?"
@@ -1036,12 +1037,12 @@ msgstr ""
 "neden olabilir. Değişiklikleri geri alabilmek için anlık görüntü oluşturmak "
 "ister misiniz?"
 
-#: src/preferences/resources-page.vala:269
+#: src/preferences/resources-page.vala:270
 #, c-format
 msgid "Failed to save domain configuration: %s"
 msgstr "Alan adı yapılandırması kaydedilemedi: %s"
 
-#: src/preferences/resources-page.vala:278
+#: src/preferences/resources-page.vala:279
 msgid "Changes to the settings below take effect after you restart your box."
 msgstr ""
 "Aşağıdaki ayar değişiklikleri kutunuzu yeniden başlatınca geçerli olacak."
