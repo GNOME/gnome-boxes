@@ -85,6 +85,8 @@ private class Boxes.VMConfigurator {
         domain.add_device (create_spice_webdav_channel ());
         add_usb_support (domain, install_media);
 
+        domain.add_device (new DomainVsock ());
+
         if (!App.is_running_in_flatpak ())
             add_smartcard_support (domain);
 
@@ -264,6 +266,7 @@ private class Boxes.VMConfigurator {
     private static void update_domain_devices (Domain domain) throws GLib.Error {
         GLib.List<GVirConfig.DomainDevice> devices = null;
         DomainInterface iface = null;
+        bool has_vsock = false;
         foreach (var device in domain.get_devices ()) {
             // Let's always re-create the graphics device, so we can switch from SPICE
             // to VNC and back according to SPICE's availability in the build.
@@ -310,11 +313,16 @@ private class Boxes.VMConfigurator {
             }
             else
                 devices.prepend (device);
+
+            has_vsock = device is DomainVsock;
         }
 
         devices.prepend (create_spice_webdav_channel ());
         devices.prepend (create_spice_agent_channel ());
         devices.prepend (create_graphics_device ());
+
+        if (!has_vsock)
+            devices.prepend (new GVirConfig.DomainVsock ());
 
         if (iface != null) {
             var bridge = is_libvirt_bridge_net_available ();
