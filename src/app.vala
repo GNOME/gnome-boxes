@@ -170,6 +170,7 @@ private class Boxes.App: Gtk.Application {
     static bool opt_help;
     static string opt_open_uuid;
     static string[] opt_uris;
+    [CCode (array_length=false, array_null_terminated=true)]
     static string[] opt_search;
     const OptionEntry[] options = {
         { "version", 0, 0, OptionArg.NONE, null, N_("Display version number"), null },
