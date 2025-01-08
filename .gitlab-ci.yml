@@ -1,4 +1,10 @@
-include: 'https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_ci_initiative.yml'
+include:
+  - project: 'GNOME/citemplates'
+    file: 'flatpak/flatpak_ci_initiative.yml'
+  - component: gitlab.gnome.org/GNOME/citemplates/release-service@release-service-sandbox
+    inputs:
+      dist-job-name: flatpak
+      tarball-artifact-path: ".flatpak-builder/build/gnome-boxes/_flatpak_build/meson-dist/gnome-boxes-$CI_COMMIT_TAG.tar.xz"
 
 stages:
 - test
