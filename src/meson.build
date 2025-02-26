@@ -26,6 +26,7 @@ c_args = [
   '-DGETTEXT_PACKAGE="gnome-boxes"',
   '-DCACHEDIR="/var/cache/"',
   '-DG_LOG_DOMAIN="Boxes"',
+  '-w',
 ]
 
 if get_option ('buildtype').contains ('debug')
