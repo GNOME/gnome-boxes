@@ -8,7 +8,7 @@ osinfo_db = [
   ['freedos-1.2.xml', 'gnome-boxes/osinfo/os/freedos.org'],
   ['gnome-nightly.xml', 'gnome-boxes/osinfo/os/gnome.org'],
   ['gnome-3.38.xml', 'gnome-boxes/osinfo/os/gnome.org'],
-  ['guix-1.3.xml', 'gnome-boxes/osinfo/os/guix.gnu.org'],
+  ['guix-system-1.1.xml', 'gnome-boxes/osinfo/os/guix.gnu.org'],
   ['manjaro-rolling.xml', 'gnome-boxes/osinfo/os/manjaro.org'],
   ['nixos-20.03.xml', 'gnome-boxes/osinfo/os/nixos.org'],
   ['opensuse-10.2.xml', 'gnome-boxes/osinfo/os/opensuse.org'],
