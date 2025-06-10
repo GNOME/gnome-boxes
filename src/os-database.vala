@@ -24,7 +24,7 @@ private class Boxes.OSDatabase : GLib.Object {
 
     // We use the dynamically growing storage format (qcow2) so actual amount of disk space used is completely
     // dependent on the OS/guest.
-    private const int64 DEFAULT_STORAGE = 20 * (int64) GIBIBYTES;
+    private const int64 DEFAULT_STORAGE = 30 * (int64) GIBIBYTES;
 
     private Db? db;
 
