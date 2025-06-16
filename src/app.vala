@@ -177,8 +177,8 @@ private class Boxes.App: Gtk.Application {
         { "help", 'h', 0, OptionArg.NONE, ref opt_help, N_("Show help"), null },
         { "full-screen", 'f', 0, OptionArg.NONE, ref opt_fullscreen, N_("Open in full screen"), null },
         { "checks", 0, 0, OptionArg.NONE, null, N_("Check virtualization capabilities"), null },
-        { "open-uuid", 0, 0, OptionArg.STRING, ref opt_open_uuid, N_("Open box with UUID"), N_("UUID") },
-        { "search", 0, 0, OptionArg.STRING_ARRAY, ref opt_search, N_("Search term"), N_("TEXT") },
+        { "open-uuid", 0, 0, OptionArg.STRING, ref opt_open_uuid, N_("Open box with UUID"), null },
+        { "search", 0, 0, OptionArg.STRING_ARRAY, ref opt_search, N_("Search term"), null },
         // A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
         { "", 0, 0, OptionArg.STRING_ARRAY, ref opt_uris, N_("URL to display, broker or installer media"), null },
         { null }
