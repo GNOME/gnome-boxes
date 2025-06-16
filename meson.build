@@ -1,6 +1,6 @@
 project ('gnome-boxes',
          ['vala', 'c'],
-         version: '48.0',
+         version: '49.alpha',
          license: 'LGPLv2+',
          meson_version: '>= 0.59.0',
 )
