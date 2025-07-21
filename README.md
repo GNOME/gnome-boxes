@@ -51,4 +51,3 @@ If you forget about something important, we will probably ask.
 ### References
 
 * [GNOME Boxes](https://gnomeboxes.org)
-* [GNOME Boxes Wiki](https://wiki.GNOME.org/Design/Apps/Boxes)
