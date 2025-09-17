@@ -97,8 +97,8 @@ private class Boxes.Downloader : GLib.Object {
         var splited_path = cached_path.split ("/");
         var tmp_name = splited_path[splited_path.length - 1] + "-XXXXXX";
 
-        FileIOStream dummy;
-        var tmp_file = GLib.File.new_tmp (tmp_name, out dummy);
+        var tmp_file_path = GLib.Path.build_filename ("/var/tmp", tmp_name);
+        var tmp_file = GLib.File.new_for_path (tmp_file_path);
         debug ("Downloading '%s'...", uri);
         download = new Download (remote_file, tmp_file, progress);
         downloads.set (uri, download);
