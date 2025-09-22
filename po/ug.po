@@ -3,803 +3,1417 @@
 # This file is distributed under the same license as the PACKAGE package.
 # Gheyret Kenji <gheyret@gmail.com>, 2012.
 #
-#: ../src/main.vala:15
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-03-13 11:37+0000\n"
-"PO-Revision-Date: 2013-03-17 13:51+0900\n"
-"Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
+"POT-Creation-Date: 2025-09-10 15:40+0000\n"
+"PO-Revision-Date: 2025-09-21 21:01-0400\n"
+"Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
 "Language: ug\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.7\n"
 
-#: ../data/gnome-boxes.desktop.in.in.h:1
-#: ../data/gnome-boxes-search-provider.ini.in.h:1 ../src/main.vala:73
+#: data/org.gnome.Boxes.desktop.in:2 data/org.gnome.Boxes.metainfo.xml.in:7 data/ui/app-window.ui:6 data/ui/collection-toolbar.ui:7 src/app.vala:117 src/app-window.vala:105
+#: src/app-window.vala:218 src/app-window.vala:220 src/main.vala:72 src/topbar.vala:70
 msgid "Boxes"
-msgstr "قۇتىلار"
+msgstr "Boxes"
 
-#: ../data/gnome-boxes.desktop.in.in.h:2
+#: data/org.gnome.Boxes.desktop.in:3
 msgid "Virtual machine viewer/manager"
-msgstr "مەۋھۇم ماشىنا كۆرگۈ/باشقۇرغۇ"
+msgstr "مەۋھۇم ماشىنا كۆرگۈچ/باشقۇرغۇچ"
 
-#: ../data/gnome-boxes.desktop.in.in.h:3
+#: data/org.gnome.Boxes.desktop.in:4
 msgid "View and use virtual machines"
 msgstr "مەۋھۇم ماشىنىنى ئىشلىتىش ۋە كۆرۈش"
 
-#: ../data/gnome-boxes.desktop.in.in.h:4
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Boxes.desktop.in:6
 msgid "virtual machine;vm;"
 msgstr "virtual machine;vm;مەۋھۇم ماشىنا;"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:1
-msgid "Collections"
-msgstr "توپلاملار"
+#: data/org.gnome.Boxes.metainfo.xml.in:8
+msgid "Virtualization made simple"
+msgstr "مەۋھۇملاشتۇرۇشنى ئاددىيلاشتۇرىدۇ"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:2
-msgid "The list of boxes collections"
-msgstr "قۇتىلار توپلىمىنىڭ تىزىمى"
+#: data/org.gnome.Boxes.metainfo.xml.in:10
+msgid "Select an operating system and let Boxes download and install it for you in a virtual machine."
+msgstr "مەشغۇلات سىستېمىسى تاللانسا Boxes سىزگە كېرەكلىكنى چۈشۈرۈپ مەۋھۇم ماشىنىغا ئورنىتىدۇ."
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:3
+#: data/org.gnome.Boxes.metainfo.xml.in:15
+msgid "Features:"
+msgstr "ئىقتىدار:"
+
+#: data/org.gnome.Boxes.metainfo.xml.in:17
+msgid "Download freely available operating systems"
+msgstr "ئىشلەتكىلى بولىدىغان مەشغۇلات سىستېمىلىرىنى ھەقسىز چۈشۈرىدۇ"
+
+#: data/org.gnome.Boxes.metainfo.xml.in:18
+msgid "Automatically install CentOS Stream, Debian, Fedora, Microsoft Windows, OpenSUSE, Red Hat Enterprise Linux, and Ubuntu"
+msgstr "مەشغۇلات سىستېمىسىدىن CentOS Stream، Debian، Fedora، Microsoft Windows، OpenSUSE، Red Hat Enterprise Linux ۋە  Ubuntu نى ئاپتوماتىك ئورنىتىدۇ"
+
+#: data/org.gnome.Boxes.metainfo.xml.in:20
+msgid "Create virtual machines from operating system images with a couple of clicks"
+msgstr "بىر قانچە قېتىم چېكىپلا مەشغۇلات سىستېمىسىنىڭ تەسۋىر ھۆججىتىدىن مەۋھۇم ماشىنا قۇرغىلى بولىدۇ"
+
+#: data/org.gnome.Boxes.metainfo.xml.in:21
+msgid "Limit the resources (memory and storage) your virtual machines consume from your system"
+msgstr "سىستېمىڭىزدىن مەۋھۇم ماشىنا سەرپ قىلىدىغان مەنبە (ئەسلەك ۋە ساقلىغۇچ) نى چەكلەڭ"
+
+#: data/org.gnome.Boxes.metainfo.xml.in:22
+msgid "Take snapshots of virtual machines to restore to previous states"
+msgstr "ئالدىنقى قېتىملىق ھالەتنى ئەسلىگە كەلتۈرۈش ئۈچۈن مەۋھۇم ماشىنىنىڭ ھالىتىنى ساقلايدۇ"
+
+#: data/org.gnome.Boxes.metainfo.xml.in:23
+msgid "Redirect USB devices from your physical machine into virtual machines"
+msgstr "USB ئۈسكۈنىلىرىنى فىزىكىلىق كومپيۇتېرىڭىزدىن مەۋھۇم ماشىنىغا نىشانلايدۇ"
+
+#: data/org.gnome.Boxes.metainfo.xml.in:24
+msgid "3D acceleration for some of the supported operating systems"
+msgstr "قوللايدىغان بەزى مەشغۇلات سىستېمىلىرى ئۈچۈن 3D نى تېزلىتىدۇ"
+
+#: data/org.gnome.Boxes.metainfo.xml.in:25
+msgid "Automatically resize virtual machines displays to the window size"
+msgstr "مەۋھۇم ماشىنىنىڭ كۆرۈنۈشىنى كۆزنەك چوڭلۇقىغا ئۆزلۈكىدىن تەڭشەيدۇ"
+
+#: data/org.gnome.Boxes.metainfo.xml.in:26
+msgid "Share clipboard between your system and virtual machines"
+msgstr "سىستېمىڭىز بىلەن مەۋھۇم ماشىنا ئارىسىدا چاپلاش تاختىسىنى ھەمبەھىرلەيدۇ"
+
+#: data/org.gnome.Boxes.metainfo.xml.in:27
+msgid "Share files to virtual machines by dropping them from your file manager into the Boxes window"
+msgstr "ھۆججەت باشقۇرغۇچىڭىزدىن ھۆججەتنى مەۋھۇم ماشىنىنىڭ Boxes كۆزنىكىگە سۆرەپ تاشلاپلا ھەمبەھىرلىگىلى بولىدۇ"
+
+#: data/org.gnome.Boxes.metainfo.xml.in:28
+msgid "Setup Shared Folders between your system and virtual machines"
+msgstr "سىستېمىڭىز بىلەن مەۋھۇم ماشىنا ئارىسىدا ھەمبەھىر قىسقۇچنى تەڭشىگىلى بولىدۇ"
+
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.Boxes.metainfo.xml.in:77
+msgid "The GNOME Project"
+msgstr "GNOME قۇرۇلۇشى"
+
+#: data/org.gnome.boxes.gschema.xml:11
 msgid "Screenshot interval"
-msgstr "ئېكران كۆرۈنۈشى ئىنتېرۋالى"
+msgstr "ئېكران كۆرۈنۈشى تۇتۇش ئارىلىقى"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:4
+#: data/org.gnome.boxes.gschema.xml:12
 msgid "The interval in seconds between screenshot updates"
 msgstr "ئېكران كۆرۈنۈشلىرىنىڭ يېڭىلىنىش ۋاقتى"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:5
-msgid "Animation duration"
-msgstr "جانلاندۇرۇم مۇددىتى"
-
-#: ../data/org.gnome.boxes.gschema.xml.in.h:6
-msgid "The time it takes for transitions and animation, in ms."
-msgstr "جانلاندۇرۇم ئۈچۈن كېتىدىغان ۋاقىت، بىرلىكى مىللىي سېكۇنت."
-
-#: ../data/org.gnome.boxes.gschema.xml.in.h:7
+#: data/org.gnome.boxes.gschema.xml:24
 msgid "Window size"
 msgstr "كۆزنەك چوڭلۇقى"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:8
+#: data/org.gnome.boxes.gschema.xml:25
 msgid "Window size (width and height)"
 msgstr "كۆزنەك چوڭلۇقى(كەڭلىك ۋە ئېگىزلىك)"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:9
+#: data/org.gnome.boxes.gschema.xml:31
 msgid "Window position"
 msgstr "كۆزنەك ئورنى"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:10
+#: data/org.gnome.boxes.gschema.xml:32
 msgid "Window position (x and y)"
 msgstr "كۆزنەك ئورنى (x ۋە y)"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:11
+#: data/org.gnome.boxes.gschema.xml:38
 msgid "Window maximized"
-msgstr "كۆزنەك چوڭايتىلغاندا"
+msgstr "كۆزنەك چوڭايتىلدى"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:12
+#: data/org.gnome.boxes.gschema.xml:39
 msgid "Window maximized state"
 msgstr "كۆزنەك ئەڭ چوڭ ھالەتتە"
 
-#: ../src/app.vala:149
-msgid "translator-credits"
-msgstr "Gheyret Kenji <gheyret@gmail.com>\n"
-"Sahran<sahran@live.com>\n"
-"Muhemmed Erdem <misran_erdem@hotmail.com>"
+#: data/org.gnome.boxes.gschema.xml:45
+msgid "First run"
+msgstr "تۇنجى قوزغىتىش"
 
-#: ../src/app.vala:150
-msgid "A simple GNOME 3 application to access remote or virtual systems"
-msgstr "يىراقتىكى كومپيۇتېر ياكى مەۋھۇم كومپيۇتېرنى زىيارەت قىلىش ئۈچۈن ئىشلىتىلىدىغان ئاددىي گىنوم3 پروگراممىسى"
+#: data/org.gnome.boxes.gschema.xml:46
+msgid "Whether Boxes is running for the first time"
+msgstr "Boxes تۇنجى قېتىم ئىجرا بولۇۋاتامدۇ يوق"
 
-#: ../src/app.vala:167 ../src/topbar.vala:56
-msgid "New"
-msgstr "يېڭى"
+#: data/org.gnome.boxes.gschema.xml:53
+msgid "Shared folders"
+msgstr "ھەمبەھىرلەنگەن قىسقۇچ"
 
-#: ../src/app.vala:172
-msgid "Help"
-msgstr "ياردەم"
+#: data/org.gnome.boxes.gschema.xml:54
+msgid "Variant array of shared folders’ names and path mapping"
+msgstr "ھەمبەھىرلەنگەن قىسقۇچ ئىسمى ۋە يول خەرىتىلەشنىڭ شالغۇت قاتارى"
 
-#: ../src/app.vala:173
-msgid "About Boxes"
-msgstr "قۇتىلار ھەققىدە"
+#: data/org.gnome.boxes.gschema.xml:59
+msgid "Recommended Downloads Source URL"
+msgstr "تەۋسىيە قىلىنغان چۈشۈرۈش مەنبە تور ئادرېسى"
 
-#: ../src/app.vala:174
-msgid "Quit"
-msgstr "ئاخىرلاشتۇر"
+#: data/org.gnome.boxes.gschema.xml:60
+msgid "An URL pointing at a recommended-downloads.xml file"
+msgstr "بىر recommended-downloads.xml ھۆججەتتىكى تور ئادرېس نۇقتىسى"
 
-#: ../src/app.vala:226 ../src/main.vala:9
-msgid "Display version number"
-msgstr "نەشر ئۇچۇرىنى كۆرسەت"
+#: data/ui/app-window.ui:81 data/ui/welcome-tutorial.ui:40
+msgid "Welcome to Boxes"
+msgstr "Boxes قا خۇش كەلدىڭىز"
 
-#: ../src/app.vala:228
-msgid "Open in full screen"
-msgstr "تولۇق ئېكراندا ئاچ"
+#: data/ui/app-window.ui:82
+msgid "Use the <b>+</b> button to create your first virtual machine."
+msgstr "<b>+</b> توپچىنى چېكىپ تۇنجى مەۋھۇم ماشىنىڭىزنى قۇرۇڭ."
 
-#: ../src/app.vala:229 ../src/main.vala:10
-msgid "Check virtualization capabilities"
-msgstr "مەۋھۇملاشتۇرۇش ئىقتىدارىنى تەكشۈر"
+#: data/ui/assistant/assistant.ui:51
+msgid "New Virtual Machine"
+msgstr "يېڭى مەۋھۇم ماشىنا"
 
-#: ../src/app.vala:230
-msgid "Open box with UUID"
-msgstr "قۇتىنى UUID بىلەن ئاچ"
+#: data/ui/assistant/assistant.ui:55 data/ui/preferences/shared-folder-popover.ui:97 data/ui/shared-folder-popover.ui:97 src/collection-toolbar.vala:57
+#: src/preferences/cdrom-row.vala:65
+msgid "Cancel"
+msgstr "ۋاز كەچ"
 
-#: ../src/app.vala:231
-msgid "Search term"
-msgstr "ئىزدەش تۈرى"
+#: data/ui/assistant/assistant.ui:62
+msgid "Create"
+msgstr "ياسا"
 
-#. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
-#: ../src/app.vala:233
-msgid "URI to display, broker or installer media"
-msgstr "كۆرسەتكۈچ، بېدىك(broker) ياكى ئورناتقۇ ۋاسىتىسىنىڭ URI ئى"
-
-#: ../src/app.vala:244
-msgid "- A simple application to access remote or virtual machines"
-msgstr "- يىراقتىكى كومپيۇتېر ياكى مەۋھۇم كومپيۇتېرنى زىيارەت قىلىش پروگراممىسى"
-
-#: ../src/app.vala:266
-msgid "Too many command line arguments specified.\n"
-msgstr "بۇيرۇق قۇرىدىكى پارامېتىرلار بەك كۆپ.\n"
-
-#: ../src/app.vala:824
-#, c-format
-msgid "Box '%s' has been deleted"
-msgstr "قۇتا ‹%s› ئۆچۈرۈلگەن"
-
-#: ../src/app.vala:825
-#, c-format
-msgid "%u box has been deleted"
-msgid_plural "%u boxes have been deleted"
-msgstr[0] "%u قۇتا ئۆچۈرۈلگەن"
-
-#: ../src/app.vala:915
-#, c-format
-msgid ""
-"'%s' could not be restored from disk\n"
-"Try without saved state?"
-msgstr "‹%s› نى دىسكىدىن ئەسلىگە كەلتۈرگىلى بولمىدى\n"
-"ساقلانمىغان ھالەتتىن سىناپ كۆرسۇنمۇ؟"
-
-#: ../src/app.vala:916
-msgid "Restart"
-msgstr "قايتا قوزغات"
-
-#: ../src/app.vala:921
-#, c-format
-msgid "Connection to '%s' failed"
-msgstr "‹%s› غا باغلىنىش مەغلۇپ بولدى"
-
-#: ../src/collection-view.vala:45
-msgid "New and Recent"
-msgstr "يېڭى ۋە يېقىنقى"
-
-#: ../src/display-page.vala:281
-msgid "(press Ctrl+Alt keys to ungrab)"
-msgstr "(تۇتۇلغاننى قويۇۋېتىش ئۈچۈن Ctrl+Alt نى بېسىڭ)"
-
-#: ../src/empty-boxes.vala:30
-msgid "No boxes found"
-msgstr "قۇتىلار تېپىلمىدى"
-
-#: ../src/empty-boxes.vala:37
-msgid "Create one using the button on the top left."
-msgstr "ئۈستى سول تەرەپتىكى توپچىنى ئىشلىتىپ بىرنى قۇرۇڭ."
-
-#: ../src/installer-media.vala:88 ../src/properties.vala:73
-msgid "System"
-msgstr "سىستېما"
-
-#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:52
+#: data/ui/assistant/assistant.ui:82 data/ui/preferences/resources-page.ui:12 data/ui/preferences/shared-folder-popover.ui:44 data/ui/shared-folder-popover.ui:44
 msgid "Name"
 msgstr "ئاتى"
 
-#: ../src/libvirt-machine-properties.vala:123 ../src/ovirt-machine.vala:58
-msgid "Virtualizer"
-msgstr "مەۋھۇملاشتۇرغۇچ"
+#: data/ui/assistant/assistant.ui:95
+msgid "Operating System"
+msgstr "مەشغۇلات سىستېمىسى"
 
-#: ../src/libvirt-machine-properties.vala:125 ../src/ovirt-machine.vala:59
-#: ../src/remote-machine.vala:58 ../src/wizard.vala:401
-msgid "URI"
-msgstr "URI"
+#: data/ui/assistant/assistant.ui:100
+msgid "Operating System not found"
+msgstr "مەشغۇلات سىستېمىسى تېپىلمىدى"
 
-#: ../src/libvirt-machine-properties.vala:133
-#: ../src/libvirt-machine-properties.vala:138
-msgid "Troubleshooting log"
-msgstr "مەسىلە ھەل قىلىش خاتىرىسى"
+#: data/ui/assistant/assistant.ui:123 data/ui/preferences/resources-page.ui:7 data/ui/preferences/resources-page.ui:47
+msgid "Resources"
+msgstr "مەنبە"
 
-#: ../src/libvirt-machine-properties.vala:142
-msgid "Copy to clipboard"
-msgstr "چاپلاش تاختىسىغا كۆچۈر"
-
-#: ../src/libvirt-machine-properties.vala:157
-msgid "Save log"
-msgstr "خاتىرىنى ساقلا"
-
-#: ../src/libvirt-machine-properties.vala:173
-#, c-format
-msgid "Error saving: %s"
-msgstr "ساقلاشتا خاتالىق كۆرۈلدى: %s"
-
-#: ../src/libvirt-machine-properties.vala:195 ../src/ovirt-machine.vala:63
-#: ../src/remote-machine.vala:62
-msgid "Protocol"
-msgstr "كېلىشىم"
-
-#. Translators: This is the text on the button to select an iso for the cd
-#: ../src/libvirt-machine-properties.vala:225
-#: ../src/libvirt-machine-properties.vala:273
-msgid "Select"
-msgstr "تاللا"
-
-#. Translators: empty is listed as the filename for a non-mounted CD
-#: ../src/libvirt-machine-properties.vala:227
-#: ../src/libvirt-machine-properties.vala:274
-msgid "empty"
-msgstr "بوش"
-
-#. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: ../src/libvirt-machine-properties.vala:230
-#: ../src/libvirt-machine-properties.vala:252
-msgid "Remove"
-msgstr "چىقىرىۋەت"
-
-#: ../src/libvirt-machine-properties.vala:236 ../src/wizard-source.vala:303
-msgid "Select a device or ISO file"
-msgstr "ئۈسكۈنە ياكى ISO ھۆججىتى تاللاڭ"
-
-#: ../src/libvirt-machine-properties.vala:257
-#, c-format
-msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
-msgstr "‹%s› نى CD/DVD سۈپىتىدە ‹%s› غا قىستۇرۇش مەغلۇپ بولدى"
-
-#: ../src/libvirt-machine-properties.vala:276
-#, c-format
-msgid "Removal of CD/DVD from '%s' failed"
-msgstr "‹%s› دىن CD/DVD نى چىقىرىش مەغلۇپ بولدى"
-
-#: ../src/libvirt-machine-properties.vala:282
-msgid "CD/DVD"
-msgstr "CD/DVD"
-
-#: ../src/libvirt-machine-properties.vala:310
-#: ../src/libvirt-machine-properties.vala:327
-msgid "Add support to guest"
-msgstr "مېھماننى قوللاش ئىقتىدارىنى قوشسۇن"
-
-#: ../src/libvirt-machine-properties.vala:312
-msgid "USB device support"
-msgstr "USB ئۈسكۈنىسىنى قوللىسۇن"
-
-#: ../src/libvirt-machine-properties.vala:329
-msgid "Smartcard support"
-msgstr "Smartcard قوللىسۇن"
-
-#: ../src/libvirt-machine-properties.vala:394 ../src/wizard.vala:437
+#: data/ui/assistant/assistant.ui:128 data/ui/preferences/resources-page.ui:70
 msgid "Memory"
 msgstr "ئەسلەك"
 
-#: ../src/libvirt-machine-properties.vala:478
+#: data/ui/assistant/assistant.ui:134 data/ui/preferences/resources-page.ui:77
+msgid "Storage limit"
+msgstr "ساقلىغۇچ چېكى"
+
+#: data/ui/assistant/assistant.ui:173
+msgid "Oops! Something went wrong!"
+msgstr "ئاپلا! خاتالىق كۆرۈلدى!"
+
+#: data/ui/assistant/assistant.ui:208
+msgid "Setting up drivers..."
+msgstr "قوزغاتقۇچنى تەڭشەۋاتىدۇ…"
+
+#: data/ui/assistant/express-install-row.ui:5 data/ui/welcome-tutorial.ui:49
+msgid "Express Installation"
+msgstr "تېز ئورنىتىش"
+
+#: data/ui/assistant/express-install-row.ui:6
+msgid "Set credentials for an automatic install of the operating system."
+msgstr "مەشغۇلات سىستېمىسىنىڭ ئاپتوماتىك ئورنىتىلىشى ئۈچۈن كىملىك ئۇچۇرى تەڭشىلىدۇ."
+
+#: data/ui/assistant/express-install-row.ui:16
+msgid "Username"
+msgstr "ئىشلەتكۈچى ئاتى"
+
+#: data/ui/assistant/express-install-row.ui:22
+msgid "Enter username..."
+msgstr "ئىشلەتكۈچى ئاتى كىرگۈزۈلىدۇ…"
+
+#: data/ui/assistant/express-install-row.ui:32
+msgid "Password"
+msgstr "ئىم"
+
+#: data/ui/assistant/express-install-row.ui:41
+msgid "Enter password..."
+msgstr "ئىم كىرگۈزۈلىدۇ…"
+
+#: data/ui/assistant/express-install-row.ui:53
+msgid "Product Key"
+msgstr "مەھسۇلات ئاچقۇچى"
+
+#: data/ui/assistant/firmware-row.ui:4
+msgid "Firmware"
+msgstr "مۇقىم دېتال"
+
+#: data/ui/assistant/media-entry.ui:8
+msgid "Unknown media"
+msgstr "يوچۇن ۋاسىتە"
+
+#: data/ui/assistant/os-chooser-row.ui:4
+msgid "Select an Operating System"
+msgstr "مەشغۇلات سىستېمىسى تاللىنىدۇ"
+
+#: data/ui/assistant/os-chooser-row.ui:24
+msgid "Search for an operating system…"
+msgstr "مەشغۇلات سىستېمىسىنى ئىزدەۋاتىدۇ…"
+
+#: data/ui/assistant/os-downloader.ui:4
+msgid "Search for an Operating System"
+msgstr "مەغۇلات سىستېمىسى ئىزدە"
+
+#: data/ui/assistant/os-downloader.ui:13
+msgid "Download an Operating System"
+msgstr "مەشغۇلات سىستېمىسى چۈشۈرىدۇ"
+
+#: data/ui/collection-toolbar.ui:22
+msgid "New"
+msgstr "يېڭى"
+
+#: data/ui/collection-toolbar.ui:59 data/ui/display-toolbar.ui:29
+msgid "Back"
+msgstr "قايت"
+
+#: data/ui/collection-toolbar.ui:82
+msgid "Application Menu"
+msgstr "پىروگرامما تىزىملىكى"
+
+#: data/ui/collection-toolbar.ui:110
+msgid "List view"
+msgstr "تىزىم كۆرۈنۈشى"
+
+#: data/ui/collection-toolbar.ui:138
+msgid "Grid view"
+msgstr "تورسىمان كۆرۈنۈش"
+
+#: data/ui/collection-toolbar.ui:165
+msgid "Search"
+msgstr "ئىزدە"
+
+#: data/ui/collection-toolbar.ui:192
+msgid "Downloads"
+msgstr "چۈشۈرۈش"
+
+#: data/ui/collection-toolbar.ui:214
+msgid "Create new virtual machine"
+msgstr "يېڭى مەۋھۇم ماشىنا قۇرىدۇ"
+
+#: data/ui/collection-toolbar.ui:221
+msgid "Install from File"
+msgstr "ھۆججەتتىن ئورنات"
+
+#: data/ui/collection-toolbar.ui:222
+msgid "Select an .iso or .qcow2 file to install a virtual machine."
+msgstr "مەۋھۇم ماشىنا ئورنىتىش ئۈچۈن .iso ياكى .qcow2 ھۆججىتى تاللىنىدۇ."
+
+#: data/ui/collection-toolbar.ui:238
+msgid "Download OS"
+msgstr "مەشغۇلات سىستېمىسى چۈشۈر"
+
+#: data/ui/collection-toolbar.ui:239
+msgid "Browse and search for operating systems to install."
+msgstr "ئورنىتىدىغان مەشغۇلات سىستېمىسىغا كۆز يۈگۈرتۈپ ئىزدەيدۇ."
+
+#: data/ui/display-page.ui:96
+msgid "Ready to Receive File"
+msgstr "ھۆججەت قوبۇللاشقا تەييار"
+
+#: data/ui/display-page.ui:116
+msgid "You will find your file in the Downloads directory."
+msgstr "ھۆججەتنى چۈشۈرۈش مۇندەرىجىسىدىن تاپقىلى بولىدۇ."
+
+#: data/ui/display-toolbar.ui:63
+msgid "Actions"
+msgstr "مەشغۇلات"
+
+#: data/ui/display-toolbar.ui:91
+msgid "Keyboard shortcuts"
+msgstr "ھەرپتاختا تېزلەتمىسى"
+
+#: data/ui/display-toolbar.ui:122 src/display-toolbar.vala:90
+msgid "Fullscreen"
+msgstr "پۈتۈن ئېكران"
+
+#: data/ui/downloads-hub-row.ui:54
+msgid "Ready to install"
+msgstr "ئورنىتىشقا تەييارلاندى"
+
+#: data/ui/kbd-shortcuts-window.ui:18
+msgctxt "shortcut window"
+msgid "Overview"
+msgstr "ئىخچام كۆرۈنۈش"
+
+#: data/ui/kbd-shortcuts-window.ui:25
+msgctxt "shortcut window"
+msgid "Help"
+msgstr "ياردەم"
+
+#: data/ui/kbd-shortcuts-window.ui:33
+msgctxt "shortcut window"
+msgid "Open main menu"
+msgstr "ئاساسىي تىزىملىكنى ئاچ"
+
+#: data/ui/kbd-shortcuts-window.ui:41
+msgctxt "shortcut window"
+msgid "Create a new virtual machine"
+msgstr "يېڭى مەۋھۇم ماشىنا قۇرىدۇ"
+
+#: data/ui/kbd-shortcuts-window.ui:49
+msgctxt "shortcut window"
+msgid "Search"
+msgstr "ئىزدە"
+
+#: data/ui/kbd-shortcuts-window.ui:57
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
+msgstr "ھەرپتاختا تېزلەتمىسى"
+
+#: data/ui/kbd-shortcuts-window.ui:65 data/ui/kbd-shortcuts-window.ui:157
+msgctxt "shortcut window"
+msgid "Close Window/Quit Boxes"
+msgstr "كۆزنەك ياپ/Boxes دىن چېكىن"
+
+#: data/ui/kbd-shortcuts-window.ui:75
+msgctxt "shortcut window"
+msgid "Box Creation and Properties"
+msgstr "Box قۇرۇش ۋە خاسلىق"
+
+#: data/ui/kbd-shortcuts-window.ui:84 data/ui/kbd-shortcuts-window.ui:103
+msgctxt "shortcut window"
+msgid "Switch to the next page"
+msgstr "كېيىنكى بەتكە ئالمىشىدۇ"
+
+#: data/ui/kbd-shortcuts-window.ui:93 data/ui/kbd-shortcuts-window.ui:112
+msgctxt "shortcut window"
+msgid "Switch to the previous page"
+msgstr "ئالدىنقى بەتكە ئالمىشىدۇ"
+
+#: data/ui/kbd-shortcuts-window.ui:122
+msgctxt "shortcut window"
+msgid "Box Display"
+msgstr "Box كۆرسىتىش"
+
+#: data/ui/kbd-shortcuts-window.ui:129
+msgctxt "shortcut window"
+msgid "Grab/Ungrab keyboard"
+msgstr "ھەرپتاختىنى تۇتۇش/قويۇۋېتىش"
+
+#: data/ui/kbd-shortcuts-window.ui:139 data/ui/kbd-shortcuts-window.ui:149
+msgctxt "shortcut window"
+msgid "Back to overview"
+msgstr "ئىخچام كۆرۈنۈشكە قايت"
+
+#: data/ui/kbd-shortcuts-window.ui:165
+msgctxt "shortcut window"
+msgid "Fullscreen/Restore from fullscreen"
+msgstr "تولۇق ئېكران/تولۇق ئېكراندىن ئەسلىگە كەلتۈر"
+
+#: data/ui/menus.ui:7
+msgid "Keyboard Shortcuts"
+msgstr "ھەرپتاختا تېزلەتمىسى"
+
+#: data/ui/menus.ui:11
+msgid "Help"
+msgstr "ياردەم"
+
+#: data/ui/menus.ui:15
+msgid "About Boxes"
+msgstr "Boxes ھەققىدە"
+
+#: data/ui/preferences/cdrom-row.ui:5
+msgid "No CDROM/DVD image"
+msgstr "CDROM/DVD تەسۋىر يوق"
+
+#: data/ui/preferences/cdrom-row.ui:15
+msgid "Select"
+msgstr "تاللا"
+
+#: data/ui/preferences/cdrom-row.ui:24
+msgid "Remove"
+msgstr "چىقىرىۋەت"
+
+#: data/ui/preferences/devices-page.ui:7
+msgid "Devices & Shares"
+msgstr "ئۈسكۈنە ۋە ھەمبەھىر"
+
+#: data/ui/preferences/devices-page.ui:12
+msgid "USB Devices"
+msgstr "USB ئۈسكۈنە"
+
+#: data/ui/preferences/devices-page.ui:33
+msgid "CDROM/DVD Drive"
+msgstr "CDROM/DVD قوزغاتقۇچ"
+
+#: data/ui/preferences/resources-page.ui:28
+msgid "IP Address"
+msgstr "‍IP ئادرېس"
+
+#: data/ui/preferences/resources-page.ui:53
+msgid "CPUs"
+msgstr "CPU"
+
+#: data/ui/preferences/resources-page.ui:86
+msgid "3D acceleration"
+msgstr "‪3D‬ تېزلىتىش"
+
+#: data/ui/preferences/resources-page.ui:109
+msgid "Allow running in background"
+msgstr "ئارقا سۇپىدا ئىجرا قىلىنىشىغا يول قويىدۇ"
+
+#: data/ui/preferences/resources-page.ui:127
+msgid "Configuration"
+msgstr "سەپلىمە"
+
+#: data/ui/preferences/resources-page.ui:132
+msgid "Troubleshooting Logs"
+msgstr "مەسىلە ھەل قىلىش خاتىرىسى"
+
+#: data/ui/preferences/resources-page.ui:133
+msgid "Diagnose problems with your box using the log file."
+msgstr "خاتىرە ھۆججىتى ئارقىلىق box تىكى مەسىلىگە دىياگنوز قويىدۇ."
+
+#: data/ui/preferences/resources-page.ui:155
+msgid "Edit Configuration"
+msgstr "سەپلىمە تەھرىرلە"
+
+#: data/ui/preferences/resources-page.ui:156
+msgid "Edit the Libvirt domain configuration for this box."
+msgstr "Box نىڭ Libvirt دائىرە ئىسمى سەپلىمىسىنى تەھرىرلەيدۇ."
+
+#: data/ui/preferences/shared-folder-popover.ui:29 data/ui/shared-folder-popover.ui:29
+msgid "Local Folder"
+msgstr "يەرلىك قىسقۇچ"
+
+#: data/ui/preferences/shared-folder-popover.ui:70 data/ui/shared-folder-popover.ui:70
+msgid "Select Shared Folder"
+msgstr "ھەمبەھىر قىسقۇچ تاللىنىدۇ"
+
+#: data/ui/preferences/shared-folder-popover.ui:111 data/ui/shared-folder-popover.ui:111
+msgid "Save"
+msgstr "ساقلا"
+
+#: data/ui/preferences/shared-folders-widget.ui:7
+msgid "Shared Folders"
+msgstr "ھەمبەھىرلەنگەن قىسقۇچ"
+
+#: data/ui/preferences/snapshot-list-row.ui:68
+msgid "Revert to snapshot"
+msgstr "تېز پەيتكە ئەسلىگە قايتۇر"
+
+#: data/ui/preferences/snapshot-list-row.ui:83
+msgid "Rename snapshot"
+msgstr "تېز پەيت ئاتىنى ئۆزگەرت"
+
+#: data/ui/preferences/snapshot-list-row.ui:98
+msgid "Delete snapshot"
+msgstr "تېز پەيتنى ئۆچۈر"
+
+#: data/ui/preferences/snapshots-page.ui:6 data/ui/preferences/snapshots-page.ui:11
+msgid "Snapshots"
+msgstr "كەسمە سۈرەت"
+
+#: data/ui/preferences/snapshots-page.ui:49 src/preferences/snapshots-page.vala:133
+msgid "Creating new snapshot…"
+msgstr "يېڭى كەسمە سۈرەت قۇرۇۋاتىدۇ…"
+
+#: data/ui/searchbar.ui:10
+msgid "Search for a virtual machine…"
+msgstr "مەۋھۇم ماشىنا ئىزدە…"
+
+#: data/ui/toast.ui:34 src/app.vala:602 src/preferences/snapshot-list-row.vala:157
+msgid "Undo"
+msgstr "يېنىۋال"
+
+#: data/ui/troubleshoot-view.ui:44
+msgid "Oops, something went wrong"
+msgstr "ئاپلا، خاتالىق كۆرۈلدى"
+
+#: data/ui/troubleshoot-view.ui:58
+msgid "Boxes cannot access the virtualization backend."
+msgstr "Boxes مەۋھۇملاشتۇرۇلغان ئارقا ئۇچنى زىيارەت قىلالمايدۇ."
+
+#: data/ui/welcome-tutorial.ui:7
+msgid "Welcome Tutorial"
+msgstr "دەرسلىككە خۇش كەپسىز"
+
+#: data/ui/welcome-tutorial.ui:41
+msgid "Boxes makes it easy to install and run virtual machines."
+msgstr "Boxes مەۋھۇم ماشىنىنى ئورنىتىش ۋە ئىجرا قىلىشنى ئاسانلاشتۇرىدۇ."
+
+#: data/ui/welcome-tutorial.ui:50
+msgid "With express installation, Boxes will set the install options for a new virtual machine. Just start the installation and everything will be taken care of for you."
+msgstr "تېز ئورنىتىشتا، Boxes يېڭى مەۋھۇم ماشىنىغا ئورنىتىش تاللانمىسى تەڭشەيدۇ. ئورنىتىش باشلانسىلا، پىروگرامما قالغان ھەممە ئىشنى ئۆزى قىلىدۇ."
+
+#: data/ui/welcome-tutorial.ui:58
+msgid "Easy Downloads"
+msgstr "ئاسان چۈشۈرۈش"
+
+#: data/ui/welcome-tutorial.ui:59
+msgid ""
+"With Boxes, you don't need to download an operating system to create a virtual machine. Instead, just pick the operating system you want to setup, and Boxes will "
+"automatically download it for you."
+msgstr "Boxes تا مەۋھۇم كومپيۇتېر قۇرۇشتا مەشغۇلات سىستېمىسىنى چۈشۈرۈش ھاجەتسىز. ئۇنىڭ ئورنىغا ئورناتماقچى بولغان مەشغۇلات سىستېمىسى تاللانسا، Boxes ئۆزلۈكىدىن چۈشۈرىدۇ."
+
+#: data/ui/welcome-tutorial.ui:67
+msgid "Drag and Drop"
+msgstr "سۆرەپ تاشلاش"
+
+#: data/ui/welcome-tutorial.ui:68
+msgid "Sharing files is as simple as dropping them onto your virtual machine. They will appear in your Downloads folder."
+msgstr "ھۆججەت ھەمبەھىرلەش ئۇلارنى مەۋھۇم كومپيۇتېرغا سۆرەپ تاشلىغاندەكلا ئاددىي. ئۇلار چۈشۈرۈش مۇندەرىجىسىدە كۆرۈنىدۇ."
+
+#. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
+#: src/actions-popover.vala:29
+msgid "Box actions"
+msgstr "Box مەشغۇلاتى"
+
+#. Open in new Window
+#: src/actions-popover.vala:44
+msgid "Open in New Window"
+msgstr "يېڭى كۆزنەكتە ئاچ"
+
+#. Send files
+#: src/actions-popover.vala:49
+msgid "Send File…"
+msgstr "ھۆججەت يوللا…"
+
+#. Take Screenshot
+#: src/actions-popover.vala:57
+msgid "Take Screenshot"
+msgstr "ئېكران كۆرۈنۈشى تۇت"
+
+#: src/actions-popover.vala:65
+msgid "Force Shutdown"
+msgstr "مەجبۇرىي تاقا"
+
+#: src/actions-popover.vala:76
+msgid "Clone"
+msgstr "كۆپەيت"
+
+#. Delete
+#: src/actions-popover.vala:81
+msgid "Delete"
+msgstr "ئۆچۈر"
+
+#: src/actions-popover.vala:85 src/machine.vala:606
+msgid "Restart"
+msgstr "قايتا قوزغات"
+
+#. Properties (in separate section)
+#: src/actions-popover.vala:94
+msgid "Preferences"
+msgstr "مايىللىق"
+
+#. Translators: name of the folder under ~/Pictures for screenshots. This is the same folder where GNOME Shell saves screenshots.
+#: src/actions-popover.vala:109
+msgid "Screenshots"
+msgstr "ئېكران كۆرۈنۈشى"
+
+#. Translators: %s => the timestamp of when the screenshot was taken.
+#: src/actions-popover.vala:126
 #, c-format
-msgid "Restart of '%s' is taking too long. Force it to shutdown?"
-msgstr "‹%s› نى قايتا قوزغىتىشقا بەك جىق ۋاقىت كەتتى. مەجبۇرىي تاقىسۇنمۇ؟"
+msgid "Screenshot from %s"
+msgstr "%s دىن ئېلىنغان ئېكران كۆرۈنۈشى"
 
-#: ../src/libvirt-machine-properties.vala:491
+#: src/app.vala:113
+msgid "translator-credits"
+msgstr ""
+"تەرجىمان تۆھپىسى\n"
+"Gheyret Kenji <gheyret@gmail.com>\n"
+"Sahran<sahran@live.com>\n"
+"Muhemmed Erdem <misran_erdem@hotmail.com>\n"
+"ئابدۇقادىر ئابلىز <sahranbay@gmail.com>"
+
+#: src/app.vala:114
+msgid "A simple GNOME application to access virtual systems"
+msgstr "مەۋھۇم سىستېمىنى زىيارەت قىلىشقا ئىشلىتىدىغان ئاددىي GNOME پىروگراممىسى"
+
+#: src/app.vala:176 src/main.vala:9
+msgid "Display version number"
+msgstr "نەشر ئۇچۇرىنى كۆرسەت"
+
+#: src/app.vala:177
+msgid "Show help"
+msgstr "ياردەمنى كۆرسەت"
+
+#: src/app.vala:178
+msgid "Open in full screen"
+msgstr "پۈتۈن ئېكراندا ئاچ"
+
+#: src/app.vala:179 src/main.vala:10
+msgid "Check virtualization capabilities"
+msgstr "مەۋھۇملاشتۇرۇش ئىقتىدارىنى تەكشۈر"
+
+#: src/app.vala:180
+msgid "Open box with UUID"
+msgstr "قۇتىنى UUID بىلەن ئاچ"
+
+#: src/app.vala:181
+msgid "Search term"
+msgstr "ئىزدەش تۈرى"
+
+#. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
+#: src/app.vala:183
+msgid "URL to display, broker or installer media"
+msgstr "كۆرسىتىش، مەۋھۇم كومپيۇتېر باشقۇرغۇچ ياكى ئورنىتىش ۋاسىتىسىنىڭ تور ئادرېسى"
+
+#: src/app.vala:194
+msgid "— A simple application to access virtual machines"
+msgstr "— مەۋھۇم كومپيۇتېرنى زىيارەت قىلىدىغان ئاددىي پىروگرامما"
+
+#: src/app.vala:218
+msgid "Too many command line arguments specified.\n"
+msgstr "بۇيرۇق قۇرىدىكى پارامېتىر بەك كۆپ.\n"
+
+#: src/app.vala:458
 #, c-format
-msgid "Changes require restart of '%s'. Attempt restart?"
-msgstr "ئۆزگىرىشلەر ‹%s› نى قايتا قوزغىتىشنى تەلەپ قىلىۋاتىدۇ. قايتا قوزغاتسۇنمۇ؟"
+msgid "Box “%s” installed and ready to use"
+msgstr "Box «%s» ئورنىتىلدى ۋە ئىشلىتىشكە تەييار"
 
-#: ../src/libvirt-machine-properties.vala:506
-msgid "Maximum Disk Size"
-msgstr "ئەڭ چوڭ دىسكا چوڭلۇقى"
+#: src/app.vala:460
+msgid "Launch"
+msgstr "قوزغات"
 
-#: ../src/libvirt-machine.vala:426
-msgid "When you force shutdown, the box may lose data."
-msgstr "مەجبۇرىي تاقىسىڭىز، سانلىق مەلۇماتلار يوقىلىشى مۇمكىن."
+#: src/app.vala:490
+#, c-format
+msgid "“%s“ is running in the background"
+msgstr "«%s» ئارقا سۇپىدا ئىجرا قىلىنىۋاتىدۇ"
+
+#: src/app.vala:571
+#, c-format
+msgid "Box “%s” has been deleted"
+msgstr "Box «%s» ئۆچۈرۈلگەن"
+
+#: src/app.vala:572
+#, c-format
+msgid "%u box has been deleted"
+msgid_plural "%u boxes have been deleted"
+msgstr[0] "%u Box ئۆچۈرۈلگەن"
+
+#: src/app.vala:643
+msgid "Boxes is doing something"
+msgstr "Box مەشغۇلات قىلىۋاتىدۇ"
+
+#: src/app-window.vala:273
+msgid "Select files to transfer"
+msgstr "يوللايدىغان ھۆججەت تاللىنىدۇ"
+
+#: src/app-window.vala:274
+msgid "_Cancel"
+msgstr "ۋاز كەچ(_C)"
+
+#: src/app-window.vala:276
+msgid "_Open"
+msgstr "ئاچ(_O)"
+
+#: src/assistant/assistant.vala:145
+#, c-format
+msgid "Failed to prepare express installation: %s"
+msgstr "تېز ئورنىتىشنى تەييارلىيالمىدى: %s"
+
+#. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
+#. http://en.wikipedia.org/wiki/Live_CD
+#: src/assistant/media-entry.vala:18 src/util-app.vala:172
+msgid "Live"
+msgstr "بىۋاسىتە"
+
+#: src/assistant/media-entry.vala:23
+msgid "32-bit x86 system"
+msgstr "32 بىتلىق x‫86‬ سىستېمىسى"
+
+#: src/assistant/media-entry.vala:24
+msgid "64-bit x86 system"
+msgstr "64 بىتلىق ‪x86‬ سىستېمىسى"
+
+#. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
+#: src/assistant/media-entry.vala:29
+#, c-format
+msgid " from %s"
+msgstr " %s دىن"
+
+#: src/collection-toolbar.vala:54
+msgid "Select a device or OS media file"
+msgstr "ئۈسكۈنە ياكى مەشغۇلات سىستېما ۋاسىتە ھۆججىتى تاللىنىدۇ"
+
+#: src/collection-toolbar.vala:57 src/preferences/cdrom-row.vala:65
+msgid "Open"
+msgstr "ئاچ"
+
+#: src/display-page.vala:127
+msgid "Press (left) Ctrl+Alt to ungrab"
+msgstr "(سول) Ctrl+Alt بېسىلسا قويۇپ بېرىدۇ"
+
+#: src/display-page.vala:129
+msgid "Press & release (left) Ctrl+Alt to ungrab keyboard."
+msgstr "ھەرپتاختىنى قويۇپ بېرىشتە (سول) Ctrl+Alt بېسىلىپ ۋە قويۇۋېتىلىدۇ."
+
+#. Translators: Showing size of widget as WIDTH×HEIGHT here.
+#: src/display-page.vala:318
+#, c-format
+msgid "%d×%d"
+msgstr "%d×%d"
+
+#: src/display-toolbar.vala:87
+msgid "Exit fullscreen"
+msgstr "تولۇق ئېكراندىن چېكىن"
+
+#: src/downloads-hub.vala:52
+msgid "Downloading media"
+msgstr "ۋاسىتە چۈشۈرۈۋاتىدۇ"
+
+#: src/downloads-hub.vala:78
+#, c-format
+msgid "“%s” download complete"
+msgstr "«%s» نى چۈشۈرۈش تامام"
+
+#: src/downloads-hub.vala:80
+msgid "Install"
+msgstr "ئورنات"
+
+#: src/downloads-hub.vala:180
+#, c-format
+msgid "Failed to download: %s"
+msgstr "چۈشۈرەلمىدى: %s"
+
+#. We did this, so ignore!
+#: src/downloads-hub.vala:190
+#, c-format
+msgid "Failed to download '%s': %s"
+msgstr "«%s» نى چۈشۈرەلمىدى: %s"
+
+#: src/keys-input-popover.vala:28
+msgid "Ctrl + Alt + Backspace"
+msgstr "Ctrl + Alt + Backspace"
+
+#: src/keys-input-popover.vala:29
+msgid "Ctrl + Alt + Del"
+msgstr "Ctrl + Alt + Del"
+
+#. New section
+#: src/keys-input-popover.vala:33
+msgid "Ctrl + Alt + F1"
+msgstr "‪Ctrl + Alt + F1"
+
+#: src/keys-input-popover.vala:34
+msgid "Ctrl + Alt + F2"
+msgstr "‪Ctrl + Alt + F2"
+
+#: src/keys-input-popover.vala:35
+msgid "Ctrl + Alt + F3"
+msgstr "‪Ctrl + Alt + F3"
+
+#: src/keys-input-popover.vala:36
+msgid "Ctrl + Alt + F6"
+msgstr "‪Ctrl + Alt + F6"
+
+#: src/keys-input-popover.vala:37
+msgid "Ctrl + Alt + F7"
+msgstr "‪Ctrl + Alt + F7"
+
+#: src/keys-input-popover.vala:38
+msgid "Ctrl + Alt + F9"
+msgstr "‪Ctrl + Alt + F9"
+
+#. Translators: Accessibility name for context menu with a set of keyboard combos (that would normally be
+#. intercepted by host/client, to send to the box.
+#: src/keys-input-popover.vala:47
+msgid "Send key combinations"
+msgstr "بىرىكمە كۇنۇپكا يوللايدۇ"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:511
+#: src/libvirt-machine.vala:492
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "دىسكىدىن %s نى ئەسلىگە كەلتۈرۈۋاتىدۇ"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:514
+#: src/libvirt-machine.vala:495
 #, c-format
 msgid "Starting %s"
 msgstr "قوزغىلىۋاتقىنى %s"
 
+#: src/libvirt-machine.vala:568
+#, c-format
+msgid "Restart of “%s” is taking too long. Force it to shutdown?"
+msgstr "«%s» نى قايتا قوزغىتىشقا بەك كۆپ ۋاقىت كەتتى. مەجبۇرىي تاقىسۇنمۇ؟"
+
+#: src/libvirt-machine.vala:571
+msgid "Shutdown"
+msgstr "تاقا"
+
+#: src/libvirt-machine.vala:586
+#, c-format
+msgid "Cloning “%s”…"
+msgstr "«%s» نى نۇسخىلاۋاتىدۇ…"
+
+#: src/libvirt-machine.vala:715
+msgid "Installing…"
+msgstr "ئورنىتىۋاتىدۇ…"
+
+#: src/libvirt-machine.vala:717
+msgid "Setting up clone…"
+msgstr "نۇسخىنى تەڭشەۋاتىدۇ…"
+
+#: src/libvirt-machine.vala:719
+msgid "Importing…"
+msgstr "ئەكىرىۋاتىدۇ…"
+
+#: src/list-view-row.vala:48
+msgid "Running"
+msgstr "ئىجرا قىلىنىۋاتىدۇ"
+
+#: src/list-view-row.vala:54
+msgid "Paused"
+msgstr "ۋاقىتلىق توختىدى"
+
+#: src/list-view-row.vala:59
+msgid "Powered Off"
+msgstr "توكنى ئۈزدى"
+
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:132
+#: src/machine.vala:184
 #, c-format
 msgid "Connecting to %s"
 msgstr "%s غا باغلىنىۋاتىدۇ"
 
-#. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:152
+#: src/machine.vala:210
 #, c-format
-msgid "Enter password for %s"
-msgstr "%s نىڭ ئىمنى كىرگۈزۈڭ"
+msgid "Connection to “%s” failed"
+msgstr "«%s» غا باغلىنالمىدى"
 
-#: ../src/machine.vala:235
-msgid "Saving..."
+#: src/machine.vala:254
+msgid "Machine is under construction"
+msgstr "مەۋھۇم ماشىنىنى تەييارلاۋاتىدۇ"
+
+#: src/machine.vala:407
+msgid "Saving…"
 msgstr "ساقلاۋاتىدۇ…"
 
-#. 3rd row
-#: ../src/machine.vala:570 ../src/unattended-installer.vala:286
-#: ../src/unattended-installer.vala:405
-msgid "Password"
-msgstr "ئىم"
+#. Translators: The first %s is the name of the box, the second is the reason of the error
+#: src/machine.vala:603
+#, c-format
+msgid "“%s” could not be restored from disk: %s"
+msgstr "«%s» نى دىسكىدىن ئەسلىگە كەلتۈرگىلى بولمىدى: %s"
+
+#: src/machine.vala:614
+#, c-format
+msgid "Failed to start “%s”"
+msgstr "«%s» نى قوزغىتالمىدى"
+
+#: src/machine.vala:628
+msgid "Troubleshooting Log"
+msgstr "مەسىلە ھەل قىلىش خاتىرىسى"
+
+#. Translators: the first %s is the name of the box, the second is the reason of the error.
+#: src/machine.vala:641
+#, c-format
+msgid "Connection to “%s” failed: %s"
+msgstr "«%s» غا باغلىنالمىدى: %s"
 
 #. FIXME: add proper UI & docs
-#: ../src/main.vala:54
+#: src/main.vala:53
 #, c-format
 msgid "• The CPU is capable of virtualization: %s\n"
 msgstr "• مەزكۇر CPU نىڭ مەۋھۇملاشتۇرۇش ئىقتىدارى بار ئىكەن: %s\n"
 
-#: ../src/main.vala:55
+#: src/main.vala:54
 #, c-format
 msgid "• The KVM module is loaded: %s\n"
-msgstr "• KVM بۆلىكى ئوقۇلدى: %s\n"
+msgstr "• KVM بۆلىكى يۈكلەندى: %s\n"
 
-#: ../src/main.vala:56
+#: src/main.vala:55
 #, c-format
 msgid "• Libvirt KVM guest available: %s\n"
 msgstr "• Libvirt KVM مېھماننى ئىشلەتكىلى بولىدۇ: %s\n"
 
-#: ../src/main.vala:57
+#: src/main.vala:56
 #, c-format
 msgid "• Boxes storage pool available: %s\n"
-msgstr "• قۇتىلار ساقلىغۇچ كۆلچىكىنى ئىشلەتكىلى بولىدۇ: %s\n"
+msgstr "• Boxes ساقلىغۇچ كۆلچىكىنى ئىشلەتكىلى بولىدۇ: %s\n"
 
-#: ../src/main.vala:61
+#: src/main.vala:60
 #, c-format
 msgid "• The SELinux context is default: %s\n"
 msgstr "• SELinux مەزمۇنى كۆڭۈلدىكى قىلىپ بەلگىلەنگەن: %s\n"
 
-#: ../src/main.vala:65
+#: src/main.vala:64
 #, c-format
 msgid "Report bugs to <%s>.\n"
 msgstr "كەمتۈكنى <%s> غا مەلۇم قىلىڭ.\n"
 
-#: ../src/main.vala:66
+#: src/main.vala:65
 #, c-format
 msgid "%s home page: <%s>.\n"
 msgstr "%s باش بېتى: <%s>.\n"
 
-#: ../src/notificationbar.vala:57
+#: src/media-manager.vala:31
+msgid "Media is not supported"
+msgstr "ۋاسىتىنى قوللىمايدۇ"
+
+#: src/preferences/cdrom-row.vala:33
+msgid "No CD/DVD image"
+msgstr "CD/DVD تەسۋىرى يوق"
+
+#: src/preferences/cdrom-row.vala:62
+msgid "Select a device or ISO file"
+msgstr "ئۈسكۈنە ياكى ISO ھۆججىتى تاللىنىدۇ"
+
+#: src/preferences/devices-page.vala:25
+msgid "The Flatpak version of GNOME Boxes does not support USB redirection."
+msgstr "GNOME Boxes نىڭ Flatpak نەشرى USB قايتا نىشانلاشنى قوللىمايدۇ."
+
+#: src/preferences/devices-page.vala:37
+msgid "Turn on your box to see the USB devices available for redirection."
+msgstr "Box نى قوزغىتىپ قايتا نىشانلاشقا ئىشلىتىدىغان USB ئۈسكۈنىنى كۆرگىلى بولىدۇ."
+
+#. Translators: %s is a recommended value for RAM/storage limit. For example "Recommended 4 GB."
+#: src/preferences/resources-page.vala:82
 #, c-format
-msgid "Not connected to %s"
-msgstr "%s غا باغلانمىدى"
+msgid "Recommended %s."
+msgstr "%s تەۋسىيە قىلىنغان."
 
-#: ../src/notificationbar.vala:57 ../src/notificationbar.vala:110
-msgid "Sign In"
-msgstr "كىر"
+#: src/preferences/resources-page.vala:154
+msgid "Boxes wants to run VM in background"
+msgstr "Box ئارقا سۇپىدا مەۋھۇم كومپيۇتېرنى ئىجرا قىلماقچى"
 
-#: ../src/notificationbar.vala:75
+#: src/preferences/resources-page.vala:161
+msgid "Boxes is not authorized to run in background"
+msgstr "Box نىڭ ئارقا سۇپىدا ئىجرا قىلىنىشىغا ئىجازەت بېرىلمىگەن"
+
+#: src/preferences/resources-page.vala:167
+msgid "Do you want to open Settings to manage application permissions?"
+msgstr "تەڭشەكنى ئېچىپ پىروگرامما ئىجازىتىنى باشقۇرامسىز؟"
+
+#: src/preferences/resources-page.vala:205
+msgid "Editing your box configuration can cause issues to the operating system of your box. Would you like to create a snapshot to recover from your changes?"
+msgstr "Box سەپلىمىسى تەھرىرلەنسە ئىچىدىكى مەشغۇلات سىستېمىسىدا مەسىلە كۆرۈلۈشى مۇمكىن. تېز پەيت قۇرۇپ ئۆزگەرتىشىڭىزدىن ئەسلىگە كەلتۈرەمسىز؟"
+
+#: src/preferences/resources-page.vala:270
 #, c-format
-msgid "Sign In to %s"
-msgstr "%s‎ غا كىر"
+msgid "Failed to save domain configuration: %s"
+msgstr "دائىرە سەپلىمىسىنى ساقلىيالمىدى: %s"
 
-#: ../src/notificationbar.vala:81
-msgid "_Username"
-msgstr "ئىشلەتكۈچى ئاتى(_U)"
+#: src/preferences/resources-page.vala:279
+msgid "Changes to the settings below take effect after you restart your box."
+msgstr "تۆۋەندىكى تەڭشەكنىڭ ئۆزگىرىشى Box نى قايتا قوزغاتقاندىن كېيىن كۈچكە ئىگە بولىدۇ."
 
-#: ../src/notificationbar.vala:96
-msgid "_Password"
-msgstr "ئىم(_P)"
-
-#: ../src/ovirt-broker.vala:64
-msgid "Connection to oVirt broker failed"
-msgstr "oVirt broker غا باغلىنىش مەغلۇپ بولدى"
-
-#. Translators: The %s will be replaced with the name of the VM
-#: ../src/properties.vala:19
+#. Translators: "spice-webdav" is a name and shouldn't be translated. %s is an URL.
+#: src/preferences/shared-folders-widget.vala:76
 #, c-format
-msgid "%s - Properties"
-msgstr "%s - خاسلىقلار"
+msgid "Use the button below to add your first shared folder. For file sharing to work, the guest box needs to have <a href='%s'>spice-webdav</a> installed."
+msgstr "تۆۋەندىكى توپچىنى ئىشلىتىپ تۇنجى ھەمبەھىر قىسقۇچنى قوشۇڭ. ھۆججەت ھەمبەھىرنىڭ ئىشلىشى ئۈچۈن، خېرىدار كومپيۇتېر Box قا <a href='%s'>spice-webdav</a> ئورنىتىلىشى كېرەك."
 
-#: ../src/properties.vala:69
-msgid "Login"
-msgstr "كىرىش"
-
-#: ../src/properties.vala:77
-msgid "Display"
-msgstr "كۆرسەتكۈچ"
-
-#: ../src/properties.vala:81
-msgid "Devices"
-msgstr "ئۈسكۈنىلەر"
-
-#: ../src/properties.vala:94
-msgid "Some changes may take effect only after reboot"
-msgstr "بەزى ئۆزگىرىشلەرنىڭ ئۈنۈمىنى قايتا قوزغاتقاندىلا كۆرگىلى بولىدۇ"
-
-#: ../src/properties.vala:270
-msgid "CPU:"
-msgstr "CPU:"
-
-#: ../src/properties.vala:277
-msgid "I/O:"
-msgstr "I/O:"
-
-#: ../src/properties.vala:284
-msgid "Net:"
-msgstr "تور:"
-
-#: ../src/properties.vala:291
-msgid "Force Shutdown"
-msgstr "مەجبۇرىي تاقا"
-
-#: ../src/selectionbar.vala:72
+#. Translators: %s is the reason why Boxes failed to rename the snapshot.
+#: src/preferences/snapshot-list-row.vala:77
 #, c-format
-msgid "Pausing '%s' failed"
-msgstr "‹%s› نى ۋاقىتلىق توختىتىش مەغلۇپ بولدى"
+msgid "Failed to rename snapshot: %s"
+msgstr "تېز پەيتنىڭ ئاتىنى ئۆزگەرتەلمىدى: %s"
 
-#: ../src/spice-display.vala:50
+#: src/preferences/snapshot-list-row.vala:93
 #, c-format
-msgid "Automatic redirection of USB device '%s' for '%s' failed"
-msgstr "USB ئۈسكۈنىسى ‹%s› نىڭ بېشىنى ‹%s› غا ئاپتوماتىك بۇراش مەغلۇپ بولدى"
+msgid "Reverting to %s…"
+msgstr "%s غا ئەسلىگە كەلتۈرۈۋاتىدۇ…"
 
-#: ../src/spice-display.vala:58 ../src/spice-display.vala:322
+#. Translators: %s is the reason why Boxes failed to apply the snapshot.
+#: src/preferences/snapshot-list-row.vala:115
 #, c-format
-msgid "Redirection of USB device '%s' for '%s' failed"
-msgstr "USB ئۈسكۈنىسى ‹%s› نىڭ بېشىنى ‹%s› غا بۇراش مەغلۇپ بولدى"
+msgid "Failed to revert to snapshot: %s"
+msgstr "تېز پەيتكە ئەسلىگە كەلتۈرەلمىدى: %s"
 
-#: ../src/spice-display.vala:273
-msgid "Share clipboard"
-msgstr "چاپلاش تاختىسىنى ھەمبەھىرلە"
-
-#: ../src/spice-display.vala:279
-msgid "Resize guest"
-msgstr "مېھماننىڭ چوڭلۇقىنى ئۆزگەرت"
-
-#: ../src/spice-display.vala:288
-msgid "Redirect new USB devices"
-msgstr "يېڭى USB ئۈسكۈنىلىرىنىڭ بەشىنى بۇرا"
-
-#: ../src/spice-display.vala:363 ../src/wizard.vala:251
-msgid "Invalid URI"
-msgstr "ئىناۋەتسىز URI"
-
-#: ../src/spice-display.vala:373
-msgid "The port must be specified once"
-msgstr "ئېغىزنى بىراقلا كۆرسىتىپ بېرىش كېرەك"
-
-#: ../src/spice-display.vala:382
-msgid "Missing port in Spice URI"
-msgstr "Spice URI نىڭ ئىچىدىكى ئېغىز يوق"
-
-#: ../src/topbar.vala:99
-msgid "Select All"
-msgstr "ھەممىنى تاللا"
-
-#: ../src/topbar.vala:100
-msgid "Select Running"
-msgstr "ئىجرا بولۇۋاتقىنى تاللا"
-
-#: ../src/topbar.vala:101
-msgid "Select None"
-msgstr "ھەممىنى تاللىما"
-
-#: ../src/topbar.vala:111
-msgid "D_one"
-msgstr "تامام(_O)"
-
-#. This goes with the "Click on items to select them" string and is about selection of items (boxes)
-#. when the main collection view is in selection mode.
-#: ../src/topbar.vala:149
+#: src/preferences/snapshot-list-row.vala:133
 #, c-format
-msgid "%d selected"
-msgid_plural "%d selected"
-msgstr[0] "%d تاللاندى"
+msgid "Snapshot “%s” deleted."
+msgstr "تېز پەيت «%s» ئۆچۈرۈلدى."
 
-#: ../src/topbar.vala:151
-msgid "(Click on items to select them)"
-msgstr "(تۇرنى چېكىپ تاللاڭ)"
+#: src/preferences/snapshots-page.vala:139
+#, c-format
+msgid "Failed to create snapshot of %s"
+msgstr "%s غا تېز پەيت قۇرالمىدى"
 
-#: ../src/unattended-installer.vala:48
-msgid "no password"
-msgstr "ئىم يوق"
+#. we need to account for the "+" button
+#: src/preferences/snapshots-page.vala:160
+msgid "Revert to a previous state of your box."
+msgstr "Box نىڭ ئالدىنقى ھالىتىگە ئەسلىگە كەلتۈرىدۇ."
 
-#: ../src/unattended-installer.vala:285 ../src/unattended-installer.vala:391
-msgid "Username"
-msgstr "ئىشلەتكۈچى ئاتى"
+#: src/preferences/snapshots-page.vala:162
+msgid "Use the button below to create your first snapshot."
+msgstr "تۆۋەندىكى توپچىنى ئىشلىتىپ تۇنجى تېز پەيتنى قۇرغىلى بولىدۇ."
 
-#: ../src/unattended-installer.vala:347
-msgid ""
-"Choose express install to automatically preconfigure the box with optimal "
-"settings."
-msgstr "قۇتىنى ئەڭ مۇۋاپىق تەڭشەكلەر بىلەن ئاپتوماتىك سەپلەش ئۈچۈن تېز(express) ئورنىتىشنى تاللاڭ."
+#. Translators: "%s" is a disk size string (for example "4.2 GB")
+#: src/preferences/storage-row.vala:47
+#, c-format
+msgid "Used %s."
+msgstr "%s نى ئىشلەتكەن."
 
-#. First row
-#. Translators: 'Express Install' means that the new box installation will be fully automated, the user
-#. won't be asked anything while it's performed.
-#: ../src/unattended-installer.vala:365
-msgid "Express Install"
-msgstr "تېز ئورنىتىش"
+#: src/preferences/storage-row.vala:50
+msgid "There is not enough space on your machine to increase the maximum disk size."
+msgstr "مەۋھۇم كومپيۇتېرنىڭ ئەڭ چوڭ دىسكا بوشلۇقىنى ئاشۇرۇش ئۈچۈن يېتەرلىك دىسكا بوشلۇقى يوق."
 
-#: ../src/unattended-installer.vala:416
-msgid "_Add Password"
-msgstr "ئىم قوش(_A)"
+#: src/preferences/storage-row.vala:68
+msgid "Storage disk"
+msgstr "ساقلاش دىسكىسى"
 
-#: ../src/unattended-installer.vala:440
-msgid "Product Key"
-msgstr "مەھسۇلات ئاچقۇچى"
+#: src/preferences/storage-row.vala:77
+#, c-format
+msgid "Used %s"
+msgstr "%s ئىشلەتكەن"
 
-#: ../src/unattended-installer.vala:654
-msgid "Downloading device drivers..."
+#. Translators: "Unknown" is a placeholder for a box name when it could not be determined
+#: src/spice-display.vala:46
+msgid "Unknown"
+msgstr "يوچۇن"
+
+#: src/spice-display.vala:61 src/spice-display.vala:452
+#, c-format
+msgid "Redirection of USB device “%s” for “%s” failed"
+msgstr "USB ئۈسكۈنىسى «%s» نى «%s» غا قايتا نىشانلىيالمىدى"
+
+#. Translators: "%s" is a file name.
+#: src/transfer-info-row.vala:31
+#, c-format
+msgid "Copying “%s” to “Downloads”"
+msgstr "«%s» نى «چۈشۈرۈش» كە كۆچۈرۈۋاتىدۇ"
+
+#. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
+#. installation will work. When this happens, just disable unattended installs, and let the caller decide
+#. if it wants to retry a non-automatic install or to just abort the box creation..
+#: src/unattended-installer.vala:174
+msgid "An error occurred during installation preparation. Express Install disabled."
+msgstr "ئورنىتىشقا تەييارلىق قىلىۋاتقاندا خاتالىق كۆرۈلدى. «تېز ئورنىتىش» ئىناۋەتسىز قىلىندى."
+
+#: src/unattended-installer.vala:371
+msgid "Downloading device drivers…"
 msgstr "ئۈسكۈنە قوزغاتقۇلىرىنى چۈشۈرۈۋاتىدۇ…"
 
-#: ../src/util-app.vala:231
+#: src/util-app.vala:414
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
 "%s"
-msgstr "نۆۋەتتىكى SELinux نىڭ مەزمۇنى توغرا ئەمەستەك قىلىدۇ. شۇڭا تۆۋەندىكى بۇيرۇقنى ئىجرا قىلىپ تۈزىتىڭ:\n"
+msgstr ""
+"نۆۋەتتىكى SELinux نىڭ مەزمۇنى توغرا ئەمەستەك قىلىدۇ. شۇڭا تۆۋەندىكى بۇيرۇقنى ئىجرا قىلىپ تۈزىتىڭ:\n"
 "%s"
 
-#: ../src/util-app.vala:235
+#: src/util-app.vala:418
 msgid "SELinux not installed?"
 msgstr "SELinux ئورنىتىلمىغانمۇ؟"
 
-#: ../src/util-app.vala:316
-msgid ""
-"Could not get 'gnome-boxes' storage pool information from libvirt. Make sure "
-"'virsh -c qemu:///session pool-dumpxml gnome-boxes' is working."
-msgstr "بۆلەك libvirt تىن ‹gnome-boxes› ساقلىغۇچ كۆلچىكى ئۇچۇرىنى ئالغىلى بولمىدى. شۇڭا ھازىر 'virsh -c qemu:///session pool-dumpxml gnome-boxes' ئىشلەۋاتامدۇ تەكشۈرۈڭ."
+#: src/util-app.vala:512
+msgid "Could not get “gnome-boxes” storage pool information from libvirt. Make sure “virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
+msgstr "بۆلەك libvirt تىن «gnome-boxes» ساقلىغۇچ كۆلچىكى ئۇچۇرىغا ئېرىشەلمىدى. شۇڭا ھازىر «virsh -c qemu:///session pool-dumpxml gnome-boxes» ئىشلەۋاتامدۇ تەكشۈرۈڭ."
 
-#: ../src/util-app.vala:321
+#: src/util-app.vala:517
 #, c-format
-msgid ""
-"%s is known to libvirt as GNOME Boxes's storage pool but this directory does "
-"not exist"
-msgstr "ھازىر %s نى libvirt ‹گىنوم قۇتا› نىڭ ساقلىغۇچ كۆلچىكى دەپ بىلىدۇ، بىراق مەزكۇر مۇندەرىجە مەۋجۇت ئەمەس ئىكەن."
+msgid "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does not exist"
+msgstr "ھازىر %s نى libvirt دىكى GNOME Boxes نىڭ ساقلىغۇچ كۆلچىكى دەپ بىلىدۇ، بىراق مەزكۇر مۇندەرىجە مەۋجۇت ئەمەس ئىكەن."
 
-#: ../src/util-app.vala:325
+#: src/util-app.vala:521
 #, c-format
-msgid ""
-"%s is known to libvirt as GNOME Boxes's storage pool but is not a directory"
-msgstr "ھازىر %s نى libvirt ‹گىنوم قۇتا› نىڭ ساقلىغۇچ كۆلچىكى دەپ بىلىدۇ، بىراق بۇ مۇندەرىجە ئەمەس ئىكەن."
+msgid "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
+msgstr "ھازىر %s نى libvirt دىكى GNOME Boxes نىڭ ساقلىغۇچ كۆلچىكى دەپ بىلىدۇ، بىراق ئۇ مۇندەرىجە ئەمەس"
 
-#: ../src/util-app.vala:329
+#: src/util-app.vala:525
 #, c-format
-msgid ""
-"%s is known to libvirt as GNOME Boxes's storage pool but is not user-"
-"readable/writable"
-msgstr "ھازىر %s نى libvirt ‹گىنوم قۇتا› نىڭ ساقلىغۇچ كۆلچىكى دەپ بىلىدۇ، بىراق ئىشلەتكۈچى ئۇنى ئوقۇپ يازالمايدىكەن."
+msgid "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-readable/writable"
+msgstr "ھازىر %s نى libvirt دىكى GNOME Boxes نىڭ ساقلىغۇچ كۆلچىكى دەپ بىلىدۇ، بىراق ئىشلەتكۈچى ئۇنىڭغا ئوقۇپ يازالمايدۇ"
 
-#: ../src/util.vala:322
+#: src/util.vala:334
 msgid "yes"
 msgstr "ھەئە"
 
-#: ../src/util.vala:322
+#: src/util.vala:334
 msgid "no"
 msgstr "ياق"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:443
+#: src/vm-configurator.vala:782
 msgid "Incapable host system"
-msgstr "ئىقتىدارسىز(Incapable) كومپيۇتېر سىستېمىسى"
+msgstr "ناباب كومپيۇتېر سىستېمىسى"
 
-#: ../src/vm-creator.vala:43
-msgid ""
-"An error occurred during installation preparation. Express Install disabled."
-msgstr "ئورنىتىشقا تەييارلىق قىلىۋاتقاندا خاتالىق كۆرۈلدى. «تېز ئورنىتىش» ئىناۋەتسىز قىلىندى."
-
-#: ../src/vm-creator.vala:162
-msgid "Installing..."
-msgstr "ئورنىتىۋاتىدۇ..."
-
-#. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
-#. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/vm-creator.vala:166 ../src/wizard-source.vala:244
-msgid "Live"
-msgstr "نەق مەيدان"
-
-#. This string is about automatic installation progress
-#: ../src/vm-creator.vala:251
+#. Translators: the first %s is a path, the second is the reason of the failure.
+#: src/vm-importer.vala:65
 #, c-format
-msgid "%d%% Installed"
-msgid_plural "%d%% Installed"
-msgstr[0] "%d%% ئورنىتىلدى"
+msgid "Box import from file “%s” failed: %s"
+msgstr "Box ھۆججەت «%s» تىن ئەكىرەلمىدى: %s"
 
-#: ../src/vnc-display.vala:145
-msgid "Read-only"
-msgstr "پەقەتلا ئوقۇش"
+#~ msgid "The list of boxes collections"
+#~ msgstr "قۇتىلار توپلىمىنىڭ تىزىمى"
 
-#: ../src/wizard-source.vala:119 ../src/wizard-source.vala:146
-msgid "Enter URL"
-msgstr "URL كىرگۈزۈش"
+#~ msgid "The time it takes for transitions and animation, in ms."
+#~ msgstr "جانلاندۇرۇم ئۈچۈن كېتىدىغان ۋاقىت، بىرلىكى مىللىي سېكۇنت."
 
-#: ../src/wizard-source.vala:126
-msgid "Select a file"
-msgstr "بىر ھۆججەت تاللاڭ"
+#~ msgid "Quit"
+#~ msgstr "ئاخىرلاشتۇر"
 
-#: ../src/wizard-source.vala:163
-msgid ""
-"<b>Desktop Access</b>\n"
-"\n"
-"Will add boxes for all systems available from this account."
-msgstr "<b>ئۈستەلئۈستى زىيارىتى</b>\n"
-"\n"
-"مەزكۇر ھېساباتتىكى بارلىق سىستېمىلارغا قۇتىلارنى قوشىدۇ."
+#~ msgid "New and Recent"
+#~ msgstr "يېڭى ۋە يېقىنقى"
 
-#: ../src/wizard-source.vala:253
-msgid "32-bit x86 system"
-msgstr "32 بىتلىق x86 سىستېمىسى"
+#~ msgid "No boxes found"
+#~ msgstr "قۇتىلار تېپىلمىدى"
 
-#: ../src/wizard-source.vala:254
-msgid "64-bit x86 system"
-msgstr "64 بىتلىق x86 سىستېمىسى"
+#~ msgid "Create one using the button on the top left."
+#~ msgstr "ئۈستى سول تەرەپتىكى توپچىنى ئىشلىتىپ بىرنى قۇرۇڭ."
 
-#. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: ../src/wizard-source.vala:263
+#~ msgid "System"
+#~ msgstr "سىستېما"
+
+#~ msgid "Virtualizer"
+#~ msgstr "مەۋھۇملاشتۇرغۇچ"
+
+#~ msgid "URI"
+#~ msgstr "URI"
+
+#~ msgid "Copy to clipboard"
+#~ msgstr "چاپلاش تاختىسىغا كۆچۈر"
+
 #, c-format
-msgid " from %s"
-msgstr " %s دىن"
+#~ msgid "Error saving: %s"
+#~ msgstr "ساقلاشتا خاتالىق كۆرۈلدى: %s"
 
-#: ../src/wizard.vala:100
-msgid "Box creation failed"
-msgstr "قۇتا قۇرۇش مەغلۇپ بولدى"
+#~ msgid "Protocol"
+#~ msgstr "كېلىشىم"
 
-#: ../src/wizard.vala:148
-msgid "Please enter desktop or collection URI"
-msgstr "ئۈستەلئۈستى ياكى توپلامنىڭ URI نى كىرگۈزۈڭ"
+#~ msgid "empty"
+#~ msgstr "بوش"
 
-#: ../src/wizard.vala:154
-msgid "Will add boxes for all systems available from this account."
-msgstr "مەزكۇر ھېساباتتىكى بارلىق سىستېمىلارغا قۇتىلارنى قوشىدۇ"
-
-#: ../src/wizard.vala:157
-msgid "Will add a single box."
-msgstr "بىرلا قۇتا قوشىدۇ."
-
-#: ../src/wizard.vala:163
-msgid "Desktop Access"
-msgstr "ئۈستەلئۈستىنى زىيارىتى"
-
-#: ../src/wizard.vala:265
 #, c-format
-msgid "Unsupported protocol '%s'"
-msgstr "كېلىشىم ‹%s› نى قوللىمايدۇ"
+#~ msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
+#~ msgstr "‹%s› نى CD/DVD سۈپىتىدە ‹%s› غا قىستۇرۇش مەغلۇپ بولدى"
 
-#: ../src/wizard.vala:271 ../src/wizard.vala:314
-msgid "Unknown installer media"
-msgstr "ناتونۇش ئورناتقۇ ۋاسىتىسى"
-
-#: ../src/wizard.vala:272 ../src/wizard.vala:315
-msgid "Analyzing..."
-msgstr "تەھلىل قىلىۋاتىدۇ…"
-
-#: ../src/wizard.vala:284
-msgid "Failed to analyze installer media. Corrupted or incomplete media?"
-msgstr "ئورناتقۇ ۋاسىتىسىنى تەھلىل قىلىش مەغلۇپ بولدى. ۋاسىتە بۇزۇقمۇ ياكى نورمال ئەمەسمۇ؟"
-
-#: ../src/wizard.vala:377
-msgid "Box setup failed"
-msgstr "قۇتا ئورنىتىش مەغلۇپ بولدى"
-
-#: ../src/wizard.vala:391
-msgid "Boxes will create a new box with the following properties:"
-msgstr "تۆۋەندىكىدەك خاسلىقلىرى بولغان بىر يېڭى قۇتا قوشىدۇ:"
-
-#: ../src/wizard.vala:396
-msgid "Type"
-msgstr "تىپى"
-
-#: ../src/wizard.vala:399
-msgid "Host"
-msgstr "ماشىنا"
-
-#: ../src/wizard.vala:410 ../src/wizard.vala:421
-msgid "Port"
-msgstr "ئېغىز"
-
-#: ../src/wizard.vala:412
-msgid "TLS Port"
-msgstr "TLS ئېغىزى"
-
-#: ../src/wizard.vala:426
-msgid "Will add boxes for all systems available from this account:"
-msgstr "مەزكۇر ھېساباتتىكى بارلىق سىستېمىلارغا قۇتىلارنى قوشىدۇ:"
-
-#: ../src/wizard.vala:446
-msgid "Disk"
-msgstr "دىسكا"
-
-#: ../src/wizard.vala:446
 #, c-format
-msgid "%s maximum"
-msgstr "%s ئەڭ چوڭ"
+#~ msgid "Removal of CD/DVD from '%s' failed"
+#~ msgstr "‹%s› دىن CD/DVD نى چىقىرىش مەغلۇپ بولدى"
 
-#: ../src/wizard.vala:536
-msgid "Introduction"
-msgstr "تونۇشتۇرۇش"
+#~ msgid "CD/DVD"
+#~ msgstr "CD/DVD"
 
-#: ../src/wizard.vala:540
-msgid ""
-"Creating a Box will allow you to use another operating system directly from "
-"your existing login.\n"
-"\n"
-"You may connect to an existing machine <b><i>over the network</i></b> or "
-"create a <b><i>virtual machine</i></b> that runs locally on your own."
-msgstr "يېڭىدىن بىر قۇتا ياساش ئارقىلىق نۆۋەتتىكى سىستېمىدا تۇرۇپلا باشقا بىر مەشغۇلات سىستېمىسى ئىشلىتىشكە بولىدۇ.\n"
-"\n"
-"شۇنىڭ بىلەن <b><i>توردىكى</i></b> باشقا بىر ماشىنىغا باغلانغىلى ياكى يەرلىكتە ئىجرا بولىدىغان <b><i>مەۋھۇم كومپيۇتېردىن</i></b> بىرنى قۇرغىلىمۇ بولىدۇ."
+#~ msgid "Add support to guest"
+#~ msgstr "مېھماننى قوللاش ئىقتىدارىنى قوشسۇن"
 
-#: ../src/wizard.vala:552
-msgid "Source Selection"
-msgstr "مەنبە تاللاش"
+#~ msgid "USB device support"
+#~ msgstr "USB ئۈسكۈنىسىنى قوللىسۇن"
 
-#: ../src/wizard.vala:553
-msgid "Insert operating system installation media or select a source below"
-msgstr "مەشغۇلات سىستېمىسىنىڭ ئورنىتىش دىسكىسىنى سېلىڭ ياكى تۆۋەندىكى مەنبەدىن بىرنى تاللاڭ"
+#~ msgid "Smartcard support"
+#~ msgstr "Smartcard قوللىسۇن"
 
-#: ../src/wizard.vala:563
-msgid ""
-"Any trademarks shown above are used merely for identification of software "
-"products you have already obtained and are the property of their respective "
-"owners."
-msgstr "يۇقىرىدا كۆرسىتىلگەن سودا ماركىلىرىنىڭ ھەممىسى سىز ئېرىشكەن يۇمشاق دېتال مەھسۇلاتلىرىنى پەرق قىلىش ئۈچۈن ئىشلىتىدۇ. ھەرقايسىسى ئۇنىڭ ئىگىسىگە مەنسۇپ."
+#, c-format
+#~ msgid "Changes require restart of '%s'. Attempt restart?"
+#~ msgstr "ئۆزگىرىشلەر ‹%s› نى قايتا قوزغىتىشنى تەلەپ قىلىۋاتىدۇ. قايتا قوزغاتسۇنمۇ؟"
 
-#: ../src/wizard.vala:576
-msgid "Preparation"
-msgstr "تەييارلىق"
+#~ msgid "Maximum Disk Size"
+#~ msgstr "ئەڭ چوڭ دىسكا چوڭلۇقى"
 
-#: ../src/wizard.vala:577
-msgid "Preparing to create new box"
-msgstr "يېڭى قۇتا قۇرۇشقا تەييارلىنىۋاتىدۇ"
+#~ msgid "When you force shutdown, the box may lose data."
+#~ msgstr "مەجبۇرىي تاقىسىڭىز، سانلىق مەلۇماتلار يوقىلىشى مۇمكىن."
 
-#: ../src/wizard.vala:614
-msgid "Setup"
-msgstr "ئورنات"
+#, c-format
+#~ msgid "Not connected to %s"
+#~ msgstr "%s غا باغلانمىدى"
 
-#: ../src/wizard.vala:621
-msgid "Review"
-msgstr "تەكشۈر"
+#~ msgid "Sign In"
+#~ msgstr "كىر"
 
-#: ../src/wizard.vala:632
-msgid ""
-"Virtualization extensions are unavailable on your system. Expect this box to "
-"be extremely slow. If your system is recent enough (made in or after 2008), "
-"these extensions are probably available on your system and you may need to "
-"enable them in your system's BIOS setup."
-msgstr "سىستېمىڭىزدا مەۋھۇملاشتۇرۇش كېڭەيتىلمىلىرىنى ئىشلەتكىلى بولمايدىكەن. بۇ قۇتا ئىنتايىن ئاستا بولۇپ قالىدۇ. سىزنىڭ سىستېمىڭىز يېڭىراق(2008-يىلدىن كېيىن ياسالغان) بولسا، بۇ كېڭەيتىلمىلەرنى سىستېمىڭىزدا ئىشلەتكىلى بولىدۇ. بۇنى سىستېمىڭىزنىڭ BIOS تەڭشىكىدە ئىناۋەتلىك قىلىشقا توغرا كېلىدۇ."
+#, c-format
+#~ msgid "Sign In to %s"
+#~ msgstr "%s‎ غا كىر"
 
-#: ../src/wizard.vala:647
-msgid "Create a Box"
-msgstr "بىر قۇتا قۇرىدۇ"
+#~ msgid "_Username"
+#~ msgstr "ئىشلەتكۈچى ئاتى(_U)"
 
-#: ../src/wizard.vala:650
-msgid "_Cancel"
-msgstr "ئەمەلدىن قالدۇر(_C)"
+#~ msgid "_Password"
+#~ msgstr "ئىم(_P)"
 
-#: ../src/wizard.vala:659
-msgid "_Back"
-msgstr "كەينى(_B)"
+#~ msgid "Connection to oVirt broker failed"
+#~ msgstr "oVirt broker غا باغلىنىش مەغلۇپ بولدى"
 
-#: ../src/wizard.vala:666
-msgid "C_ontinue"
-msgstr "داۋاملاشتۇر(_O)"
+#, c-format
+#~ msgid "%s - Properties"
+#~ msgstr "%s - خاسلىقلار"
 
-#: ../src/wizard.vala:674
-msgid "C_reate"
-msgstr "قۇر(_R)"
+#~ msgid "Login"
+#~ msgstr "كىرىش"
 
-#: ../src/wizard.vala:759
-msgid "C_ustomize..."
-msgstr "ئۆزلەشتۈر(_U)…"
+#~ msgid "Some changes may take effect only after reboot"
+#~ msgstr "بەزى ئۆزگىرىشلەرنىڭ ئۈنۈمىنى قايتا قوزغاتقاندىلا كۆرگىلى بولىدۇ"
+
+#~ msgid "CPU:"
+#~ msgstr "CPU:"
+
+#~ msgid "I/O:"
+#~ msgstr "I/O:"
+
+#~ msgid "Net:"
+#~ msgstr "تور:"
+
+#, c-format
+#~ msgid "Pausing '%s' failed"
+#~ msgstr "‹%s› نى ۋاقىتلىق توختىتىش مەغلۇپ بولدى"
+
+#, c-format
+#~ msgid "Automatic redirection of USB device '%s' for '%s' failed"
+#~ msgstr "USB ئۈسكۈنىسى ‹%s› نىڭ بېشىنى ‹%s› غا ئاپتوماتىك بۇراش مەغلۇپ بولدى"
+
+#~ msgid "Share clipboard"
+#~ msgstr "چاپلاش تاختىسىنى ھەمبەھىرلە"
+
+#~ msgid "Resize guest"
+#~ msgstr "مېھماننىڭ چوڭلۇقىنى ئۆزگەرت"
+
+#~ msgid "Redirect new USB devices"
+#~ msgstr "يېڭى USB ئۈسكۈنىلىرىنىڭ بەشىنى بۇرا"
+
+#~ msgid "Invalid URI"
+#~ msgstr "ئىناۋەتسىز URI"
+
+#~ msgid "The port must be specified once"
+#~ msgstr "ئېغىزنى بىراقلا كۆرسىتىپ بېرىش كېرەك"
+
+#~ msgid "Missing port in Spice URI"
+#~ msgstr "Spice URI نىڭ ئىچىدىكى ئېغىز يوق"
+
+#~ msgid "Select All"
+#~ msgstr "ھەممىنى تاللا"
+
+#~ msgid "Select None"
+#~ msgstr "ھەممىنى تاللىما"
+
+#~ msgid "D_one"
+#~ msgstr "تامام(_O)"
+
+#, c-format
+#~ msgid "%d selected"
+#~ msgid_plural "%d selected"
+#~ msgstr[0] "%d تاللاندى"
+
+#~ msgid "(Click on items to select them)"
+#~ msgstr "(تۇرنى چېكىپ تاللاڭ)"
+
+#~ msgid "no password"
+#~ msgstr "ئىم يوق"
+
+#~ msgid "Choose express install to automatically preconfigure the box with optimal settings."
+#~ msgstr "قۇتىنى ئەڭ مۇۋاپىق تەڭشەكلەر بىلەن ئاپتوماتىك سەپلەش ئۈچۈن تېز(express) ئورنىتىشنى تاللاڭ."
+
+#~ msgid "_Add Password"
+#~ msgstr "ئىم قوش(_A)"
+
+#, c-format
+#~ msgid "%d%% Installed"
+#~ msgid_plural "%d%% Installed"
+#~ msgstr[0] "%d%% ئورنىتىلدى"
+
+#~ msgid "Read-only"
+#~ msgstr "پەقەتلا ئوقۇش"
+
+#~ msgid "Enter URL"
+#~ msgstr "URL كىرگۈزۈش"
+
+#~ msgid ""
+#~ "<b>Desktop Access</b>\n"
+#~ "\n"
+#~ "Will add boxes for all systems available from this account."
+#~ msgstr ""
+#~ "<b>ئۈستەلئۈستى زىيارىتى</b>\n"
+#~ "\n"
+#~ "مەزكۇر ھېساباتتىكى بارلىق سىستېمىلارغا قۇتىلارنى قوشىدۇ."
+
+#~ msgid "Please enter desktop or collection URI"
+#~ msgstr "ئۈستەلئۈستى ياكى توپلامنىڭ URI نى كىرگۈزۈڭ"
+
+#~ msgid "Will add boxes for all systems available from this account."
+#~ msgstr "مەزكۇر ھېساباتتىكى بارلىق سىستېمىلارغا قۇتىلارنى قوشىدۇ"
+
+#~ msgid "Will add a single box."
+#~ msgstr "بىرلا قۇتا قوشىدۇ."
+
+#~ msgid "Desktop Access"
+#~ msgstr "ئۈستەلئۈستىنى زىيارىتى"
+
+#, c-format
+#~ msgid "Unsupported protocol '%s'"
+#~ msgstr "كېلىشىم ‹%s› نى قوللىمايدۇ"
+
+#~ msgid "Analyzing..."
+#~ msgstr "تەھلىل قىلىۋاتىدۇ…"
+
+#~ msgid "Failed to analyze installer media. Corrupted or incomplete media?"
+#~ msgstr "ئورناتقۇ ۋاسىتىسىنى تەھلىل قىلىش مەغلۇپ بولدى. ۋاسىتە بۇزۇقمۇ ياكى نورمال ئەمەسمۇ؟"
+
+#~ msgid "Box setup failed"
+#~ msgstr "قۇتا ئورنىتىش مەغلۇپ بولدى"
+
+#~ msgid "Boxes will create a new box with the following properties:"
+#~ msgstr "تۆۋەندىكىدەك خاسلىقلىرى بولغان بىر يېڭى قۇتا قوشىدۇ:"
+
+#~ msgid "Type"
+#~ msgstr "تىپى"
+
+#~ msgid "Host"
+#~ msgstr "ماشىنا"
+
+#~ msgid "Port"
+#~ msgstr "ئېغىز"
+
+#~ msgid "TLS Port"
+#~ msgstr "TLS ئېغىزى"
+
+#~ msgid "Will add boxes for all systems available from this account:"
+#~ msgstr "مەزكۇر ھېساباتتىكى بارلىق سىستېمىلارغا قۇتىلارنى قوشىدۇ:"
+
+#~ msgid "Disk"
+#~ msgstr "دىسكا"
+
+#, c-format
+#~ msgid "%s maximum"
+#~ msgstr "%s ئەڭ چوڭ"
+
+#~ msgid "Introduction"
+#~ msgstr "تونۇشتۇرۇش"
+
+#~ msgid ""
+#~ "Creating a Box will allow you to use another operating system directly from your existing login.\n"
+#~ "\n"
+#~ "You may connect to an existing machine <b><i>over the network</i></b> or create a <b><i>virtual machine</i></b> that runs locally on your own."
+#~ msgstr ""
+#~ "يېڭىدىن بىر قۇتا ياساش ئارقىلىق نۆۋەتتىكى سىستېمىدا تۇرۇپلا باشقا بىر مەشغۇلات سىستېمىسى ئىشلىتىشكە بولىدۇ.\n"
+#~ "\n"
+#~ "شۇنىڭ بىلەن <b><i>توردىكى</i></b> باشقا بىر ماشىنىغا باغلانغىلى ياكى يەرلىكتە ئىجرا بولىدىغان <b><i>مەۋھۇم كومپيۇتېردىن</i></b> بىرنى قۇرغىلىمۇ بولىدۇ."
+
+#~ msgid "Source Selection"
+#~ msgstr "مەنبە تاللاش"
+
+#~ msgid "Insert operating system installation media or select a source below"
+#~ msgstr "مەشغۇلات سىستېمىسىنىڭ ئورنىتىش دىسكىسىنى سېلىڭ ياكى تۆۋەندىكى مەنبەدىن بىرنى تاللاڭ"
+
+#~ msgid "Any trademarks shown above are used merely for identification of software products you have already obtained and are the property of their respective owners."
+#~ msgstr "يۇقىرىدا كۆرسىتىلگەن سودا ماركىلىرىنىڭ ھەممىسى سىز ئېرىشكەن يۇمشاق دېتال مەھسۇلاتلىرىنى پەرق قىلىش ئۈچۈن ئىشلىتىدۇ. ھەرقايسىسى ئۇنىڭ ئىگىسىگە مەنسۇپ."
+
+#~ msgid "Preparation"
+#~ msgstr "تەييارلىق"
+
+#~ msgid "Preparing to create new box"
+#~ msgstr "يېڭى قۇتا قۇرۇشقا تەييارلىنىۋاتىدۇ"
+
+#~ msgid "Setup"
+#~ msgstr "ئورنات"
+
+#~ msgid ""
+#~ "Virtualization extensions are unavailable on your system. Expect this box to be extremely slow. If your system is recent enough (made in or after 2008), these "
+#~ "extensions are probably available on your system and you may need to enable them in your system's BIOS setup."
+#~ msgstr ""
+#~ "سىستېمىڭىزدا مەۋھۇملاشتۇرۇش كېڭەيتىلمىلىرىنى ئىشلەتكىلى بولمايدىكەن. بۇ قۇتا ئىنتايىن ئاستا بولۇپ قالىدۇ. سىزنىڭ سىستېمىڭىز يېڭىراق(2008-يىلدىن كېيىن ياسالغان) بولسا، "
+#~ "بۇ كېڭەيتىلمىلەرنى سىستېمىڭىزدا ئىشلەتكىلى بولىدۇ. بۇنى سىستېمىڭىزنىڭ BIOS تەڭشىكىدە ئىناۋەتلىك قىلىشقا توغرا كېلىدۇ."
+
+#~ msgid "Create a Box"
+#~ msgstr "بىر قۇتا قۇرىدۇ"
+
+#~ msgid "C_ontinue"
+#~ msgstr "داۋاملاشتۇر(_O)"
+
+#~ msgid "C_reate"
+#~ msgstr "قۇر(_R)"
+
+#~ msgid "C_ustomize..."
+#~ msgstr "ئۆزلەشتۈر(_U)…"
 
 #~ msgid "Error connecting %s: %s"
 #~ msgstr "%s غا باغلىنىشتا خاتالىق كۆرۈلدى: %s"
 
 #~ msgid "_Done"
 #~ msgstr "تامام(_D)"
-
-#~ msgid "Fullscreen"
-#~ msgstr "پۈتۈن ئېكران"
 
 #~ msgid "Favorites"
 #~ msgstr "يىغقۇچ"
@@ -809,9 +1423,6 @@ msgstr "ئۆزلەشتۈر(_U)…"
 
 #~ msgid "Shared with you"
 #~ msgstr "سىز بىلەن ھەمبەھىرلىگەن"
-
-#~ msgid "Create"
-#~ msgstr "ياسا"
 
 #~ msgid "_Add Product Key"
 #~ msgstr "مەھسۇلات ئاچقۇچى قوشۇش(_A)"
