@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2024-10-18 08:02+0000\n"
-"PO-Revision-Date: 2024-12-02 15:49+0300\n"
+"POT-Creation-Date: 2025-11-24 10:45+0000\n"
+"PO-Revision-Date: 2026-01-05 16:02+0300\n"
 "Last-Translator: Artur So <arturios2005@mail.ru>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -21,25 +21,25 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.8\n"
 
-#: data/org.gnome.Boxes.desktop.in:3 data/org.gnome.Boxes.metainfo.xml.in:7
+#: data/org.gnome.Boxes.desktop.in:2 data/org.gnome.Boxes.metainfo.xml.in:7
 #: data/ui/app-window.ui:6 data/ui/collection-toolbar.ui:7 src/app.vala:117
 #: src/app-window.vala:105 src/app-window.vala:218 src/app-window.vala:220
 #: src/main.vala:72 src/topbar.vala:70
 msgid "Boxes"
 msgstr "Boxes"
 
-#: data/org.gnome.Boxes.desktop.in:4
+#: data/org.gnome.Boxes.desktop.in:3
 msgid "Virtual machine viewer/manager"
 msgstr "Диспетчер виртуальных машин"
 
-#: data/org.gnome.Boxes.desktop.in:5
+#: data/org.gnome.Boxes.desktop.in:4
 msgid "View and use virtual machines"
 msgstr "Просмотр и использование виртуальных машин"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.Boxes.desktop.in:7
+#: data/org.gnome.Boxes.desktop.in:6
 msgid "virtual machine;vm;"
 msgstr "виртуальная машина;vm;вм;ВМ;"
 
@@ -125,7 +125,7 @@ msgid "Setup Shared Folders between your system and virtual machines"
 msgstr "Настраивайте общие папки между вашей системой и виртуальными машинами"
 
 #. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.Boxes.metainfo.xml.in:125
+#: data/org.gnome.Boxes.metainfo.xml.in:82
 msgid "The GNOME Project"
 msgstr "The GNOME Project"
 
@@ -361,7 +361,7 @@ msgstr "Действия"
 msgid "Keyboard shortcuts"
 msgstr "Комбинации клавиш"
 
-#: data/ui/display-toolbar.ui:121 src/display-toolbar.vala:73
+#: data/ui/display-toolbar.ui:122 src/display-toolbar.vala:90
 msgid "Fullscreen"
 msgstr "Полноэкранный режим"
 
@@ -557,7 +557,7 @@ msgstr "Создаётся новый снимок…"
 msgid "Search for a virtual machine…"
 msgstr "Поиск виртуальной машины…"
 
-#: data/ui/toast.ui:34 src/app.vala:601
+#: data/ui/toast.ui:34 src/app.vala:602
 #: src/preferences/snapshot-list-row.vala:157
 msgid "Undo"
 msgstr "Отменить"
@@ -679,63 +679,71 @@ msgstr ""
 msgid "A simple GNOME application to access virtual systems"
 msgstr "Простое приложение GNOME для доступа к виртуальным системам"
 
-#: src/app.vala:175 src/main.vala:9
+#: src/app.vala:176 src/main.vala:9
 msgid "Display version number"
 msgstr "Показать номер версии"
 
-#: src/app.vala:176
+#: src/app.vala:177
 msgid "Show help"
 msgstr "Показать справку"
 
-#: src/app.vala:177
+#: src/app.vala:178
 msgid "Open in full screen"
 msgstr "Открыть в полноэкранном режиме"
 
-#: src/app.vala:178 src/main.vala:10
+#: src/app.vala:179 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Проверить поддержку виртуализации"
 
-#: src/app.vala:179
+#: src/app.vala:180
 msgid "Open box with UUID"
 msgstr "Открыть виртуальную машину с UUID"
 
 #: src/app.vala:180
+msgid "UUID"
+msgstr "UUID"
+
+#: src/app.vala:181
 msgid "Search term"
 msgstr "Поисковый запрос"
 
+#: src/app.vala:181
+msgid "TEXT"
+msgstr "Текст"
+
 #. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
-#: src/app.vala:182
+#: src/app.vala:183
 msgid "URL to display, broker or installer media"
 msgstr "Открыть URL, диспетчер виртуальных машин или установочный носитель"
 
-#: src/app.vala:193
+#: src/app.vala:194
 msgid "— A simple application to access virtual machines"
 msgstr "— Простое приложение для доступа к виртуальным машинам"
 
-#: src/app.vala:217
+#: src/app.vala:218
 msgid "Too many command line arguments specified.\n"
 msgstr "Указано слишком много аргументов командной строки.\n"
 
-#: src/app.vala:457
+#: src/app.vala:458
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Виртуальная машина «%s» установлена и готова к использованию"
 
-#: src/app.vala:459
+#: src/app.vala:460
 msgid "Launch"
 msgstr "Запустить"
 
-#: src/app.vala:489
+#: src/app.vala:490
 #, c-format
 msgid "“%s“ is running in the background"
 msgstr "«%s» запущен в фоновом режиме"
 
-#: src/app.vala:570
+#: src/app.vala:571
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Виртуальная машина «%s» была удалена"
 
-#: src/app.vala:571
+#: src/app.vala:572
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -743,7 +751,7 @@ msgstr[0] "%u виртуальная машина была удалена"
 msgstr[1] "%u виртуальные машины были удалены"
 msgstr[2] "%u виртуальных машин было удалено"
 
-#: src/app.vala:642
+#: src/app.vala:643
 msgid "Boxes is doing something"
 msgstr "Boxes что-то выполняют"
 
@@ -806,7 +814,7 @@ msgstr "Нажмите и отпустите Ctrl+Alt (слева), чтобы �
 msgid "%d×%d"
 msgstr "%d×%d"
 
-#: src/display-toolbar.vala:70
+#: src/display-toolbar.vala:87
 msgid "Exit fullscreen"
 msgstr "Выйти из полноэкранного режима"
 
