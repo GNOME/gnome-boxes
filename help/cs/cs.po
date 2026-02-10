@@ -6,16 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
-"POT-Creation-Date: 2022-03-07 19:19+0000\n"
-"PO-Revision-Date: 2022-03-09 20:13+0100\n"
-"Last-Translator: Marek Černocký <marek@manet.cz>\n"
+"POT-Creation-Date: 2026-02-10 01:45+0000\n"
+"PO-Revision-Date: 2026-02-10 14:26+0100\n"
+"Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"X-Generator: Poedit 3.8\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -80,6 +80,7 @@ msgstr "nastavení"
 
 #. (itstool) path: item/p
 #: C/3d-acceleration.page:40 C/edit-domain.page:40 C/shared-folders.page:27
+#: C/usb-redirection.page:46
 msgid ""
 "Right-click on the box in the collection view and select <gui>Preferences</"
 "gui>, or click the menu (<_:media-1/>) button in the header bar and select "
@@ -243,8 +244,8 @@ msgid ""
 "In a terminal window, navigate to the directory or device containing the "
 "<cmd>.xml</cmd> file you stored. Type"
 msgstr ""
-"V okně terminálu přejděte do složky nebo zařízení obsahujícího soubor <cmd>."
-"xml</cmd>, který jste uložili. Zadejte"
+"V okně terminálu přejděte do složky nebo zařízení obsahujícího soubor "
+"<cmd>.xml</cmd>, který jste uložili. Zadejte"
 
 #. (itstool) path: item/code
 #: C/backup.page:66
@@ -271,14 +272,14 @@ msgid "2013"
 msgstr "2013"
 
 #. (itstool) path: credit/name
-#: C/create.page:22 C/edit-domain.page:10 C/interface.page:18
-#: C/shared-folders.page:10 C/snapshot-create.page:17 C/snapshot-revert.page:17
-#: C/usb-redirection.page:24
+#: C/create.page:22 C/edit-domain.page:10 C/install-guest-agent.page:9
+#: C/interface.page:18 C/shared-folders.page:10 C/snapshot-create.page:17
+#: C/snapshot-revert.page:17 C/usb-redirection.page:24
 msgid "Felipe Borges"
 msgstr "Felipe Borges"
 
 #. (itstool) path: credit/years
-#: C/create.page:24
+#: C/create.page:24 C/install-guest-agent.page:11
 msgid "2022"
 msgstr "2022"
 
@@ -373,9 +374,9 @@ msgstr "Opět se objeví zobrazení skupin a instalace boxu začne."
 
 #. (itstool) path: credit/years
 #: C/delete.page:11 C/disk-images.page:11 C/index.page:22 C/prop-system.page:13
-#: C/prop-trouble.page:13 C/shortcuts.page:13 C/shutdown.page:13
-#: C/snapshot-create.page:14 C/snapshot-delete.page:13
-#: C/snapshot-rename.page:13 C/snapshot-revert.page:14 C/virtualization.page:11
+#: C/prop-trouble.page:13 C/shutdown.page:13 C/snapshot-create.page:14
+#: C/snapshot-delete.page:13 C/snapshot-rename.page:13
+#: C/snapshot-revert.page:14 C/virtualization.page:11
 msgid "2014"
 msgstr "2014"
 
@@ -558,9 +559,9 @@ msgstr "<_:media-1/> Boxy"
 #. (itstool) path: page/p
 #: C/index.page:35
 msgid ""
-"<app>Boxes</app> is an application that gives you access to local <link xref="
-"\"what-is-a-virtual-machine\">virtual machines</link>. If you want to get "
-"access to a remote virtual machine or connect to the display of a remote "
+"<app>Boxes</app> is an application that gives you access to local <link "
+"xref=\"what-is-a-virtual-machine\">virtual machines</link>. If you want to "
+"get access to a remote virtual machine or connect to the display of a remote "
 "computer, you can use another GNOME app called <app>Connections</app>."
 msgstr ""
 "<app>Boxy</app> jsou aplikace, která vám poskytuje přístup k místním <link "
@@ -598,6 +599,115 @@ msgstr "Dotazy"
 #: C/index.page:68
 msgid "Advanced topics"
 msgstr "Pokročilá témata"
+
+#. (itstool) path: info/desc
+#: C/install-guest-agent.page:16
+msgid "Enable additional integrations with your box."
+msgstr "Umožněte další integrace s vaším boxem."
+
+#. (itstool) path: page/title
+#: C/install-guest-agent.page:19
+msgid "Install guest tools"
+msgstr "Instalování nástrojů hosta"
+
+#. (itstool) path: page/p
+#: C/install-guest-agent.page:28
+msgid ""
+"Guest tools are a collection of drivers and utilities that improve the "
+"usability of your virtual machine. It provides improved input performance, "
+"automatic screen resolution adjustment, shared clipboard, and file transfer."
+msgstr ""
+"Nástroje hosta jsou sbírka ovladačů a nástrojů, které zlepšují použitelnost "
+"vašeho virtuálního stroje. Poskytují zlepšený výkon vstupu, automatickou "
+"úpravu rozlišení obrazovky, sdílenou schránku a přenos souborů."
+
+#. (itstool) path: section/title
+#: C/install-guest-agent.page:31
+msgid "Installing on Windows virtual machines"
+msgstr "Instalace na virtuálních strojích se systémem Windows"
+
+#. (itstool) path: section/p
+#: C/install-guest-agent.page:33
+msgid ""
+"Visit <link href=\"https://win.gnomeboxes.org\">win.gnomeboxes.org</link> in "
+"your Windows virtual machine to download and install the <app>spice-guest-"
+"tools</app> application, which provides the guest integration for GNOME "
+"Boxes."
+msgstr ""
+"Navštivte <link href=\"https://win.gnomeboxes.org\">win.gnomeboxes.org</"
+"link> ve vašem virtuálním stroji se systémem Windows pro stažení a instalaci "
+"aplikace <app>spice-guest-tools</app>, která poskytuje integraci hosta pro "
+"GNOME Boxes."
+
+#. (itstool) path: section/title
+#: C/install-guest-agent.page:37
+msgid "Installing on Linux virtual machines"
+msgstr "Instalace na virtuálních strojích se systémem Linux"
+
+#. (itstool) path: section/p
+#: C/install-guest-agent.page:39
+msgid ""
+"Most popular Linux distributions package the guest tools as <app>spice-"
+"vdagent</app>."
+msgstr ""
+"Nejpopulárnější Linuxové distribuce mají nástroje hosta v balíčku jako "
+"<app>spice-vdagent</app>."
+
+#. (itstool) path: section/p
+#: C/install-guest-agent.page:41
+msgid ""
+"The spice agent for Linux consists of 2 parts, a daemon <app>spice-vdagentd</"
+"app> and a per X-session process <app>spice-vdagent</app>. The daemon gets "
+"started in Spice guests through a Sys-V initscript or a systemd unit. The "
+"per X-session gets automatically started in desktop environments which honor "
+"<file>/etc/xdg/autostart</file>, and under <app>gdm</app>."
+msgstr ""
+"Agent spice je složený ze 2 částí, daemon <app>spice-vdagentd</app> a proces "
+"pro každou relaci X <app>spice-vdagent</app>. Daemon se spustí v hostech "
+"Spice pomocí Sys-V initscript nebo systemd unit. Proces pro každou relaci X "
+"se spustí automaticky s každým desktopovým prostředím, které používá <file>/"
+"etc/xdg/autostart</file> a pod <app>gdm</app>."
+
+#. (itstool) path: section/title
+#: C/install-guest-agent.page:48
+msgid "Installing on RPM based distributions"
+msgstr "Instalace na distribucích založených na RPM"
+
+#. (itstool) path: section/p
+#: C/install-guest-agent.page:50
+msgid ""
+"Distributions such as Fedora, Red Hat Enterprise Linux, CentOS Stream, "
+"OpenSUSE, are known to provide <app>spice-vdagent</app> in their "
+"repositories."
+msgstr ""
+"Distribuce jako Fedora, Red Hat Enterprise Linux, CentOS Stream a OpenSUSE "
+"poskytují <app>spice-vdagent</app> v jejich repozitářích."
+
+#. (itstool) path: section/screen
+#: C/install-guest-agent.page:52
+#, no-wrap
+msgid "sudo dnf install spice-vdagent"
+msgstr "sudo dnf install spice-vdagent"
+
+#. (itstool) path: section/title
+#: C/install-guest-agent.page:56
+msgid "Installing on Deb based distributions"
+msgstr "Instalace na distribucích založených na Deb"
+
+#. (itstool) path: section/p
+#: C/install-guest-agent.page:58
+msgid ""
+"Distributions such as Ubuntu, Debian, Linux Mint are known to provide "
+"<app>spice-vdagent</app> in their repositories."
+msgstr ""
+"Distribuce jako Ubuntu, Debian a Linux Mint poskytují <app>spice-vdagent</"
+"app> v jejich repozitářích."
+
+#. (itstool) path: section/screen
+#: C/install-guest-agent.page:60
+#, no-wrap
+msgid "sudo apt install spice-vdagent"
+msgstr "sudo apt install spice-vdagent"
 
 #. (itstool) path: info/desc
 #: C/interface.page:30
@@ -682,11 +792,11 @@ msgstr "Zobrazení předvoleb"
 #. (itstool) path: section/p
 #: C/interface.page:68
 msgid ""
-"Right-click a box in the collection view and select <gui style=\"button"
-"\">Preferences</gui> to open the <em>preferences view</em>, where you can "
-"configure some of the details of your box. The preferences view allows you "
-"to display or change settings depending on which of the following tabs is "
-"selected:"
+"Right-click a box in the collection view and select <gui "
+"style=\"button\">Preferences</gui> to open the <em>preferences view</em>, "
+"where you can configure some of the details of your box. The preferences "
+"view allows you to display or change settings depending on which of the "
+"following tabs is selected:"
 msgstr ""
 "Kliknutím na box pravým tlačítkem ve skupinovém zobrazení a vybráním <gui "
 "style=\"button\">Předvolby</gui> se otevře <em>zobrazení předvoleb</em>, ve "
@@ -780,8 +890,8 @@ msgid ""
 "With <gui>Snapshots</gui> you can <link xref=\"snapshot-create\">create</"
 "link> and manage snapshots of your box."
 msgstr ""
-"Pomocí <gui>Uložených stavů</gui> můžete <link xref=\"snapshot-create"
-"\">vytvářet</link> uložené stavy boxu a provádět jejich správu."
+"Pomocí <gui>Uložených stavů</gui> můžete <link xref=\"snapshot-"
+"create\">vytvářet</link> uložené stavy boxu a provádět jejich správu."
 
 #. (itstool) path: section/p
 #: C/interface.page:102
@@ -902,7 +1012,9 @@ msgstr ""
 "paměti, procesorů a maximálního přidělitelného diskového prostoru."
 
 #. (itstool) path: item/p
-#: C/prop-system.page:27 C/snapshot-create.page:39
+#: C/prop-system.page:27 C/prop-trouble.page:29 C/snapshot-create.page:39
+#: C/snapshot-delete.page:26 C/snapshot-rename.page:34
+#: C/snapshot-revert.page:34
 msgid ""
 "Right-click on the box in the collection view and select <gui>Preferences</"
 "gui>, or if the box is running, click the menu (<_:media-1/>) button in the "
@@ -915,11 +1027,11 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/prop-system.page:32
 msgid ""
-"Adjust the <gui>Memory</gui>, <gui>CPU</gui> and <gui>Maximum disk size</"
-"gui> sliders to reflect the desired values."
+"Adjust the <gui>Memory</gui>, <gui>CPU</gui> and <gui>Storage limit</gui> "
+"values to reflect the desired configuration."
 msgstr ""
-"Pomocí posuvníků upravte <gui>Paměť</gui>, <gui>Procesor</gui> a "
-"<gui>Maximální velikost disku</gui>, aby odpovídali požadovaným hodnotám."
+"Pomocí posuvníků upravte <gui>paměť</gui>, <gui>procesor</gui> a <gui>limit "
+"úložiště</gui>, aby odpovídaly požadovaným hodnotám."
 
 #. (itstool) path: note/p
 #: C/prop-system.page:37
@@ -960,18 +1072,6 @@ msgstr ""
 "hypervizora QEMU."
 
 #. (itstool) path: item/p
-#: C/prop-trouble.page:29 C/snapshot-delete.page:26 C/snapshot-rename.page:34
-#: C/snapshot-revert.page:34
-msgid ""
-"Right-click the box in the collection view and select <gui>Preferences</"
-"gui>, or if the box is running, click the menu (<_:media-1/>) button in the "
-"header bar and select <gui>Preferences</gui>."
-msgstr ""
-"Klikněte pravým tlačítkem na box ve skupinovém zobrazení a vyberte "
-"<gui>Předvolby</gui>, nebo, když je box spuštěný, klikněte na tlačítko "
-"nabídky (<_:media-1/>) v záhlavní liště a vyberte <gui>Předvolby</gui>."
-
-#. (itstool) path: item/p
 #: C/prop-trouble.page:35
 msgid ""
 "Click the <gui style=\"button\">Troubleshooting Log</gui> button to view the "
@@ -997,9 +1097,10 @@ msgid ""
 "<link xref=\"interface#collection\">collection view</link>. Click the search "
 "icon, or just start typing to initiate a search."
 msgstr ""
-"V případě, že boxů je více, můžete boxy ve <link xref=\"interface#collection"
-"\">skupinovém zobrazení</link> vyhledat nebo filtrovat. Klikněte na ikonu "
-"hledání nebo prostě jen začněte psát název a vyhledávání začne."
+"V případě, že boxů je více, můžete boxy ve <link "
+"xref=\"interface#collection\">skupinovém zobrazení</link> vyhledat nebo "
+"filtrovat. Klikněte na ikonu hledání nebo prostě jen začněte psát název a "
+"vyhledávání začne."
 
 #. (itstool) path: page/p
 #: C/search.page:26
@@ -1040,110 +1141,6 @@ msgid ""
 msgstr ""
 "V části <gui>Sdílené složky</gui> můžete prohlížet, odebírat a vytvářet nové "
 "sdílené složky."
-
-#. (itstool) path: credit/name
-#: C/shortcuts.page:11
-msgid "Lasse Schuirmann"
-msgstr "Lasse Schuirmann"
-
-#. (itstool) path: info/desc
-#: C/shortcuts.page:18
-msgid "Operate <app>Boxes</app> using keyboard shortcuts."
-msgstr "Jak pracovat s <app>Boxy</app> pomocí klávesových zkratek."
-
-#. (itstool) path: page/title
-#: C/shortcuts.page:21
-msgid "Keyboard shortcuts"
-msgstr "Klávesové zkratky"
-
-#. (itstool) path: page/p
-#: C/shortcuts.page:23
-msgid ""
-"Various shortcuts can be used to operate Boxes. Besides mnemonics, the "
-"following shortcuts are available:"
-msgstr ""
-"Pří práci s Boxy můžete používat různé klávesové zkratky. Mimo horkých "
-"kláves jsou k dispozici následující:"
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:29
-msgid "Action"
-msgstr "Činnost"
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:32
-msgid "Shortcut"
-msgstr "Klávesová zkratka"
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:39
-msgid "Create new virtual machine"
-msgstr "Vytvořit nový virtuální stroj"
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:42
-msgid "<keyseq><key>Ctrl</key><key>N</key></keyseq>"
-msgstr "<keyseq><key>Ctrl</key><key>N</key></keyseq>"
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:47
-msgid "Toggle search"
-msgstr "Přepnout hledání"
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:50
-msgid "<keyseq><key>Ctrl</key><key>F</key></keyseq>"
-msgstr "<keyseq><key>Ctrl</key><key>F</key></keyseq>"
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:55
-msgid "Go back"
-msgstr "Jít zpět"
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:58
-msgid "<keyseq><key>Alt</key><key>Left</key></keyseq>"
-msgstr "<keyseq><key>Alt</key><key>Left</key></keyseq>"
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:63
-msgid "Go forward"
-msgstr "Jít vpřed"
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:66
-msgid "<keyseq><key>Alt</key><key>Right</key></keyseq>"
-msgstr "<keyseq><key>Alt</key><key>Right</key></keyseq>"
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:71
-msgid "Cancel"
-msgstr "Storno"
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:74
-msgid "<keyseq><key>Escape</key></keyseq>"
-msgstr "<keyseq><key>Esc</key></keyseq>"
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:79
-msgid "Release mouse and keyboard grab"
-msgstr "Uvolnit zachytávání myši a klávesnice"
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:82
-msgid "<keyseq><key>Ctrl</key><key>Alt</key></keyseq>"
-msgstr "<keyseq><key>Ctrl</key><key>Alt</key></keyseq>"
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:87
-msgid "Quit Boxes"
-msgstr "Ukončit Boxy"
-
-#. (itstool) path: td/p
-#: C/shortcuts.page:90
-msgid "<keyseq><key>Ctrl</key><key>Q</key></keyseq>"
-msgstr "<keyseq><key>Ctrl</key><key>Q</key></keyseq>"
 
 #. (itstool) path: info/desc
 #: C/shutdown.page:16
@@ -1453,21 +1450,6 @@ msgstr ""
 "<app>spice-gtk</app> je klient SPICE, který poskytuje zobrazení do "
 "hostitelského opereačního systému."
 
-#. (itstool) path: section/title
-#: C/supported-protocols.page:84
-msgid "VNC"
-msgstr "VNC"
-
-#. (itstool) path: section/p
-#: C/supported-protocols.page:86
-msgid ""
-"<app>VNC</app>, Virtual Network Computing, used as fallback when SPICE is "
-"not available, is a well know protocol but quite limited and slow."
-msgstr ""
-"<app>VNC</app> (Virtual Network Computing – virtuální síťové výpočty) se "
-"používá jako záložní řešení, když není k dispozici SPICE. Jedná se o dobře "
-"známý, ale trochu omezující a pomalý protokol."
-
 #. (itstool) path: credit/name
 #: C/system-requirements.page:21
 msgid "Ekaterina Gerasimova"
@@ -1583,17 +1565,6 @@ msgstr "Jak v boxu povolit hostitelské zařízení USB:"
 #: C/usb-redirection.page:45
 msgid "Make sure the box is running."
 msgstr "Ověřte, že box běží."
-
-#. (itstool) path: item/p
-#: C/usb-redirection.page:46
-msgid ""
-"Right-click the box in the collection view and select <gui>Preferences</"
-"gui>, or click the menu (<_:media-1/>) button in the header bar and select "
-"<gui>Preferences</gui>."
-msgstr ""
-"Klikněte pravým tlačítkem na box v zobrazení skupin a vyberte "
-"<gui>Předvolby</gui>, nebo klikněte na tlačítko nabídky (<_:media-1/>) v "
-"záhlavní liště a vyberte <gui>Předvolby</gui>."
 
 #. (itstool) path: item/p
 #: C/usb-redirection.page:51
@@ -1753,3 +1724,93 @@ msgstr ""
 "běží jen na odlišném operačním systému, například Microsot Windows™. Dalším "
 "využitím virtuálního stroje je testování softwaru během jeho vývoje nebo "
 "testování v čistě nainstalovaném prostředí."
+
+#~ msgid ""
+#~ "Right-click the box in the collection view and select <gui>Preferences</"
+#~ "gui>, or if the box is running, click the menu (<_:media-1/>) button in "
+#~ "the header bar and select <gui>Preferences</gui>."
+#~ msgstr ""
+#~ "Klikněte pravým tlačítkem na box ve skupinovém zobrazení a vyberte "
+#~ "<gui>Předvolby</gui>, nebo, když je box spuštěný, klikněte na tlačítko "
+#~ "nabídky (<_:media-1/>) v záhlavní liště a vyberte <gui>Předvolby</gui>."
+
+#~ msgid "Lasse Schuirmann"
+#~ msgstr "Lasse Schuirmann"
+
+#~ msgid "Operate <app>Boxes</app> using keyboard shortcuts."
+#~ msgstr "Jak pracovat s <app>Boxy</app> pomocí klávesových zkratek."
+
+#~ msgid "Keyboard shortcuts"
+#~ msgstr "Klávesové zkratky"
+
+#~ msgid ""
+#~ "Various shortcuts can be used to operate Boxes. Besides mnemonics, the "
+#~ "following shortcuts are available:"
+#~ msgstr ""
+#~ "Pří práci s Boxy můžete používat různé klávesové zkratky. Mimo horkých "
+#~ "kláves jsou k dispozici následující:"
+
+#~ msgid "Action"
+#~ msgstr "Činnost"
+
+#~ msgid "Shortcut"
+#~ msgstr "Klávesová zkratka"
+
+#~ msgid "<keyseq><key>Ctrl</key><key>N</key></keyseq>"
+#~ msgstr "<keyseq><key>Ctrl</key><key>N</key></keyseq>"
+
+#~ msgid "Toggle search"
+#~ msgstr "Přepnout hledání"
+
+#~ msgid "<keyseq><key>Ctrl</key><key>F</key></keyseq>"
+#~ msgstr "<keyseq><key>Ctrl</key><key>F</key></keyseq>"
+
+#~ msgid "Go back"
+#~ msgstr "Jít zpět"
+
+#~ msgid "<keyseq><key>Alt</key><key>Left</key></keyseq>"
+#~ msgstr "<keyseq><key>Alt</key><key>Left</key></keyseq>"
+
+#~ msgid "Go forward"
+#~ msgstr "Jít vpřed"
+
+#~ msgid "<keyseq><key>Alt</key><key>Right</key></keyseq>"
+#~ msgstr "<keyseq><key>Alt</key><key>Right</key></keyseq>"
+
+#~ msgid "Cancel"
+#~ msgstr "Storno"
+
+#~ msgid "<keyseq><key>Escape</key></keyseq>"
+#~ msgstr "<keyseq><key>Esc</key></keyseq>"
+
+#~ msgid "Release mouse and keyboard grab"
+#~ msgstr "Uvolnit zachytávání myši a klávesnice"
+
+#~ msgid "<keyseq><key>Ctrl</key><key>Alt</key></keyseq>"
+#~ msgstr "<keyseq><key>Ctrl</key><key>Alt</key></keyseq>"
+
+#~ msgid "Quit Boxes"
+#~ msgstr "Ukončit Boxy"
+
+#~ msgid "<keyseq><key>Ctrl</key><key>Q</key></keyseq>"
+#~ msgstr "<keyseq><key>Ctrl</key><key>Q</key></keyseq>"
+
+#~ msgid "VNC"
+#~ msgstr "VNC"
+
+#~ msgid ""
+#~ "<app>VNC</app>, Virtual Network Computing, used as fallback when SPICE is "
+#~ "not available, is a well know protocol but quite limited and slow."
+#~ msgstr ""
+#~ "<app>VNC</app> (Virtual Network Computing – virtuální síťové výpočty) se "
+#~ "používá jako záložní řešení, když není k dispozici SPICE. Jedná se o "
+#~ "dobře známý, ale trochu omezující a pomalý protokol."
+
+#~ msgid ""
+#~ "Right-click the box in the collection view and select <gui>Preferences</"
+#~ "gui>, or click the menu (<_:media-1/>) button in the header bar and "
+#~ "select <gui>Preferences</gui>."
+#~ msgstr ""
+#~ "Klikněte pravým tlačítkem na box v zobrazení skupin a vyberte "
+#~ "<gui>Předvolby</gui>, nebo klikněte na tlačítko nabídky (<_:media-1/>) v "
+#~ "záhlavní liště a vyberte <gui>Předvolby</gui>."
