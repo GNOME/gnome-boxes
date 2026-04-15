@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2025-08-10 15:47+0000\n"
-"PO-Revision-Date: 2025-08-13 08:06+0200\n"
+"POT-Creation-Date: 2026-03-14 09:46+0000\n"
+"PO-Revision-Date: 2026-04-15 09:31+0200\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <->\n"
 "Language: sk\n"
@@ -32,7 +32,7 @@ msgstr "Prezerač/správca virtuálnych počítačov"
 
 #: data/org.gnome.Boxes.desktop.in:4
 msgid "View and use virtual machines"
-msgstr "Zobrazuje a používa virtuálne počítače"
+msgstr "Zobrazenie a používanie virtuálnych počítačov"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Boxes.desktop.in:6
@@ -42,7 +42,7 @@ msgstr "virtuálny počítač;stroj;vm;virtualizácia;"
 # cmd tooltip
 #: data/org.gnome.Boxes.metainfo.xml.in:8
 msgid "Virtualization made simple"
-msgstr "Zjednodušuje virtualizáciu"
+msgstr "Virtualizácia bez komplikácií"
 
 #: data/org.gnome.Boxes.metainfo.xml.in:10
 msgid ""
@@ -113,17 +113,17 @@ msgid ""
 "Share files to virtual machines by dropping them from your file manager into "
 "the Boxes window"
 msgstr ""
-"Sprístupnenie súborov virtuálnym počítačom ich pustením do okna aplikácie "
+"Zdieľanie súborov virtuálnym počítačom ich pustením do okna aplikácie "
 "Boxy z vášho správcu súborov"
 
 #: data/org.gnome.Boxes.metainfo.xml.in:28
 msgid "Setup Shared Folders between your system and virtual machines"
 msgstr ""
-"Nastavenie sprístupnených priečinkov medzi vaším systémom a virtuálnymi "
+"Nastavenie zdieľaných priečinkov medzi vašim systémom a virtuálnymi "
 "počítačmi"
 
 #. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.Boxes.metainfo.xml.in:125
+#: data/org.gnome.Boxes.metainfo.xml.in:87
 msgid "The GNOME Project"
 msgstr "Projekt GNOME"
 
@@ -223,7 +223,7 @@ msgstr "Nenašiel sa operačný systém"
 #: data/ui/assistant/assistant.ui:123 data/ui/preferences/resources-page.ui:7
 #: data/ui/preferences/resources-page.ui:47
 msgid "Resources"
-msgstr "Prostriedky"
+msgstr "Zdroje"
 
 #: data/ui/assistant/assistant.ui:128 data/ui/preferences/resources-page.ui:70
 msgid "Memory"
@@ -363,7 +363,7 @@ msgstr "Klávesové skratky"
 # cmd tooltip
 #: data/ui/display-toolbar.ui:122 src/display-toolbar.vala:90
 msgid "Fullscreen"
-msgstr "Zaháji režim na celú obrazovku"
+msgstr "Prepnúť na celú obrazovku"
 
 #: data/ui/downloads-hub-row.ui:54
 msgid "Ready to install"
@@ -522,7 +522,7 @@ msgstr "Miestny priečinok"
 #: data/ui/preferences/shared-folder-popover.ui:70
 #: data/ui/shared-folder-popover.ui:70
 msgid "Select Shared Folder"
-msgstr "Výber zdieľaného priečinku"
+msgstr "Výber zdieľaného priečinka"
 
 #: data/ui/preferences/shared-folder-popover.ui:111
 #: data/ui/shared-folder-popover.ui:111
@@ -541,12 +541,12 @@ msgstr "Vráti na snímku"
 # tooltip
 #: data/ui/preferences/snapshot-list-row.ui:83
 msgid "Rename snapshot"
-msgstr "Premenuje snímok"
+msgstr "Premenuje snímku"
 
 # tooltip
 #: data/ui/preferences/snapshot-list-row.ui:98
 msgid "Delete snapshot"
-msgstr "Odstráni snímok"
+msgstr "Odstráni snímku"
 
 #: data/ui/preferences/snapshots-page.ui:6
 #: data/ui/preferences/snapshots-page.ui:11
@@ -706,10 +706,18 @@ msgstr "Skontroluje virtualizačné schopnosti"
 msgid "Open box with UUID"
 msgstr "Otvorí box s UUID"
 
+#: src/app.vala:180
+msgid "UUID"
+msgstr "UUID"
+
 # cmd tooltip
 #: src/app.vala:181
 msgid "Search term"
 msgstr "Vyhľadá výraz"
+
+#: src/app.vala:181
+msgid "TEXT"
+msgstr "TEXT"
 
 # https://bugzilla.gnome.org/show_bug.cgi?id=695547
 # cmd tooltip
@@ -799,7 +807,7 @@ msgstr " od spoločnosti %s"
 
 #: src/collection-toolbar.vala:54
 msgid "Select a device or OS media file"
-msgstr "Výber zariadenie alebo súboru média s OS"
+msgstr "Výber zariadenia alebo súboru média s OS"
 
 #: src/collection-toolbar.vala:57 src/preferences/cdrom-row.vala:65
 msgid "Open"
@@ -826,7 +834,7 @@ msgstr "Ukončí režim na celú obrazovku"
 
 #: src/downloads-hub.vala:52
 msgid "Downloading media"
-msgstr "Preberajú sa multimédiá"
+msgstr "Preberá sa inštalačné médium"
 
 #: src/downloads-hub.vala:78
 #, c-format
@@ -950,7 +958,7 @@ msgstr "Pripojenie k virtuálnemu počítaču „%s“ zlyhalo"
 
 #: src/machine.vala:254
 msgid "Machine is under construction"
-msgstr "Počítač je vo výstavbe"
+msgstr "Virtuálny počítač sa pripravuje"
 
 #: src/machine.vala:407
 msgid "Saving…"
@@ -1042,7 +1050,7 @@ msgstr "Zapnutím vášho boxu uvidíte USB zariadenia dostupné na presmerovani
 #: src/preferences/resources-page.vala:82
 #, c-format
 msgid "Recommended %s."
-msgstr "Odporúčaných: %s."
+msgstr "Odporúčané %s."
 
 #: src/preferences/resources-page.vala:154
 msgid "Boxes wants to run VM in background"
@@ -1062,7 +1070,7 @@ msgid ""
 "your box. Would you like to create a snapshot to recover from your changes?"
 msgstr ""
 "Úprava konfigurácie vášho boxu môže spôsobiť problémy s operačným systémom "
-"vášho boxu. Chcete vytvoriť snímok na obnovu vašich zmien?"
+"vášho boxu. Chcete vytvoriť snímku, aby ste mohli vrátiť vykonané zmeny?"
 
 #: src/preferences/resources-page.vala:270
 #, c-format
@@ -1080,8 +1088,8 @@ msgid ""
 "Use the button below to add your first shared folder. For file sharing to "
 "work, the guest box needs to have <a href='%s'>spice-webdav</a> installed."
 msgstr ""
-"Použitím tlačidla nižšie pridáte váš prvý sprístupnený priečinok. Aby "
-"sprístupnenie mohlo fungovať, hosťovský box musí mať nainštalovaný balík <a "
+"Použitím tlačidla nižšie pridáte váš prvý zdieľaný priečinok. Aby "
+"zdieľanie mohlo fungovať, hosťovský box musí mať nainštalovaný balík <a "
 "href='%s'>spice-webdav</a>."
 
 #. Translators: %s is the reason why Boxes failed to rename the snapshot.
