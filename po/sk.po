@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
 "POT-Creation-Date: 2026-03-14 09:46+0000\n"
-"PO-Revision-Date: 2026-04-15 09:31+0200\n"
+"PO-Revision-Date: 2026-04-20 17:10+0200\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <->\n"
 "Language: sk\n"
@@ -113,14 +113,13 @@ msgid ""
 "Share files to virtual machines by dropping them from your file manager into "
 "the Boxes window"
 msgstr ""
-"Zdieľanie súborov virtuálnym počítačom ich pustením do okna aplikácie "
-"Boxy z vášho správcu súborov"
+"Zdieľanie súborov virtuálnym počítačom ich pustením do okna aplikácie Boxy z "
+"vášho správcu súborov"
 
 #: data/org.gnome.Boxes.metainfo.xml.in:28
 msgid "Setup Shared Folders between your system and virtual machines"
 msgstr ""
-"Nastavenie zdieľaných priečinkov medzi vašim systémom a virtuálnymi "
-"počítačmi"
+"Nastavenie zdieľaných priečinkov medzi vašim systémom a virtuálnymi počítačmi"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.Boxes.metainfo.xml.in:87
@@ -189,7 +188,7 @@ msgstr "Vitajte v aplikácii Boxy"
 
 #: data/ui/app-window.ui:82
 msgid "Use the <b>+</b> button to create your first virtual machine."
-msgstr "Na vytvorenie vášho prvého boxu použite tlačidlo <b>+</b>."
+msgstr "Na vytvorenie vášho prvého počítača použite tlačidlo <b>+</b>."
 
 #: data/ui/assistant/assistant.ui:51
 msgid "New Virtual Machine"
@@ -408,7 +407,7 @@ msgstr "Zatvoriť okno/ukončiť aplikáciu Boxy"
 #: data/ui/kbd-shortcuts-window.ui:75
 msgctxt "shortcut window"
 msgid "Box Creation and Properties"
-msgstr "Vytváranie boxov a vlastnosti"
+msgstr "Vytváranie počítačov a vlastnosti"
 
 #: data/ui/kbd-shortcuts-window.ui:84 data/ui/kbd-shortcuts-window.ui:103
 msgctxt "shortcut window"
@@ -758,9 +757,9 @@ msgstr "Box „%s“ bol odstránený"
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
-msgstr[0] "%u boxov bolo odstránených"
-msgstr[1] "%u box bol odstránený"
-msgstr[2] "%u boxy boli odstránené"
+msgstr[0] "%u počítačov bolo odstránených"
+msgstr[1] "%u počítač bol odstránený"
+msgstr[2] "%u počítače boli odstránené"
 
 #: src/app.vala:643
 msgid "Boxes is doing something"
@@ -782,7 +781,7 @@ msgstr "_Otvoriť"
 #: src/assistant/assistant.vala:145
 #, c-format
 msgid "Failed to prepare express installation: %s"
-msgstr "Zlyhala príprava expresnej inštalácie: %s"
+msgstr "Zlyhala príprava rýchlej inštalácie: %s"
 
 # DK: ide o Live distribuciu. pravdepodobne neprekladame
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
@@ -927,7 +926,7 @@ msgstr "Inštaluje sa…"
 
 #: src/libvirt-machine.vala:717
 msgid "Setting up clone…"
-msgstr "Nastavuje sa klonovanie…"
+msgstr "Nastavuje sa klon…"
 
 #: src/libvirt-machine.vala:719
 msgid "Importing…"
@@ -1005,7 +1004,7 @@ msgstr "• Je dostupný hosť Libvirt KVM: %s\n"
 #: src/main.vala:56
 #, c-format
 msgid "• Boxes storage pool available: %s\n"
-msgstr "• Je dostupný zásobník úložísk boxov: %s\n"
+msgstr "• Je dostupný zásobník úložísk virtuálnych počítačov: %s\n"
 
 #: src/main.vala:60
 #, c-format
@@ -1088,8 +1087,8 @@ msgid ""
 "Use the button below to add your first shared folder. For file sharing to "
 "work, the guest box needs to have <a href='%s'>spice-webdav</a> installed."
 msgstr ""
-"Použitím tlačidla nižšie pridáte váš prvý zdieľaný priečinok. Aby "
-"zdieľanie mohlo fungovať, hosťovský box musí mať nainštalovaný balík <a "
+"Použitím tlačidla nižšie pridáte váš prvý zdieľaný priečinok. Aby zdieľanie "
+"mohlo fungovať, hosťovský box musí mať nainštalovaný balík <a "
 "href='%s'>spice-webdav</a>."
 
 #. Translators: %s is the reason why Boxes failed to rename the snapshot.
@@ -1199,7 +1198,7 @@ msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
 msgstr ""
-"Nepodarilo sa získať informácie o fonde úložísk programu „gnome-boxes“. "
+"Nepodarilo sa získať informácie o zásobníku úložísk programu „gnome-boxes“. "
 "Uistite sa, že príkaz „virsh -c qemu:///session pool-dumpxml gnome-boxes“ "
 "funguje."
 
@@ -1209,15 +1208,15 @@ msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
 "not exist"
 msgstr ""
-"%s je známy pre libvirt ako fond úložísk aplikácie Boxy prostredia GNOME, "
-"ale tento adresár nie je vytvorený"
+"%s je známy pre libvirt ako zásobník úložísk aplikácie Boxy prostredia GNOME, "
+"ale tento adresár neexistuje"
 
 #: src/util-app.vala:521
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
 msgstr ""
-"%s je známy pre libvirt ako fond úložísk aplikácie Boxy prostredia GNOME, "
+"%s je známy pre libvirt ako zásobník úložísk aplikácie Boxy prostredia GNOME, "
 "ale nie je adresárom"
 
 #: src/util-app.vala:525
@@ -1226,7 +1225,7 @@ msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
 "readable/writable"
 msgstr ""
-"%s je známy pre libvirt ako fond úložísk aplikácie Boxy prostredia GNOME, "
+"%s je známy pre libvirt ako zásobník úložísk aplikácie Boxy prostredia GNOME, "
 "ale nie je čitateľný alebo zapisovateľný používateľom"
 
 #: src/util.vala:334
