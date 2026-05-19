@@ -49,11 +49,6 @@ private class Boxes.Assistant : Hdy.Window {
     }
 
     private async void setup (string path) {
-        if (!yield check_libvirt_kvm ()) {
-            show_error ("No KVM!\n");
-            return;
-        }
-
         yield prepare_for_path (path);
     }
 
